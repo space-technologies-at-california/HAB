@@ -29,7 +29,7 @@ class HABVehicle:
         self.pid = pid
         self.gps = gps
         self.rockblock = rockblock
-        self.sevo1 = servo[0]
+        #self.servo1 = servo[0]
         #self.servo2 = servo[1]
         #self.timer = WatchDog(time_interval, self.get_imu)
         self.timer = Timer(time_interval, self.get_imu)
@@ -66,20 +66,28 @@ class HABVehicle:
     def fetch_data(self, num_data_soruce):  # Gets all the required data to send over via RockBlock
         new_data = []
         status = [0 for i in range(num_data_soruce)]  # 1 is success, 0 is fail
-        gps_data = self.gps.fetch()  # Have a function in GPS method that can fetch data
+        gps_data = self.gps.read()  # Have a function in GPS method that can fetch data
         new_data.append(gps_data)
+        
+        return new_data
 
-    def send_data(self):
-        self.fetch_data()
+    def send_data(self, gps_list):
+        data = self.fetch_data(1)
         x = 1
         package_success = False
         while not package_success:
             try:
-                self.rockblock.package_data()
+                self.rockblock.package_data(gps_list)
                 package_success = True
+                print("Sucessfully Packaged data!")
             except:
                 print("Unable to Package data! Tried {x} times!")
                 
+        self.rockblock.send_data()
+        
+    
+    def run_servo(self):
+        self.servo1.run(1)
                 
     
     

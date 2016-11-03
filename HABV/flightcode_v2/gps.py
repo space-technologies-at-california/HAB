@@ -11,7 +11,7 @@ class HAB_gps:
     def read(self):
         coords = self.gps.geo_coords()
         print(coords.lon, coords.lat)
-        return coords
+        return (coords.lon, coords.lat)
 
 
 '''

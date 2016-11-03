@@ -54,7 +54,9 @@ def main(veh):
     else:
         PID_timer.start()
     """
-    heading = veh.get_imu()
+    heading = veh.gps.read()
+    #veh.fetch_data(1)
+    veh.send_data(heading)
     veh.get_current_time()
     
 
