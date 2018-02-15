@@ -1,0 +1,18 @@
+
+hpeesofsim (*) 450.shp Jan 21 2016, MINT version 4
+    (64-bit windows built: 01/21/16 15:34:19)
+Copyright 1995 - 2015 Keysight Technologies, 1989-2016.
+
+Warning detected by hpeesofsim in topology check during circuit set up.
+    Number of nodes with only one device attached (topology corrected): 2
+
+
+SP SP1[1] <jpole_ads_lib:jpole_sim:schematic>   freq=144 MHz
+.Warning detected by hpeesofsim during SP analysis `SP1'.
+    A virtual resistance of 1 TOhms was added to each node
+    during AC/SP analysis at 144 MHz.
+
+
+Resource usage:
+  Total stopwatch time     =     1.04 seconds.
+
