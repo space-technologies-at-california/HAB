@@ -1,0 +1,1 @@
+copy & paste RadioHead folder into your Arduino library to compile dependent code on your machine.
