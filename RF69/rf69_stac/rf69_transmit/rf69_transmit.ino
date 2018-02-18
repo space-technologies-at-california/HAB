@@ -16,7 +16,7 @@
 // Change to 434.0 or other frequency, must match RX's freq!
 #define RF69_FREQ 434.0
 
-#if defined (__AVR_ATmega32U4__) // Feather 32u4 w/Radio
+/*#if defined (__AVR_ATmega32U4__) // Feather 32u4 w/Radio
   #define RFM69_CS      8
   #define RFM69_INT     7
   #define RFM69_RST     4
@@ -28,7 +28,7 @@
   #define RFM69_INT     3
   #define RFM69_RST     4
   #define LED           13
-#endif
+#endif*/
 
 #if defined (__AVR_ATmega328P__)  // Feather 328P w/wing
   #define RFM69_INT     3  // 
@@ -37,7 +37,7 @@
   #define LED           13
 #endif
 
-#if defined(ESP8266)    // ESP8266 feather w/wing
+/*#if defined(ESP8266)    // ESP8266 feather w/wing
   #define RFM69_CS      2    // "E"
   #define RFM69_IRQ     15   // "B"
   #define RFM69_RST     16   // "D"
@@ -124,7 +124,18 @@ void loop() {
   Serial.print("Sending "); Serial.println(radiopacket);
   
   // Send a message!
+  /*if(rf69.send((uint8_t *)radiopacket, strlen(radiopacket))) {
+    Serial.println("Packet Queued!");
+  } else {
+    Serial.println("Packet queuing error!");
+  }*/
+
   rf69.send((uint8_t *)radiopacket, strlen(radiopacket));
+  delay(300);
+  rf69.send((uint8_t *)radiopacket, strlen(radiopacket));
+  delay(300);
+  rf69.send((uint8_t *)radiopacket, strlen(radiopacket));
+  
   rf69.waitPacketSent(); // pretty sure this is not needed. already called in send()
 
 }
