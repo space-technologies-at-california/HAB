@@ -69,6 +69,7 @@
 RH_RF69 rf69(RFM69_CS, RFM69_INT);
 
 int16_t packetnum = 0;  // packet counter, we increment per xmission
+int serial_buffer_len = 0;
 
 void setup() 
 {
@@ -117,21 +118,34 @@ void setup()
 
 
 void loop() {
-  delay(1000);  // Wait 1 second between transmits, could also 'sleep' here!
 
-  char radiopacket[20] = "Hello World #";
-  itoa(packetnum++, radiopacket+13, 10);  // appends current packetnum to the end of radiopacket
-  Serial.print("Sending "); Serial.println(radiopacket);
+  while(Serial.available() > 0) {
+    serial_buffer_len = Serial.available();
+    if(serial_buffer_len > 60) {
+      serial_buffer_len = 60;
+    }
+    
+    if(serial_buffer_len > 0) {
+      char serial_buffer[serial_buffer_len];
+      Serial.readBytes(serial_buffer, serial_buffer_len);
+      transmit(serial_buffer, serial_buffer_len);
+    }
+  }
+  
+  delay(1000);  // Wait 1 second between transmits, could also 'sleep' here!
+}
+
+void transmit(char* msg, int len) {
+  Serial.print("Sending...");
   
   // Send a message!
-  /*if(rf69.send((uint8_t *)radiopacket, strlen(radiopacket))) {
-    Serial.println("Packet Queued!");
+  if(rf69.send(msg, len)) {
+    Serial.println("Packet queued!");
   } else {
     Serial.println("Packet queuing error!");
-  }*/
-  rf69.send((uint8_t *)radiopacket, strlen(radiopacket));
+  }
+//  rf69.send((uint8_t *)radiopacket, strlen(radiopacket));
   rf69.waitPacketSent();
-
 }
 
 void Blink(byte PIN, byte DELAY_MS, byte loops) {
