@@ -70,6 +70,8 @@ RH_RF69 rf69(RFM69_CS, RFM69_INT);
 
 int16_t packetnum = 0;  // packet counter, we increment per xmission
 int serial_buffer_len = 0;
+uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
+uint8_t len = sizeof(buf);
 
 void setup() 
 {
@@ -132,7 +134,21 @@ void loop() {
     }
   }
   
-  delay(1000);  // Wait 1 second between transmits, could also 'sleep' here!
+  if (rf69.waitAvailableTimeout(500)) {
+    // Should be a message for us now   
+    if (rf69.recv(buf, &len)) {
+      if (!len) return;
+      buf[len] = 0;
+      Serial.print("Received [");
+      Serial.print(len);
+      Serial.print("]: ");
+      Serial.println((char*)buf);
+      Serial.print("RSSI: ");
+      Serial.println(rf69.lastRssi(), DEC);
+    } else {
+      Serial.println("Receive failed");
+    }
+  }
 }
 
 void transmit(char* msg, int len) {
