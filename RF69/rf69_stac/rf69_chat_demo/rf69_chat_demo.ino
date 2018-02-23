@@ -71,7 +71,6 @@ RH_RF69 rf69(RFM69_CS, RFM69_INT);
 int16_t packetnum = 0;  // packet counter, we increment per xmission
 int serial_buffer_len = 0;
 uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
-uint8_t len = sizeof(buf);
 char serial_buffer[RH_RF69_MAX_MESSAGE_LEN];
 
 void setup() 
@@ -138,6 +137,7 @@ void loop() {
   }
   
   if (rf69.waitAvailableTimeout(500)) {
+    uint8_t len = sizeof(buf);
     // Should be a message for us now   
     if (rf69.recv(buf, &len)) {
       if (!len) return;
@@ -154,11 +154,11 @@ void loop() {
   }
 }
 
-void transmit(char* msg, int len) {
+void transmit(char* msg, int msg_len) {
   Serial.print("Sending...");
   
   // Send a message!
-  if(rf69.send(msg, len)) {
+  if(rf69.send(msg, msg_len)) {
     Serial.println("Packet queued!");
   } else {
     Serial.println("Packet queuing error!");
