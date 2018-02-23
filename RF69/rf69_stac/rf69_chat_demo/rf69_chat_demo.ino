@@ -72,6 +72,7 @@ int16_t packetnum = 0;  // packet counter, we increment per xmission
 int serial_buffer_len = 0;
 uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
 uint8_t len = sizeof(buf);
+char serial_buffer[RH_RF69_MAX_MESSAGE_LEN];
 
 void setup() 
 {
@@ -123,13 +124,15 @@ void loop() {
 
   while(Serial.available() > 0) {
     serial_buffer_len = Serial.available();
-    if(serial_buffer_len > 60) {
-      serial_buffer_len = 60;
+    if(serial_buffer_len > RH_RF69_MAX_MESSAGE_LEN) {
+      Serial.println("longer than 60");
+      serial_buffer_len = RH_RF69_MAX_MESSAGE_LEN;
     }
     
     if(serial_buffer_len > 0) {
-      char serial_buffer[serial_buffer_len];
       Serial.readBytes(serial_buffer, serial_buffer_len);
+//      Serial.println(serial_buffer_len);
+//      Serial.println(serial_buffer);
       transmit(serial_buffer, serial_buffer_len);
     }
   }
