@@ -3,16 +3,16 @@
 #define RF69_FREQ 434.0
 
 // for mega
-//#define RFM69_INT     18
-//#define RFM69_CS      46
-//#define RFM69_RST     45
-//#define LED           13
+#define RFM69_INT     18
+#define RFM69_CS      46
+#define RFM69_RST     45
+#define LED           13
 
 // for uno
-#define RFM69_INT     3
-#define RFM69_CS      4
-#define RFM69_RST     2
-#define LED           5
+//#define RFM69_INT     3
+//#define RFM69_CS      4
+//#define RFM69_RST     2
+//#define LED           5
 
 void transceiver_setup();
 
