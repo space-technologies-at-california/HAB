@@ -63,8 +63,8 @@ int servo1_pin = 9;
 int servo2_pin = 10;
 int servo1_extended = false;
 int servo2_extended = false;
-time_t start1_time;
-time_t start2_time;
+int experiment1_counter = 0;
+int experiment2_counter = 0;
 bool experiment1_complete = false;
 bool experiment2_complete = false;
 
@@ -113,12 +113,31 @@ void loop() {
   // Run Experiment Code
   // 90-100K feet altitude
   // Timer 900 seconds 
-  return_servo(1);
+  if (!experiment1_complete) {
+    Serial.println("Starting Experiment 1");
+    if (checkElapse(10)) {
+      experiment1_complete = true;
+      Serial.println("Experiment 1 Complete");
+      setStartTime1();
+    } else {
+      if (!servo1_extended) {
+        Serial.println("Starting Experiment 1");
+        extend_servo(1);
+        servo1_extended = true;
+      }
+    }
+  } else {
+    if (checkElapse(5)) {
+      if (servo1_extended) {
+        servo1_extended = false;
+      }
+    } else {
+        return_servo(1);
+    }
+  }
+  
   // 35-45K feet altitude
   // Timer 900 seconds
-  
-  
-
   delay(1500);
 }
 
@@ -142,27 +161,31 @@ void setup_servos() {
 }
 void extend_servo(int servo_id) {
   if (servo_id == 1) {
-    if (!servo1_extended) {
       servo1.write(180);
-    }
   } else if (servo_id == 2) {
-    if (!servo2_extended) {
       servo2.write(165);
-    }
   }
 }
 void return_servo(int servo_id) {
   if (servo_id == 1) {
-    if (servo1_extended) {
       servo1.write(45);
-    }
   } else if (servo_id == 2) {
-    if (servo2_extended) {
       servo2.write(45);
-    }
   }
 }
+void setStartTime1(){
+  experiment1_counter = 0;
+}
 
+bool checkElapse(int elapse) {
+  experiment1_counter = experiment1_counter + 1;
+  Serial.print("Time elapsed: ");
+  Serial.println(experiment1_counter);
+  if (experiment1_counter > elapse) {
+    return true;
+  }
+  return false;
+}
 
 /*
    UV sensor Specific
@@ -186,17 +209,7 @@ String get_uv_data() {
   return uv_data;
 }
 
-void setStartTime1(){
-  start1_time = RTC.now().unixtime();
-}
 
-bool checkElapse() {
-  time_t curr_time = RTC.now().unixtime();
-  if(start1_time - curr_time > 5) {
-    return true;
-  }
-  return false;
-}
 /*
    RTC (Real Time Clock) Specific
 */
