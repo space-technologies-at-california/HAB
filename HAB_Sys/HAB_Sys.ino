@@ -43,7 +43,7 @@
 
 RTC_DS1307 RTC; // define the Real Time Clock object
 
-#define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCoupleTemp (C)"
+#define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), Altitude (m), Pressure (Pa), Altitude Temp (C)"
 int sd_card_pin = 49;
 String delimiter = ",";  // Data string delimiter for SD logging b/w sensors
 File sd_card_file;  // filesystem object
@@ -95,28 +95,39 @@ void loop() {
   // use buffer stream to format line
   // fetch the time
    String curr_time = get_rtc();
+   Serial.print("Current Time: ");
    Serial.println(curr_time);
    curr_data += curr_time;
    curr_data += delimiter;
 
    String uv_data = get_uv_data();
+   Serial.print("UV Data: ");
    Serial.println(uv_data);
    curr_data += uv_data;
    curr_data += delimiter;
 
   String thermo_data = get_thermo_data();
+  Serial.print("Thermocouple Temp: ");
   Serial.println(thermo_data);
   curr_data += thermo_data;
   curr_data += delimiter;
 
-  int alt = baro.getHeightCentiMeters();
-  Serial.print("Centimeters: ");
+  double alt = baro.getHeightMeters();
+  int32_t alt_pressure = baro.getP();
+  double alt_temp = (double)(baro.getT())/100;
+  Serial.print("Meters: ");
   Serial.print((float)(alt));
   Serial.print(", Feet: ");
-  Serial.println((float)(alt) / 30.48);
-//  Serial.println((float)(pressure));
-//  Serial.println((float)(temperature));
-  curr_data += alt;
+  Serial.println((float)(alt) * 3.2808);
+  Serial.print("Pressure (Pa): ");
+  Serial.println(alt_pressure);
+  Serial.print("Altimeter Temp: ");
+  Serial.println(alt_temp);
+  curr_data += String(alt, 2);
+  curr_data += delimiter;
+  curr_data += String(alt_pressure);
+  curr_data += delimiter;
+  curr_data += String(alt_temp);
   curr_data += delimiter;
 
   write_to_sd("test.csv", curr_data);

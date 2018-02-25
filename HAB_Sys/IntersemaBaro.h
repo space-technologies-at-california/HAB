@@ -366,7 +366,7 @@ private:
 
         const int64_t OFF   = (int64_t)(coefficients_[1]) * pow(2, 17) + (int64_t)(dT) * (int64_t)(coefficients_[3]) / pow(2, 6); // offset at actual temperature
         const int64_t SENS  = (int64_t)(coefficients_[0]) * pow(2, 16) + (int64_t)(dT) * (int64_t)(coefficients_[2]) / pow(2, 7); // sensitivity at actual temperature
-        const int32_t press = (int32_t)(((int64_t)(pressure) * SENS / pow(2, 21) - OFF) / pow(2, 15)); // / 100;      // temperature compensated pressure
+        const int32_t press = (int32_t)(((int64_t)(pressure) * SENS / pow(2, 21) - OFF) / pow(2, 15));      // temperature compensated pressure
 
         return press; 
     }
