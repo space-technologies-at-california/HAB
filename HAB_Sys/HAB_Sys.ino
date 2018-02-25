@@ -28,6 +28,7 @@
 #include <RTClib.h>
 #include <Stream.h>
 #include <Time.h>
+#include "IntersemaBaro.h"
 
 // Arduino Mega SPI Pins
 #define MISO 50
