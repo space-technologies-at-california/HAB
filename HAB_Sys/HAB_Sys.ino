@@ -48,6 +48,7 @@ String delimiter = ",";  // Data string delimiter for SD logging b/w sensors
 File sd_card_file;  // filesystem object
 String curr_data = "";
 
+Intersema::BaroPressure_MS5607B baro(true);
 
 Adafruit_SI1145 uv_sensor = Adafruit_SI1145();  // uv sensor object declaration
 
@@ -80,6 +81,7 @@ void setup() {
   setup_SD();
   setup_UV();
   setup_thermo();
+  baro.init();
   
   write_to_sd("test.csv", DATA_HEADERS);
   setup_servos();  // Experiment specific linear actuator setup
@@ -104,6 +106,16 @@ void loop() {
   String thermo_data = get_thermo_data();
   Serial.println(thermo_data);
   curr_data += thermo_data;
+  curr_data += delimiter;
+
+  int alt = baro.getHeightCentiMeters();
+  Serial.print("Centimeters: ");
+  Serial.print((float)(alt));
+  Serial.print(", Feet: ");
+  Serial.println((float)(alt) / 30.48);
+//  Serial.println((float)(pressure));
+//  Serial.println((float)(temperature));
+  curr_data += alt;
   curr_data += delimiter;
 
   write_to_sd("test.csv", curr_data);
