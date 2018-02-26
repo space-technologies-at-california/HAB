@@ -1,0 +1,10 @@
+Output: Report Single Pin Nets
+Type  : SinglePinNetReporter
+From  : Variant [[No Variations]] of Project [HAB_Schematic.PrjPcb]
+   Generated File[HAB_Schematic.REP]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 12:02:26 AM On 2/26/2018

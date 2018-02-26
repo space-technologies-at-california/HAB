@@ -1,0 +1,10 @@
+Replace Part ARDUINO_MEGA ARDUINO_MEGA in C:\Users\hall\Desktop\HAB\HAB_Schematic\HAB_Schematic.SchDoc with ARDUINO_MEGA from HAB_Schematic_lib.SchLib
+Replace Part U1 ALTIMETER in C:\Users\hall\Desktop\HAB\HAB_Schematic\HAB_Schematic.SchDoc with ALTIMETER from HAB_Schematic_lib.SchLib
+Replace Part U2 TEMPERATURE in C:\Users\hall\Desktop\HAB\HAB_Schematic\HAB_Schematic.SchDoc with TEMPERATURE from HAB_Schematic_lib.SchLib
+Replace Part U3a ACTUATOR in C:\Users\hall\Desktop\HAB\HAB_Schematic\HAB_Schematic.SchDoc with ACTUATOR from HAB_Schematic_lib.SchLib
+Replace Part U3b ACTUATOR in C:\Users\hall\Desktop\HAB\HAB_Schematic\HAB_Schematic.SchDoc with ACTUATOR from HAB_Schematic_lib.SchLib
+Replace Part U4 TRACKSOAR in C:\Users\hall\Desktop\HAB\HAB_Schematic\HAB_Schematic.SchDoc with TRACKSOAR from HAB_Schematic_lib.SchLib
+Replace Part U5 UV_SENSOR in C:\Users\hall\Desktop\HAB\HAB_Schematic\HAB_Schematic.SchDoc with UV_SENSOR from HAB_Schematic_lib.SchLib
+Replace Part U6 RF69 in C:\Users\hall\Desktop\HAB\HAB_Schematic\HAB_Schematic.SchDoc with RF69 from HAB_Schematic_lib.SchLib
+Replace Part U7 RTC in C:\Users\hall\Desktop\HAB\HAB_Schematic\HAB_Schematic.SchDoc with RTC from HAB_Schematic_lib.SchLib
+Replace Part U8 SD_CARD in C:\Users\hall\Desktop\HAB\HAB_Schematic\HAB_Schematic.SchDoc with SD_CARD from HAB_Schematic_lib.SchLib
