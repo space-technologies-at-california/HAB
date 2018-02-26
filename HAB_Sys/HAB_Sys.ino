@@ -43,7 +43,7 @@
 
 RTC_DS1307 RTC; // define the Real Time Clock object
 
-#define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), Altitude (m), Pressure (Pa), Altitude Temp (C)"
+#define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), Altitude (m), Pressure (Pa), Altitude Temp (C),Servo1 Extended, Servo2 Extended"
 int sd_card_pin = 49;
 String delimiter = ",";  // Data string delimiter for SD logging b/w sensors
 File sd_card_file;  // filesystem object
@@ -59,16 +59,23 @@ Adafruit_MAX31855 thermocouple(CLK, thermoCS, MISO);  // Initializes the Thermoc
 
 
 // Experiment Specific Code
+double ft_to_m = 0.3048;
+
 Servo servo1;
 Servo servo2;
-int servo1_pin = 9;
-int servo2_pin = 10;
-int servo1_extended = false;
-int servo2_extended = false;
-int experiment1_counter = 0;
-int experiment2_counter = 0;
+int servo1_pin = 2;
+int servo2_pin = 3;
+bool servo1_extended = false;
+bool servo2_extended = false;
+unsigned int experiment1_start = 0;
+unsigned int experiment2_start = 0;
 bool experiment1_complete = false;
 bool experiment2_complete = false;
+int servo1_start_alt = 35000 * ft_to_m; // IN METERS
+int servo1_stop_alt = 45000 * ft_to_m;
+int servo2_start_alt = 90000 * ft_to_m;
+int servo2_stop_alt = 100000 * ft_to_m;
+unsigned long timeout = 900 * 1000; // IN MILLIS
 
 void setup() {
   
@@ -86,7 +93,6 @@ void setup() {
   
   write_to_sd("test.csv", DATA_HEADERS);
   setup_servos();  // Experiment specific linear actuator setup
-  setStartTime1();
 }
 
 void loop() {
@@ -129,50 +135,47 @@ void loop() {
   curr_data += delimiter;
   curr_data += String(alt_temp);
   curr_data += delimiter;
-
-  write_to_sd("test.csv", curr_data);
-  curr_data = "";
   
 
   // Run Experiment Code
-  // 90-100K feet altitude
-  // Timer 900 seconds 
-  if (!experiment1_complete) {
-    Serial.println("Starting Experiment 1");
-    if (checkElapse(10)) {
-      experiment1_complete = true;
-      Serial.println("Experiment 1 Complete");
-      setStartTime1();
-    } else {
-      if (!servo1_extended) {
-        Serial.println("Starting Experiment 1");
-        extend_servo(1);
-        servo1_extended = true;
-      }
-    }
-  } else {
-    if (checkElapse(5)) {
-      if (servo1_extended) {
-        servo1_extended = false;
-      }
-    } else {
-        return_servo(1);
-    }
-  }
-  
+ 
   // 35-45K feet altitude
   // Timer 900 seconds
+  if (!experiment1_complete && !servo1_extended && alt > servo1_start_alt) {
+    extend_servo(1);
+    experiment1_start = millis();
+    Serial.println("Started Experiment 1");
+  }
+
+  if (!experiment1_complete && servo1_extended && (alt > servo1_stop_alt || timeoutReached(experiment1_start))) {
+    return_servo(1);
+    experiment1_complete = true;
+    Serial.println("Experiment 1 Complete");
+  }
+
+  // 90-100K feet altitude
+  // Timer 900 seconds 
+  if (!experiment2_complete && !servo2_extended && alt > servo2_start_alt) {
+    extend_servo(2);
+    experiment2_start = millis();
+    Serial.println("Started Experiment 2");
+  }
+  if (!experiment2_complete && servo2_extended && (alt > servo2_stop_alt || timeoutReached(experiment2_start))) {
+    return_servo(2);
+    experiment2_complete = true;
+    Serial.println("Experiment 2 Complete");
+  }
+  
+  curr_data += servo1_extended;
+  curr_data += delimiter;
+  curr_data += servo2_extended;
+  // TODO: FIXME: no delimiter at end?
+  
+  write_to_sd("test.csv", curr_data);
+  curr_data = "";
+  
   delay(1500);
 }
-
-//int check_experiment(curr_altitude, min_alt, max_alt, start_time, experiment_complete, allowed_time) {
- // if (!experiment_complete) {
- //   if (curr_altitude > min_alt) {
- //     RTC.now();
- //   }
-    
- // }
-//}
 
 /*
    Experiment's Actuator Specific
@@ -183,29 +186,31 @@ void setup_servos() {
   servo2.attach(servo2_pin);
   Serial.println("Servo initialization done");
 }
+
 void extend_servo(int servo_id) {
   if (servo_id == 1) {
       servo1.write(180);
+      servo1_extended = true;
   } else if (servo_id == 2) {
       servo2.write(165);
+      servo2_extended = true;
   }
 }
+
 void return_servo(int servo_id) {
   if (servo_id == 1) {
       servo1.write(45);
+      servo1_extended = false;
   } else if (servo_id == 2) {
       servo2.write(45);
+      servo2_extended = false;
   }
 }
-void setStartTime1(){
-  experiment1_counter = 0;
-}
 
-bool checkElapse(int elapse) {
-  experiment1_counter = experiment1_counter + 1;
-  Serial.print("Time elapsed: ");
-  Serial.println(experiment1_counter);
-  if (experiment1_counter > elapse) {
+// TODO: FIXME: use RTC instead of millis?
+bool timeoutReached(unsigned int exp_start) {
+  // Compares milliseconds since startup to milliseconds since startup for experiment start plus timeout
+  if (millis() > exp_start + timeout) {
     return true;
   }
   return false;
