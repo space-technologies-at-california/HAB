@@ -11,19 +11,30 @@ void setup()
 
 void loop() 
 { 
-  int32_t altCm = baro.getHeightCentiMeters();
-  double altM = baro.getHeightMeters();
-  int32_t pressure = baro.getP();
-  int32_t temperature = baro.getT();
-  Serial.print("Altitude (cm): ");
-  Serial.print((altCm));
-  Serial.print(", (m): ");
-  Serial.println(altM);
+  double altM1 = baro.getHeightMeters(1);
+  int32_t pressure1 = baro.getP(1);
+  int32_t temperature1 = baro.getT(1);
+  
+  double altM2 = baro.getHeightMeters(2);
+  int32_t pressure2 = baro.getP(2);
+  int32_t temperature2 = baro.getT(2);
+  
+  Serial.println("\n1st Order Algorithm Values...");
+  Serial.print("Altitude (m): ");
+  Serial.println(altM1);
   Serial.print("Pressure (Pa): ");
-  Serial.println((pressure));
+  Serial.println((pressure1));
   Serial.print("Temperature (C): ");
-  Serial.println((double)(temperature)/100);
-  delay(400);
+  Serial.println((double)(temperature1)/100);
+
+  Serial.println("2nd Order Algorithm Values...");
+  Serial.print("Altitude (m): ");
+  Serial.println(altM2);
+  Serial.print("Pressure (Pa): ");
+  Serial.println((pressure2));
+  Serial.print("Temperature (C): ");
+  Serial.println((double)(temperature2)/100);
+  delay(1000);
 }
 
 /* PROM Coefficients
