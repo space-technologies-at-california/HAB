@@ -4,7 +4,7 @@
 
 // for mega
 #define RFM69_INT     18
-#define RFM69_CS      46
+#define RFM69_CS      44
 #define RFM69_RST     45
 #define LED           13
 
