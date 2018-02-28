@@ -23,18 +23,18 @@ HardwareTimer timer(MAPLE_TIMER);
 // Define RH_ASK_ARDUINO_USE_TIMER2 if you want to use Timer 2 instead of Timer 1 on Arduino
 // You may need this to work around other librraies that insist on using timer 1
 // Should be moved to header file
-//#define RH_ASK_ARDUINO_USE_TIMER2
+#define RH_ASK_ARDUINO_USE_TIMER2
 
 // Interrupt handler uses this to find the most recently initialised instance of this driver
 static RH_ASK* thisASKDriver;
 
 // 4 bit to 6 bit symbol converter table
 // Used to convert the high and low nybbles of the transmitted data
-// into 6 bit symbols for transmission. Each 6-bit symbol has 3 1s and 3 0s 
+// into 6 bit symbols for transmission. Each 6-bit symbol has 3 1s and 3 0s
 // with at most 3 consecutive identical bits
 static uint8_t symbols[] =
 {
-    0xd,  0xe,  0x13, 0x15, 0x16, 0x19, 0x1a, 0x1c, 
+    0xd,  0xe,  0x13, 0x15, 0x16, 0x19, 0x1a, 0x1c,
     0x23, 0x25, 0x26, 0x29, 0x2a, 0x2c, 0x32, 0x34
 };
 
@@ -64,8 +64,8 @@ bool RH_ASK::init()
     thisASKDriver = this;
 
 #if (RH_PLATFORM == RH_PLATFORM_GENERIC_AVR8)
- #ifdef RH_ASK_PTT_PIN 				
-    RH_ASK_PTT_DDR  |=  (1<<RH_ASK_PTT_PIN); 
+ #ifdef RH_ASK_PTT_PIN
+    RH_ASK_PTT_DDR  |=  (1<<RH_ASK_PTT_PIN);
     RH_ASK_TX_DDR   |=  (1<<RH_ASK_TX_PIN);
     RH_ASK_RX_DDR   &= ~(1<<RH_ASK_RX_PIN);
  #else
@@ -90,9 +90,9 @@ bool RH_ASK::init()
 #if (RH_PLATFORM == RH_PLATFORM_ARDUINO) || (RH_PLATFORM == RH_PLATFORM_GENERIC_AVR8)
  #if defined(RH_ASK_ARDUINO_USE_TIMER2)
  // Timer 2 has different prescalers
- PROGMEM static const uint16_t prescalers[] = {0, 1, 8, 32, 64, 128, 256, 3333}; 
+ PROGMEM static const uint16_t prescalers[] = {0, 1, 8, 32, 64, 128, 256, 3333};
  #else
- PROGMEM static const uint16_t prescalers[] = {0, 1, 8, 64, 256, 1024, 3333}; 
+ PROGMEM static const uint16_t prescalers[] = {0, 1, 8, 64, 256, 1024, 3333};
  #endif
  #define NUM_PRESCALERS (sizeof(prescalers) / sizeof( uint16_t))
 #endif
@@ -159,17 +159,17 @@ void RH_ASK::timerSetup()
     uint16_t nticks;
     uint8_t prescaler = timerCalc(_speed, (uint16_t)-1, &nticks);
     if (!prescaler) return;
-    _COMB(TCCR,RH_ASK_TIMER_INDEX,A)= 0;					
-    _COMB(TCCR,RH_ASK_TIMER_INDEX,B)= _BV(WGM12);				
-    _COMB(TCCR,RH_ASK_TIMER_INDEX,B)|= prescaler;				
-    _COMB(OCR,RH_ASK_TIMER_INDEX,A)= nticks;					
+    _COMB(TCCR,RH_ASK_TIMER_INDEX,A)= 0;
+    _COMB(TCCR,RH_ASK_TIMER_INDEX,B)= _BV(WGM12);
+    _COMB(TCCR,RH_ASK_TIMER_INDEX,B)|= prescaler;
+    _COMB(OCR,RH_ASK_TIMER_INDEX,A)= nticks;
     _COMB(TI,MSK,RH_ASK_TIMER_INDEX)|= _BV(_COMB(OCIE,RH_ASK_TIMER_INDEX,A));
 
 #elif (RH_PLATFORM == RH_PLATFORM_MSP430) // LaunchPad specific
     // Calculate the counter overflow count based on the required bit speed
     // and CPU clock rate
     uint16_t ocr1a = (F_CPU / 8UL) / _speed;
-    
+
     // This code is for Energia/MSP430
     TA0CCR0 = ocr1a;				// Ticks for 62,5 us
     TA0CTL = TASSEL_2 + MC_1;       // SMCLK, up mode
@@ -224,13 +224,13 @@ void RH_ASK::timerSetup()
     // Enable clock for TC
     REG_GCLK_CLKCTRL = (uint16_t) (GCLK_CLKCTRL_CLKEN | GCLK_CLKCTRL_GEN_GCLK0 | GCLK_CLKCTRL_ID(GCM_TCC2_TC3)) ;
     while ( GCLK->STATUS.bit.SYNCBUSY == 1 ); // wait for sync
-    
+
     // The type cast must fit with the selected timer mode
     TcCount16* TC = (TcCount16*)RH_ASK_ZERO_TIMER; // get timer struct
-    
+
     TC->CTRLA.reg &= ~TC_CTRLA_ENABLE;   // Disable TC
     while (TC->STATUS.bit.SYNCBUSY == 1); // wait for sync
-    
+
     TC->CTRLA.reg |= TC_CTRLA_MODE_COUNT16;  // Set Timer counter Mode to 16 bits
     while (TC->STATUS.bit.SYNCBUSY == 1); // wait for sync
     TC->CTRLA.reg |= TC_CTRLA_WAVEGEN_MFRQ; // Set TC as Match Frequency
@@ -238,25 +238,25 @@ void RH_ASK::timerSetup()
 
     // Compute the count required to achieve the requested baud (with 8 interrupts per bit)
     uint32_t rc = (VARIANT_MCK / _speed) / RH_ASK_ZERO_PRESCALER / 8;
-    
+
     TC->CTRLA.reg |= TC_CTRLA_PRESCALER_DIV64;   // Set prescaler to agree with RH_ASK_ZERO_PRESCALER
     while (TC->STATUS.bit.SYNCBUSY == 1); // wait for sync
-    
+
     TC->CC[0].reg = rc; // FIXME
     while (TC->STATUS.bit.SYNCBUSY == 1); // wait for sync
-    
+
     // Interrupts
     TC->INTENSET.reg = 0;              // disable all interrupts
     TC->INTENSET.bit.MC0 = 1;          // enable compare match to CC0
-    
+
     // Enable InterruptVector
     NVIC_ClearPendingIRQ(RH_ASK_ZERO_TIMER_IRQ);
     NVIC_EnableIRQ(RH_ASK_ZERO_TIMER_IRQ);
-    
+
     // Enable TC
     TC->CTRLA.reg |= TC_CTRLA_ENABLE;
     while (TC->STATUS.bit.SYNCBUSY == 1); // wait for sync
-    
+
  #elif defined(__arm__) && defined(ARDUINO_SAM_DUE)
     // Arduino Due
     // Clock speed is 84MHz
@@ -267,11 +267,11 @@ void RH_ASK::timerSetup()
     #define RH_ASK_DUE_TIMER_IRQ TC1_IRQn
     pmc_set_writeprotect(false);
     pmc_enable_periph_clk(RH_ASK_DUE_TIMER_IRQ);
-    
+
     // Clock speed 4 can handle all reasonable _speeds we might ask for. Its divisor is 128
     // and we want 8 interrupts per bit
     uint32_t rc = (VARIANT_MCK / _speed) / 128 / 8;
-    TC_Configure(RH_ASK_DUE_TIMER, RH_ASK_DUE_TIMER_CHANNEL, 
+    TC_Configure(RH_ASK_DUE_TIMER, RH_ASK_DUE_TIMER_CHANNEL,
 		 TC_CMR_WAVE | TC_CMR_WAVSEL_UP_RC | TC_CMR_TCCLKS_TIMER_CLOCK4);
     TC_SetRC(RH_ASK_DUE_TIMER, RH_ASK_DUE_TIMER_CHANNEL, rc);
     // Enable the RC Compare Interrupt
@@ -305,7 +305,7 @@ void RH_ASK::timerSetup()
    #endif // TIMSK2
   #else
     // Use timer 1
-    prescaler = timerCalc(_speed, (uint16_t)-1, &nticks);    
+    prescaler = timerCalc(_speed, (uint16_t)-1, &nticks);
     if (!prescaler)
         return; // fault
     TCCR1A = 0; // Output Compare pins disconnected
@@ -337,10 +337,10 @@ void RH_ASK::timerSetup()
     timer.setCompare(TIMER_CH1, 1);  // Interrupt 1 count after each update
     void interrupt(); // defined below
     timer.attachCompare1Interrupt(interrupt);
-    
+
     // Refresh the timer's count, prescale, and overflow
     timer.refresh();
-    
+
     // Start the timer counting
     timer.resume();
 
@@ -368,7 +368,7 @@ void RH_ASK::timerSetup()
     timerInitStructure.TIM_Period = period;
     timerInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
     timerInitStructure.TIM_RepetitionCounter = 0;
-    
+
     TIM_TimeBaseInit(TIMx, &timerInitStructure);
     TIM_ITConfig(TIMx, TIM_IT_Update, ENABLE);
     TIM_Cmd(TIMx, ENABLE);
@@ -482,7 +482,7 @@ bool RH_ASK::send(const uint8_t* data, uint8_t len)
     // Wait for transmitter to become available
     waitPacketSent();
 
-    if (!waitCAD()) 
+    if (!waitCAD())
 	return false;  // Check channel activity
 
     // Encode the message length
@@ -504,7 +504,7 @@ bool RH_ASK::send(const uint8_t* data, uint8_t len)
     p[index++] = symbols[_txHeaderFlags >> 4];
     p[index++] = symbols[_txHeaderFlags & 0xf];
 
-    // Encode the message into 6 bit symbols. Each byte is converted into 
+    // Encode the message into 6 bit symbols. Each byte is converted into
     // 2 6-bit symbols, high nybble first, low nybble second
     for (i = 0; i < len; i++)
     {
@@ -557,7 +557,7 @@ void INTERRUPT_ATTR RH_ASK::writeTx(bool value)
 void INTERRUPT_ATTR RH_ASK::writePtt(bool value)
 {
 #if (RH_PLATFORM == RH_PLATFORM_GENERIC_AVR8)
- #if RH_ASK_PTT_PIN 
+ #if RH_ASK_PTT_PIN
     ((value) ? (RH_ASK_PTT_PORT |= (1<<RH_ASK_PTT_PIN)) : (RH_ASK_PTT_PORT &= ~(1<<RH_ASK_PTT_PIN)));
  #else
     ((value) ? (RH_ASK_TX_PORT |= (1<<RH_ASK_TX_PIN)) : (RH_ASK_TX_PORT &= ~(1<<RH_ASK_TX_PIN)));
@@ -572,7 +572,7 @@ uint8_t RH_ASK::maxMessageLength()
     return RH_ASK_MAX_MESSAGE_LEN;
 }
 
-#if (RH_PLATFORM == RH_PLATFORM_ARDUINO) 
+#if (RH_PLATFORM == RH_PLATFORM_ARDUINO)
  #if defined(RH_PLATFORM_ATTINY)
   #define RH_ASK_TIMER_VECTOR TIM0_COMPA_vect
  #else // Assume Arduino Uno (328p or similar)
@@ -581,14 +581,14 @@ uint8_t RH_ASK::maxMessageLength()
   #else
    #define RH_ASK_TIMER_VECTOR TIMER1_COMPA_vect
   #endif
- #endif 
+ #endif
 #elif (RH_ASK_PLATFORM == RH_ASK_PLATFORM_GENERIC_AVR8)
  #define __COMB(a,b,c) (a##b##c)
  #define _COMB(a,b,c) __COMB(a,b,c)
  #define RH_ASK_TIMER_VECTOR _COMB(TIMER,RH_ASK_TIMER_INDEX,_COMPA_vect)
 #endif
 
-#if (RH_PLATFORM == RH_PLATFORM_ARDUINO) && defined(__arm__) && defined(CORE_TEENSY)	
+#if (RH_PLATFORM == RH_PLATFORM_ARDUINO) && defined(__arm__) && defined(CORE_TEENSY)
 void TIMER1_COMPA_vect(void)
 {
     thisASKDriver->handleTimerInterrupt();
@@ -635,15 +635,15 @@ void TimerInterruptHandler()
     thisASKDriver->handleTimerInterrupt();
 }
 
-#elif (RH_PLATFORM == RH_PLATFORM_MSP430) 
-interrupt(TIMER0_A0_VECTOR) Timer_A_int(void) 
+#elif (RH_PLATFORM == RH_PLATFORM_MSP430)
+interrupt(TIMER0_A0_VECTOR) Timer_A_int(void)
 {
     thisASKDriver->handleTimerInterrupt();
 };
 
 #elif (RH_PLATFORM == RH_PLATFORM_CHIPKIT_CORE)
 // Using ChipKIT Core on Arduino IDE
-uint32_t chipkit_timer_interrupt_handler(uint32_t currentTime) 
+uint32_t chipkit_timer_interrupt_handler(uint32_t currentTime)
 {
     thisASKDriver->handleTimerInterrupt();
     return (currentTime + ((CORE_TICK_RATE * 1000)/8)/thisASKDriver->speed());
@@ -661,7 +661,7 @@ extern "C"
 }
 #elif (RH_PLATFORM == RH_PLATFORM_ESP8266)
 void INTERRUPT_ATTR esp8266_timer_interrupt_handler()
-{  
+{
 //    timer0_write(ESP.getCycleCount() + 41660000);
 //    timer0_write(ESP.getCycleCount() + (clockCyclesPerMicrosecond() * 100) - 120 );
     timer0_write(ESP.getCycleCount() + thisASKDriver->_timerIncrement);
@@ -678,7 +678,7 @@ uint8_t INTERRUPT_ATTR RH_ASK::symbol_6to4(uint8_t symbol)
 {
     uint8_t i;
     uint8_t count;
-    
+
     // Linear search :-( Could have a 64 byte reverse lookup table?
     // There is a little speedup here courtesy Ralph Doncaster:
     // The shortcut works because bit 5 of the symbol is 1 for the last 8
@@ -732,8 +732,8 @@ void INTERRUPT_ATTR RH_ASK::receiveTimer()
     if (rxSample != _rxLastSample)
     {
 	// Transition, advance if ramp > 80, retard if < 80
-	_rxPllRamp += ((_rxPllRamp < RH_ASK_RAMP_TRANSITION) 
-			   ? RH_ASK_RAMP_INC_RETARD 
+	_rxPllRamp += ((_rxPllRamp < RH_ASK_RAMP_TRANSITION)
+			   ? RH_ASK_RAMP_INC_RETARD
 			   : RH_ASK_RAMP_INC_ADVANCE);
 	_rxLastSample = rxSample;
     }
@@ -766,8 +766,8 @@ void INTERRUPT_ATTR RH_ASK::receiveTimer()
 		// Have 12 bits of encoded message == 1 byte encoded
 		// Decode as 2 lots of 6 bits into 2 lots of 4 bits
 		// The 6 lsbits are the high nybble
-		uint8_t this_byte = 
-		    (symbol_6to4(_rxBits & 0x3f)) << 4 
+		uint8_t this_byte =
+		    (symbol_6to4(_rxBits & 0x3f)) << 4
 		    | symbol_6to4(_rxBits >> 6);
 
 		// The first decoded byte is the byte count of the following message
@@ -816,7 +816,7 @@ void INTERRUPT_ATTR RH_ASK::transmitTimer()
     {
 	// Send next bit
 	// Symbols are sent LSB first
-	// Finished sending the whole message? (after waiting one bit period 
+	// Finished sending the whole message? (after waiting one bit period
 	// since the last bit)
 	if (_txIndex >= _txBufLen)
 	{
@@ -833,7 +833,7 @@ void INTERRUPT_ATTR RH_ASK::transmitTimer()
 	    }
 	}
     }
-	
+
     if (_txSample > 7)
 	_txSample = 0;
 }
@@ -845,4 +845,3 @@ void INTERRUPT_ATTR RH_ASK::handleTimerInterrupt()
     else if (_mode == RHModeTx)
         transmitTimer(); // Transmitting
 }
-

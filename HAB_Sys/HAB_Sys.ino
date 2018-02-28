@@ -6,14 +6,19 @@
  ** MISO - pin 50
  ** CLK - pin 52
  ** CS - pin 53
+ * -Wire diagram
+ *  -Actuation Code w/ conditions
+ *  2ndary transmitter w/ conditions
 
 
   TODO:
   -Set up Real Time Clock for everything to use.
   -Set up Tracksoar & 2ndary
   -Set up Altimeter
-  -Actuation Code w/ conditions
-  -Wire diagram
+  -Test Conditions
+  -2ndary transmitter on receive side
+ 
+  
 
 
   by Kireet Agrawal - 2018
@@ -29,6 +34,8 @@
 #include <Stream.h>
 #include <Time.h>
 #include "IntersemaBaro.h"
+#include "rf69_stac.h"
+
 
 // Arduino Mega SPI Pins
 #define MISO 50
@@ -76,6 +83,8 @@ int servo1_stop_alt = 45000 * ft_to_m;
 int servo2_start_alt = 90000 * ft_to_m;
 int servo2_stop_alt = 100000 * ft_to_m;
 unsigned long timeout = 900 * 1000; // IN MILLIS
+unsigned long scream_timeout = 1.08*10000000; //IN MILLIS
+unsigned int launch_start = 0;
 
 void setup() {
   
@@ -84,12 +93,19 @@ void setup() {
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
+
+  //Experiment Start Time //TODO: Use RTC instead of millis
+  launch_start = millis();
+  
   setup_rtc();
 
   setup_SD();
   setup_UV();
   setup_thermo();
   baro.init();
+
+  
+  transceiver_setup();
   
   write_to_sd("test.csv", DATA_HEADERS);
   setup_servos();  // Experiment specific linear actuator setup
@@ -135,6 +151,8 @@ void loop() {
   curr_data += delimiter;
   curr_data += String(alt_temp);
   curr_data += delimiter;
+
+  //Experiment Start Time
   
 
   // Run Experiment Code
@@ -173,6 +191,12 @@ void loop() {
   
   write_to_sd("test.csv", curr_data);
   curr_data = "";
+
+  if(should_scream()){
+    char scream[20] = "stax";
+    scream_for_help_with_message(scream);
+  }
+  
   
   delay(1500);
 }
@@ -211,6 +235,13 @@ void return_servo(int servo_id) {
 bool timeoutReached(unsigned int exp_start) {
   // Compares milliseconds since startup to milliseconds since startup for experiment start plus timeout
   if (millis() > exp_start + timeout) {
+    return true;
+  }
+  return false;
+}
+
+bool should_scream() {
+  if (millis() > launch_start + scream_timeout) {
     return true;
   }
   return false;
@@ -276,6 +307,8 @@ String get_thermo_data() {
   }
   return thermo_data;
 }
+
+
 
 
 /*
