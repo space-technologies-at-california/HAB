@@ -22,9 +22,9 @@ class BaroPressure
 public:
     virtual void init() = 0;   
    
-    double getHeightMeters(void)
+    double getHeightMeters(int order)
     {
-        return AcquireAveragedSampleM(NUM_SAMP_FOR_AVG);
+        return AcquireAveragedSampleM(NUM_SAMP_FOR_AVG, order);
     }
     
     int32_t getHeightCentiMeters(void)
@@ -32,19 +32,20 @@ public:
         return AcquireAveragedSampleCm(NUM_SAMP_FOR_AVG);
     }   
 
-   int32_t getP(void) {
-     return AcquireAveragedSampleP(NUM_SAMP_FOR_AVG);
+   int32_t getP(int order) {
+     return AcquireAveragedSampleP(NUM_SAMP_FOR_AVG, order);
    }
 
-   int32_t getT(void) {
-     return AcquireAveragedSampleT(NUM_SAMP_FOR_AVG);
+   int32_t getT(int order) {
+     return AcquireAveragedSampleT(NUM_SAMP_FOR_AVG, order);
    }
     
 protected:
     virtual int32_t AcquireAveragedSampleCm(const uint8_t nSamples) = 0;
-    virtual double AcquireAveragedSampleM(const uint8_t nSamples) = 0;
-    virtual int32_t AcquireAveragedSampleP(const uint8_t nSamples) = 0;
-    virtual int32_t AcquireAveragedSampleT(const uint8_t nSamples) = 0;
+    virtual double AcquireAveragedSampleM(const uint8_t nSamples, int order) = 0;
+    virtual int32_t AcquireAveragedSampleP(const uint8_t nSamples, int order) = 0;
+    virtual int32_t AcquireAveragedSampleT(const uint8_t nSamples, int order) = 0;
+
   //  virtual int32_t ConvertPressureTemperature(uint32_t pressure, uint32_t temperature) = 0;
     
     int32_t PascalToCentimeter(const int32_t pressurePa)
@@ -94,31 +95,38 @@ protected:
         }
     }
 
-    double PascalToMeter(const int32_t pressurePa)
-    {
-    	const double R = 8.3144598;
-    	const double g = 9.80665;
-    	const double M = 0.0289644;
-
-    	const uint32_t N = 5;
-    	const uint32_t h_b[N] = {0, 11000, 20000, 32000, 47000};
-    	const double P_b[N] = {102590.0, 22632.1, 5474.89, 868.02, 110.91};
-    	const double T_b[N] = {288.15, 216.65, 216.65, 228.65, 270.65};
-    	const double L_b[N] = {0, 0, 0.001, 0.0028, 0};
-
-    	int i;
-    	for(i = 0; i < N; i++) {
-    		if(pressurePa <= P_b[i]) break;
-    	}
-
-    	double height;
-    	if (L_b[i] == 0) {
-    		height = (double)(R*T_b[i]*log((double)(pressurePa)/(double)(P_b[i]))/(-1 * g * M)) + (double)(h_b[i]);
-    	} else {
-    		height = (T_b[i]/pow((double)(pressurePa)/(double)(P_b[i]), -1 * g * M/(R*L_b[i])) - T_b[i])/L_b[i] + (double)(h_b[i]);
-    	}
+    double PascalToMeter(int32_t pressurePa)
+        {
+          const double R = 8.3144598;
+          const double g = 9.80665;
+          const double M = 0.0289644;
+    
+          const uint32_t N = 5;
+          const double h_b[N] = {0.0, 11000.0, 20000.0, 32000.0, 47000.0};
+          const double P_b[N] = {101325.0, 22632.1, 5474.89, 868.02, 110.91};
+          const double T_b[N] = {288.15, 216.65, 216.65, 228.65, 270.65};
+          const double L_b[N] = {-0.0065, 0, 0.001, 0.0028, 0};
+    
+          if (pressurePa > P_b[0]) {
+            return 0; }
+          }
       
-      return height;
+          int i;
+          for(i = 0; i < N; i++) {
+            if(pressurePa > P_b[i]) break;
+          }
+          i = i - 1;
+          double height;
+          Serial.println((double)L_b[i]);
+          Serial.println(i);
+          if (L_b[i] == (double)(0)) {
+            Serial.println(log((double)pressurePa)/(double)(P_b[i]));
+            height = (double)(R*T_b[i]*log((double)(pressurePa)/(double)(P_b[i]))/((double)(-1) * g * M)) + (h_b[i]);
+          } else {
+            height = ((T_b[i]/pow((double)(pressurePa)/(double)(P_b[i]),  (R*L_b[i])/(g*M))) - T_b[i])/L_b[i] + (double)(h_b[i]);
+          }
+          
+          return height;
     }
     
     static const uint8_t NUM_SAMP_FOR_AVG = 4;
@@ -155,7 +163,7 @@ private:
 
     void ResetSensor()
     {
-	Wire.begin();
+	      Wire.begin();
         Wire.beginTransmission(i2cAddr_);
         Wire.write(cmdReset_);   
         Wire.endTransmission(); 
@@ -236,7 +244,7 @@ private:
         return AltCm;	
     }
 
-    virtual double AcquireAveragedSampleM(const uint8_t nSamples)
+    virtual double AcquireAveragedSampleM(const uint8_t nSamples, int order)
     {
         int64_t pressAccum = 0;
 
@@ -244,7 +252,12 @@ private:
         {
             const uint32_t temperature = ReadAdc(cmdAdcD2_ | cmdAdc4096_); // digital temperature value : typical 8077636  
             const uint32_t pressure    = ReadAdc(cmdAdcD1_ | cmdAdc4096_); // digital pressure value : typical 6465444        
-            const uint32_t pressConv   = ConvertPressure(pressure, temperature);                 
+            uint32_t pressConv   = 0;
+            if (order == 1) {
+              pressConv = ConvertPressure(pressure, temperature);                 
+            } else {
+              pressConv = ConvertPressure2(pressure, temperature);                   
+            }
             pressAccum += pressConv;
         }
 
@@ -253,29 +266,39 @@ private:
 	
         return AltM;	
     }
-    virtual int32_t AcquireAveragedSampleP(const uint8_t nSamples)
+    virtual int32_t AcquireAveragedSampleP(const uint8_t nSamples, int order)
     {
         int64_t pressAccum = 0;
 
         for(size_t n = nSamples; n; n--) 
         {
             const uint32_t temperature = ReadAdc(cmdAdcD2_ | cmdAdc4096_); // digital temperature value : typical 8077636  
-            const uint32_t pressure    = ReadAdc(cmdAdcD1_ | cmdAdc4096_); // digital pressure value : typical 6465444        
-            const uint32_t pressConv   = ConvertPressure(pressure, temperature);                 
+            const uint32_t pressure    = ReadAdc(cmdAdcD1_ | cmdAdc4096_); // digital pressure value : typical 6465444  
+            uint32_t pressConv         = 0;   
+            if (order == 1) {
+                pressConv  =  ConvertPressure(pressure, temperature);
+            } else {
+              pressConv = ConvertPressure2(pressure, temperature);             
+            }
             pressAccum += pressConv;
         }
 
         const int32_t pressAvg = pressAccum / nSamples;      
         return pressAvg;
     }
-    virtual int32_t AcquireAveragedSampleT(const uint8_t nSamples)
+    virtual int32_t AcquireAveragedSampleT(const uint8_t nSamples, int order)
     {
         int64_t tempAccum = 0;
 
         for(size_t n = nSamples; n; n--) 
         {
             const uint32_t temperature = ReadAdc(cmdAdcD2_ | cmdAdc4096_); // digital temperature value : typical 8077636        
-            const int32_t tempConv   = ConvertTemperature(temperature);                 
+            int32_t tempConv   = 0;
+            if (order == 1) {
+              tempConv = ConvertTemperature(temperature);                 
+            } else {
+              tempConv = ConvertTemperature2(temperature);   
+            }
             tempAccum += tempConv;
         }
 
@@ -366,7 +389,7 @@ private:
 
         const int64_t OFF   = (int64_t)(coefficients_[1]) * pow(2, 17) + (int64_t)(dT) * (int64_t)(coefficients_[3]) / pow(2, 6); // offset at actual temperature
         const int64_t SENS  = (int64_t)(coefficients_[0]) * pow(2, 16) + (int64_t)(dT) * (int64_t)(coefficients_[2]) / pow(2, 7); // sensitivity at actual temperature
-        const int32_t press = (int32_t)(((int64_t)(pressure) * SENS / pow(2, 21) - OFF) / pow(2, 15));      // temperature compensated pressure
+        const int32_t press = (int32_t)(((int64_t)(pressure) * SENS / pow(2, 21) - OFF) / pow(2, 15)); // / 100;      // temperature compensated pressure
 
         return press; 
     }
@@ -377,6 +400,56 @@ private:
         const int32_t temp  = (int32_t)(2000 + ((int64_t)dT * (int64_t)coefficients_[5]) / pow(2, 23)) ; // / 100;       // actual temperature
         return temp; 
     }
+
+    int32_t ConvertPressure2(uint32_t pressure, uint32_t temperature)
+{
+      // calculate 1st order pressure and temperature (MS5607 1st order algorithm)
+      int32_t T2 = 0;
+      int64_t OFF2 = 0;
+      int64_t SENS2 = 0;
+      
+      const int32_t dT    = temperature - (int32_t)(coefficients_[4]) * 256;                     // difference between actual and reference temperature
+      const int32_t temp  = (int32_t)(2000 + ((int64_t)dT * (int64_t)coefficients_[5]) / pow(2, 23)) ; // / 100;       // actual temperature
+
+      // MS5607 2nd order algorithm
+      if (temp < 2000) {
+        Serial.println("Temp less than 20, pressfn");
+        T2 = (int32_t)(pow(dT, 2) / pow(2, 31)); //NEEDS FIXING
+        OFF2 = (int64_t)(61 * pow((int64_t)(temp)-2000, 2)/ pow(2, 4));
+        SENS2 = (int64_t)(2 * pow(temp-2000, 2));
+        
+        if(temp < -15) {
+          Serial.println("Temp less than -15, pressfn");
+          OFF2 = OFF2 + (int64_t)(15 * pow(temp + 1500, 2));
+          SENS2 = SENS2 + (int64_t)(8 * pow(temp + 1500, 2));
+        }
+      }
+    
+      const int64_t OFF1   = (int64_t)(coefficients_[1]) * pow(2, 17) + (int64_t)(dT) * (int64_t)(coefficients_[3]) / pow(2, 6); // offset at actual temperature
+      const int64_t SENS1  = (int64_t)(coefficients_[0]) * pow(2, 16) + (int64_t)(dT) * (int64_t)(coefficients_[2]) / pow(2, 7); // sensitivity at actual temperature
+
+      const int64_t OFF = OFF1 - OFF2;
+      const int64_t SENS = SENS1 - SENS2;
+      const int32_t press = (int32_t)(((int64_t)(pressure) * SENS / pow(2, 21) - OFF) / pow(2, 15));  // temperature compensated (2nd order) pressure
+
+      return press; 
+}
+
+int32_t ConvertTemperature2(uint32_t temperature)
+{
+
+    // calcualte 1st order pressure and temperature (MS5607 1st order algorithm)
+    int32_t T2 = 0;
+    const int32_t dT    = temperature - (int32_t)(coefficients_[4]) * 256;                     // difference between actual and reference temperature
+    const int32_t temp1  = (int32_t)(2000 + ((int64_t)dT * (int64_t)coefficients_[5]) / pow(2, 23)) ;      // actual temperature
+
+    if (temp1 < 2000) {
+        Serial.println("Temp less than 20, tempfn");
+        T2 = (int32_t)(pow(dT, 2) / pow(2, 31)); //NEEDS FIXING
+    }
+    
+    return temp1 - T2; 
+}
 
 };
 
