@@ -6,19 +6,14 @@
  ** MISO - pin 50
  ** CLK - pin 52
  ** CS - pin 53
- * -Wire diagram
- *  -Actuation Code w/ conditions
- *  2ndary transmitter w/ conditions
 
 
   TODO:
   -Set up Real Time Clock for everything to use.
   -Set up Tracksoar & 2ndary
   -Set up Altimeter
-  -Test Conditions
-  -2ndary transmitter on receive side
- 
-  
+  -Actuation Code w/ conditions
+  -Wire diagram
 
 
   by Kireet Agrawal - 2018
@@ -34,8 +29,6 @@
 #include <Stream.h>
 #include <Time.h>
 #include "IntersemaBaro.h"
-#include "rf69_stac.h"
-
 
 // Arduino Mega SPI Pins
 #define MISO 50
@@ -64,27 +57,33 @@ Adafruit_SI1145 uv_sensor = Adafruit_SI1145();  // uv sensor object declaration
 int thermoCS = 48;
 Adafruit_MAX31855 thermocouple(CLK, thermoCS, MISO);  // Initializes the Thermocouple
 
-
-// Experiment Specific Code
+// Conversion constants
 double ft_to_m = 0.3048;
 
-Servo servo1;
-Servo servo2;
+// Experiment Specific Code
 int servo1_pin = 2;
 int servo2_pin = 3;
+
+int servo_min = 45; // Value to retract servo to
+int servo_max = 130; // Value to extend servo to (changed from 180 for servo1 and 165 for servo2
+
+// 35-45K feet altitude
+int servo1_start_alt = 35000 * ft_to_m; // Feet converted to meters
+// 90-100K feet altitude
+int servo2_start_alt = 90000 * ft_to_m;
+
+// Timer 900 seconds
+unsigned long timeout = 900000; // Milliseconds TODO FIXME
+
+// Globals for servos
+Servo servo1;
+Servo servo2;
 bool servo1_extended = false;
 bool servo2_extended = false;
-unsigned int experiment1_start = 0;
-unsigned int experiment2_start = 0;
-bool experiment1_complete = false;
-bool experiment2_complete = false;
-int servo1_start_alt = 35000 * ft_to_m; // IN METERS
-int servo1_stop_alt = 45000 * ft_to_m;
-int servo2_start_alt = 90000 * ft_to_m;
-int servo2_stop_alt = 100000 * ft_to_m;
-unsigned long timeout = 900 * 1000; // IN MILLIS
-unsigned long scream_timeout = 1.08*10000000; //IN MILLIS
-unsigned int launch_start = 0;
+unsigned long exp1_start_time = 0;
+unsigned long exp2_start_time = 0;
+bool exp1_complete = false;
+bool exp2_complete = false;
 
 void setup() {
   
@@ -93,22 +92,15 @@ void setup() {
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
-
-  //Experiment Start Time //TODO: Use RTC instead of millis
-  launch_start = millis();
-  
   setup_rtc();
 
   setup_SD();
   setup_UV();
   setup_thermo();
   baro.init();
-
-  
-  transceiver_setup();
   
   write_to_sd("test.csv", DATA_HEADERS);
-  setup_servos();  // Experiment specific linear actuator setup
+  setup_servos();  // Experiment specific linear actuator setup, takes up to 20 seconds
 }
 
 void loop() {
@@ -151,37 +143,44 @@ void loop() {
   curr_data += delimiter;
   curr_data += String(alt_temp);
   curr_data += delimiter;
-
-  //Experiment Start Time
   
 
   // Run Experiment Code
  
-  // 35-45K feet altitude
-  // Timer 900 seconds
-  if (!experiment1_complete && !servo1_extended && alt > servo1_start_alt) {
+  // Starts experiment 1
+  if (!exp1_complete && !servo1_extended && alt > servo1_start_alt) {
     extend_servo(1);
-    experiment1_start = millis();
-    Serial.println("Started Experiment 1");
+    exp1_start_time = millis();
+    Serial.print("Started Experiment 1 at ");
+    Serial.print(alt/ft_to_m);
+    Serial.println("ft");
   }
 
-  if (!experiment1_complete && servo1_extended && (alt > servo1_stop_alt || timeoutReached(experiment1_start))) {
+  // Stops experiment 1
+  if (!exp1_complete && servo1_extended && time_elapsed(exp1_start_time, timeout)) {
     return_servo(1);
-    experiment1_complete = true;
-    Serial.println("Experiment 1 Complete");
+    exp1_complete = true;
+    Serial.print("Experiment 1 Complete at ");
+    Serial.print(alt/ft_to_m);
+    Serial.println("ft");
   }
 
-  // 90-100K feet altitude
-  // Timer 900 seconds 
-  if (!experiment2_complete && !servo2_extended && alt > servo2_start_alt) {
+  // Starts experiment 2
+  if (!exp2_complete && !servo2_extended && alt > servo2_start_alt) {
     extend_servo(2);
-    experiment2_start = millis();
-    Serial.println("Started Experiment 2");
+    exp2_start_time = millis();
+    Serial.print("Started Experiment 2 at ");
+    Serial.print(alt/ft_to_m);
+    Serial.println("ft");
   }
-  if (!experiment2_complete && servo2_extended && (alt > servo2_stop_alt || timeoutReached(experiment2_start))) {
+
+  // Stops experiment 2
+  if (!exp2_complete && servo2_extended && time_elapsed(exp2_start_time, timeout)) {
     return_servo(2);
-    experiment2_complete = true;
-    Serial.println("Experiment 2 Complete");
+    exp2_complete = true;
+    Serial.print("Experiment 2 Complete at ");
+    Serial.print(alt/ft_to_m);
+    Serial.println("ft");
   }
   
   curr_data += servo1_extended;
@@ -191,12 +190,6 @@ void loop() {
   
   write_to_sd("test.csv", curr_data);
   curr_data = "";
-
-  if(should_scream()){
-    char scream[20] = "stax";
-    scream_for_help_with_message(scream);
-  }
-  
   
   delay(1500);
 }
@@ -208,40 +201,36 @@ void setup_servos() {
   Serial.print("Initializiation Servos...");
   servo1.attach(servo1_pin);
   servo2.attach(servo2_pin);
+  return_servo(1);
+  return_servo(2);
+  delay(20000);
   Serial.println("Servo initialization done");
 }
 
 void extend_servo(int servo_id) {
   if (servo_id == 1) {
-      servo1.write(180);
+      servo1.write(servo_max);
       servo1_extended = true;
   } else if (servo_id == 2) {
-      servo2.write(165);
+      servo2.write(servo_max);
       servo2_extended = true;
   }
 }
 
 void return_servo(int servo_id) {
   if (servo_id == 1) {
-      servo1.write(45);
+      servo1.write(servo_min);
       servo1_extended = false;
   } else if (servo_id == 2) {
-      servo2.write(45);
+      servo2.write(servo_min);
       servo2_extended = false;
   }
 }
 
-// TODO: FIXME: use RTC instead of millis?
-bool timeoutReached(unsigned int exp_start) {
-  // Compares milliseconds since startup to milliseconds since startup for experiment start plus timeout
-  if (millis() > exp_start + timeout) {
-    return true;
-  }
-  return false;
-}
-
-bool should_scream() {
-  if (millis() > launch_start + scream_timeout) {
+bool time_elapsed(unsigned long exp_start, unsigned long time_diff) {
+  // Compares milliseconds since startup to milliseconds since startup for experiment start plus time_diff
+  if (millis() > exp_start + time_diff) {
+    Serial.println("Time elapsed");
     return true;
   }
   return false;
@@ -307,8 +296,6 @@ String get_thermo_data() {
   }
   return thermo_data;
 }
-
-
 
 
 /*
