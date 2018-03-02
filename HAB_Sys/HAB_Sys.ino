@@ -60,7 +60,7 @@ Intersema::BaroPressure_MS5607B baro(true);
 Adafruit_SI1145 uv_sensor = Adafruit_SI1145();  // uv sensor object declaration
 
 // Thermo Couple
-int thermoCS = 49;
+int thermoCS = 48;
 Adafruit_MAX31855 thermocouple(CLK, thermoCS, MISO);  // Initializes the Thermocouple
 
 // Conversion constants
