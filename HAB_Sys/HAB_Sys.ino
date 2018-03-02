@@ -76,13 +76,14 @@ int servo_max = 165; // Value to extend servo to (changed from 180 for servo1 an
 
 // 35-45K feet altitude
 //int servo1_start_alt = 35000 * ft_to_m; // Feet converted to meters
-int servo1_start_alt = 100 * ft_to_m; // Feet converted to meters
+//int servo1_end_alt = 45000 * ft_to_m;
+int servo1_start_alt = 340 * ft_to_m; // Feet converted to meters
+int servo1_end_alt = 355 * ft_to_m;
 // 90-100K feet altitude
-int servo2_start_alt = 90000 * ft_to_m;
-
-// Timer 900 seconds
-//unsigned long timeout = 900000; // Milliseconds TODO FIXME
-unsigned long timeout = 3000;
+int servo2_start_alt = 360 * ft_to_m;
+int servo2_end_alt = 365 * ft_to_m;
+//int servo2_start_alt = 90000 * ft_to_m;
+//int servo2_end_alt = 100000 * ft_to_m;
 
 // Globals for servos
 Servo servo1;
@@ -93,15 +94,19 @@ unsigned long exp1_start_time = 0;
 unsigned long exp2_start_time = 0;
 bool exp1_complete = false;
 bool exp2_complete = false;
+// Timer 900 seconds
+unsigned long timeout = 900000; // Milliseconds TODO FIXME
+//unsigned long timeout = 3000;
+
 bool exp1_locked = false;
 bool exp2_locked = false;
 unsigned long exp1_lock_time = 0;
 unsigned long exp2_lock_time = 0;
-unsigned long exp_lock_timeout = 5000; // milliseconds TODO FIXME
+unsigned long exp_lock_timeout = 10000;  // milliseconds TODO FIXME
 
-unsigned long scream_timeout = 10000; //use for testing - 10s timeout
-//unsigned long scream_timeout = 1.08*10000000; //IN MILLIS - use for experiment!! 3hr timeout
-unsigned int launch_start = 0;
+unsigned long scream_timeout = 600000;  // TODO: use for testing - 10s timeout
+//unsigned long scream_timeout = 1.08*10000000;  // IN MILLIS - use for experiment!! 3hr timeout
+unsigned long launch_start = 0;
 
 void setup() {
   
@@ -117,7 +122,7 @@ void setup() {
   setup_thermo();
   baro.init();
   transceiver_setup();
-
+  launch_start = millis();  // Initialize for Secondary Transmitter Screaming
 
   write_to_sd("test.csv", DATA_HEADERS);
   setup_servos();  // Experiment specific linear actuator setup, takes up to 20 seconds
@@ -128,40 +133,40 @@ void loop() {
   // put your main code here, to run repeatedly:
   // fetch the time
    String curr_time = get_rtc();
-   Serial.print("Current Time: ");
-   Serial.println(curr_time);
+//   Serial.print("Current Time: ");
+//   Serial.println(curr_time);
    curr_data += curr_time;
    curr_data += delimiter;
 
    String uv_data = get_uv_data();
-   Serial.print("UV Data: ");
-   Serial.println(uv_data);
+//   Serial.print("UV Data: ");
+//   Serial.println(uv_data);
    curr_data += uv_data;
    curr_data += delimiter;
 
-  String thermo_data = get_thermo_data();
-  Serial.print("Thermocouple Temp: ");
-  Serial.println(thermo_data);
-  curr_data += thermo_data;
-  curr_data += delimiter;
+//  String thermo_data = get_thermo_data();
+//  Serial.print("Thermocouple Temp: ");
+//  Serial.println(thermo_data);
+//  curr_data += thermo_data;
+//  curr_data += delimiter;
 
   double alt = baro.getHeightMeters(2);
-  int32_t alt_pressure = baro.getP(2);
-  double alt_temp = (double)(baro.getT(2))/100;
-  Serial.print("Meters: ");
+//  int32_t alt_pressure = baro.getP(2);
+//  double alt_temp = (double)(baro.getT(2))/100;
+//  Serial.print("Meters: ");
   Serial.print((float)(alt));
   Serial.print(", Feet: ");
   Serial.println((float)(alt) * 3.2808);
-  Serial.print("Pressure (Pa): ");
-  Serial.println(alt_pressure);
-  Serial.print("Altimeter Temp: ");
-  Serial.println(alt_temp);
-  curr_data += String(alt, 2);
-  curr_data += delimiter;
-  curr_data += String(alt_pressure);
-  curr_data += delimiter;
-  curr_data += String(alt_temp);
-  curr_data += delimiter;
+//  Serial.print("Pressure (Pa): ");
+//  Serial.println(alt_pressure);
+//  Serial.print("Altimeter Temp: ");
+//  Serial.println(alt_temp);
+//  curr_data += String(alt, 2);
+//  curr_data += delimiter;
+//  curr_data += String(alt_pressure);
+//  curr_data += delimiter;
+//  curr_data += String(alt_temp);
+//  curr_data += delimiter;
   
   
 
@@ -177,7 +182,7 @@ void loop() {
   }
 
   // Stops experiment 1
-  if (!exp1_complete && servo1_extended && time_elapsed(exp1_start_time, timeout)) {
+  if (!exp1_complete && servo1_extended && (alt > servo1_end_alt || time_elapsed(exp1_start_time, timeout)) ) {
     return_servo(1);
     exp1_complete = true;
     exp1_lock_time = millis();
@@ -185,10 +190,11 @@ void loop() {
     Serial.print(alt/ft_to_m);
     Serial.println("ft");
   }
-  // Sets experiment 1 Lock so we do not continue to send PWM sig in case of stall
+  // Sets experiment 1 Lock so we do not continue to send PWM signal in case of stall
   if (!exp1_locked && exp1_complete && time_elapsed(exp1_lock_time, exp_lock_timeout)) {
     servo1.write(0);
     exp1_locked = true;
+    Serial.println("Locked Servo 1");
   }
 
   // Starts experiment 2
@@ -201,7 +207,7 @@ void loop() {
   }
 
   // Stops experiment 2
-  if (!exp2_complete && servo2_extended && time_elapsed(exp2_start_time, timeout)) {
+  if (!exp2_complete && servo2_extended && (alt > servo2_end_alt || time_elapsed(exp2_start_time, timeout))) {
     return_servo(2);
     exp2_complete = true;
     exp2_lock_time = millis();
@@ -213,6 +219,7 @@ void loop() {
   if (!exp2_locked && exp2_complete && time_elapsed(exp2_lock_time, exp_lock_timeout)) {
     servo2.write(0);
     exp2_locked = true;
+    Serial.println("Locked Servo 2");
   }
   
   curr_data += servo1_extended;
@@ -381,7 +388,7 @@ void write_to_sd(String filename, String data) {
     sd_card_file.println(data);
     // close the file:
     sd_card_file.close();
-    Serial.println("done writing to file");
+//    Serial.println("done writing to file");
   } else {
     // if the file didn't open, print an error:
     Serial.println("error opening file");
