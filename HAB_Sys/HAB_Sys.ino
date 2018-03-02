@@ -50,7 +50,7 @@
 RTC_DS1307 RTC; // define the Real Time Clock object
 
 #define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), Altitude (m), Pressure (Pa), Altitude Temp (C),Servo1 Extended, Servo2 Extended"
-int sd_card_pin = 49;
+int sd_card_pin = 47;
 String delimiter = ",";  // Data string delimiter for SD logging b/w sensors
 File sd_card_file;  // filesystem object
 String curr_data = "";
@@ -60,7 +60,7 @@ Intersema::BaroPressure_MS5607B baro(true);
 Adafruit_SI1145 uv_sensor = Adafruit_SI1145();  // uv sensor object declaration
 
 // Thermo Couple
-int thermoCS = 48;
+int thermoCS = 49;
 Adafruit_MAX31855 thermocouple(CLK, thermoCS, MISO);  // Initializes the Thermocouple
 
 // Conversion constants
@@ -223,7 +223,7 @@ bool should_scream() {
    Experiment's Actuator Specific
 */
 void setup_servos() {
-  Serial.print("Initializiation Servos...");
+  Serial.print("Initialization Servos...");
   servo1.attach(servo1_pin);
   servo2.attach(servo2_pin);
   return_servo(1);
