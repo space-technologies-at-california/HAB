@@ -190,7 +190,7 @@ void loop() {
   }
   // Sets experiment 1 Lock so we do not continue to send PWM signal in case of stall
   if (!exp1_locked && exp1_complete && time_elapsed(exp1_lock_time, exp_lock_timeout)) {
-    servo1.write(0);
+    servo1.detach();
     exp1_locked = true;
     Serial.println("Locked Servo 1");
   }
@@ -215,7 +215,7 @@ void loop() {
   }
   // Sets experiment 2 Lock so we do not continue to send PWM sig in case of stall
   if (!exp2_locked && exp2_complete && time_elapsed(exp2_lock_time, exp_lock_timeout)) {
-    servo2.write(0);
+    servo2.detach();
     exp2_locked = true;
     Serial.println("Locked Servo 2");
   }
