@@ -20,7 +20,7 @@
   -Add edge conditions:
     -altimeter = inf
 
-  by Kireet Agrawal - 2018
+  by Kireet Agrawal - STAC 2018
 */
 
 #include <SPI.h>
@@ -61,7 +61,7 @@ Intersema::BaroPressure_MS5607B baro(true);
 Adafruit_SI1145 uv_sensor = Adafruit_SI1145();  // uv sensor object declaration
 
 // Thermo Couple
-int thermoCS = 49;
+int thermoCS = 48;
 Adafruit_MAX31855 thermocouple(CLK, thermoCS, MISO);  // Initializes the Thermocouple
 
 // Conversion constants
@@ -72,15 +72,17 @@ int servo1_pin = 2;
 int servo2_pin = 3;
 
 int servo_min = 45; // Value to retract servo to
-int servo_max = 130; // Value to extend servo to (changed from 180 for servo1 and 165 for servo2
+int servo_max = 165; // Value to extend servo to (changed from 180 for servo1 and 165 for servo2
 
 // 35-45K feet altitude
-int servo1_start_alt = 35000 * ft_to_m; // Feet converted to meters
+//int servo1_start_alt = 35000 * ft_to_m; // Feet converted to meters
+int servo1_start_alt = 100 * ft_to_m; // Feet converted to meters
 // 90-100K feet altitude
 int servo2_start_alt = 90000 * ft_to_m;
 
 // Timer 900 seconds
-unsigned long timeout = 900000; // Milliseconds TODO FIXME
+//unsigned long timeout = 900000; // Milliseconds TODO FIXME
+unsigned long timeout = 3000;
 
 // Globals for servos
 Servo servo1;
@@ -91,6 +93,11 @@ unsigned long exp1_start_time = 0;
 unsigned long exp2_start_time = 0;
 bool exp1_complete = false;
 bool exp2_complete = false;
+bool exp1_locked = false;
+bool exp2_locked = false;
+unsigned long exp1_lock_time = 0;
+unsigned long exp2_lock_time = 0;
+unsigned long exp_lock_timeout = 5000; // milliseconds TODO FIXME
 
 unsigned long scream_timeout = 10000; //use for testing - 10s timeout
 //unsigned long scream_timeout = 1.08*10000000; //IN MILLIS - use for experiment!! 3hr timeout
@@ -173,9 +180,15 @@ void loop() {
   if (!exp1_complete && servo1_extended && time_elapsed(exp1_start_time, timeout)) {
     return_servo(1);
     exp1_complete = true;
+    exp1_lock_time = millis();
     Serial.print("Experiment 1 Complete at ");
     Serial.print(alt/ft_to_m);
     Serial.println("ft");
+  }
+  // Sets experiment 1 Lock so we do not continue to send PWM sig in case of stall
+  if (!exp1_locked && exp1_complete && time_elapsed(exp1_lock_time, exp_lock_timeout)) {
+    servo1.write(0);
+    exp1_locked = true;
   }
 
   // Starts experiment 2
@@ -191,25 +204,32 @@ void loop() {
   if (!exp2_complete && servo2_extended && time_elapsed(exp2_start_time, timeout)) {
     return_servo(2);
     exp2_complete = true;
+    exp2_lock_time = millis();
     Serial.print("Experiment 2 Complete at ");
     Serial.print(alt/ft_to_m);
     Serial.println("ft");
+  }
+  // Sets experiment 2 Lock so we do not continue to send PWM sig in case of stall
+  if (!exp2_locked && exp2_complete && time_elapsed(exp2_lock_time, exp_lock_timeout)) {
+    servo2.write(0);
+    exp2_locked = true;
   }
   
   curr_data += servo1_extended;
   curr_data += delimiter;
   curr_data += servo2_extended;
-  // TODO: FIXME: no delimiter at end?
+  // TODO: FIXME: no delimiter at end? -> new line delimiter
   
   write_to_sd("test.csv", curr_data);
   curr_data = "";
 
    if(should_scream()){
+    Serial.println("Secondary Transmitter Screaming");
     char scream[20] = "stax";
     scream_for_help_with_message(scream);
   }
   
-  delay(1500);
+  delay(1000);
 }
 
 bool should_scream() {
@@ -228,7 +248,9 @@ void setup_servos() {
   servo2.attach(servo2_pin);
   return_servo(1);
   return_servo(2);
-  delay(20000);
+  delay(10000);  // Setup servos to original
+  servo1.write(0);
+  servo2.write(0);
   Serial.println("Servo initialization done");
 }
 
@@ -305,8 +327,14 @@ String get_rtc() {
 */
 void setup_thermo() {
   // Thermo couple is setup when creating the object.
-  Serial.println("Initializing Thermo Couple...");
-  delay(500);  // wait for MAX thermo chip to stabilize
+  Serial.print("Initializing Thermo Couple...");
+  delay(1000);  // wait for MAX thermo chip to stabilize
+  double c = thermocouple.readCelsius();
+  if (isnan(c)) {
+    Serial.println("Failed to initialize Thermo Couple");
+  } else {
+    Serial.println("Thermo Couple initialization done.");
+  }
 }
 String get_thermo_data() {
   SPI.end();
