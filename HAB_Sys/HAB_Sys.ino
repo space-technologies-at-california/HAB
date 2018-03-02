@@ -34,6 +34,7 @@
 #include <Time.h>
 #include "IntersemaBaro.h"
 #include "rf69_stac.h"
+#include "tracksoar_comm.h"
 
 
 // Arduino Mega SPI Pins
@@ -156,8 +157,20 @@ void loop() {
   curr_data += String(alt_temp);
   curr_data += delimiter;
   
-  
-
+  //Tracksoar Code
+  Serial.println("Tracksoar Code");
+  float tr_alt = get_alt_fl();
+  float tr_lat = get_lat_fl();
+  float tr_lon = get_lon_fl();
+  float tr_spd = get_speed_fl();
+  Serial.print("Tracksoar Altitude: ");
+  Serial.println(tr_alt);
+  Serial.print("Tracksoar Latitude: ");
+  Serial.println(tr_lat);
+  Serial.print("Tracksoar Longitude: ");
+  Serial.println(tr_lon);
+  Serial.print("Tracksoar Speed: ");
+  Serial.println(tr_spd);
   // Run Experiment Code
  
   // Starts experiment 1
@@ -205,8 +218,18 @@ void loop() {
   curr_data = "";
 
    if(should_scream()){
-    char scream[20] = "stax";
-    scream_for_help_with_message(scream);
+    char msg[60];
+    String buf;
+    buf += F("lat: ");
+    buf += String(tr_lat);
+    buf += F("\nlon: ");
+    buf += String(tr_lon);
+    buf += String("\nalt: ");
+    buf += String(tr_alt);
+    buf += String("\nspd: ");
+    buf += String(tr_spd);
+    buf.toCharArray(msg, 60);
+    scream_for_help_with_message(msg);
   }
   
   delay(1500);
@@ -306,7 +329,7 @@ String get_rtc() {
 void setup_thermo() {
   // Thermo couple is setup when creating the object.
   Serial.println("Initializing Thermo Couple...");
-  delay(500);  // wait for MAX thermo chip to stabilize
+  delay(1000);  // wait for MAX thermo chip to stabilize
 }
 String get_thermo_data() {
   SPI.end();
