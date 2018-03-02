@@ -410,7 +410,7 @@ private:
 
       // MS5607 2nd order algorithm
       if (temp < 2000) {
-        Serial.println("Temp less than 20, pressfn");
+//        Serial.println("Temp less than 20, pressfn");
         T2 = (int32_t)(pow(dT, 2) / pow(2, 31)); //NEEDS FIXING
         OFF2 = (int64_t)(61 * pow((int64_t)(temp)-2000, 2)/ pow(2, 4));
         SENS2 = (int64_t)(2 * pow(temp-2000, 2));
