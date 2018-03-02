@@ -1,3 +1,30 @@
+#include <radio_config_Si4460.h>
+#include <RadioHead.h>
+#include <RH_ASK.h>
+#include <RH_CC110.h>
+#include <RH_MRF89.h>
+#include <RH_NRF24.h>
+#include <RH_NRF51.h>
+#include <RH_NRF905.h>
+#include <RH_RF22.h>
+#include <RH_RF24.h>
+#include <RH_RF69.h>
+#include <RH_RF95.h>
+#include <RH_Serial.h>
+#include <RH_TCP.h>
+#include <RHCRC.h>
+#include <RHDatagram.h>
+#include <RHGenericDriver.h>
+#include <RHGenericSPI.h>
+#include <RHHardwareSPI.h>
+#include <RHMesh.h>
+#include <RHNRFSPIDriver.h>
+#include <RHReliableDatagram.h>
+#include <RHRouter.h>
+#include <RHSoftwareSPI.h>
+#include <RHSPIDriver.h>
+#include <RHTcpProtocol.h>
+
 // rf69 demo tx rx.pde
 // -*- mode: C++ -*-
 // Example sketch showing how to create a simple messageing client
@@ -30,12 +57,10 @@
   #define LED           13
 #endif*/
 
-#if defined (__AVR_ATmega328P__)  // Feather 328P w/wing
-  #define RFM69_INT     3  // 
-  #define RFM69_CS      4  //
-  #define RFM69_RST     2  // "A"
-  #define LED           13
-#endif
+ #define RFM69_INT     3  // 
+ #define RFM69_CS      4  //
+ #define RFM69_RST     2  // "A"
+ #define LED           13
 
 /*#if defined(ESP8266)    // ESP8266 feather w/wing
   #define RFM69_CS      2    // "E"
