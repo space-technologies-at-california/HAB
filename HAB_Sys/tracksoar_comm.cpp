@@ -1,4 +1,5 @@
 #include <SPI.h>
+#include "tracksoar_comm.h"
 
 byte transfer(const byte command) {
     

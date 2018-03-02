@@ -31,6 +31,8 @@
 #include <Stream.h>
 #include <Time.h>
 #include "IntersemaBaro.h"
+#include "rf69_stac.h"
+
 
 // Arduino Mega SPI Pins
 #define MISO 50
@@ -87,6 +89,10 @@ unsigned long exp2_start_time = 0;
 bool exp1_complete = false;
 bool exp2_complete = false;
 
+unsigned long scream_timeout = 10000; //use for testing - 10s timeout
+//unsigned long scream_timeout = 1.08*10000000; //IN MILLIS - use for experiment!! 3hr timeout
+unsigned int launch_start = 0;
+
 void setup() {
   
   // Open serial communications and wait for port to open:
@@ -100,7 +106,9 @@ void setup() {
   setup_UV();
   setup_thermo();
   baro.init();
-  
+  transceiver_setup();
+
+
   write_to_sd("test.csv", DATA_HEADERS);
   setup_servos();  // Experiment specific linear actuator setup, takes up to 20 seconds
 }
@@ -145,6 +153,7 @@ void loop() {
   curr_data += delimiter;
   curr_data += String(alt_temp);
   curr_data += delimiter;
+  
   
 
   // Run Experiment Code
@@ -192,8 +201,20 @@ void loop() {
   
   write_to_sd("test.csv", curr_data);
   curr_data = "";
+
+   if(should_scream()){
+    char scream[20] = "stax";
+    scream_for_help_with_message(scream);
+  }
   
   delay(1500);
+}
+
+bool should_scream() {
+  if (millis() > launch_start + scream_timeout) {
+    return true;
+  }
+  return false;
 }
 
 /*
