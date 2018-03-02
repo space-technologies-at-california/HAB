@@ -44,7 +44,7 @@
 RTC_DS1307 RTC; // define the Real Time Clock object
 
 #define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), Altitude (m), Pressure (Pa), Altitude Temp (C),Servo1 Extended, Servo2 Extended"
-int sd_card_pin = 49;
+int sd_card_pin = 47;  // SD card CS pin
 String delimiter = ",";  // Data string delimiter for SD logging b/w sensors
 File sd_card_file;  // filesystem object
 String curr_data = "";
@@ -106,7 +106,6 @@ void setup() {
 void loop() {
   
   // put your main code here, to run repeatedly:
-  // use buffer stream to format line
   // fetch the time
    String curr_time = get_rtc();
    Serial.print("Current Time: ");
@@ -289,10 +288,17 @@ String get_thermo_data() {
   thermo_data += thermocouple.readInternal();
   thermo_data += delimiter;
   double c = thermocouple.readCelsius();
+  double f = thermocouple.readFarenheit();
   if (isnan(c)) {
     Serial.println("Something wrong with thermocouple!");
   } else {
     thermo_data += String(c);
+  }
+  thermo_data += delimiter;
+  if (isnan(f)) {
+    Serial.println("Something wrong with thermocouple!");
+  } else {
+    thermo_data += String(f);
   }
   return thermo_data;
 }
