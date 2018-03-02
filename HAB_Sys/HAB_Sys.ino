@@ -1,5 +1,4 @@
 /*
-
   Completed:
    SD card attached to SPI bus as follows:
  ** MOSI - pin 51
@@ -13,9 +12,8 @@
 
 
   TODO:
-  -Set up Real Time Clock for everything to use.
   -Set up Tracksoar & 2ndary
-  -Set up Altimeter
+  -Servo code
   -Test Conditions
   -Add edge conditions:
     -altimeter = inf
@@ -77,8 +75,8 @@ int servo_max = 165; // Value to extend servo to (changed from 180 for servo1 an
 // 35-45K feet altitude
 //int servo1_start_alt = 35000 * ft_to_m; // Feet converted to meters
 //int servo1_end_alt = 45000 * ft_to_m;
-int servo1_start_alt = 340 * ft_to_m; // Feet converted to meters
-int servo1_end_alt = 355 * ft_to_m;
+int servo1_start_alt = 350 * ft_to_m; // Feet converted to meters
+int servo1_end_alt = 357 * ft_to_m;
 // 90-100K feet altitude
 int servo2_start_alt = 360 * ft_to_m;
 int servo2_end_alt = 365 * ft_to_m;
@@ -154,7 +152,7 @@ void loop() {
 //  int32_t alt_pressure = baro.getP(2);
 //  double alt_temp = (double)(baro.getT(2))/100;
 //  Serial.print("Meters: ");
-  Serial.print((float)(alt));
+//  Serial.print((float)(alt));
   Serial.print(", Feet: ");
   Serial.println((float)(alt) * 3.2808);
 //  Serial.print("Pressure (Pa): ");
@@ -182,7 +180,7 @@ void loop() {
   }
 
   // Stops experiment 1
-  if (!exp1_complete && servo1_extended && (alt > servo1_end_alt || time_elapsed(exp1_start_time, timeout)) ) {
+  if (!exp1_complete && servo1_extended && !exp1_locked && (alt > servo1_end_alt || time_elapsed(exp1_start_time, timeout)) ) {
     return_servo(1);
     exp1_complete = true;
     exp1_lock_time = millis();
@@ -207,7 +205,7 @@ void loop() {
   }
 
   // Stops experiment 2
-  if (!exp2_complete && servo2_extended && (alt > servo2_end_alt || time_elapsed(exp2_start_time, timeout))) {
+  if (!exp2_complete && servo2_extended && !exp2_locked && (alt > servo2_end_alt || time_elapsed(exp2_start_time, timeout))) {
     return_servo(2);
     exp2_complete = true;
     exp2_lock_time = millis();
@@ -255,7 +253,7 @@ void setup_servos() {
   servo2.attach(servo2_pin);
   return_servo(1);
   return_servo(2);
-  delay(10000);  // Setup servos to original
+  delay(20000);  // Setup servos to original  TODO FixMe
   servo1.write(0);
   servo2.write(0);
   Serial.println("Servo initialization done");
@@ -384,7 +382,7 @@ void write_to_sd(String filename, String data) {
 
   // if the file opened, write to it:
   if (sd_card_file) {
-    Serial.print("Writing to file ...");
+//    Serial.print("Writing to file ...");
     sd_card_file.println(data);
     // close the file:
     sd_card_file.close();
