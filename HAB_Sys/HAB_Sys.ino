@@ -17,6 +17,8 @@
   -Set up Tracksoar & 2ndary
   -Set up Altimeter
   -Test Conditions
+  -Add edge conditions:
+    -altimeter = inf
 
   by Kireet Agrawal - 2018
 */
