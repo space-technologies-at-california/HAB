@@ -6,15 +6,19 @@
  ** MISO - pin 50
  ** CLK - pin 52
  ** CS - pin 53
+ * -Wire diagram
+ *  -Actuation Code w/ conditions
+ *  2ndary transmitter w/ conditions
+ * -2ndary transmitter on receive side
 
 
   TODO:
   -Set up Real Time Clock for everything to use.
   -Set up Tracksoar & 2ndary
   -Set up Altimeter
-  -Actuation Code w/ conditions
-  -Wire diagram
-
+  -Test Conditions
+  -Add edge conditions:
+    -altimeter = inf
 
   by Kireet Agrawal - 2018
 */
@@ -29,6 +33,8 @@
 #include <Stream.h>
 #include <Time.h>
 #include "IntersemaBaro.h"
+#include "rf69_stac.h"
+
 
 // Arduino Mega SPI Pins
 #define MISO 50
@@ -44,6 +50,7 @@
 RTC_DS1307 RTC; // define the Real Time Clock object
 
 #define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), Altitude (m), Pressure (Pa), Altitude Temp (C),Servo1 Extended, Servo2 Extended"
+
 int sd_card_pin = 47;  // SD card CS pin
 String delimiter = ",";  // Data string delimiter for SD logging b/w sensors
 File sd_card_file;  // filesystem object
@@ -54,7 +61,7 @@ Intersema::BaroPressure_MS5607B baro(true);
 Adafruit_SI1145 uv_sensor = Adafruit_SI1145();  // uv sensor object declaration
 
 // Thermo Couple
-int thermoCS = 48;
+int thermoCS = 49;
 Adafruit_MAX31855 thermocouple(CLK, thermoCS, MISO);  // Initializes the Thermocouple
 
 // Conversion constants
@@ -85,6 +92,10 @@ unsigned long exp2_start_time = 0;
 bool exp1_complete = false;
 bool exp2_complete = false;
 
+unsigned long scream_timeout = 10000; //use for testing - 10s timeout
+//unsigned long scream_timeout = 1.08*10000000; //IN MILLIS - use for experiment!! 3hr timeout
+unsigned int launch_start = 0;
+
 void setup() {
   
   // Open serial communications and wait for port to open:
@@ -98,7 +109,9 @@ void setup() {
   setup_UV();
   setup_thermo();
   baro.init();
-  
+  transceiver_setup();
+
+
   write_to_sd("test.csv", DATA_HEADERS);
   setup_servos();  // Experiment specific linear actuator setup, takes up to 20 seconds
 }
@@ -142,6 +155,7 @@ void loop() {
   curr_data += delimiter;
   curr_data += String(alt_temp);
   curr_data += delimiter;
+  
   
 
   // Run Experiment Code
@@ -189,15 +203,27 @@ void loop() {
   
   write_to_sd("test.csv", curr_data);
   curr_data = "";
+
+   if(should_scream()){
+    char scream[20] = "stax";
+    scream_for_help_with_message(scream);
+  }
   
   delay(1500);
+}
+
+bool should_scream() {
+  if (millis() > launch_start + scream_timeout) {
+    return true;
+  }
+  return false;
 }
 
 /*
    Experiment's Actuator Specific
 */
 void setup_servos() {
-  Serial.print("Initializiation Servos...");
+  Serial.print("Initialization Servos...");
   servo1.attach(servo1_pin);
   servo2.attach(servo2_pin);
   return_servo(1);
