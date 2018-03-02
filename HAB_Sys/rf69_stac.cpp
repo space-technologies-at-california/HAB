@@ -86,7 +86,7 @@ void scream_for_help_with_message(char* msg) {
   fastBlink(LED, 2);
   
   for(int i = 0; i < 4096; i++) {
-    rf69.send(msg, RH_RF69_MAX_MESSAGE_LEN);
+    rf69.send((uint8_t*)msg, RH_RF69_MAX_MESSAGE_LEN);
     rf69.waitPacketSent();
   }
 

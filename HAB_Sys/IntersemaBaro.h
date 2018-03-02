@@ -108,7 +108,7 @@ protected:
           const double L_b[N] = {-0.0065, 0, 0.001, 0.0028, 0};
     
           if (pressurePa > P_b[0]) {
-            return 0; }
+            return 0; 
           }
       
           int i;
@@ -117,10 +117,7 @@ protected:
           }
           i = i - 1;
           double height;
-          Serial.println((double)L_b[i]);
-          Serial.println(i);
           if (L_b[i] == (double)(0)) {
-            Serial.println(log((double)pressurePa)/(double)(P_b[i]));
             height = (double)(R*T_b[i]*log((double)(pressurePa)/(double)(P_b[i]))/((double)(-1) * g * M)) + (h_b[i]);
           } else {
             height = ((T_b[i]/pow((double)(pressurePa)/(double)(P_b[i]),  (R*L_b[i])/(g*M))) - T_b[i])/L_b[i] + (double)(h_b[i]);

@@ -126,9 +126,9 @@ void loop() {
   curr_data += thermo_data;
   curr_data += delimiter;
 
-  double alt = baro.getHeightMeters();
-  int32_t alt_pressure = baro.getP();
-  double alt_temp = (double)(baro.getT())/100;
+  double alt = baro.getHeightMeters(2);
+  int32_t alt_pressure = baro.getP(2);
+  double alt_temp = (double)(baro.getT(2))/100;
   Serial.print("Meters: ");
   Serial.print((float)(alt));
   Serial.print(", Feet: ");
