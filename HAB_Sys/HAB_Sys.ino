@@ -9,6 +9,7 @@
  * -Wire diagram
  *  -Actuation Code w/ conditions
  *  2ndary transmitter w/ conditions
+ * -2ndary transmitter on receive side
 
 
   TODO:
@@ -16,7 +17,7 @@
   -Set up Tracksoar & 2ndary
   -Set up Altimeter
   -Test Conditions
-  -2ndary transmitter on receive side
+
  
   
 
