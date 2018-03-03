@@ -103,7 +103,7 @@ unsigned long exp1_lock_time = 0;
 unsigned long exp2_lock_time = 0;
 unsigned long exp_lock_timeout = 10000;  // milliseconds TODO FIXME
 
-unsigned long scream_timeout = 600000;  // TODO: use for testing - 10s timeout
+unsigned long scream_timeout = 600000000;  // TODO: use for testing - 10s timeout
 //unsigned long scream_timeout = 1.08*10000000;  // IN MILLIS - use for experiment!! 3hr timeout
 unsigned long launch_start = 0;
 
@@ -114,17 +114,20 @@ void setup() {
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
+  
+  digitalWrite(TRACKSOAR_SS, HIGH);  // Setup SPI tracksoar
   setup_rtc();
-
+  
   setup_SD();
   setup_UV();
   setup_thermo();
   baro.init();
   transceiver_setup();
   launch_start = millis();  // Initialize for Secondary Transmitter Screaming
+  
 
   write_to_sd("test.csv", DATA_HEADERS);
-  setup_servos();  // Experiment specific linear actuator setup, takes up to 20 seconds
+//  setup_servos();  // Experiment specific linear actuator setup, takes up to 20 seconds
 }
 
 void loop() {
@@ -143,9 +146,9 @@ void loop() {
    curr_data += uv_data;
    curr_data += delimiter;
 
-//  String thermo_data = get_thermo_data();
-//  Serial.print("Thermocouple Temp: ");
-//  Serial.println(thermo_data);
+  String thermo_data = get_thermo_data();
+  Serial.print("Thermocouple Temp: ");
+  Serial.println(thermo_data);
 //  curr_data += thermo_data;
 //  curr_data += delimiter;
 
@@ -274,11 +277,13 @@ void setup_servos() {
   Serial.print("Initialization Servos...");
   servo1.attach(servo1_pin);
   servo2.attach(servo2_pin);
-  return_servo(1);
+//  return_servo(1);
+  extend_servo(1);
   return_servo(2);
-  delay(20000);  // Setup servos to original  TODO FixMe
-  servo1.write(0);
+  delay(5000);  // Setup servos to original  TODO FixMe
+//  servo1.write(0);
   servo2.write(0);
+  servo1.detach();
   Serial.println("Servo initialization done");
 }
 
