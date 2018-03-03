@@ -124,7 +124,7 @@ void setup() {
   launch_start = millis();  // Initialize for Secondary Transmitter Screaming
 
   write_to_sd("test.csv", DATA_HEADERS);
-  setup_servos();  // Experiment specific linear actuator setup, takes up to 20 seconds
+//  setup_servos();  // Experiment specific linear actuator setup, takes up to 20 seconds
 }
 
 void loop() {
