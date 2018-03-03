@@ -48,7 +48,7 @@
 
 RTC_DS1307 RTC; // define the Real Time Clock object
 
-#define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), Altitude (m), Pressure (Pa), Altitude Temp (C),Servo1 Extended, Servo2 Extended"
+#define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), Altitude (m), Pressure (Pa), Altitude Temp (C), Tracksoar Altitude, Tracksoar Latitude, Tracksoar Longitude, Tracksoar Speed, Servo1 Extended, Servo2 Extended"
 
 int sd_card_pin = 47;  // SD card CS pin
 String delimiter = ",";  // Data string delimiter for SD logging b/w sensors
@@ -67,12 +67,6 @@ Adafruit_MAX31855 thermocouple(CLK, thermoCS, MISO);  // Initializes the Thermoc
 double ft_to_m = 0.3048;
 
 // Experiment Specific Code
-int servo1_pin = 2;
-int servo2_pin = 3;
-
-int servo_min = 45; // Value to retract servo to
-int servo_max = 165; // Value to extend servo to (changed from 180 for servo1 and 165 for servo2
-
 // 35-45K feet altitude
 //int servo1_start_alt = 35000 * ft_to_m; // Feet converted to meters
 //int servo1_end_alt = 45000 * ft_to_m;
@@ -87,6 +81,11 @@ int servo2_end_alt = 365 * ft_to_m;
 // Globals for servos
 Servo servo1;
 Servo servo2;
+int servo1_pin = 2;
+int servo2_pin = 3;
+const int servo_enable_pin = 6;
+int servo_min = 45; // Value to retract servo to
+int servo_max = 165; // Value to extend servo to (changed from 180 for servo1 and 165 for servo2
 bool servo1_extended = false;
 bool servo2_extended = false;
 unsigned long exp1_start_time = 0;
@@ -101,11 +100,12 @@ bool exp1_locked = false;
 bool exp2_locked = false;
 unsigned long exp1_lock_time = 0;
 unsigned long exp2_lock_time = 0;
-unsigned long exp_lock_timeout = 10000;  // milliseconds TODO FIXME
+unsigned long exp_lock_timeout = 20000;  // milliseconds TODO FIXME
 
 unsigned long scream_timeout = 600000000;  // TODO: use for testing - 10s timeout
 //unsigned long scream_timeout = 1.08*10000000;  // IN MILLIS - use for experiment!! 3hr timeout
 unsigned long launch_start = 0;
+
 
 void setup() {
   
@@ -125,9 +125,8 @@ void setup() {
   transceiver_setup();
   launch_start = millis();  // Initialize for Secondary Transmitter Screaming
   
-
   write_to_sd("test.csv", DATA_HEADERS);
-//  setup_servos();  // Experiment specific linear actuator setup, takes up to 20 seconds
+  setup_servos();  // Experiment specific linear actuator setup, takes up to 20 seconds
 }
 
 void loop() {
@@ -171,23 +170,32 @@ void loop() {
 //  curr_data += delimiter;
   
   //Tracksoar Code
-  Serial.println("Tracksoar Code");
-  float tr_alt = get_alt_fl();
-  float tr_lat = get_lat_fl();
-  float tr_lon = get_lon_fl();
-  float tr_spd = get_speed_fl();
-  Serial.print("Tracksoar Altitude: ");
-  Serial.println(tr_alt);
-  Serial.print("Tracksoar Latitude: ");
-  Serial.println(tr_lat);
-  Serial.print("Tracksoar Longitude: ");
-  Serial.println(tr_lon);
-  Serial.print("Tracksoar Speed: ");
-  Serial.println(tr_spd);
+//  Serial.println("Tracksoar Code");
+//  float tr_alt = get_alt_fl();
+//  float tr_lat = get_lat_fl();
+//  float tr_lon = get_lon_fl();
+//  float tr_spd = get_speed_fl();
+//  Serial.print("Tracksoar Altitude: ");
+//  Serial.println(tr_alt);
+//  Serial.print("Tracksoar Latitude: ");
+//  Serial.println(tr_lat);
+//  Serial.print("Tracksoar Longitude: ");
+//  Serial.println(tr_lon);
+//  Serial.print("Tracksoar Speed: ");
+//  Serial.println(tr_spd);
+//  curr_data += String(tr_alt);
+//  curr_data += delimiter;
+//  curr_data += String(tr_lat);
+//  curr_data += delimiter;
+//  curr_data += String(tr_lon);
+//  curr_data += delimiter;
+//  curr_data += String(tr_spd);
+//  curr_data += delimiter;
+  
   // Run Experiment Code
- 
   // Starts experiment 1
   if (!exp1_complete && !servo1_extended && alt > servo1_start_alt) {
+    enable_servos();
     extend_servo(1);
     exp1_start_time = millis();
     Serial.print("Started Experiment 1 at ");
@@ -206,13 +214,14 @@ void loop() {
   }
   // Sets experiment 1 Lock so we do not continue to send PWM signal in case of stall
   if (!exp1_locked && exp1_complete && time_elapsed(exp1_lock_time, exp_lock_timeout)) {
-    servo1.detach();
+    disable_servos();
     exp1_locked = true;
     Serial.println("Locked Servo 1");
   }
 
   // Starts experiment 2
   if (!exp2_complete && !servo2_extended && alt > servo2_start_alt) {
+    enable_servos();
     extend_servo(2);
     exp2_start_time = millis();
     Serial.print("Started Experiment 2 at ");
@@ -231,7 +240,7 @@ void loop() {
   }
   // Sets experiment 2 Lock so we do not continue to send PWM sig in case of stall
   if (!exp2_locked && exp2_complete && time_elapsed(exp2_lock_time, exp_lock_timeout)) {
-    servo2.detach();
+    disable_servos();
     exp2_locked = true;
     Serial.println("Locked Servo 2");
   }
@@ -239,26 +248,25 @@ void loop() {
   curr_data += servo1_extended;
   curr_data += delimiter;
   curr_data += servo2_extended;
-  // TODO: FIXME: no delimiter at end? -> new line delimiter
   
   write_to_sd("test.csv", curr_data);
   curr_data = "";
 
-   if(should_scream()){
-    Serial.println("Secondary Transmitter Screaming");
-    char msg[60];
-    String buf;
-    buf += F("lat: ");
-    buf += String(tr_lat);
-    buf += F("\nlon: ");
-    buf += String(tr_lon);
-    buf += String("\nalt: ");
-    buf += String(tr_alt);
-    buf += String("\nspd: ");
-    buf += String(tr_spd);
-    buf.toCharArray(msg, 60);
-    scream_for_help_with_message(msg);
-  }
+//   if(should_scream()){
+//    Serial.println("Secondary Transmitter Screaming");
+//    char msg[60];
+//    String buf;
+//    buf += F("lat: ");
+//    buf += String(tr_lat);
+//    buf += F("\nlon: ");
+//    buf += String(tr_lon);
+//    buf += String("\nalt: ");
+//    buf += String(tr_alt);
+//    buf += String("\nspd: ");
+//    buf += String(tr_spd);
+//    buf.toCharArray(msg, 60);
+//    scream_for_help_with_message(msg);
+//  }
   
   delay(1000);
 }
@@ -275,16 +283,27 @@ bool should_scream() {
 */
 void setup_servos() {
   Serial.print("Initialization Servos...");
+  // Power the servos by pulling the fet's gate high
+  pinMode(servo_enable_pin, OUTPUT);
+  delay(100);
   servo1.attach(servo1_pin);
   servo2.attach(servo2_pin);
-//  return_servo(1);
-  extend_servo(1);
+  enable_servos();
+  return_servo(1);
   return_servo(2);
-  delay(5000);  // Setup servos to original  TODO FixMe
-//  servo1.write(0);
-  servo2.write(0);
-  servo1.detach();
+  delay(20000);  // Setup servos to original  TODO FixMe
+  disable_servos();
   Serial.println("Servo initialization done");
+}
+
+void enable_servos() {
+  Serial.println("Enabling Servos");
+  digitalWrite(servo_enable_pin, HIGH);
+}
+
+void disable_servos() {
+  Serial.println("Disabling Servos");
+  digitalWrite(servo_enable_pin, LOW);
 }
 
 void extend_servo(int servo_id) {
