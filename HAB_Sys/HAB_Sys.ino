@@ -68,15 +68,11 @@ double ft_to_m = 0.3048;
 
 // Experiment Specific Code
 // 35-45K feet altitude
-//int servo1_start_alt = 35000 * ft_to_m; // Feet converted to meters
-//int servo1_end_alt = 45000 * ft_to_m;
-int servo1_start_alt = 350 * ft_to_m; // Feet converted to meters
-int servo1_end_alt = 357 * ft_to_m;
+int servo1_start_alt = 35000 * ft_to_m; // Feet converted to meters
+int servo1_end_alt = 45000 * ft_to_m;
 // 90-100K feet altitude
-int servo2_start_alt = 360 * ft_to_m;
-int servo2_end_alt = 365 * ft_to_m;
-//int servo2_start_alt = 90000 * ft_to_m;
-//int servo2_end_alt = 100000 * ft_to_m;
+int servo2_start_alt = 90000 * ft_to_m;
+int servo2_end_alt = 100000 * ft_to_m;
 
 // Globals for servos
 Servo servo1;
@@ -85,24 +81,22 @@ int servo1_pin = 2;
 int servo2_pin = 3;
 const int servo_enable_pin = 6;
 int servo_min = 45; // Value to retract servo to
-int servo_max = 165; // Value to extend servo to (changed from 180 for servo1 and 165 for servo2
+int servo_max = 165; // Value to extend servo to
 bool servo1_extended = false;
 bool servo2_extended = false;
 unsigned long exp1_start_time = 0;
 unsigned long exp2_start_time = 0;
 bool exp1_complete = false;
 bool exp2_complete = false;
-// Timer 900 seconds
-unsigned long timeout = 900000; // Milliseconds TODO FIXME
-//unsigned long timeout = 3000;
+unsigned long timeout = 900000;  // 900 milliseconds experiment extended timer TODO
 
 bool exp1_locked = false;
 bool exp2_locked = false;
 unsigned long exp1_lock_time = 0;
 unsigned long exp2_lock_time = 0;
-unsigned long exp_lock_timeout = 20000;  // milliseconds TODO FIXME
+unsigned long exp_lock_timeout = 20000;  // 20 milliseconds TODO
 
-unsigned long scream_timeout = 600000000;  // TODO: use for testing - 10s timeout
+unsigned long scream_timeout = 60000000;  // TODO: use for testing - calculate land time + 60 minutes timeout
 //unsigned long scream_timeout = 1.08*10000000;  // IN MILLIS - use for experiment!! 3hr timeout
 unsigned long launch_start = 0;
 
@@ -154,8 +148,8 @@ void loop() {
   double alt = baro.getHeightMeters(2);
 //  int32_t alt_pressure = baro.getP(2);
 //  double alt_temp = (double)(baro.getT(2))/100;
-//  Serial.print("Meters: ");
-//  Serial.print((float)(alt));
+  Serial.print("Meters: ");
+  Serial.print((float)(alt));
   Serial.print(", Feet: ");
   Serial.println((float)(alt) * 3.2808);
 //  Serial.print("Pressure (Pa): ");
@@ -171,10 +165,10 @@ void loop() {
   
   //Tracksoar Code
 //  Serial.println("Tracksoar Code");
-//  float tr_alt = get_alt_fl();
-//  float tr_lat = get_lat_fl();
-//  float tr_lon = get_lon_fl();
-//  float tr_spd = get_speed_fl();
+  float tr_alt = get_alt_fl();
+  float tr_lat = get_lat_fl();
+  float tr_lon = get_lon_fl();
+  float tr_spd = get_speed_fl();
 //  Serial.print("Tracksoar Altitude: ");
 //  Serial.println(tr_alt);
 //  Serial.print("Tracksoar Latitude: ");
@@ -183,14 +177,14 @@ void loop() {
 //  Serial.println(tr_lon);
 //  Serial.print("Tracksoar Speed: ");
 //  Serial.println(tr_spd);
-//  curr_data += String(tr_alt);
-//  curr_data += delimiter;
-//  curr_data += String(tr_lat);
-//  curr_data += delimiter;
-//  curr_data += String(tr_lon);
-//  curr_data += delimiter;
-//  curr_data += String(tr_spd);
-//  curr_data += delimiter;
+  curr_data += String(tr_alt);
+  curr_data += delimiter;
+  curr_data += String(tr_lat);
+  curr_data += delimiter;
+  curr_data += String(tr_lon);
+  curr_data += delimiter;
+  curr_data += String(tr_spd);
+  curr_data += delimiter;
   
   // Run Experiment Code
   // Starts experiment 1
@@ -216,6 +210,7 @@ void loop() {
   if (!exp1_locked && exp1_complete && time_elapsed(exp1_lock_time, exp_lock_timeout)) {
     disable_servos();
     exp1_locked = true;
+    servo1_extended = false;
     Serial.println("Locked Servo 1");
   }
 
@@ -242,6 +237,7 @@ void loop() {
   if (!exp2_locked && exp2_complete && time_elapsed(exp2_lock_time, exp_lock_timeout)) {
     disable_servos();
     exp2_locked = true;
+    servo2_extended = false;
     Serial.println("Locked Servo 2");
   }
   
@@ -252,21 +248,21 @@ void loop() {
   write_to_sd("test.csv", curr_data);
   curr_data = "";
 
-//   if(should_scream()){
-//    Serial.println("Secondary Transmitter Screaming");
-//    char msg[60];
-//    String buf;
-//    buf += F("lat: ");
-//    buf += String(tr_lat);
-//    buf += F("\nlon: ");
-//    buf += String(tr_lon);
-//    buf += String("\nalt: ");
-//    buf += String(tr_alt);
-//    buf += String("\nspd: ");
-//    buf += String(tr_spd);
-//    buf.toCharArray(msg, 60);
-//    scream_for_help_with_message(msg);
-//  }
+   if(should_scream()){
+    Serial.println("Secondary Transmitter Screaming");
+    char msg[60];
+    String buf;
+    buf += F("lat: ");
+    buf += String(tr_lat);
+    buf += F("\nlon: ");
+    buf += String(tr_lon);
+    buf += String("\nalt: ");
+    buf += String(tr_alt);
+    buf += String("\nspd: ");
+    buf += String(tr_spd);
+    buf.toCharArray(msg, 60);
+    scream_for_help_with_message(msg);
+  }
   
   delay(1000);
 }
@@ -288,10 +284,11 @@ void setup_servos() {
   delay(100);
   servo1.attach(servo1_pin);
   servo2.attach(servo2_pin);
+  
   enable_servos();
   return_servo(1);
   return_servo(2);
-  delay(20000);  // Setup servos to original  TODO FixMe
+  delay(20000);  // Setup servos to be fully retracted
   disable_servos();
   Serial.println("Servo initialization done");
 }

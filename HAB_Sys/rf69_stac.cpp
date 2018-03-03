@@ -93,7 +93,7 @@ void scream_for_help_with_message(char* msg) {
   }
 
 //  fastBlink(LED, 3);
-  
+  Serial.println("Stopped Screaming, Starting 45 second delay.");
   delay(45000);
 }
 
