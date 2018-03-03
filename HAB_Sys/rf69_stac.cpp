@@ -18,26 +18,28 @@ void transceiver_setup() {
   if (!init_flag) {
     Serial.println("RFM69 radio init failed");
     // init failed
-    fastBlink(LED, 5);     // fast blink; 0.6s period; 50% duty cycle; 5 periods
-    while(1) {
-      slowBlink((uint8_t) LED, (uint8_t) 5);
-    }
+//    fastBlink(LED, 5);     // fast blink; 0.6s period; 50% duty cycle; 5 periods
+//    while(1) {
+//      slowBlink((uint8_t) LED, (uint8_t) 5);
+//    }
   } else {
     // init success
-    slowBlink((uint8_t) LED, (uint8_t) 2);  // slow blink; 2s period; 50% duty cycle; 2 periods
+    Serial.println("RFM69 radio init SUCCESS");
+//    slowBlink((uint8_t) LED, (uint8_t) 2);  // slow blink; 2s period; 50% duty cycle; 2 periods
   }
 
   // set the frequency
   if (!rf69.setFrequency(RF69_FREQ)) {
     Serial.println("RFM69 radio set freq failed");
     // set frequency failed
-    fastBlink(LED, 5);     // fast blink; 0.6s period; 50% duty cycle; 5 periods
-    while(1) {
-      slowBlink((uint8_t) LED, (uint8_t) 5);
-    }
+//    fastBlink(LED, 5);     // fast blink; 0.6s period; 50% duty cycle; 5 periods
+//    while(1) {
+//      slowBlink((uint8_t) LED, (uint8_t) 5);
+//    }
   } else {
     // set frequency success
-    slowBlink((uint8_t) LED, (uint8_t) 2);  // slow blink; 2s period; 50% duty cycle; 2 periods
+    Serial.println("RFM69 radio frequency set SUCCESS");
+//    slowBlink((uint8_t) LED, (uint8_t) 2);  // slow blink; 2s period; 50% duty cycle; 2 periods
   }
 
   rf69.setTxPower(20, true);
@@ -73,7 +75,7 @@ void manual_reset() {
 }
 
 void scream_for_help() {
-  fastBlink(LED, 2);
+//  fastBlink(LED, 2);
 
   char radiopacket[20] = "Hello World #";
 
@@ -83,14 +85,14 @@ void scream_for_help() {
 }
 
 void scream_for_help_with_message(char* msg) {
-  fastBlink(LED, 2);
+//  fastBlink(LED, 2);
   
   for(int i = 0; i < 4096; i++) {
     rf69.send((uint8_t*)msg, RH_RF69_MAX_MESSAGE_LEN);
     rf69.waitPacketSent();
   }
 
-  fastBlink(LED, 3);
+//  fastBlink(LED, 3);
   
   delay(45000);
 }
