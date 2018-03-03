@@ -74,16 +74,7 @@ static volatile byte gps_lock_spi;
 
 //SPI interface slave select falling interrupt
 void spi_ss_falling() {
-  gps_altitude_spi = gps_altitude;
-  gps_lat_spi = gps_lat;
-  gps_lon_spi = gps_lon;
-  gps_speed_spi = gps_speed;
-  for (int i = 0; i < 10; i++) {
-    gps_aprs_lon_spi[i] = gps_aprs_lon[i];
-  }
-  for (int i = 0; i < 9; i++) {
-    gps_aprs_lat_spi[i] = gps_aprs_lat[i];
-  }
+
 }
 
 void setup()
@@ -109,8 +100,7 @@ void setup()
   SPCR |= _BV(SPE);
   //Enable the slave interrupts 
   SPCR |= _BV(SPIE);
-  attachInterrupt(0, spi_ss_falling, FALLING);
-
+  
   buzzer_setup();
   afsk_setup();
   gps_setup();
@@ -158,6 +148,16 @@ void get_pos()
       buzzer_off();   // In space, no one can hear you buzz
     } else {
       buzzer_on();
+    }
+    gps_altitude_spi = gps_altitude;
+    gps_lat_spi = gps_lat;
+    gps_lon_spi = gps_lon;
+    gps_speed_spi = gps_speed;
+    for (int i = 0; i < 10; i++) {
+      gps_aprs_lon_spi[i] = gps_aprs_lon[i];
+    }
+    for (int i = 0; i < 9; i++) {
+      gps_aprs_lat_spi[i] = gps_aprs_lat[i];
     }
   } else {
     gps_lock_spi = 0;
