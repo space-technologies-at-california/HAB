@@ -83,6 +83,6 @@ void loop() {
   }
   Serial.println();
   digitalWrite(SS,HIGH);
-  delay(2000);
+  delay(20000);
 }
 
