@@ -39,12 +39,22 @@ public:
    int32_t getT(int order) {
      return AcquireAveragedSampleT(NUM_SAMP_FOR_AVG, order);
    }
+
+   uint32_t getRawT() {
+    return AcquireRawT();
+   }
+
+   uint32_t getRawP() {
+     AcquireRawP();
+   }
     
 protected:
     virtual int32_t AcquireAveragedSampleCm(const uint8_t nSamples) = 0;
     virtual double AcquireAveragedSampleM(const uint8_t nSamples, int order) = 0;
     virtual int32_t AcquireAveragedSampleP(const uint8_t nSamples, int order) = 0;
     virtual int32_t AcquireAveragedSampleT(const uint8_t nSamples, int order) = 0;
+    virtual uint32_t AcquireRawP() = 0;
+    virtual uint32_t AcquireRawT() = 0;
 
   //  virtual int32_t ConvertPressureTemperature(uint32_t pressure, uint32_t temperature) = 0;
     
@@ -282,6 +292,12 @@ private:
 
         const int32_t pressAvg = pressAccum / nSamples;      
         return pressAvg;
+    }
+    virtual uint32_t AcquireRawT() {
+      return (uint32_t)ReadAdc(cmdAdcD2_ | cmdAdc4096_);
+    }
+    virtual uint32_t AcquireRawP() {
+      return (uint32_t)ReadAdc(cmdAdcD1_ | cmdAdc4096_);
     }
     virtual int32_t AcquireAveragedSampleT(const uint8_t nSamples, int order)
     {

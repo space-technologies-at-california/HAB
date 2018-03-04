@@ -42,7 +42,7 @@
 
 RTC_DS1307 RTC; // define the Real Time Clock object
 
-#define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), ThermoCouple Temp (F), Altitude (m), Pressure (Pa), Altimeter Temp (C), Tracksoar Altitude, Tracksoar Latitude, Tracksoar Longitude, Tracksoar Char Latitude, Tracksoar Char Longitude, Tracksoar Speed, Servo1 Extended, Servo2 Extended"
+#define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), ThermoCouple Temp (F), Altitude (m), Pressure (Pa), Altimeter Temp (C), Altimeter Digital Temp, Altimeter Digital Pressure, Tracksoar Altitude, Tracksoar Latitude, Tracksoar Longitude, Tracksoar Char Latitude, Tracksoar Char Longitude, Tracksoar Speed, Servo1 Extended, Servo2 Extended"
 
 int sd_card_pin = 47;  // SD card CS pin
 String delimiter = ",";  // Data string delimiter for SD logging b/w sensors
@@ -142,6 +142,8 @@ void loop() {
   double alt = baro.getHeightMeters(2);
   int32_t alt_pressure = baro.getP(2);
   double alt_temp = (double)(baro.getT(2))/100;
+  uint32_t raw_alt_temp = baro.getRawT();
+  uint32_t raw_alt_press = baro.getRawP();
   Serial.print("Meters: ");
   Serial.print((float)(alt));
   Serial.print(", Feet: ");
@@ -156,6 +158,8 @@ void loop() {
   curr_data += delimiter;
   curr_data += String(alt_temp);
   curr_data += delimiter;
+  curr_data += String(raw_alt_temp);
+  curr_data += String(raw_alt_press);
   
   //Tracksoar Code
   Serial.println("Tracksoar Code");
