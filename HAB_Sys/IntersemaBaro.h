@@ -421,13 +421,11 @@ private:
 
       // MS5607 2nd order algorithm
       if (temp < 2000) {
-//        Serial.println("Temp less than 20, pressfn");
         T2 = (int32_t)(pow(dT, 2) / pow(2, 31)); //NEEDS FIXING
         OFF2 = (int64_t)(61 * pow((int64_t)(temp)-2000, 2)/ pow(2, 4));
         SENS2 = (int64_t)(2 * pow(temp-2000, 2));
         
         if(temp < -15) {
-          Serial.println("Temp less than -15, pressfn");
           OFF2 = OFF2 + (int64_t)(15 * pow(temp + 1500, 2));
           SENS2 = SENS2 + (int64_t)(8 * pow(temp + 1500, 2));
         }
@@ -457,8 +455,7 @@ int32_t ConvertTemperature2(uint32_t temperature)
     const int32_t temp1  = (int32_t)(2000 + ((int64_t)dT * (int64_t)coefficients_[5]) / pow(2, 23)) ;      // actual temperature
 
     if (temp1 < 2000) {
-        Serial.println("Temp less than 20, tempfn");
-        T2 = (int32_t)(pow(dT, 2) / pow(2, 31)); //NEEDS FIXING
+        T2 = (int32_t)(pow(dT, 2) / pow(2, 31));
     }
 
     if (temp1 - T2 < -4000) {
