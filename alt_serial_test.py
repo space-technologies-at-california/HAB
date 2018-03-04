@@ -2,7 +2,7 @@ import numpy as np
 import serial
 import time
 
-ser = serial.Serial('/dev/ttyUSB0', 96000)
+ser = serial.Serial('/dev/cu.usbmodem1421', 96000)
 print(ser.name)
 
 
@@ -34,20 +34,34 @@ def calc_temp_press_2(digi_temp, digi_press):
 
 time.sleep(1)
 
-while(True):
+for count in range (0, 100):
 	dt = np.random.randint(0, 2**24)
 	dp = np.random.randint(0, 2**4)
 
-	while(ser.readline() != "in"):
+	while(not ser.inWaiting()):
 		pass
-	ser.write(str(dt))
-	ser.write(str(dp))
-
+	print(str(count) + ": " + str(dt) + ", " + str(dp))
+	print("writing to arduino...")
+	print(str(dt).encode())
+	ser.write(str(dt).encode("utf-8"))
+	while (not ser.inWaiting()):
+		pass
+	print(ser.readline())
+	ser.write(str(dp).encode("utf-8"))
+	while (not ser.inWaiting()):
+		pass
+	print(ser.readline())
+	
 	while(not ser.inWaiting()):
 		pass
 	temp = ser.readline()
 	press = ser.readline()
 
-	assert(temp == calc_temp_press_2(dt, dp)[0])
-	assert(press == calc_temp_press_2(dt, dp)[1])
-
+	print("checking output...")
+	print(str(temp) + ", " + str(press))
+	py_temp =  calc_temp_press_2(dt, dp)[0]
+	py_press =  calc_temp_press_2(dt, dp)[1]
+	
+	assert(temp == py_temp)
+	assert(press == py_press)
+ser.close()

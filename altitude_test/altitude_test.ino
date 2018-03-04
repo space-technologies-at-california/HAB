@@ -6,6 +6,10 @@
  * 
  * By: Olivia Hsu
  */
+union ArrayToInteger {
+  byte arr[4];
+  uint32_t integer;
+};
 
 int32_t coefficients_[6] = {42512, 38208, 27127, 24461, 28157, 32001};
 
@@ -16,43 +20,28 @@ void setup() {
 
 void loop() {
   //put your main code here, to run repeatedly:
-  String str1, str2;
-  Serial.println("Waiting for pressure value...");
+  ArrayToInteger in1, in2;
+  Serial.println("ready...");
   while(Serial.available() <= 0) {}
   if(Serial.available() > 0) {
-    str1 = Serial.readString();
+    Serial.readBytes(in1.arr, 4);
   }
+  Serial.println('a');
   
-  Serial.println("Waiting for temperature value...");
   while(Serial.available() <= 0) {}
   if(Serial.available() > 0) {
-    str2 = Serial.readString();
+    Serial.readBytes(in2.arr, 4);
   }
+  Serial.println('a');
+  uint32_t dt = in1.integer; 
+  uint32_t dp = in2.integer;
 
-  uint32_t i, j;
-  for (i = 0; i < 16777216; i++) {
-    for (j = 0; j < 16777216; j++) {
-      if( i % 500000 == 0 and j % 500000 == 0) {
-        Serial.println("\nCalculating Values...");
-        Serial.println(i);
-        Serial.println(j);
-        
-        int32_t pressurePa = ConvertPressure(i, j);
-        Serial.print("Presssure (Pa): ");
-        Serial.println(pressurePa);
-  
-        int32_t temp = ConvertTemperature(j);
-        Serial.print("Temperature (C): ");
-        Serial.println((double)(temp)/100);
+  int32_t pressurePa = ConvertPressure(dp, dt);
+  Serial.println(pressurePa);
 
-        double altitude = PascalToMeter(press);
-        Serial.print("Alt (m): ");
-        Serial.println(altitude);        
-      }
-    }
-  }
-  
-  delay(1000);
+  int32_t temp = ConvertTemperature(dt);
+  Serial.println(temp);
+  Serial.flush();
 }
 
 
@@ -74,7 +63,7 @@ double PascalToMeter(int32_t pressurePa)
       const double L_b[N] = {-0.0065, 0, 0.001, 0.0028, 0};
 
       if (pressurePa > P_b[0]) {
-        return 0; }
+        return 0;
       }
   
       int i;
