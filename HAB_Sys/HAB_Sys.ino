@@ -94,14 +94,12 @@ unsigned long scream_timeout = 14400000;  // 4 hour backup scream timeout
 unsigned long launch_start = 0;
 unsigned long initial_scream_timeout = 3600000;  // 1 hour initial timeout stop
 unsigned long max_scream_alt  = 1000;  // meters
-//unsigned long scream_timeout = 1.08*10000000;  // IN MILLIS - use for experiment!! 3hr timeout
 
 
 void setup() {
   
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
- 
   
   digitalWrite(TRACKSOAR_SS, HIGH);  // Setup SPI tracksoar
   setup_rtc();
@@ -274,9 +272,9 @@ void loop() {
   delay(1000);
 }
 
-bool should_scream(alt) {
+bool should_scream(double alt) {
   // alt in meters
-  if ((millis() > launch_start + scream_timeout) || ((alt < max_scream_alt) && (millis > launch_start + initial_scream_timeout)) ) {
+  if ((millis() > launch_start + scream_timeout) || ((alt < max_scream_alt) && (millis() > launch_start + initial_scream_timeout)) ) {
     return true;
   }
   return false;
