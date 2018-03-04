@@ -111,7 +111,8 @@ byte get_gps_lock() {
     SPI.setClockDivider(SPI_CLOCK_DIV16);
     digitalWrite(TRACKSOAR_SS, LOW);
     transfer('k');
+    byte to_rtn = transfer(0);
     digitalWrite(TRACKSOAR_SS, HIGH);
     SPI.end();
-    return transfer(0);
+    return to_rtn
 }
