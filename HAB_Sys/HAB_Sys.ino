@@ -159,6 +159,7 @@ void loop() {
   curr_data += String(alt_temp);
   curr_data += delimiter;
   curr_data += String(raw_alt_temp);
+  curr_data += delimiter;
   curr_data += String(raw_alt_press);
   
   //Tracksoar Code
