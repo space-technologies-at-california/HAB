@@ -42,7 +42,7 @@
 
 RTC_DS1307 RTC; // define the Real Time Clock object
 
-#define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), ThermoCouple Temp (F), Altitude (m), Pressure (Pa), Altimeter Temp (C), Altimeter Digital Temp, Altimeter Digital Pressure, Tracksoar Altitude, Tracksoar Latitude, Tracksoar Longitude, Tracksoar Char Latitude, Tracksoar Char Longitude, Tracksoar Speed, Servo1 Extended, Servo2 Extended"
+#define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), ThermoCouple Temp (F), Altitude (m), Pressure (Pa), Altimeter Temp (C), Altimeter Digital Temp, Altimeter Digital Pressure, Tracksoar Altitude, Tracksoar Latitude, Tracksoar Longitude, Tracksoar Speed, Servo1 Extended, Servo2 Extended"
 
 int sd_card_pin = 47;  // SD card CS pin
 String delimiter = ",";  // Data string delimiter for SD logging b/w sensors
@@ -60,7 +60,6 @@ Adafruit_MAX31855 thermocouple(CLK, thermoCS, MISO);  // Initializes the Thermoc
 
 // Conversion constants
 double ft_to_m = 0.3048;
-
 // Experiment Specific Code
 // 35-45K feet altitude
 int servo1_start_alt = 10668;  // 35000 * ft_to_m; // Feet converted to meters
@@ -83,17 +82,19 @@ unsigned long exp1_start_time = 0;
 unsigned long exp2_start_time = 0;
 bool exp1_complete = false;
 bool exp2_complete = false;
-unsigned long timeout = 900000;  // 900 milliseconds experiment extended timer TODO
+unsigned long timeout = 900000;  // 900 seconds experiment extended timer
 
 bool exp1_locked = false;
 bool exp2_locked = false;
 unsigned long exp1_lock_time = 0;
 unsigned long exp2_lock_time = 0;
-unsigned long exp_lock_timeout = 20000;  // 20 milliseconds TODO
+unsigned long exp_lock_timeout = 30000;  // 30 seconds to retract on experiment completion
 
-unsigned long scream_timeout = 60000000;  // TODO: use for testing - calculate land time + 3600s = timeout
-//unsigned long scream_timeout = 1.08*10000000;  // IN MILLIS - use for experiment!! 3hr timeout
+unsigned long scream_timeout = 14400000;  // 4 hour backup scream timeout
 unsigned long launch_start = 0;
+unsigned long initial_scream_timeout = 3600000;  // 1 hour initial timeout stop
+unsigned long max_scream_alt  = 1000;  // meters
+//unsigned long scream_timeout = 1.08*10000000;  // IN MILLIS - use for experiment!! 3hr timeout
 
 
 void setup() {
@@ -168,14 +169,14 @@ void loop() {
   float tr_lat = get_lat_fl();
   float tr_lon = get_lon_fl();
   float tr_spd = get_speed_fl();
-  char lat_arr[10] = "";
-  char lon_arr[10] = "";
-  get_lon_char(lon_arr);
-  get_lat_char(lat_arr);
-  Serial.print("Tracksoar Char Lat: ");
-  Serial.println(lat_arr);
-  Serial.print("Tracksoar Char Lon: ");
-  Serial.println(lon_arr);
+//  char lat_arr[10] = "";
+//  char lon_arr[10] = "";
+//  get_lon_char(lon_arr);
+//  get_lat_char(lat_arr);
+//  Serial.print("Tracksoar Char Lat: ");
+//  Serial.println(lat_arr);
+//  Serial.print("Tracksoar Char Lon: ");
+//  Serial.println(lon_arr);
   byte gps_lock = get_gps_lock();
   Serial.print("Tracksoar GPS Lock: ");
   Serial.println(gps_lock);
@@ -193,10 +194,6 @@ void loop() {
   curr_data += delimiter;
   curr_data += String(tr_lon);
   curr_data += delimiter;
-//  curr_data += String(lat_arr);
-//  curr_data += delimiter;
-//  curr_data += String(lon_arr);
-//  curr_data += delimiter;
   curr_data += String(tr_spd);
   curr_data += delimiter;
   
@@ -210,7 +207,6 @@ void loop() {
     Serial.print(alt/ft_to_m);
     Serial.println("ft");
   }
-
   // Stops experiment 1
   if (!exp1_complete && servo1_extended && !exp1_locked && (alt > servo1_end_alt || time_elapsed(exp1_start_time, timeout)) ) {
     return_servo(1);
@@ -237,7 +233,6 @@ void loop() {
     Serial.print(alt/ft_to_m);
     Serial.println("ft");
   }
-
   // Stops experiment 2
   if (!exp2_complete && servo2_extended && !exp2_locked && (alt > servo2_end_alt || time_elapsed(exp2_start_time, timeout))) {
     return_servo(2);
@@ -262,7 +257,7 @@ void loop() {
   write_to_sd(sd_filename, curr_data);
   curr_data = "";
 
-   if(should_scream()){
+   if(should_scream(alt)){
     Serial.println("Secondary Transmitter Screaming");
     char msg[60];
     String buf;
@@ -281,8 +276,9 @@ void loop() {
   delay(1000);
 }
 
-bool should_scream() {
-  if (millis() > launch_start + scream_timeout) {
+bool should_scream(alt) {
+  // alt in meters
+  if ((millis() > launch_start + scream_timeout) || ((alt < max_scream_alt) && (millis > launch_start + initial_scream_timeout)) ) {
     return true;
   }
   return false;
@@ -302,7 +298,7 @@ void setup_servos() {
   enable_servos();
   return_servo(1);
   return_servo(2);
-  delay(20000);  // Setup servos to be fully retracted TODO
+  delay(20000);  // Setup servos to be fully retracted
   disable_servos();
   Serial.println("Servo initialization done");
 }
