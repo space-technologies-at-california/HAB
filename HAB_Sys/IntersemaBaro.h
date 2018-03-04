@@ -388,6 +388,11 @@ private:
         const int64_t SENS  = (int64_t)(coefficients_[0]) * pow(2, 16) + (int64_t)(dT) * (int64_t)(coefficients_[2]) / pow(2, 7); // sensitivity at actual temperature
         const int32_t press = (int32_t)(((int64_t)(pressure) * SENS / pow(2, 21) - OFF) / pow(2, 15)); // / 100;      // temperature compensated pressure
 
+        if (press < 1000) {
+          return 1000;
+        } else if ( press > 120000) {
+          return 120000;
+        }
         return press; 
     }
     int32_t ConvertTemperature(uint32_t temperature)
@@ -395,6 +400,12 @@ private:
         // calcualte 1st order pressure and temperature (MS5607 1st order algorithm)
         const int32_t dT    = temperature - (int32_t)(coefficients_[4]) * 256;                     // difference between actual and reference temperature
         const int32_t temp  = (int32_t)(2000 + ((int64_t)dT * (int64_t)coefficients_[5]) / pow(2, 23)) ; // / 100;       // actual temperature
+        
+       if (temp < -4000) {
+          return -4000;
+        } else if (temp > 8500) {
+          return 8500;
+        } 
         return temp; 
     }
 
@@ -428,7 +439,12 @@ private:
       const int64_t OFF = OFF1 - OFF2;
       const int64_t SENS = SENS1 - SENS2;
       const int32_t press = (int32_t)(((int64_t)(pressure) * SENS / pow(2, 21) - OFF) / pow(2, 15));  // temperature compensated (2nd order) pressure
-
+      if (press < 1000) {
+        return 1000;
+      } else if ( press > 120000) {
+        return 120000;
+      }
+      
       return press; 
 }
 
@@ -444,7 +460,12 @@ int32_t ConvertTemperature2(uint32_t temperature)
         Serial.println("Temp less than 20, tempfn");
         T2 = (int32_t)(pow(dT, 2) / pow(2, 31)); //NEEDS FIXING
     }
-    
+
+    if (temp1 - T2 < -4000) {
+      return -4000;
+    } else if (temp1 - T2 > 8500) {
+      return 8500;
+    } 
     return temp1 - T2; 
 }
 
