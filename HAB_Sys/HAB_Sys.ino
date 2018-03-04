@@ -96,7 +96,7 @@ unsigned long exp1_lock_time = 0;
 unsigned long exp2_lock_time = 0;
 unsigned long exp_lock_timeout = 20000;  // 20 milliseconds TODO
 
-unsigned long scream_timeout = 60000000;  // TODO: use for testing - calculate land time + 60 minutes timeout
+unsigned long scream_timeout = 60000000;  // TODO: use for testing - calculate land time + 3600s = timeout
 //unsigned long scream_timeout = 1.08*10000000;  // IN MILLIS - use for experiment!! 3hr timeout
 unsigned long launch_start = 0;
 
@@ -164,19 +164,22 @@ void loop() {
 //  curr_data += delimiter;
   
   //Tracksoar Code
-//  Serial.println("Tracksoar Code");
+  Serial.println("Tracksoar Code");
   float tr_alt = get_alt_fl();
   float tr_lat = get_lat_fl();
   float tr_lon = get_lon_fl();
   float tr_spd = get_speed_fl();
-//  Serial.print("Tracksoar Altitude: ");
-//  Serial.println(tr_alt);
-//  Serial.print("Tracksoar Latitude: ");
-//  Serial.println(tr_lat);
-//  Serial.print("Tracksoar Longitude: ");
-//  Serial.println(tr_lon);
-//  Serial.print("Tracksoar Speed: ");
-//  Serial.println(tr_spd);
+  byte gps_lock = get_gps_lock();
+  Serial.print("Tracksoar GPS Lock: ");
+  Serial.println(gps_lock);
+  Serial.print("Tracksoar Altitude: ");
+  Serial.println(tr_alt);
+  Serial.print("Tracksoar Latitude: ");
+  Serial.println(tr_lat);
+  Serial.print("Tracksoar Longitude: ");
+  Serial.println(tr_lon);
+  Serial.print("Tracksoar Speed: ");
+  Serial.println(tr_spd);
   curr_data += String(tr_alt);
   curr_data += delimiter;
   curr_data += String(tr_lat);
@@ -288,7 +291,7 @@ void setup_servos() {
   enable_servos();
   return_servo(1);
   return_servo(2);
-  delay(20000);  // Setup servos to be fully retracted
+  delay(5000);  // Setup servos to be fully retracted TODO
   disable_servos();
   Serial.println("Servo initialization done");
 }

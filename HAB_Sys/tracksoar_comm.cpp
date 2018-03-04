@@ -112,6 +112,7 @@ byte get_gps_lock() {
     digitalWrite(TRACKSOAR_SS, LOW);
     transfer('k');
     digitalWrite(TRACKSOAR_SS, HIGH);
+    byte t = transfer(0);
     SPI.end();
-    return transfer(0);
+    return t;
 }
