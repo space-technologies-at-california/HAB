@@ -15,6 +15,7 @@
   -Set up Tracksoar & 2ndary
   -Servo code
   -Test Conditions
+  
   -Add edge conditions:
     -altimeter = inf
 
@@ -169,6 +170,14 @@ void loop() {
   float tr_lat = get_lat_fl();
   float tr_lon = get_lon_fl();
   float tr_spd = get_speed_fl();
+  char lat_arr[10];
+  char lon_arr[10];
+  get_lon_char(lon_arr);
+  get_lat_char(lat_arr);
+  Serial.print("Tracksoar Char Lat: ");
+  Serial.println(lat_arr);
+  Serial.print("Tracksoar Char Lon: ");
+  Serial.println(lon_arr);
   byte gps_lock = get_gps_lock();
   Serial.print("Tracksoar GPS Lock: ");
   Serial.println(gps_lock);
