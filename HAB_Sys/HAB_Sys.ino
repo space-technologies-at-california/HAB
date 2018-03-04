@@ -4,17 +4,11 @@
  ** MOSI - pin 51
  ** MISO - pin 50
  ** CLK - pin 52
- ** CS - pin 53
  * -Wire diagram
  *  -Actuation Code w/ conditions
  *  2ndary transmitter w/ conditions
  * -2ndary transmitter on receive side
-
-
-  TODO:
-  -Set up Tracksoar & 2ndary
-  -Servo code
-  -Test Conditions
+  
   -Add edge conditions:
     -altimeter = inf
 
@@ -48,12 +42,13 @@
 
 RTC_DS1307 RTC; // define the Real Time Clock object
 
-#define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), Altitude (m), Pressure (Pa), Altitude Temp (C), Tracksoar Altitude, Tracksoar Latitude, Tracksoar Longitude, Tracksoar Speed, Servo1 Extended, Servo2 Extended"
+#define DATA_HEADERS "Date, Time, UV, IR, Visible, ThermoCouple Internal Temp (C), ThermoCouple Temp (C), ThermoCouple Temp (F), Altitude (m), Pressure (Pa), Altimeter Temp (C), Tracksoar Altitude, Tracksoar Latitude, Tracksoar Longitude, Tracksoar Char Latitude, Tracksoar Char Longitude, Tracksoar Speed, Servo1 Extended, Servo2 Extended"
 
 int sd_card_pin = 47;  // SD card CS pin
 String delimiter = ",";  // Data string delimiter for SD logging b/w sensors
 File sd_card_file;  // filesystem object
 String curr_data = "";
+String sd_filename = "HABdata.csv";
 
 Intersema::BaroPressure_MS5607B baro(true);
 
@@ -68,11 +63,11 @@ double ft_to_m = 0.3048;
 
 // Experiment Specific Code
 // 35-45K feet altitude
-int servo1_start_alt = 35000 * ft_to_m; // Feet converted to meters
-int servo1_end_alt = 45000 * ft_to_m;
+int servo1_start_alt = 10668;  // 35000 * ft_to_m; // Feet converted to meters
+int servo1_end_alt = 13716;  // 45000 * ft_to_m;
 // 90-100K feet altitude
-int servo2_start_alt = 90000 * ft_to_m;
-int servo2_end_alt = 100000 * ft_to_m;
+int servo2_start_alt = 27432;  // 90000 * ft_to_m;
+int servo2_end_alt = 30480;  // 100000 * ft_to_m;
 
 // Globals for servos
 Servo servo1;
@@ -80,8 +75,8 @@ Servo servo2;
 int servo1_pin = 2;
 int servo2_pin = 3;
 const int servo_enable_pin = 6;
-int servo_min = 45; // Value to retract servo to
-int servo_max = 165; // Value to extend servo to
+int servo_min = 45; // Value to retract servo
+int servo_max = 165; // Value to extend servo
 bool servo1_extended = false;
 bool servo2_extended = false;
 unsigned long exp1_start_time = 0;
@@ -96,7 +91,7 @@ unsigned long exp1_lock_time = 0;
 unsigned long exp2_lock_time = 0;
 unsigned long exp_lock_timeout = 20000;  // 20 milliseconds TODO
 
-unsigned long scream_timeout = 60000000;  // TODO: use for testing - calculate land time + 60 minutes timeout
+unsigned long scream_timeout = 60000000;  // TODO: use for testing - calculate land time + 3600s = timeout
 //unsigned long scream_timeout = 1.08*10000000;  // IN MILLIS - use for experiment!! 3hr timeout
 unsigned long launch_start = 0;
 
@@ -113,13 +108,12 @@ void setup() {
   setup_rtc();
   
   setup_SD();
+  write_to_sd(sd_filename, DATA_HEADERS);
   setup_UV();
   setup_thermo();
   baro.init();
   transceiver_setup();
   launch_start = millis();  // Initialize for Secondary Transmitter Screaming
-  
-  write_to_sd("test.csv", DATA_HEADERS);
   setup_servos();  // Experiment specific linear actuator setup, takes up to 20 seconds
 }
 
@@ -128,67 +122,82 @@ void loop() {
   // put your main code here, to run repeatedly:
   // fetch the time
    String curr_time = get_rtc();
-//   Serial.print("Current Time: ");
-//   Serial.println(curr_time);
+   Serial.print("Current Time: ");
+   Serial.println(curr_time);
    curr_data += curr_time;
    curr_data += delimiter;
 
    String uv_data = get_uv_data();
-//   Serial.print("UV Data: ");
-//   Serial.println(uv_data);
+   Serial.print("UV Data: ");
+   Serial.println(uv_data);
    curr_data += uv_data;
    curr_data += delimiter;
 
   String thermo_data = get_thermo_data();
   Serial.print("Thermocouple Temp: ");
   Serial.println(thermo_data);
-//  curr_data += thermo_data;
-//  curr_data += delimiter;
+  curr_data += thermo_data;
+  curr_data += delimiter;
 
   double alt = baro.getHeightMeters(2);
-//  int32_t alt_pressure = baro.getP(2);
-//  double alt_temp = (double)(baro.getT(2))/100;
+  int32_t alt_pressure = baro.getP(2);
+  double alt_temp = (double)(baro.getT(2))/100;
   Serial.print("Meters: ");
   Serial.print((float)(alt));
   Serial.print(", Feet: ");
   Serial.println((float)(alt) * 3.2808);
-//  Serial.print("Pressure (Pa): ");
-//  Serial.println(alt_pressure);
-//  Serial.print("Altimeter Temp: ");
-//  Serial.println(alt_temp);
-//  curr_data += String(alt, 2);
-//  curr_data += delimiter;
-//  curr_data += String(alt_pressure);
-//  curr_data += delimiter;
-//  curr_data += String(alt_temp);
-//  curr_data += delimiter;
+  Serial.print("Pressure (Pa): ");
+  Serial.println(alt_pressure);
+  Serial.print("Altimeter Temp: ");
+  Serial.println(alt_temp);
+  curr_data += String(alt, 2);
+  curr_data += delimiter;
+  curr_data += String(alt_pressure);
+  curr_data += delimiter;
+  curr_data += String(alt_temp);
+  curr_data += delimiter;
   
   //Tracksoar Code
-//  Serial.println("Tracksoar Code");
+  Serial.println("Tracksoar Code");
   float tr_alt = get_alt_fl();
   float tr_lat = get_lat_fl();
   float tr_lon = get_lon_fl();
   float tr_spd = get_speed_fl();
-//  Serial.print("Tracksoar Altitude: ");
-//  Serial.println(tr_alt);
-//  Serial.print("Tracksoar Latitude: ");
-//  Serial.println(tr_lat);
-//  Serial.print("Tracksoar Longitude: ");
-//  Serial.println(tr_lon);
-//  Serial.print("Tracksoar Speed: ");
-//  Serial.println(tr_spd);
+  char lat_arr[10] = "";
+  char lon_arr[10] = "";
+  get_lon_char(lon_arr);
+  get_lat_char(lat_arr);
+  Serial.print("Tracksoar Char Lat: ");
+  Serial.println(lat_arr);
+  Serial.print("Tracksoar Char Lon: ");
+  Serial.println(lon_arr);
+  byte gps_lock = get_gps_lock();
+  Serial.print("Tracksoar GPS Lock: ");
+  Serial.println(gps_lock);
+  Serial.print("Tracksoar Altitude: ");
+  Serial.println(tr_alt);
+  Serial.print("Tracksoar Latitude: ");
+  Serial.println(tr_lat);
+  Serial.print("Tracksoar Longitude: ");
+  Serial.println(tr_lon);
+  Serial.print("Tracksoar Speed: ");
+  Serial.println(tr_spd);
   curr_data += String(tr_alt);
   curr_data += delimiter;
   curr_data += String(tr_lat);
   curr_data += delimiter;
   curr_data += String(tr_lon);
   curr_data += delimiter;
+//  curr_data += String(lat_arr);
+//  curr_data += delimiter;
+//  curr_data += String(lon_arr);
+//  curr_data += delimiter;
   curr_data += String(tr_spd);
   curr_data += delimiter;
   
   // Run Experiment Code
   // Starts experiment 1
-  if (!exp1_complete && !servo1_extended && alt > servo1_start_alt) {
+  if (!exp1_complete && !servo1_extended && alt > servo1_start_alt && alt < servo1_end_alt) {
     enable_servos();
     extend_servo(1);
     exp1_start_time = millis();
@@ -215,7 +224,7 @@ void loop() {
   }
 
   // Starts experiment 2
-  if (!exp2_complete && !servo2_extended && alt > servo2_start_alt) {
+  if (!exp2_complete && !servo2_extended && alt > servo2_start_alt && alt < servo2_end_alt) {
     enable_servos();
     extend_servo(2);
     exp2_start_time = millis();
@@ -245,7 +254,7 @@ void loop() {
   curr_data += delimiter;
   curr_data += servo2_extended;
   
-  write_to_sd("test.csv", curr_data);
+  write_to_sd(sd_filename, curr_data);
   curr_data = "";
 
    if(should_scream()){
@@ -288,7 +297,7 @@ void setup_servos() {
   enable_servos();
   return_servo(1);
   return_servo(2);
-  delay(20000);  // Setup servos to be fully retracted
+  delay(20000);  // Setup servos to be fully retracted TODO
   disable_servos();
   Serial.println("Servo initialization done");
 }
@@ -394,12 +403,14 @@ String get_thermo_data() {
   double f = thermocouple.readFarenheit();
   if (isnan(c)) {
     Serial.println("Something wrong with thermocouple!");
+    thermo_data += "Failed";
   } else {
     thermo_data += String(c);
   }
   thermo_data += delimiter;
   if (isnan(f)) {
     Serial.println("Something wrong with thermocouple!");
+    thermo_data += "Failed";
   } else {
     thermo_data += String(f);
   }
