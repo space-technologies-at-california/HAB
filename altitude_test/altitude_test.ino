@@ -15,32 +15,46 @@ int32_t coefficients_[6] = {42512, 38208, 27127, 24461, 28157, 32001};
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop() {
   //put your main code here, to run repeatedly:
   ArrayToInteger in1, in2;
-  Serial.println("ready...");
   while(Serial.available() <= 0) {}
-  if(Serial.available() > 0) {
-    Serial.readBytes(in1.arr, 4);
+  long int1, int2;
+  while (Serial.available()) {
+    if(Serial.available() > 0) {
+       int1 = Serial.parseInt();
+    }
   }
-  Serial.println('a');
+  Serial.print('a');
   
   while(Serial.available() <= 0) {}
-  if(Serial.available() > 0) {
-    Serial.readBytes(in2.arr, 4);
+  while (Serial.available()) {
+    if(Serial.available() > 0) {
+       int2 = Serial.parseInt();
+    }
   }
-  Serial.println('a');
-  uint32_t dt = in1.integer; 
-  uint32_t dp = in2.integer;
-
-  int32_t pressurePa = ConvertPressure(dp, dt);
-  Serial.println(pressurePa);
-
-  int32_t temp = ConvertTemperature(dt);
-  Serial.println(temp);
+    
+    
+  uint32_t dt = int1;
+  uint32_t dp = int2;
+  Serial.println(ConvertTemperature(dt));
+  
+  while(Serial.available() <= 0) {}  
+  Serial.read();
+  
+  Serial.println(ConvertPressure(dp, dt));
+  while(Serial.available() <= 0) {}
+  Serial.read();
+//  int32_t pressurePa = ConvertPressure(dp, dt);
+//  //Serial.println((int32_t)pressurePa);
+//  Serial.flush();
+//  delay(500);
+  
+//  int32_t temp = ConvertTemperature(dt);
+//  Serial.println(temp);
   Serial.flush();
 }
 
@@ -72,10 +86,7 @@ double PascalToMeter(int32_t pressurePa)
       }
       i = i - 1;
       double height;
-      Serial.println((double)L_b[i]);
-      Serial.println(i);
       if (L_b[i] == (double)(0)) {
-        Serial.println(log((double)pressurePa)/(double)(P_b[i]));
         height = (double)(R*T_b[i]*log((double)(pressurePa)/(double)(P_b[i]))/((double)(-1) * g * M)) + (h_b[i]);
       } else {
         height = ((T_b[i]/pow((double)(pressurePa)/(double)(P_b[i]),  (R*L_b[i])/(g*M))) - T_b[i])/L_b[i] + (double)(h_b[i]);
@@ -115,7 +126,7 @@ int32_t ConvertPressure(uint32_t pressure, uint32_t temperature)
 
       if (press < 1000) {
         return 1000;
-      } else if ( press > 1200000) {
+      } else if ( press > 120000) {
         return 120000;
       }
       return press; 

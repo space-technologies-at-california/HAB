@@ -1,7 +1,7 @@
 #include <SPI.h>
 
 //Define this to the slave select for the tracksoar
-#define TRACKSOAR_SS     49
+#define TRACKSOAR_SS     SS
 
 //args : void
 //returns: float represnting queried quantity
