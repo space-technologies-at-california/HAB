@@ -18,6 +18,7 @@ print(og_north)
 print(og_west)
 north = float(og_north)
 west = float(og_west[:-1])
+
 #Find index in string of where decimal points are
 def get_decimal_index(s):
     for i in range(len(s)):
@@ -39,11 +40,3 @@ w_deg, w_min, w_sec = get_dms(og_west, west_dec)
 
 print(n_deg + " degrees, " + n_min + " mins, " + "{0:.2f}".format(n_sec) + " seconds N")
 print(w_deg + " degrees, " + w_min + " mins, " + "{0:.2f}".format(w_sec) + " seconds W")
-
-def updateKml(lat, long):
-	kml = simplekml.Kml()
-	kml.newpoint(name="HAB", coords=[(north, west)])
-	kml.save("balloonlocation.kml")
-	return kml
-
-updateKml(north, west)
