@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="feat_1">
+        <Style id="stylesel_0">
+            <IconStyle id="substyle_0">
+                <colorMode>normal</colorMode>
+                <scale>5</scale>
+                <heading>0</heading>
+                <Icon id="link_0">
+                    <href>placemark_circle.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Placemark id="feat_2">
+            <name>HAB</name>
+            <description>STAC HAB-1</description>
+            <LookAt>
+                <longitude>-122.0375</longitude>
+                <latitude>37.8775</latitude>
+                <heading>0</heading>
+                <tilt>0</tilt>
+                <gx:AltitudeMode>relativeToSeaFloor </gx:AltitudeMode>
+                <range>3000</range>
+            </LookAt>
+            <styleUrl>#stylesel_0</styleUrl>
+            <Point id="geom_0">
+                <coordinates>37.8775,-122.0375,0.0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>
