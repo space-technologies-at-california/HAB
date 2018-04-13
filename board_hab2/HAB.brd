@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.3.2">
+<eagle version="8.7.1">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -9,6 +9,20 @@
 <grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="no" active="yes"/>
+<layer number="3" name="Route3" color="4" fill="3" visible="no" active="yes"/>
+<layer number="4" name="Route4" color="1" fill="4" visible="no" active="yes"/>
+<layer number="5" name="Route5" color="4" fill="4" visible="no" active="yes"/>
+<layer number="6" name="Route6" color="1" fill="8" visible="no" active="yes"/>
+<layer number="7" name="Route7" color="4" fill="8" visible="no" active="yes"/>
+<layer number="8" name="Route8" color="1" fill="2" visible="no" active="yes"/>
+<layer number="9" name="Route9" color="4" fill="2" visible="no" active="yes"/>
+<layer number="10" name="Route10" color="1" fill="7" visible="no" active="yes"/>
+<layer number="11" name="Route11" color="4" fill="7" visible="no" active="yes"/>
+<layer number="12" name="Route12" color="1" fill="5" visible="no" active="yes"/>
+<layer number="13" name="Route13" color="4" fill="5" visible="no" active="yes"/>
+<layer number="14" name="Route14" color="1" fill="6" visible="no" active="yes"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="no" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
@@ -1809,37 +1823,40 @@ W = angled&lt;p&gt;
 </package3d>
 </packages3d>
 </library>
-<library name="con-samtec" urn="urn:adsk.eagle:library:184">
-<description>&lt;b&gt;Samtec Connectors&lt;/b&gt;&lt;p&gt;
+<library name="transistor" urn="urn:adsk.eagle:library:402">
+<description>&lt;b&gt;Transistors&lt;/b&gt;&lt;p&gt;
 &lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
 <packages>
-<package name="SSW-103-02-S-S" library_version="1">
-<description>&lt;b&gt;THROUGH-HOLE .025" SQ POST SOCKET&lt;/b&gt;&lt;p&gt;
-Source: Samtec SSW.pdf</description>
-<wire x1="-3.939" y1="1.155" x2="3.939" y2="1.155" width="0.2032" layer="21"/>
-<wire x1="3.939" y1="1.155" x2="3.939" y2="-1.155" width="0.2032" layer="21"/>
-<wire x1="3.939" y1="-1.155" x2="-3.939" y2="-1.155" width="0.2032" layer="21"/>
-<wire x1="-3.939" y1="-1.155" x2="-3.939" y2="1.155" width="0.2032" layer="21"/>
-<wire x1="-3.285" y1="0.755" x2="-1.785" y2="0.755" width="0.2032" layer="51"/>
-<wire x1="-1.785" y1="0.755" x2="-1.785" y2="-0.745" width="0.2032" layer="51"/>
-<wire x1="-1.785" y1="-0.745" x2="-3.285" y2="-0.745" width="0.2032" layer="51"/>
-<wire x1="-3.285" y1="-0.745" x2="-3.285" y2="0.755" width="0.2032" layer="51"/>
-<wire x1="-0.745" y1="0.755" x2="0.755" y2="0.755" width="0.2032" layer="51"/>
-<wire x1="0.755" y1="0.755" x2="0.755" y2="-0.745" width="0.2032" layer="51"/>
-<wire x1="0.755" y1="-0.745" x2="-0.745" y2="-0.745" width="0.2032" layer="51"/>
-<wire x1="-0.745" y1="-0.745" x2="-0.745" y2="0.755" width="0.2032" layer="51"/>
-<wire x1="1.795" y1="0.755" x2="3.295" y2="0.755" width="0.2032" layer="51"/>
-<wire x1="3.295" y1="0.755" x2="3.295" y2="-0.745" width="0.2032" layer="51"/>
-<wire x1="3.295" y1="-0.745" x2="1.795" y2="-0.745" width="0.2032" layer="51"/>
-<wire x1="1.795" y1="-0.745" x2="1.795" y2="0.755" width="0.2032" layer="51"/>
-<pad name="1" x="-2.54" y="0" drill="1" diameter="1.5" shape="octagon"/>
-<pad name="2" x="0" y="0" drill="1" diameter="1.5" shape="octagon"/>
-<pad name="3" x="2.54" y="0" drill="1" diameter="1.5" shape="octagon"/>
-<text x="-3.048" y="-3.048" size="1.6764" layer="21" font="vector">1</text>
-<text x="-4.445" y="-1.27" size="1.27" layer="25" rot="R90">&gt;NAME</text>
-<text x="5.715" y="-1.27" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
+<package name="TO92" urn="urn:adsk.eagle:footprint:29825/1" library_version="2">
+<description>&lt;b&gt;TO 92&lt;/b&gt;</description>
+<wire x1="-2.0946" y1="-1.651" x2="-2.6549" y2="-0.254" width="0.127" layer="21" curve="-32.781"/>
+<wire x1="-2.6549" y1="-0.254" x2="-0.7863" y2="2.5485" width="0.127" layer="21" curve="-78.3185"/>
+<wire x1="0.7863" y1="2.5484" x2="2.0945" y2="-1.651" width="0.127" layer="21" curve="-111.1"/>
+<wire x1="-2.0945" y1="-1.651" x2="2.0945" y2="-1.651" width="0.127" layer="21"/>
+<wire x1="-2.2537" y1="-0.254" x2="-0.2863" y2="-0.254" width="0.127" layer="51"/>
+<wire x1="-2.6549" y1="-0.254" x2="-2.2537" y2="-0.254" width="0.127" layer="21"/>
+<wire x1="-0.2863" y1="-0.254" x2="0.2863" y2="-0.254" width="0.127" layer="21"/>
+<wire x1="2.2537" y1="-0.254" x2="2.6549" y2="-0.254" width="0.127" layer="21"/>
+<wire x1="0.2863" y1="-0.254" x2="2.2537" y2="-0.254" width="0.127" layer="51"/>
+<wire x1="-0.7863" y1="2.5485" x2="0.7863" y2="2.5485" width="0.127" layer="51" curve="-34.2936"/>
+<pad name="1" x="1.27" y="0" drill="0.8128" shape="octagon"/>
+<pad name="2" x="0" y="1.905" drill="0.8128" shape="octagon"/>
+<pad name="3" x="-1.27" y="0" drill="0.8128" shape="octagon"/>
+<text x="3.175" y="0.635" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="3.175" y="-1.27" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+<text x="-0.635" y="0.635" size="1.27" layer="51" ratio="10">2</text>
+<text x="-2.159" y="0" size="1.27" layer="51" ratio="10">3</text>
+<text x="1.143" y="0" size="1.27" layer="51" ratio="10">1</text>
 </package>
 </packages>
+<packages3d>
+<package3d name="TO92" urn="urn:adsk.eagle:package:29893/2" type="model" library_version="2">
+<description>TO 92</description>
+<packageinstances>
+<packageinstance name="TO92"/>
+</packageinstances>
+</package3d>
+</packages3d>
 </library>
 </libraries>
 <attributes>
@@ -1926,10 +1943,11 @@ design rules under a new name.</description>
 <param name="slThermalsForVias" value="0"/>
 <param name="dpMaxLengthDifference" value="10mm"/>
 <param name="dpGapFactor" value="2.5"/>
-<param name="checkGrid" value="0"/>
 <param name="checkAngle" value="0"/>
 <param name="checkFont" value="1"/>
 <param name="checkRestrict" value="1"/>
+<param name="checkStop" value="0"/>
+<param name="checkValues" value="0"/>
 <param name="useDiameter" value="13"/>
 <param name="maxErrors" value="50"/>
 </designrules>
@@ -2099,13 +2117,8 @@ design rules under a new name.</description>
 <attribute name="OC_FARNELL" value="unknown" x="86.36" y="78.74" size="1.778" layer="27" display="off"/>
 <attribute name="OC_NEWARK" value="unknown" x="86.36" y="78.74" size="1.778" layer="27" display="off"/>
 </element>
-<element name="THROUGH_HOLE_AMBIENT_TEMP_SENSOR" library="con-samtec" library_urn="urn:adsk.eagle:library:184" package="SSW-103-02-S-S" value="SSW-103-02-S-S" x="11.43" y="80.01">
-<attribute name="MF" value="" x="11.43" y="80.01" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="SSW-103-02-S-S" x="11.43" y="80.01" size="1.778" layer="27" display="off"/>
-<attribute name="OC_FARNELL" value="unknown" x="11.43" y="80.01" size="1.778" layer="27" display="off"/>
-<attribute name="OC_NEWARK" value="11P9367" x="11.43" y="80.01" size="1.778" layer="27" display="off"/>
-</element>
 <element name="JP11" library="jumper" library_urn="urn:adsk.eagle:library:252" package="JP1" package3d_urn="urn:adsk.eagle:package:15455/1" value="" x="80.01" y="3.81"/>
+<element name="T2" library="transistor" library_urn="urn:adsk.eagle:library:402" package="TO92" package3d_urn="urn:adsk.eagle:package:29893/2" value="2N3904" x="-8.89" y="-33.02"/>
 </elements>
 <signals>
 <signal name="SDA">
@@ -2157,7 +2170,6 @@ design rules under a new name.</description>
 <wire x1="55.7567125" y1="45.4916" x2="39.1416" y2="45.4916" width="0.3048" layer="16"/>
 <wire x1="59.7951125" y1="49.53" x2="55.7567125" y2="45.4916" width="0.3048" layer="16"/>
 <contactref element="I2C_CLK" pad="1"/>
-<wire x1="33.02" y1="22.86" x2="30.48" y2="25.4" width="0" layer="19" extent="1-16"/>
 <wire x1="33.02" y1="22.86" x2="36.83" y2="19.05" width="0.254" layer="16"/>
 <wire x1="36.83" y1="19.05" x2="36.83" y2="10.16" width="0.254" layer="16"/>
 <contactref element="IMU" pad="6"/>
@@ -2201,7 +2213,6 @@ design rules under a new name.</description>
 <contactref element="IMU" pad="7"/>
 <contactref element="AMBIENT_TEMP_SENSOR" pad="3"/>
 <contactref element="TRACKSOAR" pad="1"/>
-<contactref element="THROUGH_HOLE_AMBIENT_TEMP_SENSOR" pad="3"/>
 <wire x1="58.42" y1="73.66" x2="57.15" y2="74.93" width="0.254" layer="16"/>
 <wire x1="57.15" y1="74.93" x2="56.59948125" y2="74.93" width="0.254" layer="16"/>
 <wire x1="56.59948125" y1="74.93" x2="56.26928125" y2="75.2602" width="0.254" layer="16"/>
@@ -2215,14 +2226,15 @@ design rules under a new name.</description>
 <wire x1="27.94" y1="36.83" x2="24.13" y2="40.64" width="0.254" layer="16"/>
 <wire x1="24.13" y1="40.64" x2="13.97" y2="40.64" width="0.254" layer="16"/>
 <wire x1="13.97" y1="40.64" x2="11.43" y2="38.1" width="0.254" layer="16"/>
+<contactref element="T2" pad="1"/>
 <wire x1="81.28" y1="78.74" x2="86.36" y2="85.09" width="0" layer="19" extent="1-1"/>
 <wire x1="58.42" y1="73.66" x2="81.28" y2="78.74" width="0" layer="19" extent="1-1"/>
 <wire x1="43.18" y1="81.28" x2="35.8902" y2="75.2602" width="0" layer="19" extent="16-16"/>
 <wire x1="48.26" y1="86.36" x2="43.18" y2="81.28" width="0" layer="19" extent="1-1"/>
 <wire x1="26.67" y1="85.09" x2="35.8902" y2="75.2602" width="0" layer="19" extent="16-16"/>
-<wire x1="13.97" y1="80.01" x2="26.67" y2="85.09" width="0" layer="19" extent="1-1"/>
 <wire x1="24.13" y1="40.64" x2="34.29" y2="73.66" width="0" layer="19" extent="16-16"/>
 <wire x1="66.04" y1="38.1" x2="58.42" y2="73.66" width="0" layer="19" extent="1-1"/>
+<wire x1="-7.62" y1="-33.02" x2="5.08" y2="10.16" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="5V">
 <contactref element="B1" pad="5V@0"/>
@@ -2240,17 +2252,15 @@ design rules under a new name.</description>
 <contactref element="JP8" pad="1"/>
 <contactref element="JP9" pad="1"/>
 <contactref element="JP10" pad="1"/>
-<contactref element="JP11" pad="2"/>
-<wire x1="17.78" y1="5.08" x2="80.01" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="24.13" y1="5.08" x2="17.78" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="30.48" y1="5.08" x2="24.13" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="36.83" y1="5.08" x2="30.48" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="43.18" y1="5.08" x2="36.83" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="49.53" y1="5.08" x2="43.18" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="55.88" y1="5.08" x2="49.53" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="62.23" y1="2.54" x2="55.88" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="68.58" y1="2.54" x2="62.23" y2="2.54" width="0" layer="19" extent="1-1"/>
-<wire x1="74.93" y1="2.54" x2="68.58" y2="2.54" width="0" layer="19" extent="1-1"/>
+<wire x1="68.58" y1="2.54" x2="74.93" y2="2.54" width="0" layer="19" extent="1-1"/>
+<wire x1="62.23" y1="2.54" x2="68.58" y2="2.54" width="0" layer="19" extent="1-1"/>
+<wire x1="55.88" y1="5.08" x2="62.23" y2="2.54" width="0" layer="19" extent="1-1"/>
+<wire x1="49.53" y1="5.08" x2="55.88" y2="5.08" width="0" layer="19" extent="1-1"/>
+<wire x1="43.18" y1="5.08" x2="49.53" y2="5.08" width="0" layer="19" extent="1-1"/>
+<wire x1="36.83" y1="5.08" x2="43.18" y2="5.08" width="0" layer="19" extent="1-1"/>
+<wire x1="30.48" y1="5.08" x2="36.83" y2="5.08" width="0" layer="19" extent="1-1"/>
+<wire x1="24.13" y1="5.08" x2="30.48" y2="5.08" width="0" layer="19" extent="1-1"/>
+<wire x1="17.78" y1="5.08" x2="24.13" y2="5.08" width="0" layer="19" extent="1-1"/>
 <wire x1="26.67" y1="15.24" x2="24.13" y2="5.08" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$1">
@@ -2501,9 +2511,7 @@ design rules under a new name.</description>
 <signal name="N$24">
 <contactref element="AMBIENT_TEMP_SENSOR" pad="2"/>
 <contactref element="B1" pad="A5"/>
-<contactref element="THROUGH_HOLE_AMBIENT_TEMP_SENSOR" pad="2"/>
-<wire x1="11.43" y1="80.01" x2="83.82" y2="85.09" width="0" layer="19" extent="1-1"/>
-<wire x1="52.07" y1="15.24" x2="11.43" y2="80.01" width="0" layer="19" extent="1-1"/>
+<wire x1="52.07" y1="15.24" x2="83.82" y2="85.09" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$22">
 <contactref element="TRACKSOAR" pad="2"/>
@@ -2515,12 +2523,23 @@ design rules under a new name.</description>
 <contactref element="B1" pad="49"/>
 <wire x1="85.09" y1="27.94" x2="60.96" y2="85.09" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="N$25">
-<contactref element="THROUGH_HOLE_AMBIENT_TEMP_SENSOR" pad="1"/>
-<contactref element="JP11" pad="1"/>
-<wire x1="8.89" y1="80.01" x2="80.01" y2="2.54" width="0" layer="19" extent="1-1"/>
-</signal>
 <signal name="N$26">
+</signal>
+<signal name="N$28">
+<contactref element="B1" pad="A6"/>
+<contactref element="T2" pad="2"/>
+<wire x1="-8.89" y1="-31.115" x2="54.61" y2="15.24" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$25">
+<contactref element="JP11" pad="1"/>
+<contactref element="T2" pad="3"/>
+<wire x1="-10.16" y1="-33.02" x2="80.01" y2="2.54" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$27">
+<contactref element="JP11" pad="2"/>
+</signal>
+<signal name="N$29">
+<contactref element="B1" pad="3.3V"/>
 </signal>
 </signals>
 </board>
