@@ -3,7 +3,7 @@
 
 byte transfer(const byte command) {
     
-    byte a= SPI.transfer(command);
+    byte a = SPI.transfer(command);
     delayMicroseconds(50);
     return a;
 

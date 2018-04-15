@@ -1,8 +1,7 @@
 /*
-  Completed:
    SD card attached to SPI bus as follows:
- ** MOSI - pin 51
  ** MISO - pin 50
+ ** MOSI - pin 51
  ** CLK - pin 52
  * -Wire diagram
  *  -Actuation Code w/ conditions
@@ -92,12 +91,11 @@ unsigned long exp_lock_timeout = 30000;  // 30 seconds to retract on experiment 
 
 unsigned long scream_timeout = 14400000;  // 4 hour backup scream timeout
 unsigned long launch_start = 0;
-unsigned long initial_scream_timeout = 3600000;  // 1 hour initial timeout stop
+unsigned long initial_scream_timeout = 9000000;  // 2.5 hour initial timeout stop
 unsigned long max_scream_alt  = 1000;  // meters
 
 
 void setup() {
-  
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
   
@@ -158,6 +156,7 @@ void loop() {
   curr_data += String(raw_alt_temp);
   curr_data += delimiter;
   curr_data += String(raw_alt_press);
+  curr_data += delimiter;
   
   //Tracksoar Code
   Serial.println("Tracksoar Code");
