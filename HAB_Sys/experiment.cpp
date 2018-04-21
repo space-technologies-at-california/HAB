@@ -1,16 +1,9 @@
 #include "experiment.h"
 
-Intersema::BaroPressure_MS5607B baro(true);
-Adafruit_SI1145 uv_sensor = Adafruit_SI1145();  // uv sensor object declaration
-RTC_DS1307 RTC; // define the Real Time Clock object
-int thermoCS = 48;
-Adafruit_MAX31855 thermocouple(CLK, thermoCS, MISO);  // Initializes the Thermocouple
-
-int sd_card_pin = 47;  // SD card CS pin
 String delimiter = ",";  // Data string delimiter for SD logging b/w sensors
 File sd_card_file;  // filesystem object
 String curr_data = "";
-//String sd_filename = "HABdata.csv";
+String sd_filename = "HABdata.csv";
 
 // Conversion constants
 double ft_to_m = 0.3048;
@@ -60,24 +53,14 @@ bool time_elapsed(unsigned long exp_start, unsigned long time_diff) {
   return false;
 }
 
-String get_uv_data() {
-    String uv_data = "";
-    uv_data += String(uv_sensor.readUV());
-    uv_data += delimiter;
-    uv_data += String(uv_sensor.readIR());
-    uv_data += delimiter;
-    uv_data += String(uv_sensor.readVisible());
-    return uv_data;
-}
-
-String get_rtc() {
+String get_rtc(RTC_DS1307 RTC) {
     DateTime now = RTC.now();
     char buffer[25] = "";
     sprintf(buffer, "%04d/%02d/%02d, %02d:%02d:%02d", now.year(), now.month(), now.day(), now.hour(), now.minute(), now.second());
     return buffer;
 }
 
-String get_thermo_data() {
+String get_thermo_data(Adafruit_MAX31855 thermocouple) {
     SPI.end();
     String thermo_data = "";
     thermo_data += thermocouple.readInternal();
@@ -100,11 +83,11 @@ String get_thermo_data() {
     return thermo_data;
 }
 
-void write_to_sd(String filename, String data) {
+void write_to_sd(String data) {
     // The following is the code to write to sd card
     // open the file. note that only one file can be open at a time,
     // so you have to close this one before opening another.
-    sd_card_file = SD.open(filename, FILE_WRITE);
+    sd_card_file = SD.open(sd_filename, FILE_WRITE);
     
     // if the file opened, write to it:
     if (sd_card_file) {
@@ -118,6 +101,52 @@ void write_to_sd(String filename, String data) {
         Serial.println("error opening file");
     }
 }
+void setup_servos() {
+  Serial.print("Initialization Servos...");
+  // Power the servos by pulling the fet's gate high
+  pinMode(servo_enable_pin, OUTPUT);
+  delay(100);
+  servo1.attach(servo1_pin);
+  servo2.attach(servo2_pin);
+  
+  enable_servos();
+  return_servo(1);
+  return_servo(2);
+  delay(20000);  // Setup servos to be fully retracted
+  disable_servos();
+  Serial.println("Servo initialization done");
+}
+
+void enable_servos() {
+  Serial.println("Enabling Servos");
+  digitalWrite(servo_enable_pin, HIGH);
+}
+
+void disable_servos() {
+  Serial.println("Disabling Servos");
+  digitalWrite(servo_enable_pin, LOW);
+}
+
+void extend_servo(int servo_id) {
+  if (servo_id == 1) {
+      servo1.write(servo_max);
+      servo1_extended = true;
+  } else if (servo_id == 2) {
+      servo2.write(servo_max);
+      servo2_extended = true;
+  }
+}
+
+void return_servo(int servo_id) {
+  if (servo_id == 1) {
+      servo1.write(servo_min);
+      servo1_extended = false;
+  } else if (servo_id == 2) {
+      servo2.write(servo_min);
+      servo2_extended = false;
+  }
+}
+
 bool should_scream(double alt, long launch_start) {
   // alt in meters
   if ((millis() > launch_start + scream_timeout) || ((alt < max_scream_alt) && (millis() > launch_start + initial_scream_timeout)) ) {
@@ -127,21 +156,15 @@ bool should_scream(double alt, long launch_start) {
 }
 
 
-void run_experiment(long launch_st, String sd_filename) {
+void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, RTC_DS1307 RTC) {
   // fetch the time
-   String curr_time = get_rtc();
+   String curr_time = get_rtc(RTC);
    Serial.print("Current Time: ");
    Serial.println(curr_time);
    curr_data += curr_time;
    curr_data += delimiter;
 
-   String uv_data = get_uv_data();
-   Serial.print("UV Data: ");
-   Serial.println(uv_data);
-   curr_data += uv_data;
-   curr_data += delimiter;
-
-  String thermo_data = get_thermo_data();
+  String thermo_data = get_thermo_data(thermocouple);
   Serial.print("Thermocouple Temp: ");
   Serial.println(thermo_data);
   curr_data += thermo_data;
@@ -261,7 +284,7 @@ void run_experiment(long launch_st, String sd_filename) {
   curr_data += delimiter;
   curr_data += servo2_extended;
   
-  write_to_sd(sd_filename, curr_data);
+  write_to_sd(curr_data);
   curr_data = "";
 
    if(should_scream(alt, launch_st)){
@@ -283,107 +306,6 @@ void run_experiment(long launch_st, String sd_filename) {
   delay(1000);
 }
 
-void setup_servos() {
-  Serial.print("Initialization Servos...");
-  // Power the servos by pulling the fet's gate high
-  pinMode(servo_enable_pin, OUTPUT);
-  delay(100);
-  servo1.attach(servo1_pin);
-  servo2.attach(servo2_pin);
-  
-  enable_servos();
-  return_servo(1);
-  return_servo(2);
-  delay(20000);  // Setup servos to be fully retracted
-  disable_servos();
-  Serial.println("Servo initialization done");
-}
-
-void enable_servos() {
-  Serial.println("Enabling Servos");
-  digitalWrite(servo_enable_pin, HIGH);
-}
-
-void disable_servos() {
-  Serial.println("Disabling Servos");
-  digitalWrite(servo_enable_pin, LOW);
-}
-
-void extend_servo(int servo_id) {
-  if (servo_id == 1) {
-      servo1.write(servo_max);
-      servo1_extended = true;
-  } else if (servo_id == 2) {
-      servo2.write(servo_max);
-      servo2_extended = true;
-  }
-}
-
-void return_servo(int servo_id) {
-  if (servo_id == 1) {
-      servo1.write(servo_min);
-      servo1_extended = false;
-  } else if (servo_id == 2) {
-      servo2.write(servo_min);
-      servo2_extended = false;
-  }
-}
-
-void setup_UV() {
-  // Set up UV Sensor (SI1145)
-  Serial.print("Initializing UV Sensor...");
-  if (! uv_sensor.begin()) {
-    Serial.println("Failed: Could not find Si1145 UV sensor");
-    return;
-  }
-  Serial.println("UV Sensor initialization done.");
-}
 
 
-
-/*
-   RTC (Real Time Clock) Specific
-*/
-void setup_rtc() {
-  // connect to RTC
-  Wire.begin();
-  RTC.adjust(DateTime(__DATE__, __TIME__));
-  if (!RTC.begin()) Serial.println("RTC failed");
-}
-
-
-/*
-   Thermo Couple Sensor Setup
-*/
-void setup_thermo() {
-  // Thermo couple is setup when creating the object.
-  Serial.print("Initializing Thermo Couple...");
-  delay(1000);  // wait for MAX thermo chip to stabilize
-  double c = thermocouple.readCelsius();
-  if (isnan(c)) {
-    Serial.println("Failed to initialize Thermo Couple");
-  } else {
-    Serial.println("Thermo Couple initialization done.");
-  }
-}
-
-/*
-   SD Card Specific
-*/
-void setup_SD() {
-  Serial.print("Initializing SD card...");
-  if (!SD.begin(sd_card_pin)) {
-    Serial.println("SD initialization failed!");
-    return;
-  }
-  Serial.println("SD initialization done.");
-}
-
-void setup_all(){
-  setup_SD();
-  setup_UV();
-  setup_thermo();
-  baro.init();
-  transceiver_setup();
-}
 
