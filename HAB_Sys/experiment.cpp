@@ -20,7 +20,8 @@ Servo servo1;
 Servo servo2;
 int servo1_pin = 2;
 int servo2_pin = 3;
-const int servo_enable_pin = 6;
+const int servo1_enable_pin = 16;
+const int servo2_enable_pin = 6;
 int servo_min = 45; // Value to retract servo
 int servo_max = 165; // Value to extend servo
 bool servo1_extended = false;
@@ -37,9 +38,9 @@ unsigned long exp1_lock_time = 0;
 unsigned long exp2_lock_time = 0;
 unsigned long exp_lock_timeout = 30000;  // 30 seconds to retract on experiment completion
 
-unsigned long scream_timeout = 14400000;  // 4 hour backup scream timeout
+unsigned long scream_timeout = 14400000;  // 4 hour backup scream timeout (in milliseconds)
 //unsigned long launch_start = 0;
-unsigned long initial_scream_timeout = 3600000;  // 1 hour initial timeout stop
+unsigned long initial_scream_timeout = 9000000;  // 2.5 hour initial timeout stop (in milliseconds)
 unsigned long max_scream_alt  = 1000;  // meters
 
 
@@ -101,30 +102,48 @@ void write_to_sd(String data) {
         Serial.println("error opening file");
     }
 }
+
+
+void enable_servo(int servo_id) {
+  if (servo_id == 1) {
+      Serial.println("Enabling Servo 1");
+      digitalWrite(servo1_enable_pin, HIGH);
+  } else if (servo_id == 2) {
+      Serial.println("Enabling Servo 2");
+      digitalWrite(servo2_enable_pin, HIGH);
+  }
+}
+
+void disable_servo(int servo_id) {
+  if (servo_id == 1) {
+      Serial.println("Disabling Servo 1");
+      digitalWrite(servo1_enable_pin, LOW);
+  } else if (servo_id == 2) {
+      Serial.println("Disabling Servo 2");
+      digitalWrite(servo2_enable_pin, LOW);
+  }
+  
+}
+
 void setup_servos() {
-  Serial.print("Initialization Servos...");
+  Serial.println("Initialization Servos...");
   // Power the servos by pulling the fet's gate high
-  pinMode(servo_enable_pin, OUTPUT);
+  pinMode(servo1_enable_pin, OUTPUT);
+//  pinMode(servo2_enable_pin, OUTPUT);
   delay(100);
   servo1.attach(servo1_pin);
-  servo2.attach(servo2_pin);
-  
-  enable_servos();
+//  servo2.attach(servo2_pin);
+
+  enable_servo(1);
+//  enable_servo(2);
+  extend_servo(1);
+  delay(20000);
   return_servo(1);
-  return_servo(2);
+//  return_servo(2);
   delay(20000);  // Setup servos to be fully retracted
-  disable_servos();
+  disable_servo(1);
+//  disable_servo(2);
   Serial.println("Servo initialization done");
-}
-
-void enable_servos() {
-  Serial.println("Enabling Servos");
-  digitalWrite(servo_enable_pin, HIGH);
-}
-
-void disable_servos() {
-  Serial.println("Disabling Servos");
-  digitalWrite(servo_enable_pin, LOW);
 }
 
 void extend_servo(int servo_id) {
@@ -156,7 +175,7 @@ bool should_scream(double alt, long launch_start) {
 }
 
 
-void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, RTC_DS1307 RTC) {
+void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, Adafruit_MAX31855 thermocouple_cam, RTC_DS1307 RTC) {
   // fetch the time
    String curr_time = get_rtc(RTC);
    Serial.print("Current Time: ");
@@ -168,6 +187,12 @@ void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafru
   Serial.print("Thermocouple Temp: ");
   Serial.println(thermo_data);
   curr_data += thermo_data;
+  curr_data += delimiter;
+
+  String thermo_cam_data = get_thermo_data(thermocouple_cam);
+  Serial.print("Camera thermocouple temp: ");
+  Serial.println(thermo_cam_data);
+  curr_data += thermo_cam_data;
   curr_data += delimiter;
 
   double alt = baro.getHeightMeters(2);
@@ -230,7 +255,7 @@ void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafru
   // Run Experiment Code
   // Starts experiment 1
   if (!exp1_complete && !servo1_extended && alt > servo1_start_alt && alt < servo1_end_alt) {
-    enable_servos();
+    enable_servo(1);
     extend_servo(1);
     exp1_start_time = millis();
     Serial.print("Started Experiment 1 at ");
@@ -248,41 +273,41 @@ void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafru
   }
   // Sets experiment 1 Lock so we do not continue to send PWM signal in case of stall
   if (!exp1_locked && exp1_complete && time_elapsed(exp1_lock_time, exp_lock_timeout)) {
-    disable_servos();
+    disable_servo(1);
     exp1_locked = true;
     servo1_extended = false;
     Serial.println("Locked Servo 1");
   }
 
-  // Starts experiment 2
-  if (!exp2_complete && !servo2_extended && alt > servo2_start_alt && alt < servo2_end_alt) {
-    enable_servos();
-    extend_servo(2);
-    exp2_start_time = millis();
-    Serial.print("Started Experiment 2 at ");
-    Serial.print(alt/ft_to_m);
-    Serial.println("ft");
-  }
-  // Stops experiment 2
-  if (!exp2_complete && servo2_extended && !exp2_locked && (alt > servo2_end_alt || time_elapsed(exp2_start_time, timeout))) {
-    return_servo(2);
-    exp2_complete = true;
-    exp2_lock_time = millis();
-    Serial.print("Experiment 2 Complete at ");
-    Serial.print(alt/ft_to_m);
-    Serial.println("ft");
-  }
-  // Sets experiment 2 Lock so we do not continue to send PWM sig in case of stall
-  if (!exp2_locked && exp2_complete && time_elapsed(exp2_lock_time, exp_lock_timeout)) {
-    disable_servos();
-    exp2_locked = true;
-    servo2_extended = false;
-    Serial.println("Locked Servo 2");
-  }
+//  // Starts experiment 2
+//  if (!exp2_complete && !servo2_extended && alt > servo2_start_alt && alt < servo2_end_alt) {
+//    enable_servo(2);
+//    extend_servo(2);
+//    exp2_start_time = millis();
+//    Serial.print("Started Experiment 2 at ");
+//    Serial.print(alt/ft_to_m);
+//    Serial.println("ft");
+//  }
+//  // Stops experiment 2
+//  if (!exp2_complete && servo2_extended && !exp2_locked && (alt > servo2_end_alt || time_elapsed(exp2_start_time, timeout))) {
+//    return_servo(2);
+//    exp2_complete = true;
+//    exp2_lock_time = millis();
+//    Serial.print("Experiment 2 Complete at ");
+//    Serial.print(alt/ft_to_m);
+//    Serial.println("ft");
+//  }
+//  // Sets experiment 2 Lock so we do not continue to send PWM sig in case of stall
+//  if (!exp2_locked && exp2_complete && time_elapsed(exp2_lock_time, exp_lock_timeout)) {
+//    disable_servo(2);
+//    exp2_locked = true;
+//    servo2_extended = false;
+//    Serial.println("Locked Servo 2");
+//  }
   
   curr_data += servo1_extended;
-  curr_data += delimiter;
-  curr_data += servo2_extended;
+//  curr_data += delimiter;
+//  curr_data += servo2_extended;
   
   write_to_sd(curr_data);
   curr_data = "";

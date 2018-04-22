@@ -33,20 +33,22 @@ unsigned long launch_start = 0;
 Intersema::BaroPressure_MS5607B baro(true);
 RTC_DS1307 RTC; // define the Real Time Clock object
 int thermoCS = 48;
+int thermo_camCS = 49;
 Adafruit_MAX31855 thermocouple(CLK, thermoCS, MISO);  // Initializes the Thermocouple
+Adafruit_MAX31855 thermocouple_cam(CLK, thermo_camCS, MISO);
 
 
 void setup() {
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
   digitalWrite(TRACKSOAR_SS, HIGH);  // Setup SPI tracksoar
-  setup_all(baro, thermocouple, RTC);
+  setup_all(baro, thermocouple, thermocouple_cam, RTC);
   write_to_sd(DATA_HEADERS);
   launch_start = millis();  // Initialize for Secondary Transmitter Screaming
   setup_servos();  // Experiment specific linear actuator setup, takes up to 20 seconds
 }
 
 void loop() {
-  run_experiment(launch_start, baro, thermocouple, RTC);
+  run_experiment(launch_start, baro, thermocouple, thermocouple_cam, RTC);
 }
 

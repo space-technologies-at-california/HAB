@@ -22,9 +22,9 @@ void write_to_sd(String data);
 //servos
 void setup_servos();
 
-void enable_servos();
+void enable_servo(int servo_id);
 
-void disable_servos();
+void disable_servo(int servo_id);
 
 void extend_servo(int servo_id);
 
@@ -33,7 +33,7 @@ void return_servo(int servo_id);
 //experiment running
 bool should_scream(double alt);
 
-void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, RTC_DS1307 RTC);
+void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, Adafruit_MAX31855 thermocouple_cam, RTC_DS1307 RTC);
 
 
 

@@ -32,6 +32,7 @@ void setup_thermo(Adafruit_MAX31855 thermocouple) {
   } else {
     Serial.println("Thermo Couple initialization done.");
   }
+  
 }
 
 /*
@@ -46,9 +47,11 @@ void setup_SD() {
   Serial.println("SD initialization done.");
 }
 
-void setup_all(Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, RTC_DS1307 RTC){
+void setup_all(Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, Adafruit_MAX31855 thermocouple_cam, RTC_DS1307 RTC){
+  setup_rtc(RTC);
   setup_SD();
   setup_thermo(thermocouple);
+  setup_thermo(thermocouple_cam);
   baro.init();
   transceiver_setup();
 }
