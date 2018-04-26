@@ -84,6 +84,32 @@ String get_thermo_data(Adafruit_MAX31855 thermocouple) {
     return thermo_data;
 }
 
+// Read ambient sensor temperature
+String get_ambient_temp(DallasTemperature system_sensor, DallasTemperature outer_sensor) {
+  String ambient_temp = "";
+  // call sensors.requestTemperatures() to issue a global temperature 
+  // request to all devices on the bus
+  Serial.print("Requesting System temperature...");
+  system_sensor.requestTemperatures(); // Send the command to get temperatures
+  Serial.println("DONE");
+  // After we got the temperatures, we can print them here.
+  // We use the function ByIndex, and as an example get the temperature from the first sensor only.
+ // Serial.print("Temperature for the" + sensor_name +  " sensor (index 0) is: ");
+  Serial.println(system_sensor.getTempCByIndex(0));
+  ambient_temp += system_sensor.getTempCByIndex(0);
+
+  Serial.print("Requesting outer temperature...");
+  outer_sensor.requestTemperatures(); // Send the command to get temperatures
+  Serial.println("DONE");
+  // After we got the temperatures, we can print them here.
+  // We use the function ByIndex, and as an example get the temperature from the first sensor only.
+ // Serial.print("Temperature for the" + sensor_name +  " sensor (index 0) is: ");
+  Serial.println(outer_sensor.getTempCByIndex(0));
+  ambient_temp += outer_sensor.getTempCByIndex(0);
+  return ambient_temp;
+}
+
+
 void write_to_sd(String data) {
     // The following is the code to write to sd card
     // open the file. note that only one file can be open at a time,
@@ -175,7 +201,7 @@ bool should_scream(double alt, long launch_start) {
 }
 
 
-void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, Adafruit_MAX31855 thermocouple_cam, RTC_DS1307 RTC) {
+void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, Adafruit_MAX31855 thermocouple_cam, RTC_DS1307 RTC, DallasTemperature system_sensor, DallasTemperature outside_sensor) {
   // fetch the time
    String curr_time = get_rtc(RTC);
    Serial.print("Current Time: ");
@@ -308,6 +334,9 @@ void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafru
   curr_data += servo1_extended;
 //  curr_data += delimiter;
 //  curr_data += servo2_extended;
+  Serial.println("Collecting ambient temperature data");
+  String ambient_data = get_ambient_temp(system_sensor, outside_sensor);
+  curr_data += ambient_data;
   
   write_to_sd(curr_data);
   curr_data = "";

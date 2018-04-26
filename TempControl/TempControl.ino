@@ -1,3 +1,4 @@
+
 // Include the libraries we need
 #include <OneWire.h>
 #include <DallasTemperature.h>
@@ -6,8 +7,10 @@
 
 
 // Ambient Temperature Reading
-#define SYSTEM_PIN 5  // Analog 5 TODO
-#define OUTER_PIN 8  // outside ambient temperature TODO
+#define SYSTEM_PIN 34  // Analog 5 TODO
+#define OUTER_PIN 36  // outside ambient temperature TODO
+
+#include <SPI.h>
 
 // Setup a oneWire instance to communicate with any OneWire devices (not just Maxim/Dallas temperature ICs)
 OneWire system_wire(SYSTEM_PIN);
@@ -47,9 +50,7 @@ void setup(void)
   system_sensor.begin();
   outer_sensor.begin();
   
-  // Setup ThemoCouples
-  setup_thermo(cam1_thermocouple);
-  setup_thermo(cam2_thermocouple);
+
 }
 
 /*
@@ -57,13 +58,13 @@ void setup(void)
  */
 void loop(void)
 { 
-  get_ambient_temp(system_sensor);
-  get_ambient_temp(outer_sensor);
+  get_ambient_temp(system_sensor,"board");
+  get_ambient_temp(outer_sensor, "wires");
 }
 
 
 // Read ambient sensor temperature
-String get_ambient_temp(sensor) {
+String get_ambient_temp(DallasTemperature sensor, String sensor_name) {
   String ambient_temp = "";
   // call sensors.requestTemperatures() to issue a global temperature 
   // request to all devices on the bus
@@ -72,46 +73,11 @@ String get_ambient_temp(sensor) {
   Serial.println("DONE");
   // After we got the temperatures, we can print them here.
   // We use the function ByIndex, and as an example get the temperature from the first sensor only.
-  Serial.print("Temperature for the device 1 (index 0) is: ");
+  Serial.print("Temperature for the" + sensor_name +  " sensor (index 0) is: ");
   Serial.println(sensor.getTempCByIndex(0));
-  ambient_temp += sensor.getTempCByIndex(0)
+  ambient_temp += sensor.getTempCByIndex(0);
   return ambient_temp;
 }
 
 
-/*
-   Thermo Couple Sensor Setup
-*/
-void setup_thermo(thermocouple) {
-  // Thermo couple is setup when creating the object.
-  Serial.print("Initializing Thermo Couple...");
-  delay(1000);  // wait for MAX thermo chip to stabilize
-  double c = thermocouple.readCelsius();
-  if (isnan(c)) {
-    Serial.println("Failed to initialize Thermo Couple");
-  } else {
-    Serial.println("Thermo Couple initialization done.");
-  }
-}
-String get_thermo_data(thermocouple) {
-  SPI.end();
-  String thermo_data = "";
-  thermo_data += thermocouple.readInternal();
-  thermo_data += delimiter;
-  double c = thermocouple.readCelsius();
-  double f = thermocouple.readFarenheit();
-  if (isnan(c)) {
-    Serial.println("Something wrong with thermocouple!");
-    thermo_data += "Failed";
-  } else {
-    thermo_data += String(c);
-  }
-  thermo_data += delimiter;
-  if (isnan(f)) {
-    Serial.println("Something wrong with thermocouple!");
-    thermo_data += "Failed";
-  } else {
-    thermo_data += String(f);
-  }
-  return thermo_data;
-}
+

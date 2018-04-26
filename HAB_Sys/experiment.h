@@ -9,6 +9,8 @@
 #include <Servo.h>
 #include "rf69_stac.h"
 #include "tracksoar_comm.h"
+#include <OneWire.h>
+#include <DallasTemperature.h>
 
 //real time clock
 String get_rtc(RTC_DS1307 RTC);
@@ -33,7 +35,7 @@ void return_servo(int servo_id);
 //experiment running
 bool should_scream(double alt);
 
-void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, Adafruit_MAX31855 thermocouple_cam, RTC_DS1307 RTC);
+void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, Adafruit_MAX31855 thermocouple_cam, RTC_DS1307 RTC, DallasTemperature system_sensor, DallasTemperature outside_sensor);
 
 
 
