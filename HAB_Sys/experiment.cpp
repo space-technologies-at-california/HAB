@@ -97,6 +97,7 @@ String get_ambient_temp(DallasTemperature system_sensor, DallasTemperature outer
  // Serial.print("Temperature for the" + sensor_name +  " sensor (index 0) is: ");
   Serial.println(system_sensor.getTempCByIndex(0));
   ambient_temp += system_sensor.getTempCByIndex(0);
+  ambient_temp += delimiter;
 
   Serial.print("Requesting outer temperature...");
   outer_sensor.requestTemperatures(); // Send the command to get temperatures
@@ -140,6 +141,65 @@ void enable_servo(int servo_id) {
   }
 }
 
+/*
+ * Read imu data
+ */
+
+String read_imu(Adafruit_LSM9DS0 lsm) {
+  lsm.read();
+  String imu_data = "";
+  Serial.print("Accel X: "); 
+  Serial.print((int)lsm.accelData.x); 
+  Serial.println(" ");
+  imu_data += (int)lsm.accelData.x;
+  imu_data += delimiter;
+  Serial.print("Accel Y: "); 
+  Serial.print((int)lsm.accelData.y);       
+  Serial.println(" ");
+  imu_data += (int)lsm.accelData.y;
+  imu_data += delimiter;
+  Serial.print("Accel Z: "); 
+  Serial.print((int)lsm.accelData.z);     
+  Serial.println(" ");
+  imu_data += (int)lsm.accelData.z;
+  imu_data += delimiter;
+  Serial.print("Mag X: "); 
+  Serial.print((int)lsm.magData.x);     
+  Serial.println(" ");
+  imu_data += (int)lsm.magData.x;
+  imu_data += delimiter;
+  Serial.print("Mag Y: "); 
+  Serial.print((int)lsm.magData.y);         
+  Serial.println(" ");
+  imu_data += (int)lsm.magData.y;
+  imu_data += delimiter;
+  Serial.print("Mag Z: "); 
+  Serial.print((int)lsm.magData.z);       
+  Serial.println(" ");
+  imu_data += (int)lsm.magData.z;
+  imu_data += delimiter;
+  Serial.print("Gyro X: "); 
+  Serial.print((int)lsm.gyroData.x);   
+  Serial.println(" ");
+  imu_data += (int)lsm.gyroData.x;
+  imu_data += delimiter;
+  Serial.print("Gyro Y: "); 
+  Serial.print((int)lsm.gyroData.y);        
+  Serial.println(" ");
+  imu_data += (int)lsm.gyroData.y;
+  imu_data += delimiter;
+  Serial.print("Gyro Z: "); 
+  Serial.print((int)lsm.gyroData.z);      
+  Serial.println(" ");
+  imu_data += (int)lsm.gyroData.z;
+  imu_data += delimiter;
+  Serial.print("Temp: "); 
+  Serial.print((int)lsm.temperature);    
+  Serial.println(" ");
+  imu_data += (int)lsm.temperature;
+  delay(200);
+  return imu_data;
+}
 void disable_servo(int servo_id) {
   if (servo_id == 1) {
       Serial.println("Disabling Servo 1");
@@ -201,7 +261,7 @@ bool should_scream(double alt, long launch_start) {
 }
 
 
-void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, Adafruit_MAX31855 thermocouple_cam, RTC_DS1307 RTC, DallasTemperature system_sensor, DallasTemperature outside_sensor) {
+void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafruit_MAX31855 thermocouple, Adafruit_MAX31855 thermocouple_cam, RTC_DS1307 RTC, DallasTemperature system_sensor, DallasTemperature outside_sensor, Adafruit_LSM9DS0 lsm) {
   // fetch the time
    String curr_time = get_rtc(RTC);
    Serial.print("Current Time: ");
@@ -332,11 +392,16 @@ void run_experiment(long launch_st, Intersema::BaroPressure_MS5607B baro, Adafru
 //  }
   
   curr_data += servo1_extended;
-//  curr_data += delimiter;
+  curr_data += delimiter;
 //  curr_data += servo2_extended;
   Serial.println("Collecting ambient temperature data");
   String ambient_data = get_ambient_temp(system_sensor, outside_sensor);
   curr_data += ambient_data;
+  curr_data += delimiter;
+  Serial.println("Collecting imu data");
+  String imu_data = read_imu(lsm);
+  curr_data += imu_data;
+  curr_data += delimiter;
   
   write_to_sd(curr_data);
   curr_data = "";
