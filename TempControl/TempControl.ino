@@ -5,12 +5,12 @@
 #include "Adafruit_MAX31855.h"  // Thermocouple library
 
 
+#include <SPI.h>
 
 // Ambient Temperature Reading
-#define SYSTEM_PIN 34  // Analog 5 TODO
-#define OUTER_PIN 36  // outside ambient temperature TODO
+#define SYSTEM_PIN 34  // system ambient temperature pin
+#define OUTER_PIN 36  // outside ambient temperature pin
 
-#include <SPI.h>
 
 // Setup a oneWire instance to communicate with any OneWire devices (not just Maxim/Dallas temperature ICs)
 OneWire system_wire(SYSTEM_PIN);
@@ -64,18 +64,27 @@ void loop(void)
 
 
 // Read ambient sensor temperature
-String get_ambient_temp(DallasTemperature sensor, String sensor_name) {
+String get_ambient_temp(DallasTemperature system_sensor, DallasTemperature outer_sensor) {
   String ambient_temp = "";
   // call sensors.requestTemperatures() to issue a global temperature 
   // request to all devices on the bus
-  Serial.print("Requesting temperatures...");
-  sensor.requestTemperatures(); // Send the command to get temperatures
+  Serial.print("Requesting System temperature...");
+  system_sensor.requestTemperatures(); // Send the command to get temperatures
   Serial.println("DONE");
   // After we got the temperatures, we can print them here.
   // We use the function ByIndex, and as an example get the temperature from the first sensor only.
-  Serial.print("Temperature for the" + sensor_name +  " sensor (index 0) is: ");
-  Serial.println(sensor.getTempCByIndex(0));
-  ambient_temp += sensor.getTempCByIndex(0);
+ // Serial.print("Temperature for the" + sensor_name +  " sensor (index 0) is: ");
+  Serial.println(system_sensor.getTempCByIndex(0));
+  ambient_temp += sysetm_sensor.getTempCByIndex(0);
+
+  Serial.print("Requesting outer temperature...");
+  outer_sensor.requestTemperatures(); // Send the command to get temperatures
+  Serial.println("DONE");
+  // After we got the temperatures, we can print them here.
+  // We use the function ByIndex, and as an example get the temperature from the first sensor only.
+ // Serial.print("Temperature for the" + sensor_name +  " sensor (index 0) is: ");
+  Serial.println(outer_sensor.getTempCByIndex(0));
+  ambient_temp += outer_sensor.getTempCByIndex(0);
   return ambient_temp;
 }
 

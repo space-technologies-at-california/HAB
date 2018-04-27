@@ -50,6 +50,9 @@ Adafruit_MAX31855 thermocouple(CLK, thermoCS, MISO);  // Initializes the Thermoc
 Adafruit_MAX31855 thermocouple_cam(CLK, thermo_camCS, MISO);
 
 
+Adafruit_LSM9DS0 lsm = Adafruit_LSM9DS0();
+
+
 void setup() {
   // Open serial communications and wait for port to open:
   Serial.begin(9600);

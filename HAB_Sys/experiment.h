@@ -11,6 +11,8 @@
 #include "tracksoar_comm.h"
 #include <OneWire.h>
 #include <DallasTemperature.h>
+#include <Adafruit_LSM9DS0.h>
+#include <Adafruit_Sensor.h>  // not used in this demo but required!
 
 //real time clock
 String get_rtc(RTC_DS1307 RTC);
