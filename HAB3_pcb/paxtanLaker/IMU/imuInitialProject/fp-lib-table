@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name LSM9DS0)(type KiCad)(uri "C:/Users/Paxtan Laker/Documents/STAC/IMU/LSM9DS0")(options "")(descr ""))
+)
