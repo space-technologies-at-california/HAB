@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name "Adafruit Ultimate GPS")(type KiCad)(uri "$(KIPRJMOD)/Adafruit Ultimate GPS.pretty")(options "")(descr ""))
+)
