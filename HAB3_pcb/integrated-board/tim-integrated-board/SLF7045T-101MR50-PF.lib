@@ -1,0 +1,25 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# SLF7045T-101MR50-PF
+#
+DEF SLF7045T-101MR50-PF U 0 40 N N 1 L N
+F0 "U" -150 54 50 H V L BNN
+F1 "SLF7045T-101MR50-PF" -150 -115 50 H V L BNN
+F2 "INDC7070X450" 0 0 50 H I L BNN
+F3 "Nonstandard TDK" 0 0 50 H I L BNN
+F4 "Inductor Power Shielded Wirewound 100uH 20% 100KHz Ferrite 650mA 300mOhm DCR T/R" 0 0 50 H I L BNN
+F5 "SLF7045T-101MR50-PF" 0 0 50 H I L BNN
+F6 "None" 0 0 50 H I L BNN
+F7 "TDK" 0 0 50 H I L BNN
+F8 "Unavailable" 0 0 50 H I L BNN
+DRAW
+S -100 -35 100 35 0 0 0 F
+X 2 2 200 0 100 L 40 40 0 0 P 
+X 1 1 -200 0 100 R 40 40 0 0 P 
+ENDDRAW
+ENDDEF
+#
+# End Library
