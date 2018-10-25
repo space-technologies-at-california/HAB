@@ -1,0 +1,413 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr User 12296 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Wire Wire Line
+	7000 2900 6300 2900
+Text Label 6400 2900 0    70   ~ 0
+FIX
+Wire Wire Line
+	3900 2900 4500 2900
+Text Label 4100 2900 0    70   ~ 0
+FIX
+Wire Wire Line
+	6000 2900 5900 2900
+Wire Wire Line
+	5500 2900 5400 2900
+Wire Wire Line
+	5400 2900 5400 3200
+Wire Wire Line
+	5400 3200 5400 3400
+Wire Wire Line
+	5400 2600 5400 2700
+Wire Wire Line
+	5400 2700 5400 2900
+Wire Wire Line
+	7000 3200 5400 3200
+Wire Wire Line
+	7000 2700 5400 2700
+Connection ~ 5400 2900
+Connection ~ 5400 3200
+Connection ~ 5400 2700
+Text Label 5500 2900 0    10   ~ 0
+GND
+Wire Wire Line
+	4800 3200 4800 3500
+Wire Wire Line
+	3900 3200 4800 3200
+Text Label 4800 3200 0    10   ~ 0
+GND
+Wire Wire Line
+	8200 3300 9000 3300
+Wire Wire Line
+	9000 3300 9000 3600
+Wire Wire Line
+	9000 3600 9000 3700
+Wire Wire Line
+	9000 3700 9000 3800
+Wire Wire Line
+	8200 2600 9000 2600
+Wire Wire Line
+	9000 2600 9000 3300
+Wire Wire Line
+	8700 3700 9000 3700
+Wire Wire Line
+	8700 3600 9000 3600
+Connection ~ 9000 3300
+Connection ~ 9000 3700
+Connection ~ 9000 3600
+Text Label 8200 3300 0    10   ~ 0
+GND
+Wire Wire Line
+	7600 1200 7900 1200
+Wire Wire Line
+	7900 1200 7900 1300
+Text Label 7600 1200 0    10   ~ 0
+GND
+Wire Wire Line
+	4700 2600 4700 2500
+Wire Wire Line
+	3900 2600 4700 2600
+Text Label 4700 2600 0    10   ~ 0
+3.3V
+Wire Wire Line
+	5400 2300 5400 2200
+Wire Wire Line
+	5400 2200 6400 2200
+Wire Wire Line
+	7000 2500 6400 2500
+Wire Wire Line
+	6400 2500 6400 2200
+Connection ~ 6400 2200
+Text Label 5400 2300 0    10   ~ 0
+3.3V
+Wire Wire Line
+	3900 2700 4500 2700
+Text Label 4100 2700 0    70   ~ 0
+ENABLE
+Wire Wire Line
+	3900 3300 5000 3300
+Wire Wire Line
+	5000 3300 5000 2500
+Text Label 3900 3300 0    10   ~ 0
+VIN
+Wire Wire Line
+	7000 2800 6400 2800
+Text Label 6400 2800 0    70   ~ 0
+VBACKUP
+Wire Wire Line
+	3900 2800 4500 2800
+Text Label 4100 2800 0    70   ~ 0
+VBACKUP
+Wire Wire Line
+	6900 1200 6200 1200
+Text Label 6300 1200 0    70   ~ 0
+VBACKUP
+Wire Wire Line
+	7000 3300 6400 3300
+Text Label 6400 3300 0    70   ~ 0
+TX
+Wire Wire Line
+	3900 3000 4500 3000
+Text Label 4100 3000 0    70   ~ 0
+TX
+Wire Wire Line
+	7000 3400 6300 3400
+Wire Wire Line
+	6300 3400 6200 3400
+Wire Wire Line
+	6300 3400 6300 4200
+Wire Wire Line
+	6300 4200 5900 4200
+Wire Wire Line
+	5900 4200 5900 4100
+Connection ~ 6300 3400
+Text Label 6400 3400 0    70   ~ 0
+RX_3V
+Wire Wire Line
+	6000 3400 5600 3400
+Text Label 5600 3400 0    70   ~ 0
+RX
+Wire Wire Line
+	3900 3100 4500 3100
+Text Label 4100 3100 0    70   ~ 0
+RX
+Wire Wire Line
+	8200 3400 8400 3400
+Wire Wire Line
+	8200 3200 8700 3200
+Text Label 8400 3200 0    70   ~ 0
+1PPS
+Wire Wire Line
+	3900 3400 4500 3400
+Text Label 4100 3400 0    70   ~ 0
+1PPS
+Wire Wire Line
+	7100 1200 7400 1200
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:FRAME_A4_ADAFRUIT #U$1
+U 1 0 20F524AA4D826FCC
+P 1100 7200
+F 0 "#U$1" H 1100 7200 50  0001 C CNN
+F 1 "FRAME_A4_ADAFRUIT" H 1100 7200 50  0001 C CNN
+F 2 "" H 1100 7200 50  0001 C CNN
+F 3 "" H 1100 7200 50  0001 C CNN
+	1    1100 7200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:GPS_FGPMMOPA6H U1
+U 1 0 2DF3FE209D0AA111
+P 7600 2900
+F 0 "U1" H 7100 3800 42  0000 L BNN
+F 1 "FGPMMOPA6H" H 7100 1900 42  0000 L BNN
+F 2 "Adafruit Ultimate GPS:FGPMMOPA6H" H 7600 2900 50  0001 C CNN
+F 3 "" H 7600 2900 50  0001 C CNN
+	1    7600 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:LED0805 LED1
+U 1 0 B4BDD66162FEDCFC
+P 6100 2900
+F 0 "LED1" H 6050 3075 42  0000 C CNN
+F 1 "RED" H 6050 2790 42  0000 C CNN
+F 2 "Adafruit Ultimate GPS:CHIPLED_0805" H 6100 2900 50  0001 C CNN
+F 3 "" H 6100 2900 50  0001 C CNN
+	1    6100 2900
+	-1   0    0    1   
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:RESISTOR0805_NOOUTLINE R1
+U 1 0 B82084C643F53746
+P 5700 2900
+F 0 "R1" H 5700 3000 50  0000 C CNN
+F 1 "1K" H 5700 2900 40  0000 C CNB
+F 2 "Adafruit Ultimate GPS:0805-NO" H 5700 2900 50  0001 C CNN
+F 3 "" H 5700 2900 50  0001 C CNN
+	1    5700 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:GND #U$02
+U 1 0 803D2E8F6197D135
+P 5400 3500
+F 0 "#U$02" H 5400 3500 50  0001 C CNN
+F 1 "GND" H 5340 3400 42  0000 L BNN
+F 2 "" H 5400 3500 50  0001 C CNN
+F 3 "" H 5400 3500 50  0001 C CNN
+	1    5400 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:3.3V #U$04
+U 1 0 C4F885289A709B56
+P 6400 2100
+F 0 "#U$04" H 6400 2100 50  0001 C CNN
+F 1 "3.3V" H 6340 2140 42  0000 L BNN
+F 2 "" H 6400 2100 50  0001 C CNN
+F 3 "" H 6400 2100 50  0001 C CNN
+	1    6400 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:CAP_CERAMIC0805-NOOUTLINE C1
+U 1 0 24498BA92B08E60C
+P 5400 2500
+F 0 "C1" V 5310 2549 50  0000 C CNN
+F 1 "0.1uF" V 5490 2549 50  0000 C CNN
+F 2 "Adafruit Ultimate GPS:0805-NO" H 5400 2500 50  0001 C CNN
+F 3 "" H 5400 2500 50  0001 C CNN
+	1    5400 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:MOUNTINGHOLE2.5 U$8
+U 1 0 97B52CF35DE6913C
+P 11000 5900
+F 0 "U$8" H 11000 5900 50  0001 C CNN
+F 1 "MOUNTINGHOLE2.5" H 11000 5900 50  0001 C CNN
+F 2 "Adafruit Ultimate GPS:MOUNTINGHOLE_2.5_PLATED" H 11000 5900 50  0001 C CNN
+F 3 "" H 11000 5900 50  0001 C CNN
+	1    11000 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:MOUNTINGHOLE2.5 U$9
+U 1 0 9563796E29A3022C
+P 10700 5900
+F 0 "U$9" H 10700 5900 50  0001 C CNN
+F 1 "MOUNTINGHOLE2.5" H 10700 5900 50  0001 C CNN
+F 2 "Adafruit Ultimate GPS:MOUNTINGHOLE_2.5_PLATED" H 10700 5900 50  0001 C CNN
+F 3 "" H 10700 5900 50  0001 C CNN
+	1    10700 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:VIN #U$010
+U 1 0 22C351ED3FF9C786
+P 5000 2400
+F 0 "#U$010" H 5000 2400 50  0001 C CNN
+F 1 "VIN" H 4940 2440 42  0000 L BNN
+F 2 "" H 5000 2400 50  0001 C CNN
+F 3 "" H 5000 2400 50  0001 C CNN
+	1    5000 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:3.3V #U$011
+U 1 0 2CF13A3609ED6043
+P 4700 2400
+F 0 "#U$011" H 4700 2400 50  0001 C CNN
+F 1 "3.3V" H 4640 2440 42  0000 L BNN
+F 2 "" H 4700 2400 50  0001 C CNN
+F 3 "" H 4700 2400 50  0001 C CNN
+	1    4700 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:GND #U$012
+U 1 0 728101AFEEFC5E8C
+P 4800 3600
+F 0 "#U$012" H 4800 3600 50  0001 C CNN
+F 1 "GND" H 4740 3500 42  0000 L BNN
+F 2 "" H 4800 3600 50  0001 C CNN
+F 3 "" H 4800 3600 50  0001 C CNN
+	1    4800 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:DIODESOD-323 D1
+U 1 0 C049FE434DF527AB
+P 6100 3400
+F 0 "D1" H 6100 3500 42  0000 C CNN
+F 1 "1N4148" H 6100 3302 42  0000 C CNN
+F 2 "Adafruit Ultimate GPS:SOD-323" H 6100 3400 50  0001 C CNN
+F 3 "" H 6100 3400 50  0001 C CNN
+	1    6100 3400
+	-1   0    0    1   
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:RESISTOR0805_NOOUTLINE R3
+U 1 0 4F14531CD85E66C8
+P 5900 3900
+F 0 "R3" H 5900 4000 50  0000 C CNN
+F 1 "10K" H 5900 3900 40  0000 C CNB
+F 2 "Adafruit Ultimate GPS:0805-NO" H 5900 3900 50  0001 C CNN
+F 3 "" H 5900 3900 50  0001 C CNN
+	1    5900 3900
+	0    1    1    0   
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:3.3V #U$013
+U 1 0 C6CA7EF2407A0320
+P 5900 3600
+F 0 "#U$013" H 5900 3600 50  0001 C CNN
+F 1 "3.3V" H 5840 3640 42  0000 L BNN
+F 2 "" H 5900 3600 50  0001 C CNN
+F 3 "" H 5900 3600 50  0001 C CNN
+	1    5900 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:BATTERYCR1220_SMT B1
+U 1 0 96DDDAD98A000202
+P 7500 1200
+F 0 "B1" H 7400 1325 42  0000 L BNN
+F 1 "CR1220" H 7400 1000 42  0000 L BNN
+F 2 "Adafruit Ultimate GPS:CR1220" H 7500 1200 50  0001 C CNN
+F 3 "" H 7500 1200 50  0001 C CNN
+	1    7500 1200
+	-1   0    0    1   
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:GND #U$014
+U 1 0 25B093F9D405EDE5
+P 7900 1400
+F 0 "#U$014" H 7900 1400 50  0001 C CNN
+F 1 "GND" H 7840 1300 42  0000 L BNN
+F 2 "" H 7900 1400 50  0001 C CNN
+F 3 "" H 7900 1400 50  0001 C CNN
+	1    7900 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:FIDUCIAL"" FID1
+U 1 0 B8B8ED705F8860D4
+P 11000 6100
+F 0 "FID1" H 11000 6100 50  0001 C CNN
+F 1 "FIDUCIAL\"\"" H 11000 6100 50  0001 C CNN
+F 2 "Adafruit Ultimate GPS:FIDUCIAL_1MM" H 11000 6100 50  0001 C CNN
+F 3 "" H 11000 6100 50  0001 C CNN
+	1    11000 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:FIDUCIAL"" FID2
+U 1 0 7023742D7EDAA0E9
+P 10700 6100
+F 0 "FID2" H 10700 6100 50  0001 C CNN
+F 1 "FIDUCIAL\"\"" H 10700 6100 50  0001 C CNN
+F 2 "Adafruit Ultimate GPS:FIDUCIAL_1MM" H 10700 6100 50  0001 C CNN
+F 3 "" H 10700 6100 50  0001 C CNN
+	1    10700 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:GND #U$019
+U 1 0 28B2C22724E1B701
+P 9000 3900
+F 0 "#U$019" H 9000 3900 50  0001 C CNN
+F 1 "GND" H 8940 3800 42  0000 L BNN
+F 2 "" H 9000 3900 50  0001 C CNN
+F 3 "" H 9000 3900 50  0001 C CNN
+	1    9000 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:U.FL U$20
+U 1 0 14A4E007DC93C178
+P 8600 3400
+F 0 "U$20" H 8600 3400 50  0001 C CNN
+F 1 "U.FL" H 8600 3400 50  0001 C CNN
+F 2 "Adafruit Ultimate GPS:U.FL" H 8600 3400 50  0001 C CNN
+F 3 "" H 8600 3400 50  0001 C CNN
+	1    8600 3400
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:HEADER-1X970MIL JP1
+U 1 0 E5C11E09A75A2B47
+P 3800 3000
+F 0 "JP1" H 3550 3525 59  0000 L BNN
+F 1 "HEADER-1X970MIL" H 3550 2400 59  0000 L BNN
+F 2 "Adafruit Ultimate GPS:1X09_ROUND_70" H 3800 3000 50  0001 C CNN
+F 3 "" H 3800 3000 50  0001 C CNN
+	1    3800 3000
+	-1   0    0    1   
+$EndComp
+$Comp
+L Adafruit_Ultimate_GPS-eagle-import:DIODESOD-323 D2
+U 1 0 A3EFA98ECB5A3888
+P 7000 1200
+F 0 "D2" H 7000 1300 42  0000 C CNN
+F 1 "CUS520" H 7000 1102 42  0000 C CNN
+F 2 "Adafruit Ultimate GPS:SOD-323" H 7000 1200 50  0001 C CNN
+F 3 "" H 7000 1200 50  0001 C CNN
+	1    7000 1200
+	-1   0    0    1   
+$EndComp
+Text Notes 6400 4100 0    59   ~ 0
+D1+R3 restrict RX input to 3.3V
+$EndSCHEMATC
