@@ -1,11 +1,11 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# Connector:Conn_01x03_Male
+# Connector_Conn_01x03_Male
 #
-DEF Connector:Conn_01x03_Male J 0 40 Y N 1 F N
+DEF Connector_Conn_01x03_Male J 0 40 Y N 1 F N
 F0 "J" 0 200 50 H V C CNN
-F1 "Connector:Conn_01x03_Male" 0 -200 50 H V C CNN
+F1 "Connector_Conn_01x03_Male" 0 -200 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -24,11 +24,11 @@ X Pin_3 3 200 -100 150 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Connector:Conn_01x06_Male
+# Connector_Conn_01x06_Male
 #
-DEF Connector:Conn_01x06_Male J 0 40 Y N 1 F N
+DEF Connector_Conn_01x06_Male J 0 40 Y N 1 F N
 F0 "J" 0 300 50 H V C CNN
-F1 "Connector:Conn_01x06_Male" 0 -400 50 H V C CNN
+F1 "Connector_Conn_01x06_Male" 0 -400 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -56,11 +56,11 @@ X Pin_6 6 200 -300 150 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# ICM-20689:ICM-20689
+# ICM20689-rescue_ICM-20689-ICM-20689
 #
-DEF ICM-20689:ICM-20689 U 0 40 Y Y 1 L N
+DEF ICM20689-rescue_ICM-20689-ICM-20689 U 0 40 Y Y 1 L N
 F0 "U" -601 621 50 H V L BNN
-F1 "ICM-20689:ICM-20689" -601 -701 50 H V L BNN
+F1 "ICM20689-rescue_ICM-20689-ICM-20689" -601 -701 50 H V L BNN
 F2 "QFN50P400X400X95-25N" 0 0 50 H I L BNN
 F3 "TDK InvenSense" 0 0 50 H I L BNN
 F4 "None" 0 0 50 H I L BNN
@@ -87,11 +87,11 @@ X AD0/SDO 9 -800 -200 200 R 40 40 0 0 B
 ENDDRAW
 ENDDEF
 #
-# pspice:CAP
+# pspice_CAP
 #
-DEF pspice:CAP C 0 10 Y Y 1 F N
+DEF pspice_CAP C 0 10 Y Y 1 F N
 F0 "C" 100 150 50 V V C CNN
-F1 "pspice:CAP" 100 -150 50 V V C CNN
+F1 "pspice_CAP" 100 -150 50 V V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 ALIAS C

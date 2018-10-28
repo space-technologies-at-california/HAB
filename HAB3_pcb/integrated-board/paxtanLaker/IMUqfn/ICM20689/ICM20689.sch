@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:ICM20689-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -14,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L ICM-20689:ICM-20689 U1
+L ICM20689-rescue:ICM-20689-ICM-20689 U1
 U 1 1 5BD15253
 P 5850 4050
 F 0 "U1" H 5850 4815 50  0000 C CNN
