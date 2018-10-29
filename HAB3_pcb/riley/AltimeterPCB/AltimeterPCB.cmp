@@ -1,0 +1,35 @@
+Cmp-Mod V01 Created by PcbNew   date = Sun 28 Oct 2018 08:59:13 PM PDT
+
+BeginCmp
+TimeStamp = 5BC6E1E0
+Path = /5BB59CF9
+Reference = [NoRef];
+ValeurCmp = [NoVal];
+IdModule  = Connector:FanPinHeader_1x04_P2.54mm_Vertical;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BC6E061
+Path = /5BB59AA0
+Reference = U1;
+ValeurCmp = MS560702BA03-00;
+IdModule  = MS560702BA03-00:SON125P500X300X100-8N;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BC6E4DE
+Path = /5BB5E0FC
+Reference = C1;
+ValeurCmp = 100nF;
+IdModule  = Capacitor_SMD:C_0402_1005Metric;
+EndCmp
+
+BeginCmp
+TimeStamp = 5BC70BA6
+Path = /5BBAC4EB
+Reference = [NoRef];
+ValeurCmp = [NoVal];
+IdModule  = Connector_PinHeader_2.54mm:PinHeader_2x01_P2.54mm_Vertical;
+EndCmp
+
+EndListe

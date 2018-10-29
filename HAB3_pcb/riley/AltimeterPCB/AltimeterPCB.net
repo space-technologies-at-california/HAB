@@ -1,8 +1,8 @@
 (export (version D)
   (design
-    (source C:\Users\riley\AltimeterPCB\AltimeterPCB.sch)
-    (date "10/7/2018 8:08:13 PM")
-    (tool "Eeschema (5.0.0)")
+    (source /home/riley/github/HAB/HAB3_pcb/riley/AltimeterPCB/AltimeterPCB.sch)
+    (date "Sun 28 Oct 2018 08:56:40 PM PDT")
+    (tool "Eeschema 5.0.1-33cea8e~68~ubuntu18.04.1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
         (title)
@@ -39,8 +39,8 @@
       (tstamp 5BB59CF9))
     (comp (ref C1)
       (value 100nF)
-      (footprint Capacitor_SMD:C_0402_1005Metric)
-      (libsource (lib pspice) (part CAP) (description ""))
+      (footprint Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder)
+      (libsource (lib pspice) (part CAP) (description "Capacitor symbol for simulation only"))
       (sheetpath (names /) (tstamps /))
       (tstamp 5BB5E0FC))
     (comp (ref J2)
@@ -100,6 +100,8 @@
     (libpart (lib pspice) (part CAP)
       (aliases
         (alias C))
+      (description "Capacitor symbol for simulation only")
+      (docs ~)
       (fields
         (field (name Reference) C)
         (field (name Value) CAP))
@@ -108,13 +110,13 @@
         (pin (num 2) (name ~) (type passive)))))
   (libraries
     (library (logical Connector)
-      (uri "C:\\Program Files\\KiCad\\share\\kicad\\library/Connector.lib"))
+      (uri /usr/share/kicad/library/Connector.lib))
     (library (logical Connector_Generic)
-      (uri "C:\\Program Files\\KiCad\\share\\kicad\\library/Connector_Generic.lib"))
+      (uri /usr/share/kicad/library/Connector_Generic.lib))
     (library (logical MS560702BA03-00)
-      (uri C:\Users\riley\AltimeterPCB/MS560702BA03-00.lib))
+      (uri /home/riley/github/HAB/HAB3_pcb/riley/AltimeterPCB/MS560702BA03-00.lib))
     (library (logical pspice)
-      (uri "C:\\Program Files\\KiCad\\share\\kicad\\library/pspice.lib")))
+      (uri /usr/share/kicad/library/pspice.lib)))
   (nets
     (net (code 1) (name GND)
       (node (ref C1) (pin 2))

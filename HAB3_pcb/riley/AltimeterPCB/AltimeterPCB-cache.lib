@@ -1,11 +1,11 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# Connector:Conn_01x04_Female
+# Connector_Conn_01x04_Female
 #
-DEF Connector:Conn_01x04_Female J 0 40 Y N 1 F N
+DEF Connector_Conn_01x04_Female J 0 40 Y N 1 F N
 F0 "J" 0 200 50 H V C CNN
-F1 "Connector:Conn_01x04_Female" 0 -300 50 H V C CNN
+F1 "Connector_Conn_01x04_Female" 0 -300 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -27,11 +27,11 @@ X Pin_4 4 -200 -200 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Connector_Generic:Conn_02x01
+# Connector_Generic_Conn_02x01
 #
-DEF Connector_Generic:Conn_02x01 J 0 40 Y N 1 F N
+DEF Connector_Generic_Conn_02x01 J 0 40 Y N 1 F N
 F0 "J" 50 100 50 H V C CNN
-F1 "Connector_Generic:Conn_02x01" 50 -100 50 H V C CNN
+F1 "Connector_Generic_Conn_02x01" 50 -100 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -46,11 +46,11 @@ X Pin_2 2 300 0 150 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# MS560702BA03-00:MS560702BA03-00
+# MS560702BA03-00_MS560702BA03-00
 #
-DEF MS560702BA03-00:MS560702BA03-00 U 0 40 Y Y 1 L N
+DEF MS560702BA03-00_MS560702BA03-00 U 0 40 Y Y 1 L N
 F0 "U" -401 431 50 H V L BNN
-F1 "MS560702BA03-00:MS560702BA03-00" -401 -501 50 H V L BNN
+F1 "MS560702BA03-00_MS560702BA03-00" -401 -501 50 H V L BNN
 F2 "SON125P500X300X100-8N" 0 0 50 H I L BNN
 F3 "MS5607-02BA03 Series 3 V 1 to 120 kPa Absolute Barometric Pressure Sensor" 0 0 50 H I L BNN
 F4 "TE Connectivity" 0 0 50 H I L BNN
@@ -76,11 +76,11 @@ X SCLK 8 -600 0 200 R 40 40 0 0 I C
 ENDDRAW
 ENDDEF
 #
-# power:+3V3
+# power_+3V3
 #
-DEF power:+3V3 #PWR 0 0 Y Y 1 F P
+DEF power_+3V3 #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -150 50 H I C CNN
-F1 "power:+3V3" 0 140 50 H V C CNN
+F1 "power_+3V3" 0 140 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 ALIAS +3.3V
@@ -92,11 +92,11 @@ X +3V3 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# power:GND
+# power_GND
 #
-DEF power:GND #PWR 0 0 Y Y 1 F P
+DEF power_GND #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -250 50 H I C CNN
-F1 "power:GND" 0 -150 50 H V C CNN
+F1 "power_GND" 0 -150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -105,11 +105,11 @@ X GND 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# pspice:CAP
+# pspice_CAP
 #
-DEF pspice:CAP C 0 10 Y Y 1 F N
+DEF pspice_CAP C 0 10 Y Y 1 F N
 F0 "C" 100 150 50 V V C CNN
-F1 "pspice:CAP" 100 -150 50 V V C CNN
+F1 "pspice_CAP" 100 -150 50 V V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 ALIAS C
