@@ -1,6 +1,39 @@
-EESchema Schematic File Version 4
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:STM32F401RET6
 LIBS:STM32-cache
-EELAYER 26 0
+EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -15,7 +48,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L STM32-rescue:STM32F401RET6 U1
+L STM32F401RET6 U1
 U 1 1 5BB18215
 P 5550 3700
 F 0 "U1" H 5550 3700 50  0000 L BNN
@@ -31,7 +64,7 @@ F 8 "STM32F401RET6" H 5550 3700 50  0001 L BNN "Field8"
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:C 100nF1
+L C 100nF1
 U 1 1 5BB5A0DB
 P 2600 4750
 F 0 "100nF1" H 2625 4850 50  0000 L CNN
@@ -42,7 +75,7 @@ F 3 "" H 2600 4750 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L STM32-rescue:+3V3 #PWR01
+L +3V3 #PWR01
 U 1 1 5BB5A20D
 P 4300 2850
 F 0 "#PWR01" H 4300 2700 50  0001 C CNN
@@ -53,7 +86,7 @@ F 3 "" H 4300 2850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:+3V3 #PWR02
+L +3V3 #PWR02
 U 1 1 5BB5A23B
 P 3450 4300
 F 0 "#PWR02" H 3450 4150 50  0001 C CNN
@@ -64,7 +97,7 @@ F 3 "" H 3450 4300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:C C1
+L C C1
 U 1 1 5BB5A748
 P 2300 3100
 F 0 "C1" H 2325 3200 50  0000 L CNN
@@ -75,7 +108,7 @@ F 3 "" H 2300 3100 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L STM32-rescue:C C2
+L C C2
 U 1 1 5BB5A7DC
 P 2300 3350
 F 0 "C2" H 2325 3450 50  0000 L CNN
@@ -86,7 +119,7 @@ F 3 "" H 2300 3350 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR03
+L GND #PWR03
 U 1 1 5BB5AAE7
 P 2150 3600
 F 0 "#PWR03" H 2150 3350 50  0001 C CNN
@@ -97,7 +130,7 @@ F 3 "" H 2150 3600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:Conn_ARM_JTAG_SWD_20 J1
+L Conn_ARM_JTAG_SWD_20 J1
 U 1 1 5BC4298C
 P 2050 6350
 F 0 "J1" H 1850 7200 50  0000 R CNN
@@ -108,7 +141,7 @@ F 3 "" V 1700 5100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR04
+L GND #PWR04
 U 1 1 5BC43A22
 P 2400 4800
 F 0 "#PWR04" H 2400 4550 50  0001 C CNN
@@ -121,7 +154,7 @@ $EndComp
 Text GLabel 2900 4350 2    60   Input ~ 0
 RST
 $Comp
-L STM32-rescue:L 22uH1
+L L 22uH1
 U 1 1 5BC43B12
 P 3450 4450
 F 0 "22uH1" V 3400 4450 50  0000 C CNN
@@ -132,7 +165,7 @@ F 3 "" H 3450 4450 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:C 1uF1
+L C 1uF1
 U 1 1 5BC43DE9
 P 3450 4800
 F 0 "1uF1" H 3475 4900 50  0000 L CNN
@@ -143,7 +176,7 @@ F 3 "" H 3450 4800 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:C 10nF1
+L C 10nF1
 U 1 1 5BC43E5D
 P 3700 4800
 F 0 "10nF1" H 3725 4900 50  0000 L CNN
@@ -154,7 +187,7 @@ F 3 "" H 3700 4800 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR05
+L GND #PWR05
 U 1 1 5BC43FFE
 P 3700 5000
 F 0 "#PWR05" H 3700 4750 50  0001 C CNN
@@ -165,7 +198,7 @@ F 3 "" H 3700 5000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:+3.3VA #PWR06
+L +3.3VA #PWR06
 U 1 1 5BC44633
 P 3700 4150
 F 0 "#PWR06" H 3700 4000 50  0001 C CNN
@@ -176,7 +209,7 @@ F 3 "" H 3700 4150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:R 0k1
+L R 0k1
 U 1 1 5BC449A1
 P 3100 3100
 F 0 "0k1" V 3180 3100 50  0000 C CNN
@@ -187,7 +220,7 @@ F 3 "" H 3100 3100 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L STM32-rescue:R 0k2
+L R 0k2
 U 1 1 5BC44ABA
 P 3100 3400
 F 0 "0k2" V 3180 3400 50  0000 C CNN
@@ -198,7 +231,7 @@ F 3 "" H 3100 3400 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR07
+L GND #PWR07
 U 1 1 5BC45CED
 P 4900 4850
 F 0 "#PWR07" H 4900 4600 50  0001 C CNN
@@ -209,7 +242,7 @@ F 3 "" H 4900 4850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR08
+L GND #PWR08
 U 1 1 5BC45D37
 P 6200 4850
 F 0 "#PWR08" H 6200 4600 50  0001 C CNN
@@ -220,7 +253,7 @@ F 3 "" H 6200 4850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:C 1uF5
+L C 1uF5
 U 1 1 5BC46049
 P 6950 2550
 F 0 "1uF5" H 6975 2650 50  0000 L CNN
@@ -231,7 +264,7 @@ F 3 "" H 6950 2550 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:C 100nF5
+L C 100nF5
 U 1 1 5BC4604F
 P 7200 2550
 F 0 "100nF5" H 7225 2650 50  0000 L CNN
@@ -242,7 +275,7 @@ F 3 "" H 7200 2550 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR09
+L GND #PWR09
 U 1 1 5BC46055
 P 7200 2750
 F 0 "#PWR09" H 7200 2500 50  0001 C CNN
@@ -253,7 +286,7 @@ F 3 "" H 7200 2750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:+3V3 #PWR010
+L +3V3 #PWR010
 U 1 1 5BC462B3
 P 7200 2350
 F 0 "#PWR010" H 7200 2200 50  0001 C CNN
@@ -264,7 +297,7 @@ F 3 "" H 7200 2350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:C 1uF3
+L C 1uF3
 U 1 1 5BC464D1
 P 5000 5800
 F 0 "1uF3" H 5025 5900 50  0000 L CNN
@@ -275,7 +308,7 @@ F 3 "" H 5000 5800 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:C 100nF3
+L C 100nF3
 U 1 1 5BC464D7
 P 5250 5800
 F 0 "100nF3" H 5275 5900 50  0000 L CNN
@@ -286,7 +319,7 @@ F 3 "" H 5250 5800 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR011
+L GND #PWR011
 U 1 1 5BC464DD
 P 5250 6000
 F 0 "#PWR011" H 5250 5750 50  0001 C CNN
@@ -297,7 +330,7 @@ F 3 "" H 5250 6000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:+3V3 #PWR012
+L +3V3 #PWR012
 U 1 1 5BC464E9
 P 5250 5600
 F 0 "#PWR012" H 5250 5450 50  0001 C CNN
@@ -308,7 +341,7 @@ F 3 "" H 5250 5600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:C 4.7uF1
+L C 4.7uF1
 U 1 1 5BC46836
 P 6100 5300
 F 0 "4.7uF1" H 6125 5400 50  0000 L CNN
@@ -319,7 +352,7 @@ F 3 "" H 6100 5300 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR013
+L GND #PWR013
 U 1 1 5BC468DC
 P 6100 5450
 F 0 "#PWR013" H 6100 5200 50  0001 C CNN
@@ -330,7 +363,7 @@ F 3 "" H 6100 5450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:C 1uF4
+L C 1uF4
 U 1 1 5BC46E30
 P 6300 5800
 F 0 "1uF4" H 6325 5900 50  0000 L CNN
@@ -341,7 +374,7 @@ F 3 "" H 6300 5800 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:C 100nF4
+L C 100nF4
 U 1 1 5BC46E36
 P 6550 5800
 F 0 "100nF4" H 6575 5900 50  0000 L CNN
@@ -352,7 +385,7 @@ F 3 "" H 6550 5800 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR014
+L GND #PWR014
 U 1 1 5BC46E3C
 P 6550 6000
 F 0 "#PWR014" H 6550 5750 50  0001 C CNN
@@ -363,7 +396,7 @@ F 3 "" H 6550 6000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:+3V3 #PWR015
+L +3V3 #PWR015
 U 1 1 5BC46E48
 P 6550 5600
 F 0 "#PWR015" H 6550 5450 50  0001 C CNN
@@ -374,7 +407,7 @@ F 3 "" H 6550 5600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:C 1uF2
+L C 1uF2
 U 1 1 5BC4730D
 P 4300 2250
 F 0 "1uF2" H 4325 2350 50  0000 L CNN
@@ -385,7 +418,7 @@ F 3 "" H 4300 2250 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:C 100nF2
+L C 100nF2
 U 1 1 5BC47313
 P 4550 2250
 F 0 "100nF2" H 4575 2350 50  0000 L CNN
@@ -396,7 +429,7 @@ F 3 "" H 4550 2250 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR016
+L GND #PWR016
 U 1 1 5BC47319
 P 4550 2450
 F 0 "#PWR016" H 4550 2200 50  0001 C CNN
@@ -407,7 +440,7 @@ F 3 "" H 4550 2450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:+3V3 #PWR017
+L +3V3 #PWR017
 U 1 1 5BC47325
 P 4550 2050
 F 0 "#PWR017" H 4550 1900 50  0001 C CNN
@@ -418,7 +451,7 @@ F 3 "" H 4550 2050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:R 10k4
+L R 10k4
 U 1 1 5BC475E1
 P 5200 2000
 F 0 "10k4" V 5280 2000 50  0000 C CNN
@@ -429,7 +462,7 @@ F 3 "" H 5200 2000 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR018
+L GND #PWR018
 U 1 1 5BC47B02
 P 5050 1550
 F 0 "#PWR018" H 5050 1300 50  0001 C CNN
@@ -532,7 +565,7 @@ PB8
 Text GLabel 5000 2550 1    60   Input ~ 0
 PB9
 $Comp
-L STM32-rescue:Micro_SD_Card_Det J2
+L Micro_SD_Card_Det J2
 U 1 1 5BC49DC0
 P 2200 1650
 F 0 "J2" H 1550 2350 50  0000 C CNN
@@ -555,7 +588,7 @@ PB3
 Text GLabel 2650 5950 2    60   Input ~ 0
 RST
 $Comp
-L STM32-rescue:R 10k1
+L R 10k1
 U 1 1 5BC4A25B
 P 3100 6150
 F 0 "10k1" V 3180 6150 50  0000 C CNN
@@ -566,7 +599,7 @@ F 3 "" H 3100 6150 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L STM32-rescue:R 10k2
+L R 10k2
 U 1 1 5BC4A5C9
 P 3100 6750
 F 0 "10k2" V 3180 6750 50  0000 C CNN
@@ -577,7 +610,7 @@ F 3 "" H 3100 6750 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L STM32-rescue:R 10k3
+L R 10k3
 U 1 1 5BC4A665
 P 3100 6900
 F 0 "10k3" V 3180 6900 50  0000 C CNN
@@ -588,7 +621,7 @@ F 3 "" H 3100 6900 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR019
+L GND #PWR019
 U 1 1 5BC4ABA6
 P 3250 7200
 F 0 "#PWR019" H 3250 6950 50  0001 C CNN
@@ -599,7 +632,7 @@ F 3 "" H 3250 7200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:+3V3 #PWR020
+L +3V3 #PWR020
 U 1 1 5BC4AECA
 P 1950 5400
 F 0 "#PWR020" H 1950 5250 50  0001 C CNN
@@ -640,7 +673,7 @@ PA8
 Text GLabel 9000 2700 2    60   Input ~ 0
 PA14
 $Comp
-L STM32-rescue:Conn_01x16_Male J3
+L Conn_01x16_Male J3
 U 1 1 5BC4EB19
 P 8800 2000
 F 0 "J3" H 8800 2800 50  0000 C CNN
@@ -651,7 +684,7 @@ F 3 "" H 8800 2000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:Conn_01x16_Male J4
+L Conn_01x16_Male J4
 U 1 1 5BC4EE03
 P 9600 2000
 F 0 "J4" H 9600 2800 50  0000 C CNN
@@ -662,7 +695,7 @@ F 3 "" H 9600 2000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:Conn_01x16_Male J5
+L Conn_01x16_Male J5
 U 1 1 5BC4EEC1
 P 10350 2000
 F 0 "J5" H 10350 2800 50  0000 C CNN
@@ -733,7 +766,7 @@ PC12
 Text GLabel 10550 2600 2    60   Input ~ 0
 PC13
 $Comp
-L STM32-rescue:Conn_01x02_Male J6
+L Conn_01x02_Male J6
 U 1 1 5BC51264
 P 9100 3350
 F 0 "J6" H 9100 3450 50  0000 C CNN
@@ -744,7 +777,7 @@ F 3 "" H 9100 3350 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:+3V3 #PWR021
+L +3V3 #PWR021
 U 1 1 5BC5139A
 P 8700 3250
 F 0 "#PWR021" H 8700 3100 50  0001 C CNN
@@ -755,7 +788,7 @@ F 3 "" H 8700 3250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:GND #PWR022
+L GND #PWR022
 U 1 1 5BC51625
 P 8700 3350
 F 0 "#PWR022" H 8700 3100 50  0001 C CNN
@@ -766,7 +799,7 @@ F 3 "" H 8700 3350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:Conn_01x11_Male J9
+L Conn_01x11_Male J9
 U 1 1 5BC51A5C
 P 1050 1750
 F 0 "J9" H 1050 2350 50  0000 C CNN
@@ -779,7 +812,7 @@ $EndComp
 Text GLabel 10550 2800 2    60   Input ~ 0
 PD2
 $Comp
-L STM32-rescue:SW_DPST_x2 SW1
+L SW_DPST_x2 SW1
 U 1 1 5BC53F65
 P 2600 4300
 F 0 "SW1" H 2600 4425 50  0000 C CNN
@@ -790,7 +823,7 @@ F 3 "" H 2600 4300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:Crystal_GND23 Y1
+L Crystal_GND23 Y1
 U 1 1 5BC559FA
 P 2750 3250
 F 0 "Y1" H 2800 3450 50  0000 L CNN
@@ -805,7 +838,7 @@ PB11
 Text GLabel 9800 2400 2    60   Input ~ 0
 PB11
 $Comp
-L STM32-rescue:TPS564208 U2
+L TPS564208 U2
 U 1 1 5BCD475A
 P 8500 4700
 F 0 "U2" H 8500 5000 60  0000 C CNN
@@ -816,7 +849,7 @@ F 3 "" H 8650 4750 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:Conn_01x02_Male J7
+L Conn_01x02_Male J7
 U 1 1 5BCD4B6E
 P 7350 4550
 F 0 "J7" H 7350 4650 50  0000 C CNN
@@ -827,7 +860,7 @@ F 3 "" H 7350 4550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:C C16
+L C C16
 U 1 1 5BCD6316
 P 7900 5000
 F 0 "C16" H 7925 5100 50  0000 L CNN
@@ -838,7 +871,7 @@ F 3 "" H 7900 5000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:R R5
+L R R5
 U 1 1 5BCD6F1F
 P 9850 5100
 F 0 "R5" V 9930 5100 50  0000 C CNN
@@ -849,7 +882,7 @@ F 3 "" H 9850 5100 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:R R6
+L R R6
 U 1 1 5BCD718B
 P 9850 4700
 F 0 "R6" V 9930 4700 50  0000 C CNN
@@ -860,7 +893,7 @@ F 3 "" H 9850 4700 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:C C17
+L C C17
 U 1 1 5BCD7B55
 P 9200 4650
 F 0 "C17" H 9225 4750 50  0000 L CNN
@@ -871,7 +904,7 @@ F 3 "" H 9200 4650 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L STM32-rescue:L L2
+L L L2
 U 1 1 5BCD823C
 P 9550 4500
 F 0 "L2" V 9500 4500 50  0000 C CNN
@@ -882,7 +915,7 @@ F 3 "" H 9550 4500 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L STM32-rescue:C C18
+L C C18
 U 1 1 5BCD929B
 P 10200 4900
 F 0 "C18" H 10225 5000 50  0000 L CNN
@@ -893,7 +926,7 @@ F 3 "" H 10200 4900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:Conn_01x02_Male J8
+L Conn_01x02_Male J8
 U 1 1 5BCD9ABE
 P 10800 4600
 F 0 "J8" H 10800 4700 50  0000 C CNN
@@ -904,7 +937,7 @@ F 3 "" H 10800 4600 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:C C19
+L C C19
 U 1 1 5BCDEC97
 P 7900 6100
 F 0 "C19" H 7925 6200 50  0000 L CNN
@@ -915,7 +948,7 @@ F 3 "" H 7900 6100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:R R7
+L R R7
 U 1 1 5BCDECA8
 P 9850 6200
 F 0 "R7" V 9930 6200 50  0000 C CNN
@@ -926,7 +959,7 @@ F 3 "" H 9850 6200 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:R R8
+L R R8
 U 1 1 5BCDECAE
 P 9850 5800
 F 0 "R8" V 9930 5800 50  0000 C CNN
@@ -937,7 +970,7 @@ F 3 "" H 9850 5800 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:C C20
+L C C20
 U 1 1 5BCDECB5
 P 9200 5750
 F 0 "C20" H 9225 5850 50  0000 L CNN
@@ -948,7 +981,7 @@ F 3 "" H 9200 5750 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L STM32-rescue:L L3
+L L L3
 U 1 1 5BCDECBD
 P 9550 5600
 F 0 "L3" V 9500 5600 50  0000 C CNN
@@ -959,7 +992,7 @@ F 3 "" H 9550 5600 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L STM32-rescue:C C21
+L C C21
 U 1 1 5BCDECCD
 P 10200 6000
 F 0 "C21" H 10225 6100 50  0000 L CNN
@@ -970,7 +1003,7 @@ F 3 "" H 10200 6000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L STM32-rescue:Conn_01x02_Male J10
+L Conn_01x02_Male J10
 U 1 1 5BCDECD7
 P 10800 5700
 F 0 "J10" H 10800 5800 50  0000 C CNN
@@ -981,7 +1014,7 @@ F 3 "" H 10800 5700 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:TPS564208 U3
+L TPS564208 U3
 U 1 1 5BCDEC8B
 P 8500 5800
 F 0 "U3" H 8500 6100 60  0000 C CNN
@@ -996,7 +1029,7 @@ Text Notes 10950 5650 0    60   ~ 0
 Text Notes 10900 4550 0    60   ~ 0
 3v3
 $Comp
-L STM32-rescue:LED D4
+L LED D4
 U 1 1 5BCE56BB
 P 10450 5800
 F 0 "D4" H 10450 5900 50  0000 C CNN
@@ -1007,7 +1040,7 @@ F 3 "" H 10450 5800 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L STM32-rescue:LED D5
+L LED D5
 U 1 1 5BCE5851
 P 10450 4700
 F 0 "D5" H 10450 4800 50  0000 C CNN
@@ -1018,7 +1051,7 @@ F 3 "" H 10450 4700 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L STM32-rescue:R R10
+L R R10
 U 1 1 5BCE59FC
 P 10450 5100
 F 0 "R10" V 10530 5100 50  0000 C CNN
@@ -1029,7 +1062,7 @@ F 3 "" H 10450 5100 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:R R9
+L R R9
 U 1 1 5BCE5FC3
 P 10450 6200
 F 0 "R9" V 10530 6200 50  0000 C CNN
@@ -1040,7 +1073,7 @@ F 3 "" H 10450 6200 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:Conn_01x05_Male J14
+L Conn_01x05_Male J14
 U 1 1 5BCE79FC
 P 11300 5850
 F 0 "J14" H 11300 6150 50  0000 C CNN
@@ -1051,7 +1084,7 @@ F 3 "" H 11300 5850 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L STM32-rescue:Conn_01x04_Male J13
+L Conn_01x04_Male J13
 U 1 1 5BCE8043
 P 10950 5100
 F 0 "J13" H 10950 5300 50  0000 C CNN
@@ -1088,7 +1121,7 @@ Wire Wire Line
 Wire Wire Line
 	2400 4750 2450 4750
 Wire Wire Line
-	2400 4300 2400 4750
+	2400 4300 2400 4800
 Connection ~ 2400 4750
 Wire Wire Line
 	2850 4350 2900 4350
@@ -1096,7 +1129,7 @@ Connection ~ 2850 4350
 Wire Wire Line
 	3700 4950 3700 5000
 Wire Wire Line
-	3450 4950 3700 4950
+	3450 4950 3950 4950
 Connection ~ 3450 4650
 Wire Wire Line
 	3950 4950 3950 4050
@@ -1108,17 +1141,18 @@ Wire Wire Line
 Wire Wire Line
 	3350 3100 3250 3100
 Wire Wire Line
-	2450 3100 2750 3100
+	2450 3100 2950 3100
 Wire Wire Line
-	2550 3400 2750 3400
+	2550 3400 2950 3400
 Wire Wire Line
 	3350 3400 3250 3400
 Wire Wire Line
 	3250 3950 3250 4050
 Wire Wire Line
 	3250 4050 2850 4050
+Connection ~ 2850 4050
 Wire Wire Line
-	2850 4050 2850 4300
+	2850 4050 2850 4750
 Wire Wire Line
 	3700 4150 4400 4150
 Wire Wire Line
@@ -1136,9 +1170,9 @@ Wire Wire Line
 Connection ~ 6950 2400
 Connection ~ 7200 2700
 Wire Wire Line
-	6700 2400 6950 2400
+	6700 2400 7200 2400
 Wire Wire Line
-	6950 2700 7050 2700
+	6950 2700 7200 2700
 Wire Wire Line
 	7200 2400 7200 2350
 Wire Wire Line
@@ -1154,7 +1188,7 @@ Wire Wire Line
 Wire Wire Line
 	5250 5650 5250 5600
 Wire Wire Line
-	6100 4850 6100 5100
+	6100 4850 6100 5150
 Wire Wire Line
 	6700 2400 6700 2950
 Wire Wire Line
@@ -1176,16 +1210,18 @@ Wire Wire Line
 	6550 5650 6550 5600
 Wire Wire Line
 	4550 2400 4550 2450
+Connection ~ 4300 2100
 Connection ~ 4550 2400
 Wire Wire Line
-	4300 2100 4550 2100
+	4300 2100 4800 2100
 Wire Wire Line
-	4300 2400 4550 2400
+	4300 2400 4900 2400
 Wire Wire Line
 	4550 2100 4550 2050
 Wire Wire Line
 	4800 2100 4800 2550
 Connection ~ 4550 2100
+Connection ~ 4900 2400
 Wire Wire Line
 	5200 2150 5200 2550
 Wire Wire Line
@@ -1207,14 +1243,14 @@ Wire Wire Line
 Wire Wire Line
 	2850 6900 2950 6900
 Wire Wire Line
-	3250 6150 3250 6750
+	3250 6150 3250 7200
 Connection ~ 3250 6750
 Connection ~ 3250 6900
 Wire Wire Line
 	1950 7150 3250 7150
 Connection ~ 3250 7150
 Wire Wire Line
-	1950 5400 1950 5450
+	1950 5400 1950 5550
 Wire Wire Line
 	2050 5550 2050 5450
 Wire Wire Line
@@ -1253,19 +1289,19 @@ Wire Wire Line
 Wire Wire Line
 	1250 2250 1300 2250
 Wire Wire Line
-	2150 3100 2150 3350
+	2150 3100 2150 3600
 Wire Wire Line
 	6100 5100 6450 5100
 Connection ~ 6100 5100
 Wire Wire Line
-	7550 4550 7650 4550
+	7550 4550 8050 4550
 Wire Wire Line
-	7900 4550 7900 4700
+	7900 4550 7900 4850
 Wire Wire Line
 	7900 4700 8050 4700
 Connection ~ 7900 4550
 Wire Wire Line
-	7550 4650 7600 4650
+	7550 4650 7700 4650
 Wire Wire Line
 	7700 4650 7700 5350
 Connection ~ 7900 4700
@@ -1276,12 +1312,12 @@ Wire Wire Line
 	9000 5350 9000 4950
 Connection ~ 9000 5350
 Wire Wire Line
-	9850 4850 9850 4900
+	9850 4850 9850 4950
 Wire Wire Line
 	9000 4650 9050 4650
 Connection ~ 9850 4900
 Wire Wire Line
-	9000 4500 9350 4500
+	9000 4500 9400 4500
 Wire Wire Line
 	9350 4650 9350 4500
 Connection ~ 9350 4500
@@ -1295,7 +1331,7 @@ Wire Wire Line
 	9850 5350 9850 5250
 Connection ~ 9850 5350
 Wire Wire Line
-	9700 4500 9850 4500
+	9700 4500 10600 4500
 Wire Wire Line
 	9850 4500 9850 4550
 Wire Wire Line
@@ -1306,11 +1342,11 @@ Wire Wire Line
 Connection ~ 10200 5350
 Connection ~ 10200 4500
 Wire Wire Line
-	7700 5350 7900 5350
+	7700 5350 10600 5350
 Wire Wire Line
-	10600 5350 10600 4900
+	10600 5350 10600 4600
 Wire Wire Line
-	7900 5650 7900 5800
+	7900 5650 7900 5950
 Wire Wire Line
 	7900 5800 8050 5800
 Connection ~ 7900 5650
@@ -1324,12 +1360,12 @@ Wire Wire Line
 	9000 6450 9000 6050
 Connection ~ 9000 6450
 Wire Wire Line
-	9850 5950 9850 6000
+	9850 5950 9850 6050
 Wire Wire Line
 	9000 5750 9050 5750
 Connection ~ 9850 6000
 Wire Wire Line
-	9000 5600 9350 5600
+	9000 5600 9400 5600
 Wire Wire Line
 	9350 5750 9350 5600
 Connection ~ 9350 5600
@@ -1343,7 +1379,7 @@ Wire Wire Line
 	9850 6450 9850 6350
 Connection ~ 9850 6450
 Wire Wire Line
-	9700 5600 9850 5600
+	9700 5600 10600 5600
 Wire Wire Line
 	9850 5600 9850 5650
 Wire Wire Line
@@ -1354,11 +1390,11 @@ Wire Wire Line
 Connection ~ 10200 6450
 Connection ~ 10200 5600
 Wire Wire Line
-	7700 6450 7900 6450
+	7700 6450 10600 6450
 Wire Wire Line
-	10600 6450 10600 5900
+	10600 6450 10600 5700
 Wire Wire Line
-	7650 5650 7900 5650
+	7650 5650 8050 5650
 Wire Wire Line
 	7650 5650 7650 4550
 Connection ~ 7650 4550
@@ -1384,11 +1420,16 @@ Wire Wire Line
 	10450 6350 10450 6450
 Connection ~ 10450 6450
 Wire Wire Line
-	10750 4900 10750 5000
+	10750 4900 10750 5200
 Connection ~ 10750 5000
 Connection ~ 10750 5100
+Connection ~ 10650 4200
+Connection ~ 10650 4100
+Connection ~ 10650 4000
+Connection ~ 10650 3900
 Connection ~ 10700 5900
 Connection ~ 10700 6000
+Connection ~ 10700 6100
 Wire Wire Line
 	10600 5900 10700 5900
 Connection ~ 10600 5900
@@ -1397,7 +1438,7 @@ Wire Wire Line
 Wire Wire Line
 	10600 5450 11100 5450
 Wire Wire Line
-	11100 5450 11100 5650
+	11100 5450 11100 6050
 Connection ~ 11100 5650
 Connection ~ 11100 5750
 Connection ~ 11100 5850
@@ -1409,8 +1450,24 @@ Wire Wire Line
 	10600 4500 10600 4200
 Wire Wire Line
 	10600 4200 10650 4200
+Wire Wire Line
+	10650 4200 10650 3500
 $Comp
-L STM32-rescue:Conn_01x03_Male J12
+L Conn_01x08_Male J15
+U 1 1 5BCEBE6C
+P 10850 3900
+F 0 "J15" H 10850 4300 50  0000 C CNN
+F 1 "Conn_01x08_Male" H 10850 3400 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 10850 3900 50  0001 C CNN
+F 3 "" H 10850 3900 50  0001 C CNN
+	1    10850 3900
+	-1   0    0    1   
+$EndComp
+Connection ~ 10650 3800
+Connection ~ 10650 3700
+Connection ~ 10650 3600
+$Comp
+L Conn_01x03_Male J12
 U 1 1 5BCEC4E6
 P 10900 6000
 F 0 "J12" H 10900 6200 50  0000 C CNN
@@ -1421,152 +1478,5 @@ F 3 "" H 10900 6000 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	10700 5900 10700 6000
-Wire Wire Line
-	2750 3400 2950 3400
-Wire Wire Line
-	2750 3100 2950 3100
-Wire Wire Line
-	2150 3350 2150 3600
-Wire Wire Line
-	2850 4300 2850 4350
-Wire Wire Line
-	2400 4750 2400 4800
-Wire Wire Line
-	2850 4350 2850 4750
-Wire Wire Line
-	3700 4950 3950 4950
-Wire Wire Line
-	6950 2400 7200 2400
-Wire Wire Line
-	7050 2700 7200 2700
-Wire Wire Line
-	4550 2400 4900 2400
-Wire Wire Line
-	4550 2100 4800 2100
-Wire Wire Line
-	3250 6750 3250 6900
-Wire Wire Line
-	3250 6900 3250 7150
-Wire Wire Line
-	3250 7150 3250 7200
-Wire Wire Line
-	1950 5450 1950 5550
-Wire Wire Line
-	6100 5100 6100 5150
-Wire Wire Line
-	7900 4550 8050 4550
-Wire Wire Line
-	7900 4700 7900 4850
-Wire Wire Line
-	7900 5350 9000 5350
-Wire Wire Line
-	9000 5350 9850 5350
-Wire Wire Line
-	9850 4900 9850 4950
-Wire Wire Line
-	9350 4500 9400 4500
-Wire Wire Line
-	9850 5350 10200 5350
-Wire Wire Line
-	9850 4500 10200 4500
-Wire Wire Line
-	10200 5350 10450 5350
-Wire Wire Line
-	10200 4500 10450 4500
-Wire Wire Line
-	7900 5650 8050 5650
-Wire Wire Line
-	7900 5800 7900 5950
-Wire Wire Line
-	7900 6450 9000 6450
-Wire Wire Line
-	9000 6450 9850 6450
-Wire Wire Line
-	9850 6000 9850 6050
-Wire Wire Line
-	9350 5600 9400 5600
-Wire Wire Line
-	9850 6450 10200 6450
-Wire Wire Line
-	9850 5600 10200 5600
-Wire Wire Line
-	10200 6450 10450 6450
-Wire Wire Line
-	10200 5600 10450 5600
-Wire Wire Line
-	7650 4550 7900 4550
-Wire Wire Line
-	7600 4650 7700 4650
-Wire Wire Line
-	10450 4500 10600 4500
-Wire Wire Line
-	10450 5350 10600 5350
-Wire Wire Line
-	10450 5600 10600 5600
-Wire Wire Line
-	10450 6450 10600 6450
-Wire Wire Line
-	10750 5000 10750 5100
-Wire Wire Line
-	10750 5100 10750 5200
-Wire Wire Line
-	10700 6000 10700 6100
-Wire Wire Line
-	10600 5900 10600 5700
-Wire Wire Line
-	11100 5650 11100 5750
-Wire Wire Line
-	11100 5750 11100 5850
-Wire Wire Line
-	11100 5850 11100 5950
-Wire Wire Line
-	11100 5950 11100 6050
-Wire Wire Line
-	10600 4900 10600 4600
-$Comp
-L Connector:Conn_01x05_Male J21
-U 1 1 5BD7255F
-P 10850 4000
-F 0 "J21" H 10823 3930 50  0000 R CNN
-F 1 "Conn_01x05_Male" H 10823 4021 50  0000 R CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x05_Pitch2.54mm" H 10850 4000 50  0001 C CNN
-F 3 "~" H 10850 4000 50  0001 C CNN
-	1    10850 4000
-	-1   0    0    1   
-$EndComp
-$Comp
-L Connector:Conn_01x03_Male J20
-U 1 1 5BD72742
-P 10850 3450
-F 0 "J20" H 10823 3380 50  0000 R CNN
-F 1 "Conn_01x03_Male" H 10823 3471 50  0000 R CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 10850 3450 50  0001 C CNN
-F 3 "~" H 10850 3450 50  0001 C CNN
-	1    10850 3450
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	10650 3350 10650 3450
-Wire Wire Line
-	10650 3450 10650 3550
-Connection ~ 10650 3450
-Wire Wire Line
-	10650 3550 10650 3800
-Connection ~ 10650 3550
-Wire Wire Line
-	10650 3800 10650 3900
-Connection ~ 10650 3800
-Wire Wire Line
-	10650 3900 10650 4000
-Connection ~ 10650 3900
-Wire Wire Line
-	10650 4000 10650 4100
-Connection ~ 10650 4000
-Wire Wire Line
-	10650 4100 10600 4100
-Wire Wire Line
-	10600 4100 10600 4200
-Connection ~ 10650 4100
-Connection ~ 10600 4200
+	10700 5900 10700 6100
 $EndSCHEMATC

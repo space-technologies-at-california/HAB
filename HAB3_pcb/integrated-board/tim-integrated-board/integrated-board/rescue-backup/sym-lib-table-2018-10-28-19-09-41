@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name STM32-rescue)(type Legacy)(uri ${KIPRJMOD}/STM32-rescue.lib)(options "")(descr ""))
+  (lib (name STM32F401RET6)(type Legacy)(uri /home/tim/Documents/stac/STM32F401RET6/STM32F401RET6.lib)(options "")(descr ""))
+)
