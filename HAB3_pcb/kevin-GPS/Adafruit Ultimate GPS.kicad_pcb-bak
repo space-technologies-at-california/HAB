@@ -11,7 +11,7 @@
 
   (page A4)
   (layers
-    (0 Top signal)
+    (0 Top signal hide)
     (1 In1.Cu power)
     (2 In2.Cu power)
     (31 Bottom signal)
@@ -19,11 +19,11 @@
     (33 F.Adhes user)
     (34 B.Paste user)
     (35 F.Paste user)
-    (36 B.SilkS user)
+    (36 B.SilkS user hide)
     (37 F.SilkS user)
     (38 B.Mask user)
-    (39 F.Mask user)
-    (40 Dwgs.User user)
+    (39 F.Mask user hide)
+    (40 Dwgs.User user hide)
     (41 Cmts.User user)
     (42 Eco1.User user)
     (43 Eco2.User user)
