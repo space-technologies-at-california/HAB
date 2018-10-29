@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name Tracksoar_v2_-eagle-import)(type Legacy)(uri ${KIPRJMOD}/Tracksoar_v2_-eagle-import.lib)(options "")(descr ""))
+)
