@@ -1,12 +1,12 @@
 G04 #@! TF.GenerationSoftware,KiCad,Pcbnew,5.0.1-33cea8e~68~ubuntu16.04.1*
-G04 #@! TF.CreationDate,2018-10-29T02:33:34-07:00*
+G04 #@! TF.CreationDate,2018-10-29T02:49:31-07:00*
 G04 #@! TF.ProjectId,integrated-board-design-2,696E74656772617465642D626F617264,rev?*
 G04 #@! TF.SameCoordinates,Original*
 G04 #@! TF.FileFunction,Copper,L1,Top,Signal*
 G04 #@! TF.FilePolarity,Positive*
 %FSLAX46Y46*%
 G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
-G04 Created by KiCad (PCBNEW 5.0.1-33cea8e~68~ubuntu16.04.1) date Mon 29 Oct 2018 02:33:34 AM PDT*
+G04 Created by KiCad (PCBNEW 5.0.1-33cea8e~68~ubuntu16.04.1) date Mon 29 Oct 2018 02:49:31 AM PDT*
 %MOMM*%
 %LPD*%
 G01*
@@ -5321,10 +5321,6 @@ X118315440Y-136454560D02*
 X117950000Y-136820000D01*
 X117950000Y-136820000D02*
 X117950000Y-139090000D01*
-D63*
-X201914203Y-145193068D02*
-X203164203Y-145193068D01*
-D62*
 G04 #@! TO.N,+3.3VA*
 X139817520Y-87105560D02*
 X139817520Y-88433840D01*
