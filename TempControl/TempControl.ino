@@ -58,8 +58,7 @@ void setup(void)
  */
 void loop(void)
 { 
-  get_ambient_temp(system_sensor,"board");
-  get_ambient_temp(outer_sensor, "wires");
+  get_ambient_temp(system_sensor,outer_sensor);
 }
 
 
@@ -75,7 +74,7 @@ String get_ambient_temp(DallasTemperature system_sensor, DallasTemperature outer
   // We use the function ByIndex, and as an example get the temperature from the first sensor only.
  // Serial.print("Temperature for the" + sensor_name +  " sensor (index 0) is: ");
   Serial.println(system_sensor.getTempCByIndex(0));
-  ambient_temp += sysetm_sensor.getTempCByIndex(0);
+  ambient_temp += system_sensor.getTempCByIndex(0);
 
   Serial.print("Requesting outer temperature...");
   outer_sensor.requestTemperatures(); // Send the command to get temperatures
@@ -87,6 +86,3 @@ String get_ambient_temp(DallasTemperature system_sensor, DallasTemperature outer
   ambient_temp += outer_sensor.getTempCByIndex(0);
   return ambient_temp;
 }
-
-
-
