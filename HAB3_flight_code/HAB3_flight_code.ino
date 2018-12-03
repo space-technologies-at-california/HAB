@@ -192,7 +192,6 @@ bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, Thermo
     Serial.print("External Temp: "); dataFile.print(thermocoupleData->external, DEC); dataFile.print(" C / ");
     Serial.print(thermocoupleData->externalFarenheit, DEC); dataFile.print(" F \n\n");
 
-    Serial.println("Wrote data to file and closed");
   }
   else {
     Serial.println("error opening the file!");
@@ -412,6 +411,29 @@ bool startRockBlock() {
  * the function `ISBDCallBack` will be called instead of loop.
  */
 void rockBlockSendData(const char* data) {
+
+  int quality1 = -1;
+  int quality2 = -1;
+  int quality3 = -1;
+
+  Serial.println("Determining antenna with best signal quality");
+  setMode(1);
+  delay(1000);
+  modem.getSignalQuality(quality1);
+  setMode(2);
+  delay(1000);
+  modem.getSignalQuality(quality2);
+  setMode(3);
+  delay(1000);
+  modem.getSignalQuality(quality3);
+
+  if (quality1 > quality2 && quality1 > quality3) { Serial.println("1st antenna is best."); setMode(1); }
+  else if (quality2 > quality1 && quality2 > quality3) { Serial.println("2nd antenna is best."); setMode(2); }
+  else { Serial.println("Third antenna is best."); setMode(3); }
+
+  Serial.println("Found antenna.");
+  
+  Serial.println("Attmepting to send message");
   int err = modem.sendSBDText(data);
   if (err != ISBD_SUCCESS)
   {
@@ -422,7 +444,9 @@ void rockBlockSendData(const char* data) {
   }
   else
   {
-    Serial.println("Hey, it worked!");
+    Serial.print("Message <");
+    Serial.print(data);
+    Serial.println("> transmitted");
   }
 }
 
@@ -431,8 +455,6 @@ void initializeSPI() {
   
   SPI.begin();
 
-  //Set SPI Pins here!
-
   //Set all chip select pins to high
   pinMode(altimeterChipSelect, OUTPUT);
   digitalWrite(altimeterChipSelect, HIGH);
@@ -440,6 +462,8 @@ void initializeSPI() {
   digitalWrite(thermocoupleChipSelect, HIGH);
   pinMode(sdCardChipSelect, OUTPUT);
   digitalWrite(sdCardChipSelect, HIGH);
+
+  Serial.println("Wrote all CS pins to high.");
 
   Serial.println("Success");
 }
@@ -450,6 +474,8 @@ void initializeSPI() {
 */
 bool ISBDCallback()
 {
+  Serial.println("Still trying to send data... storing data in a callback.");
+  
   GPSData gpsData;
   AltimeterData altimeterData;
   ThermocoupleData thermocoupleData;
