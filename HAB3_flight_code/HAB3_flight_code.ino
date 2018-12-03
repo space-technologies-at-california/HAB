@@ -412,6 +412,25 @@ bool startRockBlock() {
  * the function `ISBDCallBack` will be called instead of loop.
  */
 void rockBlockSendData(const char* data) {
+
+  Serial.println("Determining antenna with best signal quality");
+  setMode(1);
+  delay(1000);
+  int quality1 = modem.getSignalQuality();
+  setMode(2);
+  delay(1000);
+  int quality2 = modem.getSignalQuality();
+  setMode(3);
+  delay(1000);
+  int quality3 = modem.getSignalQuality();
+
+  if (quality1 > quality2 && quality1 > quality3) { setMode(1); }
+  else if (quality2 > quality1 && quality2 > quality3) { setMode(2); }
+  else { setMode(3); }
+
+  Serial.println("Found antenna.");
+  
+  Serial.println("Attmepting to send message");
   int err = modem.sendSBDText(data);
   if (err != ISBD_SUCCESS)
   {
@@ -422,7 +441,9 @@ void rockBlockSendData(const char* data) {
   }
   else
   {
-    Serial.println("Hey, it worked!");
+    Serial.print("Message <");
+    Serial.print(data);
+    Serial.println("> transmitted");
   }
 }
 
@@ -430,8 +451,6 @@ void initializeSPI() {
   Serial.println("Starting up SPI...");
   
   SPI.begin();
-
-  //Set SPI Pins here!
 
   //Set all chip select pins to high
   pinMode(altimeterChipSelect, OUTPUT);
