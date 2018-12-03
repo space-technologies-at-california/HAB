@@ -7,22 +7,22 @@
 #include "RTClib.h" 
 #include <SD.h>
 
-#define LOG_FILE "datalog.txt"
+#define LOG_FILE "hab3flight.txt"
 #define DATA_DELAY_TIME 10000
 
 #define DIAGNOSTICS false // Iridium Diagnostics
 #define GPSECHO false     // GPS Diagnostics
 
 //Define serial communication pins
-#define IridiumRX D2
-#define IridiumTX D10
-#define GPSRX D3
-#define GPSTX D4
+#define IridiumRX PA12
+#define IridiumTX PA11
+#define GPSRX D2
+#define GPSTX D10 
 
 #define IridiumSleep D6
 
-#define CTR1 D5
-#define CTR2 A3
+#define CTR1 D3
+#define CTR2 D4
 
 //Define SPI slave select pins
 #define altimeterChipSelect D7 // IMPORTANT!!!!! IF THIS IS CHANGED, YOU MUST CHANGE chipSelect IN IntersemaBaro.h
@@ -146,11 +146,15 @@ bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, Thermo
     dataFile.close();
     Serial.println("Wrote data to file and closed");
 
+  }
+  else {
+    Serial.println("error opening the file!");
+  }
 
-    Serial.print("=======================================================================\n\n");
-    Serial.print(rtcData->hour, DEC); dataFile.print(":");
-    Serial.print(rtcData->minute, DEC); dataFile.print(":");
-    Serial.print(rtcData->second, DEC); dataFile.print("\n");
+  Serial.print("=======================================================================\n\n");
+    Serial.print("Timestamp: "); Serial.print(rtcData->hour, DEC); Serial.print(":");
+    Serial.print(rtcData->minute, DEC); Serial.print(":");
+    Serial.print(rtcData->second, DEC); Serial.print("\n\n");
 
     Serial.print("GPS Data || ");
     /*
@@ -160,13 +164,13 @@ bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, Thermo
       float speed, latitude, longitude, altitude, angle;
     }
     */
-    Serial.print("Fix: "); dataFile.print( (int) gpsData->fix, DEC ); dataFile.print(", ");
-    Serial.print("Fix Quality: "); dataFile.print((int) gpsData->fixQuality, DEC); dataFile.print(", ");
-    Serial.print("Speed: "); dataFile.print(gpsData->speed, DEC); dataFile.print(" Knots\n ");
-    Serial.print("Longitude: "); dataFile.print(gpsData->longitude, DEC); dataFile.print(", ");
-    Serial.print("Latitude: "); dataFile.print(gpsData->latitude, DEC); dataFile.print(", ");
-    Serial.print("Altitude: "); dataFile.print(gpsData->altitude, DEC); dataFile.print(", ");
-    Serial.print("Angle: "); dataFile.print(gpsData->angle, DEC); dataFile.print("\n\n");
+    Serial.print("Fix: "); Serial.print( (int) gpsData->fix, DEC ); Serial.print(", ");
+    Serial.print("Fix Quality: "); Serial.print((int) gpsData->fixQuality, DEC); Serial.print(", ");
+    Serial.print("Speed: "); Serial.print(gpsData->speed, DEC); Serial.print(" Knots\n");
+    Serial.print("Longitude: "); Serial.print(gpsData->longitude, DEC); Serial.print(", ");
+    Serial.print("Latitude: "); Serial.print(gpsData->latitude, DEC); Serial.print(", ");
+    Serial.print("Altitude: "); Serial.print(gpsData->altitude, DEC); Serial.print(", ");
+    Serial.print("Angle: "); Serial.print(gpsData->angle, DEC); Serial.print("\n\n");
 
     Serial.print("Altimeter Data || ");
     /*
@@ -175,12 +179,12 @@ bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, Thermo
       int32_t pressure1, pressure2, temperature1, temperature2;
     }
     */
-    Serial.print("Height (1st/2nd): "); dataFile.print(altimeterData->heightMeters1, DEC); 
-    Serial.print(" / "); dataFile.print(altimeterData->heightMeters2, DEC); dataFile.print(" Meters\n ");
-    Serial.print("Pressure (1st/2nd): "); dataFile.print(altimeterData->pressure1, DEC); 
-    Serial.print(" / "); dataFile.print(altimeterData->pressure2, DEC); dataFile.print(" Pa, ");
-    Serial.print("Temperature (1st/2nd): "); dataFile.print(altimeterData->temperature1, DEC); 
-    Serial.print(" / "); dataFile.print(altimeterData->temperature2, DEC); dataFile.print(" C \n\n");
+    Serial.print("Height (1st/2nd): "); Serial.print(altimeterData->heightMeters1, DEC); 
+    Serial.print(" / "); Serial.print(altimeterData->heightMeters2, DEC); Serial.print(" Meters\n");
+    Serial.print("Pressure (1st/2nd): "); Serial.print(altimeterData->pressure1, DEC); 
+    Serial.print(" / "); Serial.print(altimeterData->pressure2, DEC); Serial.print(" Pa, ");
+    Serial.print("Temperature (1st/2nd): "); Serial.print(altimeterData->temperature1, DEC); 
+    Serial.print(" / "); Serial.print(altimeterData->temperature2, DEC); Serial.print(" C \n\n");
 
     Serial.print("Thermocouple Data || ");
     /*
@@ -188,15 +192,9 @@ bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, Thermo
      double internal, external, externalFarenheit;
     }
     */
-    Serial.print("Internal Temp: "); dataFile.print(thermocoupleData->internal, DEC); dataFile.print(" C, ");
-    Serial.print("External Temp: "); dataFile.print(thermocoupleData->external, DEC); dataFile.print(" C / ");
-    Serial.print(thermocoupleData->externalFarenheit, DEC); dataFile.print(" F \n\n");
-
-  }
-  else {
-    Serial.println("error opening the file!");
-    return false;
-  }
+    Serial.print("Internal Temp: "); Serial.print(thermocoupleData->internal, DEC); Serial.print(" C, ");
+    Serial.print("External Temp: "); Serial.print(thermocoupleData->external, DEC); Serial.print(" C / ");
+    Serial.print(thermocoupleData->externalFarenheit, DEC); Serial.print(" F \n\n");
 
   return true;
 }
@@ -211,6 +209,7 @@ bool startSD() {
     return false;
   }
   Serial.println("card initialized.");
+  return true;
 }
 
 /**
@@ -376,14 +375,14 @@ bool startRockBlock() {
   err = modem.begin();
   if (err != ISBD_SUCCESS)
   {
-    Serial.print("Begin failed: error ");
+    Serial.print("Begin failed: error =========================================================== ");
     Serial.println(err);
     if (err == ISBD_NO_MODEM_DETECTED)
-      Serial.println("No modem detected: check wiring.");
+      Serial.println("No modem detected: check wiring=============================================.");
     return false;
   }
   else {
-    Serial.println("Modem started successfully");
+    Serial.println("Modem started successfully=======================================================================================");
   }
 
 
@@ -427,11 +426,10 @@ void rockBlockSendData(const char* data) {
   delay(1000);
   modem.getSignalQuality(quality3);
 
-  if (quality1 > quality2 && quality1 > quality3) { Serial.println("1st antenna is best."); setMode(1); }
-  else if (quality2 > quality1 && quality2 > quality3) { Serial.println("2nd antenna is best."); setMode(2); }
-  else { Serial.println("Third antenna is best."); setMode(3); }
+  if (quality1 > quality2 && quality1 > quality3) { Serial.print("1st antenna is best, with signal quality "); Serial.println(quality1); setMode(1); }
+  else if (quality2 > quality1 && quality2 > quality3) { Serial.print("2nd antenna is best, with signal quality "); Serial.println(quality2); setMode(2); }
+  else { Serial.print("Third antenna is best, with signal quality "); Serial.println(quality3); setMode(3); }
 
-  Serial.println("Found antenna.");
   
   Serial.println("Attmepting to send message");
   int err = modem.sendSBDText(data);
@@ -472,9 +470,9 @@ void initializeSPI() {
  * This function will run on a loop when the RockBLOCK is attempting 
  * to send data. We just collect data and then write it to the data log.
 */
-bool ISBDCallback()
+/*bool ISBDCallback()
 {
-  Serial.println("Still trying to send data... storing data in a callback.");
+  Serial.println("Still trying to send data... STORING DATA IN A CALLBACK");
   
   GPSData gpsData;
   AltimeterData altimeterData;
@@ -487,7 +485,7 @@ bool ISBDCallback()
   delay(DATA_DELAY_TIME);
   
   return true;
-}
+}*/
 
 #if DIAGNOSTICS
 void ISBDConsoleCallback(IridiumSBD *device, char c)
@@ -503,6 +501,9 @@ void ISBDDiagsCallback(IridiumSBD *device, char c)
 
 void setup()
 {
+  pinMode(CTR1, OUTPUT);
+  pinMode(CTR2, OUTPUT);
+  
   Serial.begin(115200);
   
   initializeSPI();
@@ -532,6 +533,8 @@ int rockBlockSendRate = 60000;
 
 void loop()
 {
+
+  Serial.println("Looping");
   GPSData gpsData;
   AltimeterData altimeterData;
   ThermocoupleData thermocoupleData;
@@ -569,6 +572,8 @@ void loop()
     dataString.concat(':'); dataString.concat(altitude);
     dataString.concat(':'); dataString.concat(externalTemp);
 
+    Serial.print("Attmepting to send ################################################################################################");
+    Serial.println(dataString);
     rockBlockSendData(dataString.c_str()); // Send the string data to the rock block
 
     rockBlockSendTime = millis() + rockBlockSendRate; // Only send data through rock block once every minute.
