@@ -413,16 +413,20 @@ bool startRockBlock() {
  */
 void rockBlockSendData(const char* data) {
 
+  int quality1 = -1;
+  int quality2 = -1;
+  int quality3 = -1;
+
   Serial.println("Determining antenna with best signal quality");
   setMode(1);
   delay(1000);
-  int quality1 = modem.getSignalQuality();
+  modem.getSignalQuality(quality1);
   setMode(2);
   delay(1000);
-  int quality2 = modem.getSignalQuality();
+  modem.getSignalQuality(quality2);
   setMode(3);
   delay(1000);
-  int quality3 = modem.getSignalQuality();
+  modem.getSignalQuality(quality3);
 
   if (quality1 > quality2 && quality1 > quality3) { setMode(1); }
   else if (quality2 > quality1 && quality2 > quality3) { setMode(2); }
