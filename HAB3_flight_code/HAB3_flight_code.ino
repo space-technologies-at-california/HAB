@@ -8,6 +8,7 @@
 #include <SD.h>
 
 #define LOG_FILE "datalog.txt"
+#define DATA_DELAY_TIME 10000
 
 #define DIAGNOSTICS false // Iridium Diagnostics
 #define GPSECHO false     // GPS Diagnostics
@@ -18,17 +19,22 @@
 #define GPSRX D3
 #define GPSTX D4
 
+#define IridiumSleep D6
+
+#define CTR1 D5
+#define CTR2 A3
+
 //Define SPI slave select pins
 #define altimeterChipSelect D7 // IMPORTANT!!!!! IF THIS IS CHANGED, YOU MUST CHANGE chipSelect IN IntersemaBaro.h
-#define thermocoupleChipSelect D14
+#define thermocoupleChipSelect D9
 #define sdCardChipSelect D8
 
 // Declare Serial communication
-HardwareSerial GPSSerial(D3, D4);
+HardwareSerial GPSSerial(GPSRX, GPSTX);
 HardwareSerial IridiumSerial(IridiumRX, IridiumTX);
 
 // Declare peripheral objects
-IridiumSBD modem(IridiumSerial);
+IridiumSBD modem(IridiumSerial, IridiumSleep);
 Adafruit_GPS GPS(&GPSSerial);
 Intersema::BaroPressure_MS5607B baro;
 Adafruit_MAX31855 thermocouple(thermocoupleChipSelect);
@@ -54,6 +60,18 @@ struct AltimeterData {
   double heightMeters1, heightMeters2;
   int32_t pressure1, pressure2, temperature1, temperature2;
 };
+
+void setMode(int rf) {
+  digitalWrite(CTR1, LOW);
+  digitalWrite(CTR2, LOW);
+
+  if (rf == 1) { digitalWrite(CTR1, HIGH); }
+  else if (rf == 2) { digitalWrite(CTR2, HIGH); }
+  else if (rf == 3) {
+    digitalWrite(CTR1, HIGH);
+    digitalWrite(CTR2, HIGH);
+  }
+}
 
 /**
  * Buffers all peripheral data into the given structs.
@@ -126,6 +144,54 @@ bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, Thermo
 
 
     dataFile.close();
+    Serial.println("Wrote data to file and closed");
+
+
+    Serial.print("=======================================================================\n\n");
+    Serial.print(rtcData->hour, DEC); dataFile.print(":");
+    Serial.print(rtcData->minute, DEC); dataFile.print(":");
+    Serial.print(rtcData->second, DEC); dataFile.print("\n");
+
+    Serial.print("GPS Data || ");
+    /*
+    struct GPSData {
+      bool fix;
+      uint8_t fixQuality, satellites;
+      float speed, latitude, longitude, altitude, angle;
+    }
+    */
+    Serial.print("Fix: "); dataFile.print( (int) gpsData->fix, DEC ); dataFile.print(", ");
+    Serial.print("Fix Quality: "); dataFile.print((int) gpsData->fixQuality, DEC); dataFile.print(", ");
+    Serial.print("Speed: "); dataFile.print(gpsData->speed, DEC); dataFile.print(" Knots\n ");
+    Serial.print("Longitude: "); dataFile.print(gpsData->longitude, DEC); dataFile.print(", ");
+    Serial.print("Latitude: "); dataFile.print(gpsData->latitude, DEC); dataFile.print(", ");
+    Serial.print("Altitude: "); dataFile.print(gpsData->altitude, DEC); dataFile.print(", ");
+    Serial.print("Angle: "); dataFile.print(gpsData->angle, DEC); dataFile.print("\n\n");
+
+    Serial.print("Altimeter Data || ");
+    /*
+    struct AltimeterData {
+      double heightMeters1, heightMeters2;
+      int32_t pressure1, pressure2, temperature1, temperature2;
+    }
+    */
+    Serial.print("Height (1st/2nd): "); dataFile.print(altimeterData->heightMeters1, DEC); 
+    Serial.print(" / "); dataFile.print(altimeterData->heightMeters2, DEC); dataFile.print(" Meters\n ");
+    Serial.print("Pressure (1st/2nd): "); dataFile.print(altimeterData->pressure1, DEC); 
+    Serial.print(" / "); dataFile.print(altimeterData->pressure2, DEC); dataFile.print(" Pa, ");
+    Serial.print("Temperature (1st/2nd): "); dataFile.print(altimeterData->temperature1, DEC); 
+    Serial.print(" / "); dataFile.print(altimeterData->temperature2, DEC); dataFile.print(" C \n\n");
+
+    Serial.print("Thermocouple Data || ");
+    /*
+    struct ThermocoupleData {
+     double internal, external, externalFarenheit;
+    }
+    */
+    Serial.print("Internal Temp: "); dataFile.print(thermocoupleData->internal, DEC); dataFile.print(" C, ");
+    Serial.print("External Temp: "); dataFile.print(thermocoupleData->external, DEC); dataFile.print(" C / ");
+    Serial.print(thermocoupleData->externalFarenheit, DEC); dataFile.print(" F \n\n");
+
     Serial.println("Wrote data to file and closed");
   }
   else {
@@ -305,6 +371,8 @@ bool startRockBlock() {
   
   IridiumSerial.begin(19200);
 
+  setMode(3);
+
   Serial.println("Starting modem...");
   err = modem.begin();
   if (err != ISBD_SUCCESS)
@@ -314,6 +382,9 @@ bool startRockBlock() {
     if (err == ISBD_NO_MODEM_DETECTED)
       Serial.println("No modem detected: check wiring.");
     return false;
+  }
+  else {
+    Serial.println("Modem started successfully");
   }
 
 
@@ -386,6 +457,8 @@ bool ISBDCallback()
 
   getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData);  
   writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData);
+
+  delay(DATA_DELAY_TIME);
   
   return true;
 }
@@ -408,12 +481,23 @@ void setup()
   
   initializeSPI();
 
-  startRockBlock();
+  Serial.println("About to start GPS");
   startGPS();
+
+  Serial.println("About to start Altimeter");
   startAltimeter();
+
+  Serial.println("About to start Thermocouple");
   startThermocouple();
+
+  Serial.println("About to start RTC");
   startRTC();
+
+  Serial.println("About to start SD");
   startSD();
+
+  Serial.println("About to start RockBLOCK");
+  startRockBlock();
   
 }
 
@@ -464,6 +548,6 @@ void loop()
     rockBlockSendTime = millis() + rockBlockSendRate; // Only send data through rock block once every minute.
   }
 
-  delay(10000);
+  delay(DATA_DELAY_TIME);
 
 }
