@@ -7,7 +7,7 @@
 #include "RTClib.h" 
 #include <SD.h>
 
-#define LOG_FILE "hab3flight.txt"
+#define LOG_FILE "datalog.txt"
 #define DATA_DELAY_TIME 10000
 
 #define DIAGNOSTICS false // Iridium Diagnostics
@@ -298,28 +298,39 @@ bool startAltimeter() {
   baro.init();
 }
 
+uint32_t timer = millis();
+
 /**
  * Will fill a GPSData struct with the current GPS data,
  * or will return false if a fix is not found on the GPS
  * or if it could not parse the GPS message.
 */
 bool getGPSData(GPSData* data) {
+  char c = GPS.read();
   Serial.print("Checking if GPS has data...");
   if (GPS.newNMEAreceived()) {
     if (!GPS.parse(GPS.lastNMEA())) { Serial.println(" no data as of yet"); return false; }
   }
-  if (!GPS.fix) { Serial.println(" there is no fix"); return false; }
+  if (timer > millis()) timer = millis();
+     
+  // approximately every 2 seconds or so, print out the current stats
+  if (millis() - timer > 2000) {
+  if (GPS.fix) {  
 
-  Serial.println(" it does, reading it now");
-  data->fix         =   GPS.fix;
-  data->fixQuality  =   GPS.fixquality;
-  data->satellites  =   GPS.satellites;
-  data->latitude    =   GPS.latitude;
-  data->longitude   =   GPS.longitude;
-  data->speed       =   GPS.speed;
-  data->angle       =   GPS.angle;
-  data->altitude    =   GPS.altitude; 
-
+    //Serial.println(" it does, reading it now");
+    data->fix         =   (int)GPS.fix;
+    data->fixQuality  =   GPS.fixquality;
+    data->satellites  =   GPS.satellites;
+    data->latitude    =   GPS.latitude;
+    data->longitude   =   GPS.longitude;
+    data->speed       =   GPS.speed;
+    data->angle       =   GPS.angle;
+    data->altitude    =   GPS.altitude; 
+  }
+  else {
+    Serial.println(" there is no fix"); return false;
+  }
+  }
   return true;
 }
 
@@ -426,10 +437,16 @@ void rockBlockSendData(const char* data) {
   delay(1000);
   modem.getSignalQuality(quality3);
 
-  if (quality1 > quality2 && quality1 > quality3) { Serial.print("1st antenna is best, with signal quality "); Serial.println(quality1); setMode(1); }
-  else if (quality2 > quality1 && quality2 > quality3) { Serial.print("2nd antenna is best, with signal quality "); Serial.println(quality2); setMode(2); }
-  else { Serial.print("Third antenna is best, with signal quality "); Serial.println(quality3); setMode(3); }
+  int bestQuality;
 
+  if (quality1 > quality2 && quality1 > quality3) { Serial.print("1st antenna is best, with signal quality "); Serial.println(quality1); setMode(1); bestQuality = quality1; }
+  else if (quality2 > quality1 && quality2 > quality3) { Serial.print("2nd antenna is best, with signal quality "); Serial.println(quality2); setMode(2); bestQuality = quality2; }
+  else { Serial.print("Third antenna is best, with signal quality "); Serial.println(quality3); setMode(3); bestQuality = quality3; }
+
+  if (bestQuality == 0) {
+    Serial.println("No antenna can transmit... skipping.");
+    return;
+  }
   
   Serial.println("Attmepting to send message");
   int err = modem.sendSBDText(data);
@@ -470,22 +487,24 @@ void initializeSPI() {
  * This function will run on a loop when the RockBLOCK is attempting 
  * to send data. We just collect data and then write it to the data log.
 */
-/*bool ISBDCallback()
+bool ISBDCallback()
 {
-  Serial.println("Still trying to send data... STORING DATA IN A CALLBACK");
+  //Serial.println("Still trying to send data... STORING DATA IN A CALLBACK");
+  char c = GPS.read();
+  if (GPS.newNMEAreceived()) {
+    // a tricky thing here is if we print the NMEA sentence, or data
+    // we end up not listening and catching other sentences!
+    // so be very wary if using OUTPUT_ALLDATA and trytng to print out data
+    //Serial.println(GPS.lastNMEA()); // this also sets the newNMEAreceived() flag to false
+    if (!GPS.parse(GPS.lastNMEA())) // this also sets the newNMEAreceived() flag to false
+      return true; // we can fail to parse a sentence in which case we should just wait for another
+  }
   
-  GPSData gpsData;
-  AltimeterData altimeterData;
-  ThermocoupleData thermocoupleData;
-  RTCData rtcData;
 
-  getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData);  
-  writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData);
-
-  delay(DATA_DELAY_TIME);
+  //delay(DATA_DELAY_TIME);
   
   return true;
-}*/
+}
 
 #if DIAGNOSTICS
 void ISBDConsoleCallback(IridiumSBD *device, char c)
@@ -541,13 +560,13 @@ void loop()
   RTCData rtcData;
 
   getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData);  
-  writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData);
+  //writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData);
 
   //Should we send data to ground?
   if (millis() > rockBlockSendTime) {
     
     /* The data will be written to a dataString in this format:
-    <Hour>:<Minute>:<FixQuality>:<Speed>:<Angle>:<Lon>:<Lat>:<Altitude>:<ExternalTemp>
+    <TripNumber>:<Hour>:<Minute>:<FixQuality>:<Speed>:<Angle>:<Lon>:<Lat>:<Altitude>:<ExternalTemp>
     */
 
     Serial.println("It's time to send a message from the rockblock");
@@ -562,7 +581,8 @@ void loop()
     String altitude = String((int) altimeterData.heightMeters1, DEC);
     String externalTemp = String((int) thermocoupleData.externalFarenheit, DEC);
 
-    String dataString = hour;
+    String dataString = String("202");
+    dataString.concat(':'); dataString.concat(hour);
     dataString.concat(':'); dataString.concat(minute);
     dataString.concat(':'); dataString.concat(fixQuality);
     dataString.concat(':'); dataString.concat(speed);
