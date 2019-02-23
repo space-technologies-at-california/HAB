@@ -1,3 +1,8 @@
+#include <WiFi.h>
+#include <WiFiServer.h>
+#include <WiFiUdp.h>
+#include <WiFiClient.h>
+
 /* trackuino copyright (C) 2010  EA5HAV Javi
  *
  * This program is free software; you can redistribute it and/or
@@ -43,8 +48,9 @@
 #include "power.h"
 #include "sensors_avr.h"
 #include "sensors_pic32.h"
+#ifdef __AVR__
 #include <avr/wdt.h>
-
+#endif
 // Arduino/AVR libs
 #if (ARDUINO + 1) >= 100
 #  include <Arduino.h>

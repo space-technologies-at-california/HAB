@@ -2,21 +2,30 @@
 
 #include <SPI.h>
 
+const int chipSelect = D10;
+SPISettings settings = SPISettings(100000, MSBFIRST, SPI_MODE0);
+
+
 void setup() {
     
-    Serial.begin(115200);
+    Serial.begin(9600);
     Serial.println("=====Starting=====");
+    SPI.begin(chipSelect);
+    //SPI.setClockDivider(SPI_CLOCK_DIV8);
 
-    digitalWrite(SS, HIGH);
-    SPI.begin();
-    SPI.setClockDivider(SPI_CLOCK_DIV8);
+    pinMode(chipSelect, OUTPUT);
+    digitalWrite(chipSelect, HIGH);
 
 }
 
 byte transfer(const byte command) {
 
+    digitalWrite(chipSelect, LOW);
+    SPI.beginTransaction(settings);
     byte a = SPI.transfer(command);
-    delay(1);
+    SPI.endTransaction();
+    digitalWrite(chipSelect, HIGH);
+    delay(10);
     return a;
 }
 
@@ -25,7 +34,6 @@ void loop() {
   char gps_aprs_lat[9];
   char gps_aprs_lon[10];
   byte valid;
-  digitalWrite(SS,LOW);
   transfer('k');
   valid = transfer('A');
   input[0] = transfer('B');
@@ -82,7 +90,5 @@ void loop() {
     Serial.print(" ");
   }
   Serial.println();
-  digitalWrite(SS,HIGH);
-  delay(20000);
+  delay(5000);
 }
-

@@ -11,7 +11,9 @@
 #define INTERSEMA_BARO_H
 
 #include <Wire.h>
+#ifdef __AVR__
 #include <util/delay.h>
+#endif
 #include "Arduino.h"
 
 namespace Intersema
@@ -108,7 +110,7 @@ protected:
           const double L_b[N] = {-0.0065, 0, 0.001, 0.0028, 0};
     
           if (pressurePa > P_b[0]) {
-            return 0; }
+            return 0; 
           }
       
           int i;
@@ -455,6 +457,3 @@ int32_t ConvertTemperature2(uint32_t temperature)
 
 } // namespace Intersema
 #endif
-
-
-

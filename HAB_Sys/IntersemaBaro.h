@@ -11,7 +11,7 @@
 #define INTERSEMA_BARO_H
 
 #include <Wire.h>
-#include <util/delay.h>
+#include <utils/delay.h>
 #include "Arduino.h"
 
 namespace Intersema
@@ -486,6 +486,3 @@ int32_t ConvertTemperature2(uint32_t temperature)
 
 } // namespace Intersema
 #endif
-
-
-
