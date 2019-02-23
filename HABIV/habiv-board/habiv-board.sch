@@ -2,7 +2,7 @@ EESchema Schematic File Version 4
 LIBS:habiv-board-cache
 EELAYER 26 0
 EELAYER END
-$Descr A4 11693 8268
+$Descr C 22000 17000
 encoding utf-8
 Sheet 1 1
 Title ""
@@ -14,2478 +14,2490 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Label -2250 -1500 0    10   ~ 0
+Text Label 2700 3000 0    10   ~ 0
 GND
-Text Label -1950 -1500 0    10   ~ 0
-GND
-Wire Wire Line
-	-3050 -2450 -3050 -2550
-Text Label -3050 -2450 0    10   ~ 0
+Text Label 3000 3000 0    10   ~ 0
 GND
 Wire Wire Line
-	-2000 -3050 -2500 -3050
-Text Label -2000 -3050 0    10   ~ 0
+	1900 2050 1900 1950
+Text Label 1900 2050 0    10   ~ 0
 GND
 Wire Wire Line
-	-1700 -2950 -2500 -2950
-Text Label -1700 -2950 0    10   ~ 0
+	2950 1450 2450 1450
+Text Label 2950 1450 0    10   ~ 0
+GND
+Wire Wire Line
+	3250 1550 2450 1550
+Text Label 3250 1550 0    10   ~ 0
 VCC
 Wire Wire Line
-	-3050 -3550 -3050 -3350
-Text Label -3050 -3550 0    10   ~ 0
+	1900 950  1900 1150
+Text Label 1900 950  0    10   ~ 0
 VCC
 Wire Wire Line
-	-3450 -1750 -3750 -1750
-Text Label -3750 -1750 0    70   ~ 0
+	1500 2750 1200 2750
+Text Label 1200 2750 0    70   ~ 0
 SDA
 Wire Wire Line
-	-2500 -2850 -1900 -2850
-Text Label -2200 -2850 0    70   ~ 0
+	2450 1650 3050 1650
+Text Label 2750 1650 0    70   ~ 0
 SDA
 Wire Wire Line
-	-3450 -1850 -3750 -1850
-Text Label -3750 -1850 0    70   ~ 0
+	1500 2650 1200 2650
+Text Label 1200 2650 0    70   ~ 0
 SCL
 Wire Wire Line
-	-2500 -2750 -1900 -2750
-Text Label -2200 -2750 0    70   ~ 0
+	2450 1750 3050 1750
+Text Label 2750 1750 0    70   ~ 0
 SCL
 Wire Wire Line
-	-1950 -1850 -2250 -1850
+	3000 2650 2700 2650
 Wire Wire Line
-	-2500 -2650 -1900 -2650
-Text Label -2200 -2650 0    70   ~ 0
+	2450 1850 3050 1850
+Text Label 2750 1850 0    70   ~ 0
 SQW
 Wire Wire Line
-	-3450 -1950 -3750 -1950
-Text Label -3750 -1950 0    70   ~ 0
+	1500 2550 1200 2550
+Text Label 1200 2550 0    70   ~ 0
 SQW
 Wire Wire Line
-	-3450 -2050 -3450 -2850
+	1500 2450 1500 1650
 Wire Wire Line
-	-3450 -2850 -3050 -2850
+	1500 1650 1900 1650
 Wire Wire Line
-	-3050 -2850 -3050 -2950
+	1900 1650 1900 1550
 $Comp
-L habiv-board-rescue:GND-real_time_clock-eagle-import #GND?
+L habiv-board-rescue:GND-real_time_clock-eagle-import #GND03
 U 1 0 12C6E2A1
-P -2250 -1400
-F 0 "#GND?" H -2250 -1400 50  0001 C CNN
-F 1 "GND" H -2350 -1500 59  0000 L BNN
-F 2 "" H -2250 -1400 50  0001 C CNN
-F 3 "" H -2250 -1400 50  0001 C CNN
-	1    -2250 -1400
+P 2700 3100
+F 0 "#GND03" H 2700 3100 50  0001 C CNN
+F 1 "GND" H 2600 3000 59  0000 L BNN
+F 2 "" H 2700 3100 50  0001 C CNN
+F 3 "" H 2700 3100 50  0001 C CNN
+	1    2700 3100
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:GND-real_time_clock-eagle-import #GND?
+L habiv-board-rescue:GND-real_time_clock-eagle-import #GND04
 U 1 0 CBB20165
-P -1950 -1400
-F 0 "#GND?" H -1950 -1400 50  0001 C CNN
-F 1 "GND" H -2050 -1500 59  0000 L BNN
-F 2 "" H -1950 -1400 50  0001 C CNN
-F 3 "" H -1950 -1400 50  0001 C CNN
-	1    -1950 -1400
+P 3000 3100
+F 0 "#GND04" H 3000 3100 50  0001 C CNN
+F 1 "GND" H 2900 3000 59  0000 L BNN
+F 2 "" H 3000 3100 50  0001 C CNN
+F 3 "" H 3000 3100 50  0001 C CNN
+	1    3000 3100
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:HEADER-1X576MIL-real_time_clock-eagle-import JP?
+L habiv-board-rescue:HEADER-1X576MIL-real_time_clock-eagle-import JP1
 U 1 0 BAFA783C
-P -2600 -2850
-F 0 "JP?" H -2850 -2525 59  0000 L BNN
-F 1 "HEADER-1X576MIL" H -3400 -3250 59  0000 L BNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H -2600 -2850 50  0001 C CNN
-F 3 "" H -2600 -2850 50  0001 C CNN
-	1    -2600 -2850
+P 2350 1650
+F 0 "JP1" H 2100 1975 59  0000 L BNN
+F 1 "HEADER-1X576MIL" H 1550 1250 59  0000 L BNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 2350 1650 50  0001 C CNN
+F 3 "" H 2350 1650 50  0001 C CNN
+	1    2350 1650
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:CAP_CERAMIC0805-NOOUTLINE-real_time_clock-eagle-import C?
+L habiv-board-rescue:CAP_CERAMIC0805-NOOUTLINE-real_time_clock-eagle-import C2
 U 1 0 E7D47EA7
-P -3050 -2650
-F 0 "C?" V -3140 -2601 50  0000 C CNN
-F 1 "10uF" V -2960 -2601 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H -3050 -2650 50  0001 C CNN
-F 3 "" H -3050 -2650 50  0001 C CNN
-	1    -3050 -2650
+P 1900 1850
+F 0 "C2" V 1810 1899 50  0000 C CNN
+F 1 "10uF" V 1990 1899 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 1900 1850 50  0001 C CNN
+F 3 "" H 1900 1850 50  0001 C CNN
+	1    1900 1850
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:GND-real_time_clock-eagle-import #GND?
+L habiv-board-rescue:GND-real_time_clock-eagle-import #GND02
 U 1 0 4877C9E2
-P -3050 -2350
-F 0 "#GND?" H -3050 -2350 50  0001 C CNN
-F 1 "GND" H -3150 -2450 59  0000 L BNN
-F 2 "" H -3050 -2350 50  0001 C CNN
-F 3 "" H -3050 -2350 50  0001 C CNN
-	1    -3050 -2350
+P 1900 2150
+F 0 "#GND02" H 1900 2150 50  0001 C CNN
+F 1 "GND" H 1800 2050 59  0000 L BNN
+F 2 "" H 1900 2150 50  0001 C CNN
+F 3 "" H 1900 2150 50  0001 C CNN
+	1    1900 2150
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:VCC-real_time_clock-eagle-import #P+?
+L habiv-board-rescue:VCC-real_time_clock-eagle-import #P+03
 U 1 0 6A081B6E
-P -1600 -2950
-F 0 "#P+?" H -1600 -2950 50  0001 C CNN
-F 1 "VCC" V -1700 -2950 59  0000 R TNN
-F 2 "" H -1600 -2950 50  0001 C CNN
-F 3 "" H -1600 -2950 50  0001 C CNN
-	1    -1600 -2950
+P 3350 1550
+F 0 "#P+03" H 3350 1550 50  0001 C CNN
+F 1 "VCC" V 3250 1550 59  0000 R TNN
+F 2 "" H 3350 1550 50  0001 C CNN
+F 3 "" H 3350 1550 50  0001 C CNN
+	1    3350 1550
 	0    1    -1   0   
 $EndComp
 $Comp
-L habiv-board-rescue:GND-real_time_clock-eagle-import #GND?
+L habiv-board-rescue:GND-real_time_clock-eagle-import #GND05
 U 1 0 8DA2BB24
-P -1900 -3050
-F 0 "#GND?" H -1900 -3050 50  0001 C CNN
-F 1 "GND" H -2000 -3150 59  0000 L BNN
-F 2 "" H -1900 -3050 50  0001 C CNN
-F 3 "" H -1900 -3050 50  0001 C CNN
-	1    -1900 -3050
+P 3050 1450
+F 0 "#GND05" H 3050 1450 50  0001 C CNN
+F 1 "GND" H 2950 1350 59  0000 L BNN
+F 2 "" H 3050 1450 50  0001 C CNN
+F 3 "" H 3050 1450 50  0001 C CNN
+	1    3050 1450
 	0    -1   -1   0   
 $EndComp
 $Comp
-L habiv-board-rescue:RTC_PCF8523T-real_time_clock-eagle-import IC?
+L habiv-board-rescue:RTC_PCF8523T-real_time_clock-eagle-import IC1
 U 1 0 22F7723E
-P -2850 -1950
-F 0 "IC?" H -2450 -1650 59  0000 R TNN
-F 1 "RTC_PCF8523T" H -2850 -1950 50  0001 C CNN
-F 2 "SOIC127P600X175-8N:SOIC127P600X175-8N" H -2850 -1950 50  0001 C CNN
-F 3 "" H -2850 -1950 50  0001 C CNN
-	1    -2850 -1950
+P 2100 2550
+F 0 "IC1" H 2500 2850 59  0000 R TNN
+F 1 "RTC_PCF8523T" H 2100 2550 50  0001 C CNN
+F 2 "SOIC127P600X175-8N:SOIC127P600X175-8N" H 2100 2550 50  0001 C CNN
+F 3 "" H 2100 2550 50  0001 C CNN
+	1    2100 2550
 	-1   0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:RESISTOR0805_NOOUTLINE-real_time_clock-eagle-import R?
+L habiv-board-rescue:RESISTOR0805_NOOUTLINE-real_time_clock-eagle-import R1
 U 1 0 DF39756A
-P -3050 -3150
-F 0 "R?" H -3050 -3050 50  0000 C CNN
-F 1 "1K" H -3050 -3150 40  0000 C CNB
-F 2 "Resistor_SMD:R_0402_1005Metric" H -3050 -3150 50  0001 C CNN
-F 3 "" H -3050 -3150 50  0001 C CNN
-	1    -3050 -3150
+P 1900 1350
+F 0 "R1" H 1900 1450 50  0000 C CNN
+F 1 "1K" H 1900 1350 40  0000 C CNB
+F 2 "Resistor_SMD:R_0402_1005Metric" H 1900 1350 50  0001 C CNN
+F 3 "" H 1900 1350 50  0001 C CNN
+	1    1900 1350
 	0    1    1    0   
 $EndComp
 $Comp
-L habiv-board-rescue:VCC-real_time_clock-eagle-import #P+?
+L habiv-board-rescue:VCC-real_time_clock-eagle-import #P+02
 U 1 0 637B3A6A
-P -3050 -3650
-F 0 "#P+?" H -3050 -3650 50  0001 C CNN
-F 1 "VCC" V -2950 -3550 59  0000 R TNN
-F 2 "" H -3050 -3650 50  0001 C CNN
-F 3 "" H -3050 -3650 50  0001 C CNN
-	1    -3050 -3650
+P 1900 850
+F 0 "#P+02" H 1900 850 50  0001 C CNN
+F 1 "VCC" V 2000 950 59  0000 R TNN
+F 2 "" H 1900 850 50  0001 C CNN
+F 3 "" H 1900 850 50  0001 C CNN
+	1    1900 850 
 	-1   0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:CAP_CERAMIC0805-NOOUTLINE-real_time_clock-eagle-import C?
+L habiv-board-rescue:CAP_CERAMIC0805-NOOUTLINE-real_time_clock-eagle-import C1
 U 1 0 8350CC17
-P -3550 -3250
-F 0 "C?" V -3640 -3201 50  0000 C CNN
-F 1 "10uF" V -3460 -3201 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H -3550 -3250 50  0001 C CNN
-F 3 "" H -3550 -3250 50  0001 C CNN
-	1    -3550 -3250
+P 1400 1250
+F 0 "C1" V 1310 1299 50  0000 C CNN
+F 1 "10uF" V 1490 1299 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 1400 1250 50  0001 C CNN
+F 3 "" H 1400 1250 50  0001 C CNN
+	1    1400 1250
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:VCC-real_time_clock-eagle-import #P+?
+L habiv-board-rescue:VCC-real_time_clock-eagle-import #P+01
 U 1 0 48C2C5DB
-P -3550 -3550
-F 0 "#P+?" H -3550 -3550 50  0001 C CNN
-F 1 "VCC" V -3450 -3450 59  0000 R TNN
-F 2 "" H -3550 -3550 50  0001 C CNN
-F 3 "" H -3550 -3550 50  0001 C CNN
-	1    -3550 -3550
+P 1400 950
+F 0 "#P+01" H 1400 950 50  0001 C CNN
+F 1 "VCC" V 1500 1050 59  0000 R TNN
+F 2 "" H 1400 950 50  0001 C CNN
+F 3 "" H 1400 950 50  0001 C CNN
+	1    1400 950 
 	-1   0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:GND-real_time_clock-eagle-import #GND?
+L habiv-board-rescue:GND-real_time_clock-eagle-import #GND01
 U 1 0 21137572
-P -3550 -3050
-F 0 "#GND?" H -3550 -3050 50  0001 C CNN
-F 1 "GND" H -3650 -3150 59  0000 L BNN
-F 2 "" H -3550 -3050 50  0001 C CNN
-F 3 "" H -3550 -3050 50  0001 C CNN
-	1    -3550 -3050
+P 1400 1450
+F 0 "#GND01" H 1400 1450 50  0001 C CNN
+F 1 "GND" H 1300 1350 59  0000 L BNN
+F 2 "" H 1400 1450 50  0001 C CNN
+F 3 "" H 1400 1450 50  0001 C CNN
+	1    1400 1450
 	1    0    0    -1  
 $EndComp
-Connection ~ -3050 -2850
+Connection ~ 1900 1650
 $Comp
-L habiv-board-rescue:32.768KHz-ABS07W-32.768KHZ-D-2-T-real_time_clock-rescue Q?
+L habiv-board-rescue:32.768KHz-ABS07W-32.768KHZ-D-2-T-real_time_clock-rescue Q1
 U 1 1 5BBEE255
-P -1300 -2200
-F 0 "Q?" V -1346 -1970 50  0000 L CNN
-F 1 "32.768KHz" V -1255 -1970 50  0000 L CNN
-F 2 "XTAL320X150X90" H -1300 -2200 50  0001 L BNN
-F 3 "Abracon" H -1300 -2200 50  0001 L BNN
-F 4 "SMD-2 Abracon" H -1300 -2200 50  0001 L BNN "Field4"
-F 5 "Unavailable" H -1300 -2200 50  0001 L BNN "Field5"
-F 6 "ABS07W-32.768KHZ-D-2-T" H -1300 -2200 50  0001 L BNN "Field6"
-F 7 "ABS07W Series 32.768 KHz 20 ppm 3 pF -40°C to 85°C 3.20 mm x 1.50 mm Crystal" H -1300 -2200 50  0001 L BNN "Field7"
-F 8 "None" H -1300 -2200 50  0001 L BNN "Field8"
-	1    -1300 -2200
+P 3650 2300
+F 0 "Q1" V 3604 2530 50  0000 L CNN
+F 1 "32.768KHz" V 3695 2530 50  0000 L CNN
+F 2 "XTAL320X150X90" H 3650 2300 50  0001 L BNN
+F 3 "Abracon" H 3650 2300 50  0001 L BNN
+F 4 "SMD-2 Abracon" H 3650 2300 50  0001 L BNN "Field4"
+F 5 "Unavailable" H 3650 2300 50  0001 L BNN "Field5"
+F 6 "ABS07W-32.768KHZ-D-2-T" H 3650 2300 50  0001 L BNN "Field6"
+F 7 "ABS07W Series 32.768 KHz 20 ppm 3 pF -40°C to 85°C 3.20 mm x 1.50 mm Crystal" H 3650 2300 50  0001 L BNN "Field7"
+F 8 "None" H 3650 2300 50  0001 L BNN "Field8"
+	1    3650 2300
 	0    1    1    0   
 $EndComp
 $Comp
-L habiv-board-rescue:BATTERY-real_time_clock-eagle-import B?
+L habiv-board-rescue:BATTERY-real_time_clock-eagle-import B1
 U 1 1 5BBEE532
-P -1950 -1600
-F 0 "B?" V -1904 -1733 50  0000 R CNN
-F 1 "CR1220" V -1995 -1733 50  0000 R CNN
-F 2 "Battery:S8411-45R" H -1950 -1600 50  0001 L BNN
-F 3 "https://www.mouser.com/datasheet/2/181/S8411R-1136243.pdf" H -1950 -1600 50  0001 L BNN
-	1    -1950 -1600
+P 3000 2900
+F 0 "B1" V 3046 2767 50  0000 R CNN
+F 1 "CR1220" V 2955 2767 50  0000 R CNN
+F 2 "Battery:S8411-45R" H 3000 2900 50  0001 L BNN
+F 3 "https://www.mouser.com/datasheet/2/181/S8411R-1136243.pdf" H 3000 2900 50  0001 L BNN
+	1    3000 2900
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	-2250 -2050 -1650 -2050
+	2700 2450 3300 2450
 Wire Wire Line
-	-1650 -2050 -1650 -2600
+	3300 2450 3300 1900
 Wire Wire Line
-	-1650 -2600 -1300 -2600
+	3300 1900 3650 1900
 Wire Wire Line
-	-2250 -1950 -1650 -1950
+	2700 2550 3300 2550
 Wire Wire Line
-	-1650 -1950 -1650 -1800
+	3300 2550 3300 2700
 Wire Wire Line
-	-1650 -1800 -1300 -1800
+	3300 2700 3650 2700
 Wire Wire Line
-	-2250 -1750 -2250 -1500
+	2700 2750 2700 3000
 Wire Wire Line
-	-1950 -1850 -1950 -1700
+	3000 2650 3000 2800
 $Comp
-L habiv-board-rescue:MAX31855-MAX31855-Hab_thermocoupler-rescue U?
+L habiv-board-rescue:MAX31855-MAX31855-Hab_thermocoupler-rescue U2
 U 1 1 5BB59E3B
-P 10550 -1250
-F 0 "U?" H 10550 -683 50  0000 C CNN
-F 1 "MAX31855" H 10550 -774 50  0000 C CNN
-F 2 "MAX31855:SO-8" H 10550 -1250 50  0001 L BNN
-F 3 "" H 10550 -1250 50  0001 L BNN
-F 4 "Maxim Integrated" H 10550 -1250 50  0001 L BNN "Field4"
-F 5 "Unavailable" H 10550 -1250 50  0001 L BNN "Field5"
-F 6 "MAX31855" H 10550 -1250 50  0001 L BNN "Field6"
-F 7 "SO-8 Maxim Integrated" H 10550 -1250 50  0001 L BNN "Field7"
-F 8 "None" H 10550 -1250 50  0001 L BNN "Field8"
-	1    10550 -1250
+P 9900 2150
+F 0 "U2" H 9900 2717 50  0000 C CNN
+F 1 "MAX31855" H 9900 2626 50  0000 C CNN
+F 2 "MAX31855:SO-8" H 9900 2150 50  0001 L BNN
+F 3 "" H 9900 2150 50  0001 L BNN
+F 4 "Maxim Integrated" H 9900 2150 50  0001 L BNN "Field4"
+F 5 "Unavailable" H 9900 2150 50  0001 L BNN "Field5"
+F 6 "MAX31855" H 9900 2150 50  0001 L BNN "Field6"
+F 7 "SO-8 Maxim Integrated" H 9900 2150 50  0001 L BNN "Field7"
+F 8 "None" H 9900 2150 50  0001 L BNN "Field8"
+	1    9900 2150
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C C?
+L Device:C C5
 U 1 1 5BB5A126
-P 9450 -1250
-F 0 "C?" H 9565 -1204 50  0000 L CNN
-F 1 ".01 uF" H 9565 -1295 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 9488 -1400 50  0001 C CNN
-F 3 "~" H 9450 -1250 50  0001 C CNN
-	1    9450 -1250
+P 8800 2150
+F 0 "C5" H 8915 2196 50  0000 L CNN
+F 1 ".01 uF" H 8915 2105 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8838 2000 50  0001 C CNN
+F 3 "~" H 8800 2150 50  0001 C CNN
+	1    8800 2150
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10150 -1350 9700 -1350
+	9500 2050 9050 2050
 Wire Wire Line
-	9700 -1350 9700 -1400
+	9050 2050 9050 2000
 Wire Wire Line
-	9700 -1400 9450 -1400
+	9050 2000 8800 2000
 Wire Wire Line
-	9450 -1100 9700 -1100
+	8800 2300 9050 2300
 Wire Wire Line
-	9700 -1100 9700 -1150
+	9050 2300 9050 2250
 Wire Wire Line
-	9700 -1150 10150 -1150
+	9050 2250 9500 2250
 $Comp
-L Device:Ferrite_Bead L?
+L Device:Ferrite_Bead L1
 U 1 1 5BB5A7BF
-P 9050 -1400
-F 0 "L?" V 8776 -1400 50  0000 C CNN
-F 1 "Ferrite_Bead" V 8867 -1400 50  0000 C CNN
-F 2 "Inductor_SMD:L_0603_1608Metric" V 8980 -1400 50  0001 C CNN
-F 3 "~" H 9050 -1400 50  0001 C CNN
-	1    9050 -1400
+P 8400 2000
+F 0 "L1" V 8126 2000 50  0000 C CNN
+F 1 "Ferrite_Bead" V 8217 2000 50  0000 C CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" V 8330 2000 50  0001 C CNN
+F 3 "~" H 8400 2000 50  0001 C CNN
+	1    8400 2000
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:Ferrite_Bead L?
+L Device:Ferrite_Bead L2
 U 1 1 5BB5A820
-P 9050 -1100
-F 0 "L?" V 8776 -1100 50  0000 C CNN
-F 1 "Ferrite_Bead" V 8867 -1100 50  0000 C CNN
-F 2 "Inductor_SMD:L_0603_1608Metric" V 8980 -1100 50  0001 C CNN
-F 3 "~" H 9050 -1100 50  0001 C CNN
-	1    9050 -1100
+P 8400 2300
+F 0 "L2" V 8126 2300 50  0000 C CNN
+F 1 "Ferrite_Bead" V 8217 2300 50  0000 C CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" V 8330 2300 50  0001 C CNN
+F 3 "~" H 8400 2300 50  0001 C CNN
+	1    8400 2300
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	9200 -1400 9450 -1400
-Connection ~ 9450 -1400
+	8550 2000 8800 2000
+Connection ~ 8800 2000
 Wire Wire Line
-	9450 -1100 9200 -1100
-Connection ~ 9450 -1100
+	8800 2300 8550 2300
+Connection ~ 8800 2300
 $Comp
-L Connector:Conn_01x02_Male J?
+L Connector:Conn_01x02_Male J4
 U 1 1 5BB5AAEB
-P 8350 -1300
-F 0 "J?" H 8456 -1122 50  0000 C CNN
-F 1 "Conn_01x02_Male" H 8456 -1213 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 8350 -1300 50  0001 C CNN
-F 3 "~" H 8350 -1300 50  0001 C CNN
-	1    8350 -1300
+P 7700 2100
+F 0 "J4" H 7806 2278 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 7806 2187 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 7700 2100 50  0001 C CNN
+F 3 "~" H 7700 2100 50  0001 C CNN
+	1    7700 2100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8550 -1300 8550 -1400
+	7900 2100 7900 2000
 Wire Wire Line
-	8550 -1400 8900 -1400
+	7900 2000 8250 2000
 Wire Wire Line
-	8550 -1200 8550 -1100
+	7900 2200 7900 2300
 Wire Wire Line
-	8550 -1100 8900 -1100
+	7900 2300 8250 2300
 $Comp
-L power:GND #PWR?
+L power:GND #PWR024
 U 1 1 5BB5C6BA
-P 12950 -1050
-F 0 "#PWR?" H 12950 -1300 50  0001 C CNN
-F 1 "GND" V 12955 -1178 50  0000 R CNN
-F 2 "" H 12950 -1050 50  0001 C CNN
-F 3 "" H 12950 -1050 50  0001 C CNN
-	1    12950 -1050
+P 12300 2350
+F 0 "#PWR024" H 12300 2100 50  0001 C CNN
+F 1 "GND" V 12305 2222 50  0000 R CNN
+F 2 "" H 12300 2350 50  0001 C CNN
+F 3 "" H 12300 2350 50  0001 C CNN
+	1    12300 2350
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:C C?
+L Device:C C6
 U 1 1 5BB5DB50
-P 10650 -2000
-F 0 "C?" H 10750 -2000 50  0000 L CNN
-F 1 "0.1 uF" H 10550 -2100 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 10688 -2150 50  0001 C CNN
-F 3 "~" H 10650 -2000 50  0001 C CNN
-	1    10650 -2000
+P 10000 1400
+F 0 "C6" H 10100 1400 50  0000 L CNN
+F 1 "0.1 uF" H 9900 1300 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 10038 1250 50  0001 C CNN
+F 3 "~" H 10000 1400 50  0001 C CNN
+	1    10000 1400
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	10150 -2000 10500 -2000
+	9500 1400 9850 1400
 Wire Wire Line
-	10150 -2000 10150 -1550
+	9500 1400 9500 1850
 Wire Wire Line
-	10150 -950 10150 -200
+	9500 2450 9500 3200
 Wire Wire Line
-	10150 -200 12700 -200
+	9500 3200 12050 3200
 Wire Wire Line
-	12700 -200 12700 -1050
+	12050 3200 12050 2350
 Wire Wire Line
-	12700 -1050 12750 -1050
+	12050 2350 12100 2350
 $Comp
-L power:+3V3 #PWR?
+L power:+3V3 #PWR023
 U 1 1 5BC03C4E
-P 12800 -1150
-F 0 "#PWR?" H 12800 -1300 50  0001 C CNN
-F 1 "+3V3" V 12800 -1500 50  0000 L CNN
-F 2 "" H 12800 -1150 50  0001 C CNN
-F 3 "" H 12800 -1150 50  0001 C CNN
-	1    12800 -1150
+P 12150 2250
+F 0 "#PWR023" H 12150 2100 50  0001 C CNN
+F 1 "+3V3" V 12150 1900 50  0000 L CNN
+F 2 "" H 12150 2250 50  0001 C CNN
+F 3 "" H 12150 2250 50  0001 C CNN
+	1    12150 2250
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	10150 -2000 10150 -2250
+	9500 1400 9500 1150
 Wire Wire Line
-	10150 -2250 12550 -2250
+	9500 1150 11900 1150
 Wire Wire Line
-	12550 -2250 12550 -1150
-Connection ~ 10150 -2000
+	11900 1150 11900 2250
+Connection ~ 9500 1400
 Wire Wire Line
-	12450 -2000 12450 -1050
+	11800 1400 11800 2350
 Wire Wire Line
-	12450 -1050 12700 -1050
-Connection ~ 12700 -1050
+	11800 2350 12050 2350
+Connection ~ 12050 2350
 Wire Wire Line
-	10800 -2000 12450 -2000
+	10150 1400 11800 1400
 Wire Wire Line
-	10950 -750 10950 -1050
+	10300 2650 10300 2350
 Wire Wire Line
-	10950 -1250 11050 -1250
+	10300 2150 10400 2150
 Wire Wire Line
-	12750 -950 11150 -950
+	12100 2450 10500 2450
 Wire Wire Line
-	11150 -950 11150 -1450
+	10500 2450 10500 1950
 Wire Wire Line
-	11150 -1450 10950 -1450
+	10500 1950 10300 1950
 $Comp
-L Connector:Conn_01x05_Female J?
+L Connector:Conn_01x05_Female J9
 U 1 1 5BD6D44D
-P 12950 -950
-F 0 "J?" H 12850 -1250 50  0000 L CNN
-F 1 "Conn_01x05_Female" H 12900 -1350 50  0000 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x05_P2.54mm_Vertical" H 12950 -950 50  0001 C CNN
-F 3 "~" H 12950 -950 50  0001 C CNN
-	1    12950 -950
+P 12300 2450
+F 0 "J9" H 12200 2150 50  0000 L CNN
+F 1 "Conn_01x05_Female" H 12250 2050 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x05_P2.54mm_Vertical" H 12300 2450 50  0001 C CNN
+F 3 "~" H 12300 2450 50  0001 C CNN
+	1    12300 2450
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	12550 -1150 12750 -1150
-Connection ~ 12750 -1150
+	11900 2250 12100 2250
+Connection ~ 12100 2250
 Wire Wire Line
-	12750 -1150 12800 -1150
+	12100 2250 12150 2250
 Wire Wire Line
-	10950 -750 12500 -750
+	10300 2650 11850 2650
 Wire Wire Line
-	12500 -750 12500 -850
+	11850 2650 11850 2550
 Wire Wire Line
-	12500 -850 12750 -850
+	11850 2550 12100 2550
 Wire Wire Line
-	11050 -600 12750 -600
+	10400 2800 12100 2800
 Wire Wire Line
-	12750 -600 12750 -750
+	12100 2800 12100 2650
 Wire Wire Line
-	11050 -1250 11050 -600
+	10400 2150 10400 2800
 Wire Wire Line
-	-6650 5650 -7350 5650
-Text Label -7250 5650 0    70   ~ 0
+	13050 14850 12350 14850
+Text Label 12450 14850 0    70   ~ 0
 FIX
 Wire Wire Line
-	-9750 5650 -9150 5650
-Text Label -9550 5650 0    70   ~ 0
+	9250 14950 9850 14950
+Text Label 9450 14950 0    70   ~ 0
 FIX
 Wire Wire Line
-	-7650 5650 -7750 5650
+	12050 14850 11950 14850
 Wire Wire Line
-	-8150 5650 -8250 5650
+	11550 14850 11450 14850
 Wire Wire Line
-	-8250 5650 -8250 5950
+	11450 14850 11450 15150
 Wire Wire Line
-	-8250 5950 -8250 6150
+	11450 15150 11450 15350
 Wire Wire Line
-	-8250 5350 -8250 5450
+	11450 14550 11450 14650
 Wire Wire Line
-	-8250 5450 -8250 5650
+	11450 14650 11450 14850
 Wire Wire Line
-	-6650 5950 -8250 5950
+	13050 15150 11450 15150
 Wire Wire Line
-	-6650 5450 -8250 5450
-Connection ~ -8250 5650
-Connection ~ -8250 5950
-Connection ~ -8250 5450
-Text Label -8150 5650 0    10   ~ 0
+	13050 14650 11450 14650
+Connection ~ 11450 14850
+Connection ~ 11450 15150
+Connection ~ 11450 14650
+Text Label 11550 14850 0    10   ~ 0
 GND
 Wire Wire Line
-	-8850 5950 -8850 6250
+	10150 15250 10150 15550
 Wire Wire Line
-	-9750 5950 -8850 5950
-Text Label -8850 5950 0    10   ~ 0
+	9250 15250 10150 15250
+Text Label 10150 15250 0    10   ~ 0
 GND
 Wire Wire Line
-	-5450 6050 -4650 6050
+	14250 15250 15050 15250
 Wire Wire Line
-	-4650 6050 -4650 6350
+	15050 15250 15050 15550
 Wire Wire Line
-	-4650 6350 -4650 6450
+	15050 15550 15050 15650
 Wire Wire Line
-	-4650 6450 -4650 6550
+	15050 15650 15050 15750
 Wire Wire Line
-	-5450 5350 -4650 5350
+	14250 14550 15050 14550
 Wire Wire Line
-	-4650 5350 -4650 6050
+	15050 14550 15050 15250
 Wire Wire Line
-	-4950 6450 -4650 6450
+	14750 15650 15050 15650
 Wire Wire Line
-	-4950 6350 -4650 6350
-Connection ~ -4650 6050
-Connection ~ -4650 6450
-Connection ~ -4650 6350
-Text Label -5450 6050 0    10   ~ 0
+	14750 15550 15050 15550
+Connection ~ 15050 15250
+Connection ~ 15050 15650
+Connection ~ 15050 15550
+Text Label 14250 15250 0    10   ~ 0
 GND
 Wire Wire Line
-	-6050 3950 -5750 3950
+	16200 13650 16500 13650
 Wire Wire Line
-	-5750 3950 -5750 4050
-Text Label -6050 3950 0    10   ~ 0
+	16500 13650 16500 13750
+Text Label 16200 13650 0    10   ~ 0
 GND
 Wire Wire Line
-	-8950 5350 -8950 5250
+	10050 14650 10050 14550
 Wire Wire Line
-	-9750 5350 -8950 5350
-Text Label -8950 5350 0    10   ~ 0
+	9250 14650 10050 14650
+Text Label 10050 14650 0    10   ~ 0
 3.3V
 Wire Wire Line
-	-8250 5050 -8250 4950
+	11450 14250 11450 14150
 Wire Wire Line
-	-8250 4950 -7250 4950
+	11450 14150 12450 14150
 Wire Wire Line
-	-6650 5250 -7250 5250
+	13050 14450 12450 14450
 Wire Wire Line
-	-7250 5250 -7250 4950
-Connection ~ -7250 4950
-Text Label -8250 5050 0    10   ~ 0
+	12450 14450 12450 14150
+Connection ~ 12450 14150
+Text Label 11450 14250 0    10   ~ 0
 3.3V
 Wire Wire Line
-	-9750 5450 -9150 5450
-Text Label -9550 5450 0    70   ~ 0
+	9250 14750 9850 14750
+Text Label 9450 14750 0    70   ~ 0
 ENABLE
 Wire Wire Line
-	-9750 6050 -8650 6050
+	9250 15350 10350 15350
 Wire Wire Line
-	-8650 6050 -8650 5250
-Text Label -9750 6050 0    10   ~ 0
+	10350 15350 10350 14550
+Text Label 9250 15350 0    10   ~ 0
 VIN
 Wire Wire Line
-	-6650 5550 -7250 5550
-Text Label -7250 5550 0    70   ~ 0
+	13050 14750 12450 14750
+Text Label 12450 14750 0    70   ~ 0
 VBACKUP
 Wire Wire Line
-	-9750 5550 -9150 5550
-Text Label -9550 5550 0    70   ~ 0
+	9250 14850 9850 14850
+Text Label 9450 14850 0    70   ~ 0
 VBACKUP
 Wire Wire Line
-	-6750 3950 -7450 3950
-Text Label -7350 3950 0    70   ~ 0
+	15500 13650 14800 13650
+Text Label 14900 13650 0    70   ~ 0
 VBACKUP
 Wire Wire Line
-	-6650 6050 -7250 6050
-Text Label -7250 6050 0    70   ~ 0
+	13050 15250 12450 15250
+Text Label 12450 15250 0    70   ~ 0
 TX
 Wire Wire Line
-	-9750 5750 -9150 5750
-Text Label -9550 5750 0    70   ~ 0
+	9250 15050 9850 15050
+Text Label 9450 15050 0    70   ~ 0
 TX
 Wire Wire Line
-	-6650 6150 -7350 6150
+	13050 15350 12350 15350
 Wire Wire Line
-	-7350 6150 -7450 6150
+	12350 15350 12250 15350
 Wire Wire Line
-	-7350 6150 -7350 6950
+	12350 15350 12350 16150
 Wire Wire Line
-	-7350 6950 -7750 6950
+	12350 16150 11950 16150
 Wire Wire Line
-	-7750 6950 -7750 6850
-Connection ~ -7350 6150
-Text Label -7250 6150 0    70   ~ 0
+	11950 16150 11950 16050
+Connection ~ 12350 15350
+Text Label 12450 15350 0    70   ~ 0
 RX_3V
 Wire Wire Line
-	-7650 6150 -8050 6150
-Text Label -8050 6150 0    70   ~ 0
+	12050 15350 11650 15350
+Text Label 11650 15350 0    70   ~ 0
 RX
 Wire Wire Line
-	-9750 5850 -9150 5850
-Text Label -9550 5850 0    70   ~ 0
+	9250 15150 9850 15150
+Text Label 9450 15150 0    70   ~ 0
 RX
 Wire Wire Line
-	-5450 6150 -5250 6150
+	14250 15350 14450 15350
 Wire Wire Line
-	-5450 5950 -4950 5950
-Text Label -5250 5950 0    70   ~ 0
+	14250 15150 14750 15150
+Text Label 14450 15150 0    70   ~ 0
 1PPS
 Wire Wire Line
-	-9750 6150 -9150 6150
-Text Label -9550 6150 0    70   ~ 0
+	9250 15450 9850 15450
+Text Label 9450 15450 0    70   ~ 0
 1PPS
 Wire Wire Line
-	-6550 3950 -6250 3950
+	15700 13650 16000 13650
 $Comp
-L habiv-board-rescue:GPS_FGPMMOPA6H-Adafruit_Ultimate_GPS-eagle-import U?
+L habiv-board-rescue:GPS_FGPMMOPA6H-Adafruit_Ultimate_GPS-eagle-import U3
 U 1 0 2DF3FE209D0AA111
-P -6050 5650
-F 0 "U?" H -6550 6550 42  0000 L BNN
-F 1 "FGPMMOPA6H" H -6550 4650 42  0000 L BNN
-F 2 "Adafruit Ultimate GPS:FGPMMOPA6H" H -6050 5650 50  0001 C CNN
-F 3 "" H -6050 5650 50  0001 C CNN
-	1    -6050 5650
+P 13650 14850
+F 0 "U3" H 13150 15750 42  0000 L BNN
+F 1 "FGPMMOPA6H" H 13150 13850 42  0000 L BNN
+F 2 "Adafruit Ultimate GPS:FGPMMOPA6H" H 13650 14850 50  0001 C CNN
+F 3 "" H 13650 14850 50  0001 C CNN
+	1    13650 14850
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:LED0805-Adafruit_Ultimate_GPS-eagle-import LED?
+L habiv-board-rescue:LED0805-Adafruit_Ultimate_GPS-eagle-import LED1
 U 1 0 B4BDD66162FEDCFC
-P -7550 5650
-F 0 "LED?" H -7600 5825 42  0000 C CNN
-F 1 "RED" H -7600 5540 42  0000 C CNN
-F 2 "Adafruit Ultimate GPS:CHIPLED_0805" H -7550 5650 50  0001 C CNN
-F 3 "" H -7550 5650 50  0001 C CNN
-	1    -7550 5650
+P 12150 14850
+F 0 "LED1" H 12100 15025 42  0000 C CNN
+F 1 "RED" H 12100 14740 42  0000 C CNN
+F 2 "Adafruit Ultimate GPS:CHIPLED_0805" H 12150 14850 50  0001 C CNN
+F 3 "" H 12150 14850 50  0001 C CNN
+	1    12150 14850
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import R?
+L habiv-board-rescue:RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import R2
 U 1 0 B82084C643F53746
-P -7950 5650
-F 0 "R?" H -7950 5750 50  0000 C CNN
-F 1 "1K" H -7950 5650 40  0000 C CNB
-F 2 "Adafruit Ultimate GPS:0805-NO" H -7950 5650 50  0001 C CNN
-F 3 "" H -7950 5650 50  0001 C CNN
-	1    -7950 5650
+P 11750 14850
+F 0 "R2" H 11750 14950 50  0000 C CNN
+F 1 "1K" H 11750 14850 40  0000 C CNB
+F 2 "Adafruit Ultimate GPS:0805-NO" H 11750 14850 50  0001 C CNN
+F 3 "" H 11750 14850 50  0001 C CNN
+	1    11750 14850
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:GND-Adafruit_Ultimate_GPS-eagle-import #U$?
+L habiv-board-rescue:GND-Adafruit_Ultimate_GPS-eagle-import #U$04
 U 1 0 803D2E8F6197D135
-P -8250 6250
-F 0 "#U$?" H -8250 6250 50  0001 C CNN
-F 1 "GND" H -8310 6150 42  0000 L BNN
-F 2 "" H -8250 6250 50  0001 C CNN
-F 3 "" H -8250 6250 50  0001 C CNN
-	1    -8250 6250
+P 11450 15450
+F 0 "#U$04" H 11450 15450 50  0001 C CNN
+F 1 "GND" H 11390 15350 42  0000 L BNN
+F 2 "" H 11450 15450 50  0001 C CNN
+F 3 "" H 11450 15450 50  0001 C CNN
+	1    11450 15450
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:3.3V-Adafruit_Ultimate_GPS-eagle-import #U$?
+L habiv-board-rescue:3.3V-Adafruit_Ultimate_GPS-eagle-import #U$06
 U 1 0 C4F885289A709B56
-P -7250 4850
-F 0 "#U$?" H -7250 4850 50  0001 C CNN
-F 1 "3.3V" H -7310 4890 42  0000 L BNN
-F 2 "" H -7250 4850 50  0001 C CNN
-F 3 "" H -7250 4850 50  0001 C CNN
-	1    -7250 4850
+P 12450 14050
+F 0 "#U$06" H 12450 14050 50  0001 C CNN
+F 1 "3.3V" H 12390 14090 42  0000 L BNN
+F 2 "" H 12450 14050 50  0001 C CNN
+F 3 "" H 12450 14050 50  0001 C CNN
+	1    12450 14050
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import C?
+L habiv-board-rescue:CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import C7
 U 1 0 24498BA92B08E60C
-P -8250 5250
-F 0 "C?" V -8340 5299 50  0000 C CNN
-F 1 "0.1uF" V -8160 5299 50  0000 C CNN
-F 2 "Adafruit Ultimate GPS:0805-NO" H -8250 5250 50  0001 C CNN
-F 3 "" H -8250 5250 50  0001 C CNN
-	1    -8250 5250
+P 11450 14450
+F 0 "C7" V 11360 14499 50  0000 C CNN
+F 1 "0.1uF" V 11540 14499 50  0000 C CNN
+F 2 "Adafruit Ultimate GPS:0805-NO" H 11450 14450 50  0001 C CNN
+F 3 "" H 11450 14450 50  0001 C CNN
+	1    11450 14450
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:VIN-Adafruit_Ultimate_GPS-eagle-import #U$?
+L habiv-board-rescue:VIN-Adafruit_Ultimate_GPS-eagle-import #U$03
 U 1 0 22C351ED3FF9C786
-P -8650 5150
-F 0 "#U$?" H -8650 5150 50  0001 C CNN
-F 1 "VIN" H -8710 5190 42  0000 L BNN
-F 2 "" H -8650 5150 50  0001 C CNN
-F 3 "" H -8650 5150 50  0001 C CNN
-	1    -8650 5150
+P 10350 14450
+F 0 "#U$03" H 10350 14450 50  0001 C CNN
+F 1 "VIN" H 10290 14490 42  0000 L BNN
+F 2 "" H 10350 14450 50  0001 C CNN
+F 3 "" H 10350 14450 50  0001 C CNN
+	1    10350 14450
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:3.3V-Adafruit_Ultimate_GPS-eagle-import #U$?
+L habiv-board-rescue:3.3V-Adafruit_Ultimate_GPS-eagle-import #U$01
 U 1 0 2CF13A3609ED6043
-P -8950 5150
-F 0 "#U$?" H -8950 5150 50  0001 C CNN
-F 1 "3.3V" H -9010 5190 42  0000 L BNN
-F 2 "" H -8950 5150 50  0001 C CNN
-F 3 "" H -8950 5150 50  0001 C CNN
-	1    -8950 5150
+P 10050 14450
+F 0 "#U$01" H 10050 14450 50  0001 C CNN
+F 1 "3.3V" H 9990 14490 42  0000 L BNN
+F 2 "" H 10050 14450 50  0001 C CNN
+F 3 "" H 10050 14450 50  0001 C CNN
+	1    10050 14450
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:GND-Adafruit_Ultimate_GPS-eagle-import #U$?
+L habiv-board-rescue:GND-Adafruit_Ultimate_GPS-eagle-import #U$02
 U 1 0 728101AFEEFC5E8C
-P -8850 6350
-F 0 "#U$?" H -8850 6350 50  0001 C CNN
-F 1 "GND" H -8910 6250 42  0000 L BNN
-F 2 "" H -8850 6350 50  0001 C CNN
-F 3 "" H -8850 6350 50  0001 C CNN
-	1    -8850 6350
+P 10150 15650
+F 0 "#U$02" H 10150 15650 50  0001 C CNN
+F 1 "GND" H 10090 15550 42  0000 L BNN
+F 2 "" H 10150 15650 50  0001 C CNN
+F 3 "" H 10150 15650 50  0001 C CNN
+	1    10150 15650
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import D?
+L habiv-board-rescue:DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import D1
 U 1 0 C049FE434DF527AB
-P -7550 6150
-F 0 "D?" H -7550 6250 42  0000 C CNN
-F 1 "1N4148" H -7550 6052 42  0000 C CNN
-F 2 "Adafruit Ultimate GPS:SOD-323" H -7550 6150 50  0001 C CNN
-F 3 "" H -7550 6150 50  0001 C CNN
-	1    -7550 6150
+P 12150 15350
+F 0 "D1" H 12150 15450 42  0000 C CNN
+F 1 "1N4148" H 12150 15252 42  0000 C CNN
+F 2 "Adafruit Ultimate GPS:SOD-323" H 12150 15350 50  0001 C CNN
+F 3 "" H 12150 15350 50  0001 C CNN
+	1    12150 15350
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import R?
+L habiv-board-rescue:RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import R3
 U 1 0 4F14531CD85E66C8
-P -7750 6650
-F 0 "R?" H -7750 6750 50  0000 C CNN
-F 1 "10K" H -7750 6650 40  0000 C CNB
-F 2 "Adafruit Ultimate GPS:0805-NO" H -7750 6650 50  0001 C CNN
-F 3 "" H -7750 6650 50  0001 C CNN
-	1    -7750 6650
+P 11950 15850
+F 0 "R3" H 11950 15950 50  0000 C CNN
+F 1 "10K" H 11950 15850 40  0000 C CNB
+F 2 "Adafruit Ultimate GPS:0805-NO" H 11950 15850 50  0001 C CNN
+F 3 "" H 11950 15850 50  0001 C CNN
+	1    11950 15850
 	0    1    1    0   
 $EndComp
 $Comp
-L habiv-board-rescue:3.3V-Adafruit_Ultimate_GPS-eagle-import #U$?
+L habiv-board-rescue:3.3V-Adafruit_Ultimate_GPS-eagle-import #U$05
 U 1 0 C6CA7EF2407A0320
-P -7750 6350
-F 0 "#U$?" H -7750 6350 50  0001 C CNN
-F 1 "3.3V" H -7810 6390 42  0000 L BNN
-F 2 "" H -7750 6350 50  0001 C CNN
-F 3 "" H -7750 6350 50  0001 C CNN
-	1    -7750 6350
+P 11950 15550
+F 0 "#U$05" H 11950 15550 50  0001 C CNN
+F 1 "3.3V" H 11890 15590 42  0000 L BNN
+F 2 "" H 11950 15550 50  0001 C CNN
+F 3 "" H 11950 15550 50  0001 C CNN
+	1    11950 15550
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:BATTERYCR1220_SMT-Adafruit_Ultimate_GPS-eagle-import B?
+L habiv-board-rescue:BATTERYCR1220_SMT-Adafruit_Ultimate_GPS-eagle-import B2
 U 1 0 96DDDAD98A000202
-P -6150 3950
-F 0 "B?" H -6250 4075 42  0000 L BNN
-F 1 "CR1220" H -6250 3750 42  0000 L BNN
-F 2 "Adafruit Ultimate GPS:CR1220" H -6150 3950 50  0001 C CNN
-F 3 "" H -6150 3950 50  0001 C CNN
-	1    -6150 3950
+P 16100 13650
+F 0 "B2" H 16000 13775 42  0000 L BNN
+F 1 "CR1220" H 16000 13450 42  0000 L BNN
+F 2 "Adafruit Ultimate GPS:CR1220" H 16100 13650 50  0001 C CNN
+F 3 "" H 16100 13650 50  0001 C CNN
+	1    16100 13650
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:GND-Adafruit_Ultimate_GPS-eagle-import #U$?
+L habiv-board-rescue:GND-Adafruit_Ultimate_GPS-eagle-import #U$07
 U 1 0 25B093F9D405EDE5
-P -5750 4150
-F 0 "#U$?" H -5750 4150 50  0001 C CNN
-F 1 "GND" H -5810 4050 42  0000 L BNN
-F 2 "" H -5750 4150 50  0001 C CNN
-F 3 "" H -5750 4150 50  0001 C CNN
-	1    -5750 4150
+P 16500 13850
+F 0 "#U$07" H 16500 13850 50  0001 C CNN
+F 1 "GND" H 16440 13750 42  0000 L BNN
+F 2 "" H 16500 13850 50  0001 C CNN
+F 3 "" H 16500 13850 50  0001 C CNN
+	1    16500 13850
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:GND-Adafruit_Ultimate_GPS-eagle-import #U$?
+L habiv-board-rescue:GND-Adafruit_Ultimate_GPS-eagle-import #U$08
 U 1 0 28B2C22724E1B701
-P -4650 6650
-F 0 "#U$?" H -4650 6650 50  0001 C CNN
-F 1 "GND" H -4710 6550 42  0000 L BNN
-F 2 "" H -4650 6650 50  0001 C CNN
-F 3 "" H -4650 6650 50  0001 C CNN
-	1    -4650 6650
+P 15050 15850
+F 0 "#U$08" H 15050 15850 50  0001 C CNN
+F 1 "GND" H 14990 15750 42  0000 L BNN
+F 2 "" H 15050 15850 50  0001 C CNN
+F 3 "" H 15050 15850 50  0001 C CNN
+	1    15050 15850
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:U.FL-Adafruit_Ultimate_GPS-eagle-import U$?
+L habiv-board-rescue:U.FL-Adafruit_Ultimate_GPS-eagle-import U$1
 U 1 0 14A4E007DC93C178
-P -5050 6150
-F 0 "U$?" H -5050 6150 50  0001 C CNN
-F 1 "U.FL" H -5050 6150 50  0001 C CNN
-F 2 "Adafruit Ultimate GPS:U.FL" H -5050 6150 50  0001 C CNN
-F 3 "" H -5050 6150 50  0001 C CNN
-	1    -5050 6150
+P 14650 15350
+F 0 "U$1" H 14650 15350 50  0001 C CNN
+F 1 "U.FL" H 14650 15350 50  0001 C CNN
+F 2 "Adafruit Ultimate GPS:U.FL" H 14650 15350 50  0001 C CNN
+F 3 "" H 14650 15350 50  0001 C CNN
+	1    14650 15350
 	-1   0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:HEADER-1X970MIL-Adafruit_Ultimate_GPS-eagle-import JP?
+L habiv-board-rescue:HEADER-1X970MIL-Adafruit_Ultimate_GPS-eagle-import JP2
 U 1 0 E5C11E09A75A2B47
-P -9850 5750
-F 0 "JP?" H -10100 6275 59  0000 L BNN
-F 1 "HEADER-1X970MIL" H -10100 5150 59  0000 L BNN
-F 2 "Adafruit Ultimate GPS:1X09_ROUND_70" H -9850 5750 50  0001 C CNN
-F 3 "" H -9850 5750 50  0001 C CNN
-	1    -9850 5750
+P 9150 15050
+F 0 "JP2" H 8900 15575 59  0000 L BNN
+F 1 "HEADER-1X970MIL" H 8900 14450 59  0000 L BNN
+F 2 "Adafruit Ultimate GPS:1X09_ROUND_70" H 9150 15050 50  0001 C CNN
+F 3 "" H 9150 15050 50  0001 C CNN
+	1    9150 15050
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import D?
+L habiv-board-rescue:DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import D2
 U 1 0 A3EFA98ECB5A3888
-P -6650 3950
-F 0 "D?" H -6650 4050 42  0000 C CNN
-F 1 "CUS520" H -6650 3852 42  0000 C CNN
-F 2 "Adafruit Ultimate GPS:SOD-323" H -6650 3950 50  0001 C CNN
-F 3 "" H -6650 3950 50  0001 C CNN
-	1    -6650 3950
+P 15600 13650
+F 0 "D2" H 15600 13750 42  0000 C CNN
+F 1 "CUS520" H 15600 13552 42  0000 C CNN
+F 2 "Adafruit Ultimate GPS:SOD-323" H 15600 13650 50  0001 C CNN
+F 3 "" H 15600 13650 50  0001 C CNN
+	1    15600 13650
 	-1   0    0    1   
 $EndComp
-Text Notes -7250 6850 0    59   ~ 0
+Text Notes 12450 16050 0    59   ~ 0
 D1+R3 restrict RX input to 3.3V
 $Comp
-L habiv-board-rescue:MS560702BA03-00-MS560702BA03-00 U?
+L habiv-board-rescue:MS560702BA03-00-MS560702BA03-00 U6
 U 1 1 5BB59AA0
-P 18100 5250
-F 0 "U?" H 18100 5817 50  0000 C CNN
-F 1 "MS560702BA03-00" H 18100 5726 50  0000 C CNN
-F 2 "MS560702BA03-00:SON125P500X300X100-8N" H 18100 5250 50  0001 L BNN
-F 3 "MS5607-02BA03 Series 3 V 1 to 120 kPa Absolute Barometric Pressure Sensor" H 18100 5250 50  0001 L BNN
-F 4 "TE Connectivity" H 18100 5250 50  0001 L BNN "Field4"
-F 5 "Unavailable" H 18100 5250 50  0001 L BNN "Field5"
-F 6 "http://www.te.com/usa-en/product-MS560702BA03-00.html" H 18100 5250 50  0001 L BNN "Field6"
-F 7 "MS560702BA03-00" H 18100 5250 50  0001 L BNN "Field7"
-F 8 "SMD-8 TE Connectivity" H 18100 5250 50  0001 L BNN "Field8"
-F 9 "Compliant" H 18100 5250 50  0001 L BNN "Field9"
-F 10 "None" H 18100 5250 50  0001 L BNN "Field10"
-	1    18100 5250
+P 17950 2300
+F 0 "U6" H 17950 2867 50  0000 C CNN
+F 1 "MS560702BA03-00" H 17950 2776 50  0000 C CNN
+F 2 "MS560702BA03-00:SON125P500X300X100-8N" H 17950 2300 50  0001 L BNN
+F 3 "MS5607-02BA03 Series 3 V 1 to 120 kPa Absolute Barometric Pressure Sensor" H 17950 2300 50  0001 L BNN
+F 4 "TE Connectivity" H 17950 2300 50  0001 L BNN "Field4"
+F 5 "Unavailable" H 17950 2300 50  0001 L BNN "Field5"
+F 6 "http://www.te.com/usa-en/product-MS560702BA03-00.html" H 17950 2300 50  0001 L BNN "Field6"
+F 7 "MS560702BA03-00" H 17950 2300 50  0001 L BNN "Field7"
+F 8 "SMD-8 TE Connectivity" H 17950 2300 50  0001 L BNN "Field8"
+F 9 "Compliant" H 17950 2300 50  0001 L BNN "Field9"
+F 10 "None" H 17950 2300 50  0001 L BNN "Field10"
+	1    17950 2300
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Conn_01x04_Female J?
+L Connector:Conn_01x04_Female J18
 U 1 1 5BB59CF9
-P 20300 5200
-F 0 "J?" H 20327 5176 50  0000 L CNN
-F 1 "Conn_01x04_Female" H 20327 5085 50  0000 L CNN
-F 2 "Connector:FanPinHeader_1x04_P2.54mm_Vertical" H 20300 5200 50  0001 C CNN
-F 3 "~" H 20300 5200 50  0001 C CNN
-	1    20300 5200
+P 20150 2250
+F 0 "J18" H 20177 2226 50  0000 L CNN
+F 1 "Conn_01x04_Female" H 20177 2135 50  0000 L CNN
+F 2 "Connector:FanPinHeader_1x04_P2.54mm_Vertical" H 20150 2250 50  0001 C CNN
+F 3 "~" H 20150 2250 50  0001 C CNN
+	1    20150 2250
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	17500 5350 17300 5350
+	17350 2400 17150 2400
 Wire Wire Line
-	17500 5250 17200 5250
+	17350 2300 17050 2300
 Wire Wire Line
-	20100 5200 19950 5200
+	19950 2250 19800 2250
 Wire Wire Line
-	19950 5200 19950 5900
+	19800 2250 19800 2950
 Wire Wire Line
-	20100 5300 20000 5300
+	19950 2350 19850 2350
 Wire Wire Line
-	20000 5300 20000 6000
+	19850 2350 19850 3050
 Wire Wire Line
-	20100 5400 20050 5400
+	19950 2450 19900 2450
 Wire Wire Line
-	20050 5400 20050 6100
+	19900 2450 19900 3150
 Wire Wire Line
-	17400 5900 19950 5900
+	17250 2950 19800 2950
 Wire Wire Line
-	17300 6000 20000 6000
+	17150 3050 19850 3050
 Wire Wire Line
-	17200 6100 20050 6100
+	17050 3150 19900 3150
 Wire Wire Line
-	17300 5350 17300 6000
+	17150 2400 17150 3050
 Wire Wire Line
-	17200 5250 17200 6100
+	17050 2300 17050 3150
 Wire Wire Line
-	18700 5750 16750 5750
+	18550 2800 16600 2800
 Wire Wire Line
-	16750 5750 16750 5150
+	16600 2800 16600 2200
 Wire Wire Line
-	17500 5150 16750 5150
+	17350 2200 16600 2200
 $Comp
-L pspice:CAP C?
+L pspice:CAP C10
 U 1 1 5BB5E0FC
-P 16350 4700
-F 0 "C?" H 16528 4746 50  0000 L CNN
-F 1 "100nF" H 16528 4655 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 16350 4700 50  0001 C CNN
-F 3 "" H 16350 4700 50  0001 C CNN
-	1    16350 4700
+P 16200 1750
+F 0 "C10" H 16378 1796 50  0000 L CNN
+F 1 "100nF" H 16378 1705 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 16200 1750 50  0001 C CNN
+F 3 "" H 16200 1750 50  0001 C CNN
+	1    16200 1750
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3V3 #PWR?
+L power:+3V3 #PWR025
 U 1 1 5BB5E5DC
-P 16350 4400
-F 0 "#PWR?" H 16350 4250 50  0001 C CNN
-F 1 "+3V3" H 16365 4573 50  0000 C CNN
-F 2 "" H 16350 4400 50  0001 C CNN
-F 3 "" H 16350 4400 50  0001 C CNN
-	1    16350 4400
+P 16200 1450
+F 0 "#PWR025" H 16200 1300 50  0001 C CNN
+F 1 "+3V3" H 16215 1623 50  0000 C CNN
+F 2 "" H 16200 1450 50  0001 C CNN
+F 3 "" H 16200 1450 50  0001 C CNN
+	1    16200 1450
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR026
 U 1 1 5BB5E65F
-P 16350 5000
-F 0 "#PWR?" H 16350 4750 50  0001 C CNN
-F 1 "GND" H 16355 4827 50  0000 C CNN
-F 2 "" H 16350 5000 50  0001 C CNN
-F 3 "" H 16350 5000 50  0001 C CNN
-	1    16350 5000
+P 16200 2050
+F 0 "#PWR026" H 16200 1800 50  0001 C CNN
+F 1 "GND" H 16205 1877 50  0000 C CNN
+F 2 "" H 16200 2050 50  0001 C CNN
+F 3 "" H 16200 2050 50  0001 C CNN
+	1    16200 2050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	17500 4600 20100 4600
-Text Label 19950 5200 0    50   ~ 0
+	17350 1650 19950 1650
+Text Label 19800 2250 0    50   ~ 0
 SDO
-Text Label 20000 5300 0    50   ~ 0
+Text Label 19850 2350 0    50   ~ 0
 SDI
-Text Label 20050 5550 0    50   ~ 0
+Text Label 19900 2600 0    50   ~ 0
 SCLK
 Wire Wire Line
-	18700 4450 16350 4450
+	18550 1500 16200 1500
 Wire Wire Line
-	18700 4450 18700 4950
+	18550 1500 18550 2000
 Wire Wire Line
-	16750 5150 16750 4950
+	16600 2200 16600 2000
 Wire Wire Line
-	16750 4950 16350 4950
-Connection ~ 16750 5150
+	16600 2000 16200 2000
+Connection ~ 16600 2200
 Wire Wire Line
-	16350 4950 16350 5000
+	16200 2000 16200 2050
 Wire Wire Line
-	17500 4600 17500 5050
+	17350 1650 17350 2100
 Wire Wire Line
-	20100 4600 20100 5100
-Text Label 20100 4850 0    50   ~ 0
+	19950 1650 19950 2150
+Text Label 19950 1900 0    50   ~ 0
 CSB
 Wire Wire Line
-	17500 5450 17400 5450
+	17350 2500 17250 2500
 Wire Wire Line
-	17400 5450 17400 5900
+	17250 2500 17250 2950
 Wire Wire Line
-	18700 5550 18700 5750
-Connection ~ 16350 4950
+	18550 2600 18550 2800
+Connection ~ 16200 2000
 Wire Wire Line
-	16350 4400 16350 4450
-Connection ~ 16350 4450
-Text Label 16600 4450 0    50   ~ 0
+	16200 1450 16200 1500
+Connection ~ 16200 1500
+Text Label 16450 1500 0    50   ~ 0
 VDD
-Text Label 16750 5400 0    50   ~ 0
+Text Label 16600 2450 0    50   ~ 0
 GND
-Text Label 16850 5150 0    50   ~ 0
+Text Label 16700 2200 0    50   ~ 0
 PS
 $Comp
-L Connector_Generic:Conn_02x01 J?
+L Connector_Generic:Conn_02x01 J11
 U 1 1 5BBAC4EB
-P 15500 4650
-F 0 "J?" V 15504 4730 50  0000 L CNN
-F 1 "Conn_02x01" V 15595 4730 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x01_P2.54mm_Vertical" H 15500 4650 50  0001 C CNN
-F 3 "~" H 15500 4650 50  0001 C CNN
-	1    15500 4650
+P 15350 1700
+F 0 "J11" V 15354 1780 50  0000 L CNN
+F 1 "Conn_02x01" V 15445 1780 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x01_P2.54mm_Vertical" H 15350 1700 50  0001 C CNN
+F 3 "~" H 15350 1700 50  0001 C CNN
+	1    15350 1700
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	16350 4300 15500 4300
+	16200 1350 15350 1350
 Wire Wire Line
-	15500 4300 15500 4450
+	15350 1350 15350 1500
 Wire Wire Line
-	16350 5100 15500 5100
+	16200 2150 15350 2150
 Wire Wire Line
-	15500 5100 15500 4950
+	15350 2150 15350 2000
 Wire Wire Line
-	16350 4300 16350 4400
-Connection ~ 16350 4400
+	16200 1350 16200 1450
+Connection ~ 16200 1450
 Wire Wire Line
-	16350 5100 16350 5000
-Connection ~ 16350 5000
+	16200 2150 16200 2050
+Connection ~ 16200 2050
 $Comp
-L habiv-board-rescue:STM32F401RET6-STM32-rescue U?
+L habiv-board-rescue:STM32F401RET6-STM32-rescue U1
 U 1 1 5BB18215
-P 7400 13300
-F 0 "U?" H 7400 13300 50  0000 L BNN
-F 1 "STM32F401RET6" H 7100 12700 50  0000 L BNN
-F 2 "STM32F401RET6:QFP50P1200X1200X160-64N" H 7400 13300 50  0001 L BNN
-F 3 "None" H 7400 13300 50  0001 L BNN
-F 4 "STMicroelectronics" H 7400 13300 50  0001 L BNN "Field4"
-F 5 "LQFP-64 STMicroelectronics" H 7400 13300 50  0001 L BNN "Field5"
-F 6 "Unavailable" H 7400 13300 50  0001 L BNN "Field6"
-F 7 "MCU 32-Bit STM32 ARM Cortex M4 RISC 512KB Flash 1.8V/2.5V/3.3V 64-Pin LQFP Tray" H 7400 13300 50  0001 L BNN "Field7"
-F 8 "STM32F401RET6" H 7400 13300 50  0001 L BNN "Field8"
-	1    7400 13300
+P 5650 8500
+F 0 "U1" H 5650 8500 50  0000 L BNN
+F 1 "STM32F401RET6" H 5350 7900 50  0000 L BNN
+F 2 "STM32F401RET6:QFP50P1200X1200X160-64N" H 5650 8500 50  0001 L BNN
+F 3 "None" H 5650 8500 50  0001 L BNN
+F 4 "STMicroelectronics" H 5650 8500 50  0001 L BNN "Field4"
+F 5 "LQFP-64 STMicroelectronics" H 5650 8500 50  0001 L BNN "Field5"
+F 6 "Unavailable" H 5650 8500 50  0001 L BNN "Field6"
+F 7 "MCU 32-Bit STM32 ARM Cortex M4 RISC 512KB Flash 1.8V/2.5V/3.3V 64-Pin LQFP Tray" H 5650 8500 50  0001 L BNN "Field7"
+F 8 "STM32F401RET6" H 5650 8500 50  0001 L BNN "Field8"
+	1    5650 8500
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue 100nF?
+L habiv-board-rescue:C-STM32-rescue 100nF1
 U 1 1 5BB5A0DB
-P 4450 14350
-F 0 "100nF?" H 4475 14450 50  0000 L CNN
-F 1 "C5" H 4475 14250 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 4488 14200 50  0001 C CNN
-F 3 "" H 4450 14350 50  0001 C CNN
-	1    4450 14350
+P 2700 9550
+F 0 "100nF1" H 2725 9650 50  0000 L CNN
+F 1 "C5" H 2725 9450 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 2738 9400 50  0001 C CNN
+F 3 "" H 2700 9550 50  0001 C CNN
+	1    2700 9550
 	0    1    1    0   
 $EndComp
 $Comp
-L power:+3V3 #PWR?
+L power:+3V3 #PWR06
 U 1 1 5BB5A20D
-P 6150 12450
-F 0 "#PWR?" H 6150 12300 50  0001 C CNN
-F 1 "+3V3" H 6150 12590 50  0000 C CNN
-F 2 "" H 6150 12450 50  0001 C CNN
-F 3 "" H 6150 12450 50  0001 C CNN
-	1    6150 12450
+P 4400 7650
+F 0 "#PWR06" H 4400 7500 50  0001 C CNN
+F 1 "+3V3" H 4400 7790 50  0000 C CNN
+F 2 "" H 4400 7650 50  0001 C CNN
+F 3 "" H 4400 7650 50  0001 C CNN
+	1    4400 7650
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3V3 #PWR?
+L power:+3V3 #PWR03
 U 1 1 5BB5A23B
-P 5300 13900
-F 0 "#PWR?" H 5300 13750 50  0001 C CNN
-F 1 "+3V3" H 5300 14040 50  0000 C CNN
-F 2 "" H 5300 13900 50  0001 C CNN
-F 3 "" H 5300 13900 50  0001 C CNN
-	1    5300 13900
+P 3550 9100
+F 0 "#PWR03" H 3550 8950 50  0001 C CNN
+F 1 "+3V3" H 3550 9240 50  0000 C CNN
+F 2 "" H 3550 9100 50  0001 C CNN
+F 3 "" H 3550 9100 50  0001 C CNN
+	1    3550 9100
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue C?
+L habiv-board-rescue:C-STM32-rescue C3
 U 1 1 5BB5A748
-P 4150 12700
-F 0 "C?" H 4175 12800 50  0000 L CNN
-F 1 "4.3pF" H 4175 12600 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 4188 12550 50  0001 C CNN
-F 3 "" H 4150 12700 50  0001 C CNN
-	1    4150 12700
+P 2400 7900
+F 0 "C3" H 2425 8000 50  0000 L CNN
+F 1 "4.3pF" H 2425 7800 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 2438 7750 50  0001 C CNN
+F 3 "" H 2400 7900 50  0001 C CNN
+	1    2400 7900
 	0    1    1    0   
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue C?
+L habiv-board-rescue:C-STM32-rescue C4
 U 1 1 5BB5A7DC
-P 4150 12950
-F 0 "C?" H 4175 13050 50  0000 L CNN
-F 1 "4.3pF" H 4175 12850 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 4188 12800 50  0001 C CNN
-F 3 "" H 4150 12950 50  0001 C CNN
-	1    4150 12950
+P 2400 8150
+F 0 "C4" H 2425 8250 50  0000 L CNN
+F 1 "4.3pF" H 2425 8050 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 2438 8000 50  0001 C CNN
+F 3 "" H 2400 8150 50  0001 C CNN
+	1    2400 8150
 	0    1    1    0   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR01
 U 1 1 5BB5AAE7
-P 4000 13200
-F 0 "#PWR?" H 4000 12950 50  0001 C CNN
-F 1 "GND" H 4000 13050 50  0000 C CNN
-F 2 "" H 4000 13200 50  0001 C CNN
-F 3 "" H 4000 13200 50  0001 C CNN
-	1    4000 13200
+P 2250 8400
+F 0 "#PWR01" H 2250 8150 50  0001 C CNN
+F 1 "GND" H 2250 8250 50  0000 C CNN
+F 2 "" H 2250 8400 50  0001 C CNN
+F 3 "" H 2250 8400 50  0001 C CNN
+	1    2250 8400
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:Conn_ARM_JTAG_SWD_20-STM32-rescue J?
+L habiv-board-rescue:Conn_ARM_JTAG_SWD_20-STM32-rescue J3
 U 1 1 5BC4298C
-P 700 17600
-F 0 "J?" H 500 18450 50  0000 R CNN
-F 1 "Conn_ARM_JTAG_SWD_20" H 500 18350 50  0000 R BNN
-F 2 "Pin_Headers:Pin_Header_Straight_2x10_Pitch2.54mm" H 1150 16550 50  0001 L TNN
-F 3 "" V 350 16350 50  0001 C CNN
-	1    700  17600
+P 5750 14850
+F 0 "J3" H 5550 15700 50  0000 R CNN
+F 1 "Conn_ARM_JTAG_SWD_20" H 5550 15600 50  0000 R BNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x10_Pitch2.54mm" H 6200 13800 50  0001 L TNN
+F 3 "" V 5400 13600 50  0001 C CNN
+	1    5750 14850
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR02
 U 1 1 5BC43A22
-P 4250 14400
-F 0 "#PWR?" H 4250 14150 50  0001 C CNN
-F 1 "GND" H 4250 14250 50  0000 C CNN
-F 2 "" H 4250 14400 50  0001 C CNN
-F 3 "" H 4250 14400 50  0001 C CNN
-	1    4250 14400
+P 2500 9600
+F 0 "#PWR02" H 2500 9350 50  0001 C CNN
+F 1 "GND" H 2500 9450 50  0000 C CNN
+F 2 "" H 2500 9600 50  0001 C CNN
+F 3 "" H 2500 9600 50  0001 C CNN
+	1    2500 9600
 	1    0    0    -1  
 $EndComp
-Text GLabel 4750 13950 2    60   Input ~ 0
+Text GLabel 3000 9150 2    60   Input ~ 0
 RST
 $Comp
-L habiv-board-rescue:L-STM32-rescue 22uH?
+L habiv-board-rescue:L-STM32-rescue 22uH1
 U 1 1 5BC43B12
-P 5300 14050
-F 0 "22uH?" V 5250 14050 50  0000 C CNN
-F 1 "L1" V 5375 14050 50  0000 C CNN
-F 2 "Inductors_SMD:L_0603_HandSoldering" H 5300 14050 50  0001 C CNN
-F 3 "" H 5300 14050 50  0001 C CNN
-	1    5300 14050
+P 3550 9250
+F 0 "22uH1" V 3500 9250 50  0000 C CNN
+F 1 "L1" V 3625 9250 50  0000 C CNN
+F 2 "Inductors_SMD:L_0603_HandSoldering" H 3550 9250 50  0001 C CNN
+F 3 "" H 3550 9250 50  0001 C CNN
+	1    3550 9250
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue 1uF?
+L habiv-board-rescue:C-STM32-rescue 1uF1
 U 1 1 5BC43DE9
-P 5300 14400
-F 0 "1uF?" H 5325 14500 50  0000 L CNN
-F 1 "C6" H 5325 14300 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 5338 14250 50  0001 C CNN
-F 3 "" H 5300 14400 50  0001 C CNN
-	1    5300 14400
+P 3550 9600
+F 0 "1uF1" H 3575 9700 50  0000 L CNN
+F 1 "C6" H 3575 9500 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 3588 9450 50  0001 C CNN
+F 3 "" H 3550 9600 50  0001 C CNN
+	1    3550 9600
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue 10nF?
+L habiv-board-rescue:C-STM32-rescue 10nF1
 U 1 1 5BC43E5D
-P 5550 14400
-F 0 "10nF?" H 5575 14500 50  0000 L CNN
-F 1 "C7" H 5575 14300 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 5588 14250 50  0001 C CNN
-F 3 "" H 5550 14400 50  0001 C CNN
-	1    5550 14400
+P 3800 9600
+F 0 "10nF1" H 3825 9700 50  0000 L CNN
+F 1 "C7" H 3825 9500 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 3838 9450 50  0001 C CNN
+F 3 "" H 3800 9600 50  0001 C CNN
+	1    3800 9600
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR05
 U 1 1 5BC43FFE
-P 5550 14600
-F 0 "#PWR?" H 5550 14350 50  0001 C CNN
-F 1 "GND" H 5550 14450 50  0000 C CNN
-F 2 "" H 5550 14600 50  0001 C CNN
-F 3 "" H 5550 14600 50  0001 C CNN
-	1    5550 14600
+P 3800 9800
+F 0 "#PWR05" H 3800 9550 50  0001 C CNN
+F 1 "GND" H 3800 9650 50  0000 C CNN
+F 2 "" H 3800 9800 50  0001 C CNN
+F 3 "" H 3800 9800 50  0001 C CNN
+	1    3800 9800
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3VA #PWR?
+L power:+3.3VA #PWR04
 U 1 1 5BC44633
-P 5550 13750
-F 0 "#PWR?" H 5550 13600 50  0001 C CNN
-F 1 "+3.3VA" H 5550 13890 50  0000 C CNN
-F 2 "" H 5550 13750 50  0001 C CNN
-F 3 "" H 5550 13750 50  0001 C CNN
-	1    5550 13750
+P 3800 8950
+F 0 "#PWR04" H 3800 8800 50  0001 C CNN
+F 1 "+3.3VA" H 3800 9090 50  0000 C CNN
+F 2 "" H 3800 8950 50  0001 C CNN
+F 3 "" H 3800 8950 50  0001 C CNN
+	1    3800 8950
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:R-STM32-rescue 0k?
+L habiv-board-rescue:R-STM32-rescue 0k1
 U 1 1 5BC449A1
-P 4950 12700
-F 0 "0k?" V 5030 12700 50  0000 C CNN
-F 1 "R1" V 4950 12700 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 4880 12700 50  0001 C CNN
-F 3 "" H 4950 12700 50  0001 C CNN
-	1    4950 12700
+P 3200 7900
+F 0 "0k1" V 3280 7900 50  0000 C CNN
+F 1 "R1" V 3200 7900 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 3130 7900 50  0001 C CNN
+F 3 "" H 3200 7900 50  0001 C CNN
+	1    3200 7900
 	0    1    1    0   
 $EndComp
 $Comp
-L habiv-board-rescue:R-STM32-rescue 0k?
+L habiv-board-rescue:R-STM32-rescue 0k2
 U 1 1 5BC44ABA
-P 4950 13000
-F 0 "0k?" V 5030 13000 50  0000 C CNN
-F 1 "R2" V 4950 13000 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 4880 13000 50  0001 C CNN
-F 3 "" H 4950 13000 50  0001 C CNN
-	1    4950 13000
+P 3200 8200
+F 0 "0k2" V 3280 8200 50  0000 C CNN
+F 1 "R2" V 3200 8200 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 3130 8200 50  0001 C CNN
+F 3 "" H 3200 8200 50  0001 C CNN
+	1    3200 8200
 	0    1    1    0   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR010
 U 1 1 5BC45CED
-P 6750 14450
-F 0 "#PWR?" H 6750 14200 50  0001 C CNN
-F 1 "GND" H 6750 14300 50  0000 C CNN
-F 2 "" H 6750 14450 50  0001 C CNN
-F 3 "" H 6750 14450 50  0001 C CNN
-	1    6750 14450
+P 5000 9650
+F 0 "#PWR010" H 5000 9400 50  0001 C CNN
+F 1 "GND" H 5000 9500 50  0000 C CNN
+F 2 "" H 5000 9650 50  0001 C CNN
+F 3 "" H 5000 9650 50  0001 C CNN
+	1    5000 9650
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR016
 U 1 1 5BC45D37
-P 8050 14450
-F 0 "#PWR?" H 8050 14200 50  0001 C CNN
-F 1 "GND" H 8050 14300 50  0000 C CNN
-F 2 "" H 8050 14450 50  0001 C CNN
-F 3 "" H 8050 14450 50  0001 C CNN
-	1    8050 14450
+P 6300 9650
+F 0 "#PWR016" H 6300 9400 50  0001 C CNN
+F 1 "GND" H 6300 9500 50  0000 C CNN
+F 2 "" H 6300 9650 50  0001 C CNN
+F 3 "" H 6300 9650 50  0001 C CNN
+	1    6300 9650
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue 1uF?
+L habiv-board-rescue:C-STM32-rescue 1uF5
 U 1 1 5BC46049
-P 8800 12150
-F 0 "1uF?" H 8825 12250 50  0000 L CNN
-F 1 "C10" H 8825 12050 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 8838 12000 50  0001 C CNN
-F 3 "" H 8800 12150 50  0001 C CNN
-	1    8800 12150
+P 7050 7350
+F 0 "1uF5" H 7075 7450 50  0000 L CNN
+F 1 "C10" H 7075 7250 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 7088 7200 50  0001 C CNN
+F 3 "" H 7050 7350 50  0001 C CNN
+	1    7050 7350
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue 100nF?
+L habiv-board-rescue:C-STM32-rescue 100nF5
 U 1 1 5BC4604F
-P 9050 12150
-F 0 "100nF?" H 9075 12250 50  0000 L CNN
-F 1 "C11" H 9075 12050 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 9088 12000 50  0001 C CNN
-F 3 "" H 9050 12150 50  0001 C CNN
-	1    9050 12150
+P 7300 7350
+F 0 "100nF5" H 7325 7450 50  0000 L CNN
+F 1 "C11" H 7325 7250 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 7338 7200 50  0001 C CNN
+F 3 "" H 7300 7350 50  0001 C CNN
+	1    7300 7350
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR020
 U 1 1 5BC46055
-P 9050 12350
-F 0 "#PWR?" H 9050 12100 50  0001 C CNN
-F 1 "GND" H 9050 12200 50  0000 C CNN
-F 2 "" H 9050 12350 50  0001 C CNN
-F 3 "" H 9050 12350 50  0001 C CNN
-	1    9050 12350
+P 7300 7550
+F 0 "#PWR020" H 7300 7300 50  0001 C CNN
+F 1 "GND" H 7300 7400 50  0000 C CNN
+F 2 "" H 7300 7550 50  0001 C CNN
+F 3 "" H 7300 7550 50  0001 C CNN
+	1    7300 7550
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3V3 #PWR?
+L power:+3V3 #PWR019
 U 1 1 5BC462B3
-P 9050 11950
-F 0 "#PWR?" H 9050 11800 50  0001 C CNN
-F 1 "+3V3" H 9050 12090 50  0000 C CNN
-F 2 "" H 9050 11950 50  0001 C CNN
-F 3 "" H 9050 11950 50  0001 C CNN
-	1    9050 11950
+P 7300 7150
+F 0 "#PWR019" H 7300 7000 50  0001 C CNN
+F 1 "+3V3" H 7300 7290 50  0000 C CNN
+F 2 "" H 7300 7150 50  0001 C CNN
+F 3 "" H 7300 7150 50  0001 C CNN
+	1    7300 7150
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue 1uF?
+L habiv-board-rescue:C-STM32-rescue 1uF3
 U 1 1 5BC464D1
-P 6850 15400
-F 0 "1uF?" H 6875 15500 50  0000 L CNN
-F 1 "C8" H 6875 15300 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6888 15250 50  0001 C CNN
-F 3 "" H 6850 15400 50  0001 C CNN
-	1    6850 15400
+P 5100 10600
+F 0 "1uF3" H 5125 10700 50  0000 L CNN
+F 1 "C8" H 5125 10500 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 5138 10450 50  0001 C CNN
+F 3 "" H 5100 10600 50  0001 C CNN
+	1    5100 10600
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue 100nF?
+L habiv-board-rescue:C-STM32-rescue 100nF3
 U 1 1 5BC464D7
-P 7100 15400
-F 0 "100nF?" H 7125 15500 50  0000 L CNN
-F 1 "C9" H 7125 15300 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 7138 15250 50  0001 C CNN
-F 3 "" H 7100 15400 50  0001 C CNN
-	1    7100 15400
+P 5350 10600
+F 0 "100nF3" H 5375 10700 50  0000 L CNN
+F 1 "C9" H 5375 10500 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 5388 10450 50  0001 C CNN
+F 3 "" H 5350 10600 50  0001 C CNN
+	1    5350 10600
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR013
 U 1 1 5BC464DD
-P 7100 15600
-F 0 "#PWR?" H 7100 15350 50  0001 C CNN
-F 1 "GND" H 7100 15450 50  0000 C CNN
-F 2 "" H 7100 15600 50  0001 C CNN
-F 3 "" H 7100 15600 50  0001 C CNN
-	1    7100 15600
+P 5350 10800
+F 0 "#PWR013" H 5350 10550 50  0001 C CNN
+F 1 "GND" H 5350 10650 50  0000 C CNN
+F 2 "" H 5350 10800 50  0001 C CNN
+F 3 "" H 5350 10800 50  0001 C CNN
+	1    5350 10800
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3V3 #PWR?
+L power:+3V3 #PWR012
 U 1 1 5BC464E9
-P 7100 15200
-F 0 "#PWR?" H 7100 15050 50  0001 C CNN
-F 1 "+3V3" H 7100 15340 50  0000 C CNN
-F 2 "" H 7100 15200 50  0001 C CNN
-F 3 "" H 7100 15200 50  0001 C CNN
-	1    7100 15200
+P 5350 10400
+F 0 "#PWR012" H 5350 10250 50  0001 C CNN
+F 1 "+3V3" H 5350 10540 50  0000 C CNN
+F 2 "" H 5350 10400 50  0001 C CNN
+F 3 "" H 5350 10400 50  0001 C CNN
+	1    5350 10400
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue 4.7uF?
+L habiv-board-rescue:C-STM32-rescue 4.7uF1
 U 1 1 5BC46836
-P 7950 14900
-F 0 "4.7uF?" H 7975 15000 50  0000 L CNN
-F 1 "C21" H 7975 14800 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 7988 14750 50  0001 C CNN
-F 3 "" H 7950 14900 50  0001 C CNN
-	1    7950 14900
+P 6200 10100
+F 0 "4.7uF1" H 6225 10200 50  0000 L CNN
+F 1 "C21" H 6225 10000 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6238 9950 50  0001 C CNN
+F 3 "" H 6200 10100 50  0001 C CNN
+	1    6200 10100
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR014
 U 1 1 5BC468DC
-P 7950 15050
-F 0 "#PWR?" H 7950 14800 50  0001 C CNN
-F 1 "GND" H 7950 14900 50  0000 C CNN
-F 2 "" H 7950 15050 50  0001 C CNN
-F 3 "" H 7950 15050 50  0001 C CNN
-	1    7950 15050
+P 6200 10250
+F 0 "#PWR014" H 6200 10000 50  0001 C CNN
+F 1 "GND" H 6200 10100 50  0000 C CNN
+F 2 "" H 6200 10250 50  0001 C CNN
+F 3 "" H 6200 10250 50  0001 C CNN
+	1    6200 10250
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue 1uF?
+L habiv-board-rescue:C-STM32-rescue 1uF4
 U 1 1 5BC46E30
-P 8150 15400
-F 0 "1uF?" H 8175 15500 50  0000 L CNN
-F 1 "C12" H 8175 15300 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 8188 15250 50  0001 C CNN
-F 3 "" H 8150 15400 50  0001 C CNN
-	1    8150 15400
+P 6400 10600
+F 0 "1uF4" H 6425 10700 50  0000 L CNN
+F 1 "C12" H 6425 10500 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6438 10450 50  0001 C CNN
+F 3 "" H 6400 10600 50  0001 C CNN
+	1    6400 10600
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue 100nF?
+L habiv-board-rescue:C-STM32-rescue 100nF4
 U 1 1 5BC46E36
-P 8400 15400
-F 0 "100nF?" H 8425 15500 50  0000 L CNN
-F 1 "C13" H 8425 15300 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 8438 15250 50  0001 C CNN
-F 3 "" H 8400 15400 50  0001 C CNN
-	1    8400 15400
+P 6650 10600
+F 0 "100nF4" H 6675 10700 50  0000 L CNN
+F 1 "C13" H 6675 10500 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6688 10450 50  0001 C CNN
+F 3 "" H 6650 10600 50  0001 C CNN
+	1    6650 10600
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR018
 U 1 1 5BC46E3C
-P 8400 15600
-F 0 "#PWR?" H 8400 15350 50  0001 C CNN
-F 1 "GND" H 8400 15450 50  0000 C CNN
-F 2 "" H 8400 15600 50  0001 C CNN
-F 3 "" H 8400 15600 50  0001 C CNN
-	1    8400 15600
+P 6650 10800
+F 0 "#PWR018" H 6650 10550 50  0001 C CNN
+F 1 "GND" H 6650 10650 50  0000 C CNN
+F 2 "" H 6650 10800 50  0001 C CNN
+F 3 "" H 6650 10800 50  0001 C CNN
+	1    6650 10800
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3V3 #PWR?
+L power:+3V3 #PWR017
 U 1 1 5BC46E48
-P 8400 15200
-F 0 "#PWR?" H 8400 15050 50  0001 C CNN
-F 1 "+3V3" H 8400 15340 50  0000 C CNN
-F 2 "" H 8400 15200 50  0001 C CNN
-F 3 "" H 8400 15200 50  0001 C CNN
-	1    8400 15200
+P 6650 10400
+F 0 "#PWR017" H 6650 10250 50  0001 C CNN
+F 1 "+3V3" H 6650 10540 50  0000 C CNN
+F 2 "" H 6650 10400 50  0001 C CNN
+F 3 "" H 6650 10400 50  0001 C CNN
+	1    6650 10400
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue 1uF?
+L habiv-board-rescue:C-STM32-rescue 1uF2
 U 1 1 5BC4730D
-P 6150 11850
-F 0 "1uF?" H 6175 11950 50  0000 L CNN
-F 1 "C14" H 6175 11750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6188 11700 50  0001 C CNN
-F 3 "" H 6150 11850 50  0001 C CNN
-	1    6150 11850
+P 4400 7050
+F 0 "1uF2" H 4425 7150 50  0000 L CNN
+F 1 "C14" H 4425 6950 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 4438 6900 50  0001 C CNN
+F 3 "" H 4400 7050 50  0001 C CNN
+	1    4400 7050
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue 100nF?
+L habiv-board-rescue:C-STM32-rescue 100nF2
 U 1 1 5BC47313
-P 6400 11850
-F 0 "100nF?" H 6425 11950 50  0000 L CNN
-F 1 "C15" H 6425 11750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 6438 11700 50  0001 C CNN
-F 3 "" H 6400 11850 50  0001 C CNN
-	1    6400 11850
+P 4650 7050
+F 0 "100nF2" H 4675 7150 50  0000 L CNN
+F 1 "C15" H 4675 6950 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 4688 6900 50  0001 C CNN
+F 3 "" H 4650 7050 50  0001 C CNN
+	1    4650 7050
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR08
 U 1 1 5BC47319
-P 6400 12050
-F 0 "#PWR?" H 6400 11800 50  0001 C CNN
-F 1 "GND" H 6400 11900 50  0000 C CNN
-F 2 "" H 6400 12050 50  0001 C CNN
-F 3 "" H 6400 12050 50  0001 C CNN
-	1    6400 12050
+P 4650 7250
+F 0 "#PWR08" H 4650 7000 50  0001 C CNN
+F 1 "GND" H 4650 7100 50  0000 C CNN
+F 2 "" H 4650 7250 50  0001 C CNN
+F 3 "" H 4650 7250 50  0001 C CNN
+	1    4650 7250
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3V3 #PWR?
+L power:+3V3 #PWR07
 U 1 1 5BC47325
-P 6400 11650
-F 0 "#PWR?" H 6400 11500 50  0001 C CNN
-F 1 "+3V3" H 6400 11790 50  0000 C CNN
-F 2 "" H 6400 11650 50  0001 C CNN
-F 3 "" H 6400 11650 50  0001 C CNN
-	1    6400 11650
+P 4650 6850
+F 0 "#PWR07" H 4650 6700 50  0001 C CNN
+F 1 "+3V3" H 4650 6990 50  0000 C CNN
+F 2 "" H 4650 6850 50  0001 C CNN
+F 3 "" H 4650 6850 50  0001 C CNN
+	1    4650 6850
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:R-STM32-rescue 10k?
+L habiv-board-rescue:R-STM32-rescue 10k1
 U 1 1 5BC475E1
-P 7050 11600
-F 0 "10k?" V 7130 11600 50  0000 C CNN
-F 1 "R5" V 7050 11600 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 6980 11600 50  0001 C CNN
-F 3 "" H 7050 11600 50  0001 C CNN
-	1    7050 11600
+P 5300 6800
+F 0 "10k1" V 5380 6800 50  0000 C CNN
+F 1 "R5" V 5300 6800 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 5230 6800 50  0001 C CNN
+F 3 "" H 5300 6800 50  0001 C CNN
+	1    5300 6800
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR011
 U 1 1 5BC47B02
-P 6900 11150
-F 0 "#PWR?" H 6900 10900 50  0001 C CNN
-F 1 "GND" H 6900 11000 50  0000 C CNN
-F 2 "" H 6900 11150 50  0001 C CNN
-F 3 "" H 6900 11150 50  0001 C CNN
-	1    6900 11150
+P 5150 6350
+F 0 "#PWR011" H 5150 6100 50  0001 C CNN
+F 1 "GND" H 5150 6200 50  0000 C CNN
+F 2 "" H 5150 6350 50  0001 C CNN
+F 3 "" H 5150 6350 50  0001 C CNN
+	1    5150 6350
 	1    0    0    -1  
 $EndComp
-Text GLabel 8550 12750 2    60   Input ~ 0
+Text GLabel 6800 7950 2    60   Input ~ 0
 PA13
-Text GLabel 8550 12850 2    60   Input ~ 0
+Text GLabel 6800 8050 2    60   Input ~ 0
 PA12
-Text GLabel 8550 12950 2    60   Input ~ 0
+Text GLabel 6800 8150 2    60   Input ~ 0
 PA11
-Text GLabel 8550 13050 2    60   Input ~ 0
+Text GLabel 6800 8250 2    60   Input ~ 0
 PA10
-Text GLabel 8550 13150 2    60   Input ~ 0
+Text GLabel 6800 8350 2    60   Input ~ 0
 PA9
-Text GLabel 8550 13250 2    60   Input ~ 0
+Text GLabel 6800 8450 2    60   Input ~ 0
 PA8
-Text GLabel 8550 13350 2    60   Input ~ 0
+Text GLabel 6800 8550 2    60   Input ~ 0
 PC9
-Text GLabel 8550 13450 2    60   Input ~ 0
+Text GLabel 6800 8650 2    60   Input ~ 0
 PC8
-Text GLabel 8550 13550 2    60   Input ~ 0
+Text GLabel 6800 8750 2    60   Input ~ 0
 PC7
-Text GLabel 8550 13650 2    60   Input ~ 0
+Text GLabel 6800 8850 2    60   Input ~ 0
 PC6
-Text GLabel 8550 13750 2    60   Input ~ 0
+Text GLabel 6800 8950 2    60   Input ~ 0
 PB15
-Text GLabel 8550 13850 2    60   Input ~ 0
+Text GLabel 6800 9050 2    60   Input ~ 0
 PB14
-Text GLabel 8550 13950 2    60   Input ~ 0
+Text GLabel 6800 9150 2    60   Input ~ 0
 PB13
-Text GLabel 8550 14050 2    60   Input ~ 0
+Text GLabel 6800 9250 2    60   Input ~ 0
 PB12
-Text GLabel 6250 12650 0    60   Input ~ 0
+Text GLabel 4500 7850 0    60   Input ~ 0
 PC13
-Text GLabel 6250 13250 0    60   Input ~ 0
+Text GLabel 4500 8450 0    60   Input ~ 0
 PC0
-Text GLabel 6250 13350 0    60   Input ~ 0
+Text GLabel 4500 8550 0    60   Input ~ 0
 PC1
-Text GLabel 6250 13450 0    60   Input ~ 0
+Text GLabel 4500 8650 0    60   Input ~ 0
 PC2
-Text GLabel 6250 13550 0    60   Input ~ 0
+Text GLabel 4500 8750 0    60   Input ~ 0
 PC3
-Text GLabel 6250 13850 0    60   Input ~ 0
+Text GLabel 4500 9050 0    60   Input ~ 0
 PA0
-Text GLabel 6250 13950 0    60   Input ~ 0
+Text GLabel 4500 9150 0    60   Input ~ 0
 PA1
-Text GLabel 6250 14050 0    60   Input ~ 0
+Text GLabel 4500 9250 0    60   Input ~ 0
 PA2
-Text GLabel 6650 14450 3    60   Input ~ 0
+Text GLabel 4900 9650 3    60   Input ~ 0
 PA3
-Text GLabel 6950 14450 3    60   Input ~ 0
+Text GLabel 5200 9650 3    60   Input ~ 0
 PA4
-Text GLabel 7050 14450 3    60   Input ~ 0
+Text GLabel 5300 9650 3    60   Input ~ 0
 PA5
-Text GLabel 7150 14450 3    60   Input ~ 0
+Text GLabel 5400 9650 3    60   Input ~ 0
 PA6
-Text GLabel 7250 14450 3    60   Input ~ 0
+Text GLabel 5500 9650 3    60   Input ~ 0
 PA7
-Text GLabel 7350 14450 3    60   Input ~ 0
+Text GLabel 5600 9650 3    60   Input ~ 0
 PC4
-Text GLabel 7450 14450 3    60   Input ~ 0
+Text GLabel 5700 9650 3    60   Input ~ 0
 PC5
-Text GLabel 7550 14450 3    60   Input ~ 0
+Text GLabel 5800 9650 3    60   Input ~ 0
 PB0
-Text GLabel 7650 14450 3    60   Input ~ 0
+Text GLabel 5900 9650 3    60   Input ~ 0
 PB1
-Text GLabel 7750 14450 3    60   Input ~ 0
+Text GLabel 6000 9650 3    60   Input ~ 0
 PB2
-Text GLabel 7850 14450 3    60   Input ~ 0
+Text GLabel 6100 9650 3    60   Input ~ 0
 PB10
-Text GLabel 8150 12150 1    60   Input ~ 0
+Text GLabel 6400 7350 1    60   Input ~ 0
 PA14
-Text GLabel 8050 12150 1    60   Input ~ 0
+Text GLabel 6300 7350 1    60   Input ~ 0
 PA15
-Text GLabel 7950 12150 1    60   Input ~ 0
+Text GLabel 6200 7350 1    60   Input ~ 0
 PC10
-Text GLabel 7850 12150 1    60   Input ~ 0
+Text GLabel 6100 7350 1    60   Input ~ 0
 PC11
-Text GLabel 7750 12150 1    60   Input ~ 0
+Text GLabel 6000 7350 1    60   Input ~ 0
 PC12
-Text GLabel 7650 12150 1    60   Input ~ 0
+Text GLabel 5900 7350 1    60   Input ~ 0
 PD2
-Text GLabel 7550 12150 1    60   Input ~ 0
+Text GLabel 5800 7350 1    60   Input ~ 0
 PB3
-Text GLabel 7450 12150 1    60   Input ~ 0
+Text GLabel 5700 7350 1    60   Input ~ 0
 PB4
-Text GLabel 7350 12150 1    60   Input ~ 0
+Text GLabel 5600 7350 1    60   Input ~ 0
 PB5
-Text GLabel 7250 12150 1    60   Input ~ 0
+Text GLabel 5500 7350 1    60   Input ~ 0
 PB6
-Text GLabel 7150 12150 1    60   Input ~ 0
+Text GLabel 5400 7350 1    60   Input ~ 0
 PB7
-Text GLabel 6950 12150 1    60   Input ~ 0
+Text GLabel 5200 7350 1    60   Input ~ 0
 PB8
-Text GLabel 6850 12150 1    60   Input ~ 0
+Text GLabel 5100 7350 1    60   Input ~ 0
 PB9
 $Comp
-L habiv-board-rescue:Micro_SD_Card_Det-STM32-rescue J?
+L habiv-board-rescue:Micro_SD_Card_Det-STM32-rescue J2
 U 1 1 5BC49DC0
-P -50 11350
-F 0 "J?" H -700 12050 50  0000 C CNN
-F 1 "Micro_SD_Card_Det" H 600 12050 50  0000 R CNN
-F 2 "Connectors_Card:Hirose_DM3BT-DSF-PEJS" H 2000 12050 50  0001 C CNN
-F 3 "" H -50 11450 50  0001 C CNN
-	1    -50  11350
+P 2150 14850
+F 0 "J2" H 1500 15550 50  0000 C CNN
+F 1 "Micro_SD_Card_Det" H 2800 15550 50  0000 R CNN
+F 2 "Connectors_Card:Hirose_DM3BT-DSF-PEJS" H 4200 15550 50  0001 C CNN
+F 3 "" H 2150 14950 50  0001 C CNN
+	1    2150 14850
 	1    0    0    -1  
 $EndComp
-Text GLabel 1300 17100 2    60   Input ~ 0
+Text GLabel 6350 14350 2    60   Input ~ 0
 PB4
-Text GLabel 1300 17800 2    60   Input ~ 0
+Text GLabel 6350 15050 2    60   Input ~ 0
 PA15
-Text GLabel 1300 17600 2    60   Input ~ 0
+Text GLabel 6350 14850 2    60   Input ~ 0
 PA13
-Text GLabel 1300 17500 2    60   Input ~ 0
+Text GLabel 6350 14750 2    60   Input ~ 0
 PA14
-Text GLabel 1300 17700 2    60   Input ~ 0
+Text GLabel 6350 14950 2    60   Input ~ 0
 PB3
-Text GLabel 1300 17200 2    60   Input ~ 0
+Text GLabel 6350 14450 2    60   Input ~ 0
 RST
 $Comp
-L habiv-board-rescue:R-STM32-rescue 10k?
+L habiv-board-rescue:R-STM32-rescue 10k2
 U 1 1 5BC4A25B
-P 1750 17400
-F 0 "10k?" V 1830 17400 50  0000 C CNN
-F 1 "R6" V 1750 17400 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 1680 17400 50  0001 C CNN
-F 3 "" H 1750 17400 50  0001 C CNN
-	1    1750 17400
+P 6800 14650
+F 0 "10k2" V 6880 14650 50  0000 C CNN
+F 1 "R6" V 6800 14650 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 6730 14650 50  0001 C CNN
+F 3 "" H 6800 14650 50  0001 C CNN
+	1    6800 14650
 	0    1    1    0   
 $EndComp
 $Comp
-L habiv-board-rescue:R-STM32-rescue 10k?
+L habiv-board-rescue:R-STM32-rescue 10k3
 U 1 1 5BC4A5C9
-P 1750 18000
-F 0 "10k?" V 1830 18000 50  0000 C CNN
-F 1 "R7" V 1750 18000 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 1680 18000 50  0001 C CNN
-F 3 "" H 1750 18000 50  0001 C CNN
-	1    1750 18000
+P 6800 15250
+F 0 "10k3" V 6880 15250 50  0000 C CNN
+F 1 "R7" V 6800 15250 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 6730 15250 50  0001 C CNN
+F 3 "" H 6800 15250 50  0001 C CNN
+	1    6800 15250
 	0    1    1    0   
 $EndComp
 $Comp
-L habiv-board-rescue:R-STM32-rescue 10k?
+L habiv-board-rescue:R-STM32-rescue 10k4
 U 1 1 5BC4A665
-P 1750 18150
-F 0 "10k?" V 1830 18150 50  0000 C CNN
-F 1 "R8" V 1750 18150 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 1680 18150 50  0001 C CNN
-F 3 "" H 1750 18150 50  0001 C CNN
-	1    1750 18150
+P 6800 15400
+F 0 "10k4" V 6880 15400 50  0000 C CNN
+F 1 "R8" V 6800 15400 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 6730 15400 50  0001 C CNN
+F 3 "" H 6800 15400 50  0001 C CNN
+	1    6800 15400
 	0    1    1    0   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR015
 U 1 1 5BC4ABA6
-P 1900 18450
-F 0 "#PWR?" H 1900 18200 50  0001 C CNN
-F 1 "GND" H 1900 18300 50  0000 C CNN
-F 2 "" H 1900 18450 50  0001 C CNN
-F 3 "" H 1900 18450 50  0001 C CNN
-	1    1900 18450
+P 6950 15700
+F 0 "#PWR015" H 6950 15450 50  0001 C CNN
+F 1 "GND" H 6950 15550 50  0000 C CNN
+F 2 "" H 6950 15700 50  0001 C CNN
+F 3 "" H 6950 15700 50  0001 C CNN
+	1    6950 15700
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3V3 #PWR?
+L power:+3V3 #PWR09
 U 1 1 5BC4AECA
-P 600 16650
-F 0 "#PWR?" H 600 16500 50  0001 C CNN
-F 1 "+3V3" H 600 16790 50  0000 C CNN
-F 2 "" H 600 16650 50  0001 C CNN
-F 3 "" H 600 16650 50  0001 C CNN
-	1    600  16650
+P 5650 13900
+F 0 "#PWR09" H 5650 13750 50  0001 C CNN
+F 1 "+3V3" H 5650 14040 50  0000 C CNN
+F 2 "" H 5650 13900 50  0001 C CNN
+F 3 "" H 5650 13900 50  0001 C CNN
+	1    5650 13900
 	1    0    0    -1  
 $EndComp
-Text GLabel 10850 10900 2    60   Input ~ 0
+Text GLabel 8950 7650 2    60   Input ~ 0
 PA0
-Text GLabel 10850 11000 2    60   Input ~ 0
+Text GLabel 8950 7750 2    60   Input ~ 0
 PA1
-Text GLabel 10850 11100 2    60   Input ~ 0
+Text GLabel 8950 7850 2    60   Input ~ 0
 PA2
-Text GLabel 10850 11200 2    60   Input ~ 0
+Text GLabel 8950 7950 2    60   Input ~ 0
 PA3
-Text GLabel 10850 11300 2    60   Input ~ 0
+Text GLabel 8950 8050 2    60   Input ~ 0
 PA4
-Text GLabel 10850 11400 2    60   Input ~ 0
+Text GLabel 8950 8150 2    60   Input ~ 0
 PA5
-Text GLabel 10850 11500 2    60   Input ~ 0
+Text GLabel 8950 8250 2    60   Input ~ 0
 PA6
-Text GLabel 10850 11600 2    60   Input ~ 0
+Text GLabel 8950 8350 2    60   Input ~ 0
 PA7
-Text GLabel 10850 12200 2    60   Input ~ 0
+Text GLabel 8950 8950 2    60   Input ~ 0
 PA13
-Text GLabel 10850 12100 2    60   Input ~ 0
+Text GLabel 8950 8850 2    60   Input ~ 0
 PA12
-Text GLabel 10850 12000 2    60   Input ~ 0
+Text GLabel 8950 8750 2    60   Input ~ 0
 PA11
-Text GLabel 10850 11900 2    60   Input ~ 0
+Text GLabel 8950 8650 2    60   Input ~ 0
 PA10
-Text GLabel 10850 11800 2    60   Input ~ 0
+Text GLabel 8950 8550 2    60   Input ~ 0
 PA9
-Text GLabel 10850 11700 2    60   Input ~ 0
+Text GLabel 8950 8450 2    60   Input ~ 0
 PA8
-Text GLabel 10850 12300 2    60   Input ~ 0
+Text GLabel 8950 9050 2    60   Input ~ 0
 PA14
 $Comp
-L habiv-board-rescue:Conn_01x16_Male-STM32-rescue J?
+L habiv-board-rescue:Conn_01x16_Male-STM32-rescue J5
 U 1 1 5BC4EB19
-P 10650 11600
-F 0 "J?" H 10650 12400 50  0000 C CNN
-F 1 "Conn_01x16_Male" H 10650 10700 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x16_Pitch2.54mm" H 10650 11600 50  0001 C CNN
-F 3 "" H 10650 11600 50  0001 C CNN
-	1    10650 11600
+P 8750 8350
+F 0 "J5" H 8750 9150 50  0000 C CNN
+F 1 "Conn_01x16_Male" H 8750 7450 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x16_Pitch2.54mm" H 8750 8350 50  0001 C CNN
+F 3 "" H 8750 8350 50  0001 C CNN
+	1    8750 8350
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:Conn_01x16_Male-STM32-rescue J?
+L habiv-board-rescue:Conn_01x16_Male-STM32-rescue J7
 U 1 1 5BC4EE03
-P 11450 11600
-F 0 "J?" H 11450 12400 50  0000 C CNN
-F 1 "Conn_01x16_Male" H 11450 10700 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x16_Pitch2.54mm" H 11450 11600 50  0001 C CNN
-F 3 "" H 11450 11600 50  0001 C CNN
-	1    11450 11600
+P 9550 8350
+F 0 "J7" H 9550 9150 50  0000 C CNN
+F 1 "Conn_01x16_Male" H 9550 7450 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x16_Pitch2.54mm" H 9550 8350 50  0001 C CNN
+F 3 "" H 9550 8350 50  0001 C CNN
+	1    9550 8350
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:Conn_01x16_Male-STM32-rescue J?
+L habiv-board-rescue:Conn_01x16_Male-STM32-rescue J8
 U 1 1 5BC4EEC1
-P 12200 11600
-F 0 "J?" H 12200 12400 50  0000 C CNN
-F 1 "Conn_01x16_Male" H 12200 10700 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x16_Pitch2.54mm" H 12200 11600 50  0001 C CNN
-F 3 "" H 12200 11600 50  0001 C CNN
-	1    12200 11600
+P 10300 8350
+F 0 "J8" H 10300 9150 50  0000 C CNN
+F 1 "Conn_01x16_Male" H 10300 7450 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x16_Pitch2.54mm" H 10300 8350 50  0001 C CNN
+F 3 "" H 10300 8350 50  0001 C CNN
+	1    10300 8350
 	1    0    0    -1  
 $EndComp
-Text GLabel 10850 12400 2    60   Input ~ 0
+Text GLabel 8950 9150 2    60   Input ~ 0
 PA15
-Text GLabel 11650 10900 2    60   Input ~ 0
+Text GLabel 9750 7650 2    60   Input ~ 0
 PB0
-Text GLabel 11650 11000 2    60   Input ~ 0
+Text GLabel 9750 7750 2    60   Input ~ 0
 PB1
-Text GLabel 11650 11100 2    60   Input ~ 0
+Text GLabel 9750 7850 2    60   Input ~ 0
 PB2
-Text GLabel 11650 11200 2    60   Input ~ 0
+Text GLabel 9750 7950 2    60   Input ~ 0
 PB3
-Text GLabel 11650 11300 2    60   Input ~ 0
+Text GLabel 9750 8050 2    60   Input ~ 0
 PB4
-Text GLabel 11650 11500 2    60   Input ~ 0
+Text GLabel 9750 8250 2    60   Input ~ 0
 PB6
-Text GLabel 11650 11600 2    60   Input ~ 0
+Text GLabel 9750 8350 2    60   Input ~ 0
 PB7
-Text GLabel 11650 11700 2    60   Input ~ 0
+Text GLabel 9750 8450 2    60   Input ~ 0
 PB8
-Text GLabel 11650 11800 2    60   Input ~ 0
+Text GLabel 9750 8550 2    60   Input ~ 0
 PB9
-Text GLabel 11650 12300 2    60   Input ~ 0
+Text GLabel 9750 9050 2    60   Input ~ 0
 PB14
-Text GLabel 11650 12400 2    60   Input ~ 0
+Text GLabel 9750 9150 2    60   Input ~ 0
 PB15
-Text GLabel 11650 11900 2    60   Input ~ 0
+Text GLabel 9750 8650 2    60   Input ~ 0
 PB10
-Text GLabel 11650 12100 2    60   Input ~ 0
+Text GLabel 9750 8850 2    60   Input ~ 0
 PB12
-Text GLabel 11650 12200 2    60   Input ~ 0
+Text GLabel 9750 8950 2    60   Input ~ 0
 PB13
-Text GLabel 11650 11400 2    60   Input ~ 0
+Text GLabel 9750 8150 2    60   Input ~ 0
 PB5
-Text GLabel 12400 10900 2    60   Input ~ 0
+Text GLabel 10500 7650 2    60   Input ~ 0
 PC0
-Text GLabel 12400 11000 2    60   Input ~ 0
+Text GLabel 10500 7750 2    60   Input ~ 0
 PC1
-Text GLabel 12400 11100 2    60   Input ~ 0
+Text GLabel 10500 7850 2    60   Input ~ 0
 PC2
-Text GLabel 12400 11200 2    60   Input ~ 0
+Text GLabel 10500 7950 2    60   Input ~ 0
 PC3
-Text GLabel 12400 11300 2    60   Input ~ 0
+Text GLabel 10500 8050 2    60   Input ~ 0
 PC4
-Text GLabel 12400 11400 2    60   Input ~ 0
+Text GLabel 10500 8150 2    60   Input ~ 0
 PC5
-Text GLabel 12400 11500 2    60   Input ~ 0
+Text GLabel 10500 8250 2    60   Input ~ 0
 PC6
-Text GLabel 12400 11600 2    60   Input ~ 0
+Text GLabel 10500 8350 2    60   Input ~ 0
 PC7
-Text GLabel 12400 11700 2    60   Input ~ 0
+Text GLabel 10500 8450 2    60   Input ~ 0
 PC8
-Text GLabel 12400 11800 2    60   Input ~ 0
+Text GLabel 10500 8550 2    60   Input ~ 0
 PC9
-Text GLabel 12400 11900 2    60   Input ~ 0
+Text GLabel 10500 8650 2    60   Input ~ 0
 PC10
-Text GLabel 12400 12000 2    60   Input ~ 0
+Text GLabel 10500 8750 2    60   Input ~ 0
 PC11
-Text GLabel 12400 12100 2    60   Input ~ 0
+Text GLabel 10500 8850 2    60   Input ~ 0
 PC12
-Text GLabel 12400 12200 2    60   Input ~ 0
+Text GLabel 10500 8950 2    60   Input ~ 0
 PC13
 $Comp
-L habiv-board-rescue:Conn_01x02_Male-STM32-rescue J?
+L habiv-board-rescue:Conn_01x02_Male-STM32-rescue J6
 U 1 1 5BC51264
-P 11100 13150
-F 0 "J?" H 11100 13250 50  0000 C CNN
-F 1 "Conn_01x02_Male" H 11100 12950 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 11100 13150 50  0001 C CNN
-F 3 "" H 11100 13150 50  0001 C CNN
-	1    11100 13150
+P 9200 9900
+F 0 "J6" H 9200 10000 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 9200 9700 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 9200 9900 50  0001 C CNN
+F 3 "" H 9200 9900 50  0001 C CNN
+	1    9200 9900
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:+3V3 #PWR?
+L power:+3V3 #PWR021
 U 1 1 5BC5139A
-P 10700 13050
-F 0 "#PWR?" H 10700 12900 50  0001 C CNN
-F 1 "+3V3" H 10700 13190 50  0000 C CNN
-F 2 "" H 10700 13050 50  0001 C CNN
-F 3 "" H 10700 13050 50  0001 C CNN
-	1    10700 13050
+P 8800 9800
+F 0 "#PWR021" H 8800 9650 50  0001 C CNN
+F 1 "+3V3" H 8800 9940 50  0000 C CNN
+F 2 "" H 8800 9800 50  0001 C CNN
+F 3 "" H 8800 9800 50  0001 C CNN
+	1    8800 9800
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR022
 U 1 1 5BC51625
-P 10700 13150
-F 0 "#PWR?" H 10700 12900 50  0001 C CNN
-F 1 "GND" H 10700 13000 50  0000 C CNN
-F 2 "" H 10700 13150 50  0001 C CNN
-F 3 "" H 10700 13150 50  0001 C CNN
-	1    10700 13150
+P 8800 9900
+F 0 "#PWR022" H 8800 9650 50  0001 C CNN
+F 1 "GND" H 8800 9750 50  0000 C CNN
+F 2 "" H 8800 9900 50  0001 C CNN
+F 3 "" H 8800 9900 50  0001 C CNN
+	1    8800 9900
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:Conn_01x11_Male-STM32-rescue J?
+L habiv-board-rescue:Conn_01x11_Male-STM32-rescue J1
 U 1 1 5BC51A5C
-P -1200 11450
-F 0 "J?" H -1200 12050 50  0000 C CNN
-F 1 "Conn_01x11_Male" H -1200 10850 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x11_Pitch2.54mm" H -1200 11450 50  0001 C CNN
-F 3 "" H -1200 11450 50  0001 C CNN
-	1    -1200 11450
+P 1000 14950
+F 0 "J1" H 1000 15550 50  0000 C CNN
+F 1 "Conn_01x11_Male" H 1000 14350 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x11_Pitch2.54mm" H 1000 14950 50  0001 C CNN
+F 3 "" H 1000 14950 50  0001 C CNN
+	1    1000 14950
 	1    0    0    -1  
 $EndComp
-Text GLabel 12400 12400 2    60   Input ~ 0
+Text GLabel 10500 9150 2    60   Input ~ 0
 PD2
 $Comp
-L habiv-board-rescue:SW_DPST_x2-STM32-rescue SW?
+L habiv-board-rescue:SW_DPST_x2-STM32-rescue SW1
 U 1 1 5BC53F65
-P 4450 13900
-F 0 "SW?" H 4450 14025 50  0000 C CNN
-F 1 "SW_DPST_x2" H 4450 13800 50  0000 C CNN
-F 2 "Buttons_Switches_SMD:SW_SPST_B3U-1000P" H 4450 13900 50  0001 C CNN
-F 3 "" H 4450 13900 50  0001 C CNN
-	1    4450 13900
+P 2700 9100
+F 0 "SW1" H 2700 9225 50  0000 C CNN
+F 1 "SW_DPST_x2" H 2700 9000 50  0000 C CNN
+F 2 "Buttons_Switches_SMD:SW_SPST_B3U-1000P" H 2700 9100 50  0001 C CNN
+F 3 "" H 2700 9100 50  0001 C CNN
+	1    2700 9100
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:Crystal_GND23-STM32-rescue Y?
+L habiv-board-rescue:Crystal_GND23-STM32-rescue Y1
 U 1 1 5BC559FA
-P 4600 12850
-F 0 "Y?" H 4650 13050 50  0000 L CNN
-F 1 "32.768MHz" V 4400 12650 50  0000 L CNN
-F 2 "Crystals:Crystal_SMD_0603-4pin_6.0x3.5mm_HandSoldering" H 4600 12850 50  0001 C CNN
-F 3 "" H 4600 12850 50  0001 C CNN
-	1    4600 12850
+P 2850 8050
+F 0 "Y1" H 2900 8250 50  0000 L CNN
+F 1 "32.768MHz" V 2650 7850 50  0000 L CNN
+F 2 "Crystals:Crystal_SMD_0603-4pin_6.0x3.5mm_HandSoldering" H 2850 8050 50  0001 C CNN
+F 3 "" H 2850 8050 50  0001 C CNN
+	1    2850 8050
 	0    1    1    0   
 $EndComp
-Text GLabel 8300 14700 2    60   Input ~ 0
+Text GLabel 6550 9900 2    60   Input ~ 0
 PB11
-Text GLabel 11650 12000 2    60   Input ~ 0
+Text GLabel 9750 8750 2    60   Input ~ 0
 PB11
 $Comp
-L habiv-board-rescue:TPS564208-STM32-rescue U?
+L habiv-board-rescue:TPS564208-STM32-rescue U4
 U 1 1 5BCD475A
-P 14300 15850
-F 0 "U?" H 14300 16150 60  0000 C CNN
-F 1 "TPS564208" H 14300 15450 60  0000 C CNN
-F 2 "TPS564208:TPS564208" H 14450 15900 60  0001 C CNN
-F 3 "" H 14450 15900 60  0001 C CNN
-	1    14300 15850
+P 16900 8550
+F 0 "U4" H 16900 8850 60  0000 C CNN
+F 1 "TPS564208" H 16900 8150 60  0000 C CNN
+F 2 "TPS564208:TPS564208" H 17050 8600 60  0001 C CNN
+F 3 "" H 17050 8600 60  0001 C CNN
+	1    16900 8550
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:Conn_01x02_Male-STM32-rescue J?
+L habiv-board-rescue:Conn_01x02_Male-STM32-rescue J10
 U 1 1 5BCD4B6E
-P 13150 15700
-F 0 "J?" H 13150 15800 50  0000 C CNN
-F 1 "Conn_01x02_Male" H 13150 15500 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 13150 15700 50  0001 C CNN
-F 3 "" H 13150 15700 50  0001 C CNN
-	1    13150 15700
+P 15750 8400
+F 0 "J10" H 15750 8500 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 15750 8200 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 15750 8400 50  0001 C CNN
+F 3 "" H 15750 8400 50  0001 C CNN
+	1    15750 8400
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue C?
+L habiv-board-rescue:C-STM32-rescue C8
 U 1 1 5BCD6316
-P 13700 16150
-F 0 "C?" H 13725 16250 50  0000 L CNN
-F 1 "10uF" H 13725 16050 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 13738 16000 50  0001 C CNN
-F 3 "" H 13700 16150 50  0001 C CNN
-	1    13700 16150
+P 16300 8850
+F 0 "C8" H 16325 8950 50  0000 L CNN
+F 1 "10uF" H 16325 8750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 16338 8700 50  0001 C CNN
+F 3 "" H 16300 8850 50  0001 C CNN
+	1    16300 8850
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:R-STM32-rescue R?
+L habiv-board-rescue:R-STM32-rescue R5
 U 1 1 5BCD6F1F
-P 15650 16250
-F 0 "R?" V 15730 16250 50  0000 C CNN
-F 1 "10k" V 15550 16250 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 15580 16250 50  0001 C CNN
-F 3 "" H 15650 16250 50  0001 C CNN
-	1    15650 16250
+P 18250 8950
+F 0 "R5" V 18330 8950 50  0000 C CNN
+F 1 "10k" V 18150 8950 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 18180 8950 50  0001 C CNN
+F 3 "" H 18250 8950 50  0001 C CNN
+	1    18250 8950
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:R-STM32-rescue R?
+L habiv-board-rescue:R-STM32-rescue R4
 U 1 1 5BCD718B
-P 15650 15850
-F 0 "R?" V 15730 15850 50  0000 C CNN
-F 1 "33.2k" V 15550 15850 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 15580 15850 50  0001 C CNN
-F 3 "" H 15650 15850 50  0001 C CNN
-	1    15650 15850
+P 18250 8550
+F 0 "R4" V 18330 8550 50  0000 C CNN
+F 1 "33.2k" V 18150 8550 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 18180 8550 50  0001 C CNN
+F 3 "" H 18250 8550 50  0001 C CNN
+	1    18250 8550
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue C?
+L habiv-board-rescue:C-STM32-rescue C11
 U 1 1 5BCD7B55
-P 15000 15800
-F 0 "C?" H 15025 15900 50  0000 L CNN
-F 1 "100nF" V 15050 15550 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 15038 15650 50  0001 C CNN
-F 3 "" H 15000 15800 50  0001 C CNN
-	1    15000 15800
+P 17600 8500
+F 0 "C11" H 17625 8600 50  0000 L CNN
+F 1 "100nF" V 17650 8250 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 17638 8350 50  0001 C CNN
+F 3 "" H 17600 8500 50  0001 C CNN
+	1    17600 8500
 	0    1    1    0   
 $EndComp
 $Comp
-L habiv-board-rescue:L-STM32-rescue L?
+L habiv-board-rescue:L-STM32-rescue L3
 U 1 1 5BCD823C
-P 15350 15650
-F 0 "L?" V 15300 15650 50  0000 C CNN
-F 1 "2.2uH" V 15425 15650 50  0000 C CNN
-F 2 "TPS564208:INDC7070X450" H 15350 15650 50  0001 C CNN
-F 3 "" H 15350 15650 50  0001 C CNN
-	1    15350 15650
+P 17950 8350
+F 0 "L3" V 17900 8350 50  0000 C CNN
+F 1 "2.2uH" V 18025 8350 50  0000 C CNN
+F 2 "TPS564208:INDC7070X450" H 17950 8350 50  0001 C CNN
+F 3 "" H 17950 8350 50  0001 C CNN
+	1    17950 8350
 	0    1    1    0   
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue C?
+L habiv-board-rescue:C-STM32-rescue C13
 U 1 1 5BCD929B
-P 16000 16050
-F 0 "C?" H 16025 16150 50  0000 L CNN
-F 1 "47uF" H 16025 15950 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 16038 15900 50  0001 C CNN
-F 3 "" H 16000 16050 50  0001 C CNN
-	1    16000 16050
+P 18600 8750
+F 0 "C13" H 18625 8850 50  0000 L CNN
+F 1 "47uF" H 18625 8650 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 18638 8600 50  0001 C CNN
+F 3 "" H 18600 8750 50  0001 C CNN
+	1    18600 8750
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:Conn_01x02_Male-STM32-rescue J?
+L habiv-board-rescue:Conn_01x02_Male-STM32-rescue J12
 U 1 1 5BCD9ABE
-P 16600 15750
-F 0 "J?" H 16600 15850 50  0000 C CNN
-F 1 "Conn_01x02_Male" H 16600 15550 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 16600 15750 50  0001 C CNN
-F 3 "" H 16600 15750 50  0001 C CNN
-	1    16600 15750
+P 19200 8450
+F 0 "J12" H 19200 8550 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 19200 8250 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 19200 8450 50  0001 C CNN
+F 3 "" H 19200 8450 50  0001 C CNN
+	1    19200 8450
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue C?
+L habiv-board-rescue:C-STM32-rescue C9
 U 1 1 5BCDEC97
-P 13700 17250
-F 0 "C?" H 13725 17350 50  0000 L CNN
-F 1 "10uF" H 13725 17150 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 13738 17100 50  0001 C CNN
-F 3 "" H 13700 17250 50  0001 C CNN
-	1    13700 17250
+P 16300 9950
+F 0 "C9" H 16325 10050 50  0000 L CNN
+F 1 "10uF" H 16325 9850 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 16338 9800 50  0001 C CNN
+F 3 "" H 16300 9950 50  0001 C CNN
+	1    16300 9950
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:R-STM32-rescue R?
+L habiv-board-rescue:R-STM32-rescue R7
 U 1 1 5BCDECA8
-P 15650 17350
-F 0 "R?" V 15730 17350 50  0000 C CNN
-F 1 "10k" V 15550 17350 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 15580 17350 50  0001 C CNN
-F 3 "" H 15650 17350 50  0001 C CNN
-	1    15650 17350
+P 18250 10050
+F 0 "R7" V 18330 10050 50  0000 C CNN
+F 1 "10k" V 18150 10050 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 18180 10050 50  0001 C CNN
+F 3 "" H 18250 10050 50  0001 C CNN
+	1    18250 10050
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:R-STM32-rescue R?
+L habiv-board-rescue:R-STM32-rescue R6
 U 1 1 5BCDECAE
-P 15650 16950
-F 0 "R?" V 15730 16950 50  0000 C CNN
-F 1 "56.2k" V 15550 16950 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 15580 16950 50  0001 C CNN
-F 3 "" H 15650 16950 50  0001 C CNN
-	1    15650 16950
+P 18250 9650
+F 0 "R6" V 18330 9650 50  0000 C CNN
+F 1 "56.2k" V 18150 9650 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 18180 9650 50  0001 C CNN
+F 3 "" H 18250 9650 50  0001 C CNN
+	1    18250 9650
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue C?
+L habiv-board-rescue:C-STM32-rescue C12
 U 1 1 5BCDECB5
-P 15000 16900
-F 0 "C?" H 15025 17000 50  0000 L CNN
-F 1 "100nF" V 15050 16650 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 15038 16750 50  0001 C CNN
-F 3 "" H 15000 16900 50  0001 C CNN
-	1    15000 16900
+P 17600 9600
+F 0 "C12" H 17625 9700 50  0000 L CNN
+F 1 "100nF" V 17650 9350 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 17638 9450 50  0001 C CNN
+F 3 "" H 17600 9600 50  0001 C CNN
+	1    17600 9600
 	0    1    1    0   
 $EndComp
 $Comp
-L habiv-board-rescue:L-STM32-rescue L?
+L habiv-board-rescue:L-STM32-rescue L4
 U 1 1 5BCDECBD
-P 15350 16750
-F 0 "L?" V 15300 16750 50  0000 C CNN
-F 1 "3.3uH" V 15425 16750 50  0000 C CNN
-F 2 "TPS564208:INDC7070X450" H 15350 16750 50  0001 C CNN
-F 3 "" H 15350 16750 50  0001 C CNN
-	1    15350 16750
+P 17950 9450
+F 0 "L4" V 17900 9450 50  0000 C CNN
+F 1 "3.3uH" V 18025 9450 50  0000 C CNN
+F 2 "TPS564208:INDC7070X450" H 17950 9450 50  0001 C CNN
+F 3 "" H 17950 9450 50  0001 C CNN
+	1    17950 9450
 	0    1    1    0   
 $EndComp
 $Comp
-L habiv-board-rescue:C-STM32-rescue C?
+L habiv-board-rescue:C-STM32-rescue C14
 U 1 1 5BCDECCD
-P 16000 17150
-F 0 "C?" H 16025 17250 50  0000 L CNN
-F 1 "47uF" H 16025 17050 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603_HandSoldering" H 16038 17000 50  0001 C CNN
-F 3 "" H 16000 17150 50  0001 C CNN
-	1    16000 17150
+P 18600 9850
+F 0 "C14" H 18625 9950 50  0000 L CNN
+F 1 "47uF" H 18625 9750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603_HandSoldering" H 18638 9700 50  0001 C CNN
+F 3 "" H 18600 9850 50  0001 C CNN
+	1    18600 9850
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:Conn_01x02_Male-STM32-rescue J?
+L habiv-board-rescue:Conn_01x02_Male-STM32-rescue J13
 U 1 1 5BCDECD7
-P 16600 16850
-F 0 "J?" H 16600 16950 50  0000 C CNN
-F 1 "Conn_01x02_Male" H 16600 16650 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 16600 16850 50  0001 C CNN
-F 3 "" H 16600 16850 50  0001 C CNN
-	1    16600 16850
+P 19200 9550
+F 0 "J13" H 19200 9650 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 19200 9350 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 19200 9550 50  0001 C CNN
+F 3 "" H 19200 9550 50  0001 C CNN
+	1    19200 9550
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:TPS564208-STM32-rescue U?
+L habiv-board-rescue:TPS564208-STM32-rescue U5
 U 1 1 5BCDEC8B
-P 14300 16950
-F 0 "U?" H 14300 17250 60  0000 C CNN
-F 1 "TPS564208" H 14300 16550 60  0000 C CNN
-F 2 "TPS564208:TPS564208" H 14450 17000 60  0001 C CNN
-F 3 "" H 14450 17000 60  0001 C CNN
-	1    14300 16950
+P 16900 9650
+F 0 "U5" H 16900 9950 60  0000 C CNN
+F 1 "TPS564208" H 16900 9250 60  0000 C CNN
+F 2 "TPS564208:TPS564208" H 17050 9700 60  0001 C CNN
+F 3 "" H 17050 9700 60  0001 C CNN
+	1    16900 9650
 	1    0    0    -1  
 $EndComp
-Text Notes 16750 16800 0    60   ~ 0
+Text Notes 19350 9500 0    60   ~ 0
 5V
-Text Notes 16700 15700 0    60   ~ 0
+Text Notes 19300 8400 0    60   ~ 0
 3v3
 $Comp
-L habiv-board-rescue:LED-STM32-rescue D?
+L habiv-board-rescue:LED-STM32-rescue D4
 U 1 1 5BCE56BB
-P 16250 16950
-F 0 "D?" H 16250 17050 50  0000 C CNN
-F 1 "LED" H 16250 16850 50  0000 C CNN
-F 2 "LEDs:LED_0603_HandSoldering" H 16250 16950 50  0001 C CNN
-F 3 "" H 16250 16950 50  0001 C CNN
-	1    16250 16950
+P 18850 9650
+F 0 "D4" H 18850 9750 50  0000 C CNN
+F 1 "LED" H 18850 9550 50  0000 C CNN
+F 2 "LEDs:LED_0603_HandSoldering" H 18850 9650 50  0001 C CNN
+F 3 "" H 18850 9650 50  0001 C CNN
+	1    18850 9650
 	0    -1   -1   0   
 $EndComp
 $Comp
-L habiv-board-rescue:LED-STM32-rescue D?
+L habiv-board-rescue:LED-STM32-rescue D3
 U 1 1 5BCE5851
-P 16250 15850
-F 0 "D?" H 16250 15950 50  0000 C CNN
-F 1 "LED" H 16250 15750 50  0000 C CNN
-F 2 "LEDs:LED_0603_HandSoldering" H 16250 15850 50  0001 C CNN
-F 3 "" H 16250 15850 50  0001 C CNN
-	1    16250 15850
+P 18850 8550
+F 0 "D3" H 18850 8650 50  0000 C CNN
+F 1 "LED" H 18850 8450 50  0000 C CNN
+F 2 "LEDs:LED_0603_HandSoldering" H 18850 8550 50  0001 C CNN
+F 3 "" H 18850 8550 50  0001 C CNN
+	1    18850 8550
 	0    -1   -1   0   
 $EndComp
 $Comp
-L habiv-board-rescue:R-STM32-rescue R?
+L habiv-board-rescue:R-STM32-rescue R8
 U 1 1 5BCE59FC
-P 16250 16250
-F 0 "R?" V 16330 16250 50  0000 C CNN
-F 1 "4.7k" V 16150 16250 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 16180 16250 50  0001 C CNN
-F 3 "" H 16250 16250 50  0001 C CNN
-	1    16250 16250
+P 18850 8950
+F 0 "R8" V 18930 8950 50  0000 C CNN
+F 1 "4.7k" V 18750 8950 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 18780 8950 50  0001 C CNN
+F 3 "" H 18850 8950 50  0001 C CNN
+	1    18850 8950
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:R-STM32-rescue R?
+L habiv-board-rescue:R-STM32-rescue R9
 U 1 1 5BCE5FC3
-P 16250 17350
-F 0 "R?" V 16330 17350 50  0000 C CNN
-F 1 "4.7k" V 16150 17350 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 16180 17350 50  0001 C CNN
-F 3 "" H 16250 17350 50  0001 C CNN
-	1    16250 17350
+P 18850 10050
+F 0 "R9" V 18930 10050 50  0000 C CNN
+F 1 "4.7k" V 18750 10050 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 18780 10050 50  0001 C CNN
+F 3 "" H 18850 10050 50  0001 C CNN
+	1    18850 10050
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:Conn_01x05_Male-STM32-rescue J?
+L habiv-board-rescue:Conn_01x05_Male-STM32-rescue J17
 U 1 1 5BCE79FC
-P 17100 17000
-F 0 "J?" H 17100 17300 50  0000 C CNN
-F 1 "Conn_01x05_Male" H 17100 16700 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x05_Pitch2.54mm" H 17100 17000 50  0001 C CNN
-F 3 "" H 17100 17000 50  0001 C CNN
-	1    17100 17000
+P 19700 9700
+F 0 "J17" H 19700 10000 50  0000 C CNN
+F 1 "Conn_01x05_Male" H 19700 9400 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x05_Pitch2.54mm" H 19700 9700 50  0001 C CNN
+F 3 "" H 19700 9700 50  0001 C CNN
+	1    19700 9700
 	-1   0    0    1   
 $EndComp
 $Comp
-L habiv-board-rescue:Conn_01x04_Male-STM32-rescue J?
+L habiv-board-rescue:Conn_01x04_Male-STM32-rescue J16
 U 1 1 5BCE8043
-P 16750 16250
-F 0 "J?" H 16750 16450 50  0000 C CNN
-F 1 "Conn_01x04_Male" H 16750 15950 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 16750 16250 50  0001 C CNN
-F 3 "" H 16750 16250 50  0001 C CNN
-	1    16750 16250
+P 19350 8950
+F 0 "J16" H 19350 9150 50  0000 C CNN
+F 1 "Conn_01x04_Male" H 19350 8650 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 19350 8950 50  0001 C CNN
+F 3 "" H 19350 8950 50  0001 C CNN
+	1    19350 8950
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	6150 12450 6150 12550
+	4400 7650 4400 7750
 Wire Wire Line
-	6150 12550 6250 12550
+	4400 7750 4500 7750
 Wire Wire Line
-	5200 12850 5200 13000
+	3450 8050 3450 8200
 Wire Wire Line
-	4300 12950 4400 12950
+	2550 8150 2650 8150
 Wire Wire Line
-	4400 12950 4400 13000
-Connection ~ 4600 13000
-Connection ~ 4600 12700
-Connection ~ 4000 12950
+	2650 8150 2650 8200
+Connection ~ 2850 8200
+Connection ~ 2850 7900
+Connection ~ 2250 8150
 Wire Wire Line
-	5200 12700 5200 12750
+	3450 7900 3450 7950
 Wire Wire Line
-	5200 12750 6250 12750
+	3450 7950 4500 7950
 Wire Wire Line
-	5200 12850 6250 12850
+	3450 8050 4500 8050
 Wire Wire Line
-	4650 13900 4700 13900
-Connection ~ 4700 13900
+	2900 9100 2950 9100
+Connection ~ 2950 9100
 Wire Wire Line
-	4700 14350 4600 14350
+	2950 9550 2850 9550
 Wire Wire Line
-	4250 14350 4300 14350
+	2500 9550 2550 9550
 Wire Wire Line
-	4250 13900 4250 14350
-Connection ~ 4250 14350
+	2500 9100 2500 9550
+Connection ~ 2500 9550
 Wire Wire Line
-	4700 13950 4750 13950
-Connection ~ 4700 13950
+	2950 9150 3000 9150
+Connection ~ 2950 9150
 Wire Wire Line
-	5550 14550 5550 14600
+	3800 9750 3800 9800
 Wire Wire Line
-	5300 14550 5550 14550
-Connection ~ 5300 14250
+	3550 9750 3800 9750
+Connection ~ 3550 9450
 Wire Wire Line
-	5800 14550 5800 13650
-Connection ~ 5550 14550
+	4050 9750 4050 8850
+Connection ~ 3800 9750
 Wire Wire Line
-	5300 14250 5300 14200
+	3550 9450 3550 9400
 Wire Wire Line
-	5300 14250 5550 14250
+	3550 9450 3800 9450
 Wire Wire Line
-	5200 12700 5100 12700
+	3450 7900 3350 7900
 Wire Wire Line
-	4300 12700 4600 12700
+	2550 7900 2850 7900
 Wire Wire Line
-	4400 13000 4600 13000
+	2650 8200 2850 8200
 Wire Wire Line
-	5200 13000 5100 13000
+	3450 8200 3350 8200
 Wire Wire Line
-	5100 13550 5100 13650
+	3350 8750 3350 8850
 Wire Wire Line
-	5100 13650 4700 13650
+	3350 8850 2950 8850
 Wire Wire Line
-	4700 13650 4700 13900
+	2950 8850 2950 9100
 Wire Wire Line
-	5550 13750 6250 13750
+	3800 8950 4500 8950
 Wire Wire Line
-	5800 13650 6250 13650
+	4050 8850 4500 8850
 Wire Wire Line
-	6250 13150 5400 13150
+	4500 8350 3650 8350
 Wire Wire Line
-	5400 13150 5400 13550
+	3650 8350 3650 8750
 Wire Wire Line
-	5400 13550 5100 13550
+	3650 8750 3350 8750
 Wire Wire Line
-	5550 14250 5550 13750
+	3800 9450 3800 8950
 Wire Wire Line
-	9050 12300 9050 12350
-Connection ~ 8800 12000
-Connection ~ 9050 12300
+	7300 7500 7300 7550
+Connection ~ 7050 7200
+Connection ~ 7300 7500
 Wire Wire Line
-	8550 12000 8800 12000
+	6800 7200 7050 7200
 Wire Wire Line
-	8800 12300 8900 12300
+	7050 7500 7150 7500
 Wire Wire Line
-	9050 12000 9050 11950
+	7300 7200 7300 7150
 Wire Wire Line
-	7100 15550 7100 15600
-Connection ~ 6850 15250
-Connection ~ 7100 15550
+	5350 10750 5350 10800
+Connection ~ 5100 10450
+Connection ~ 5350 10750
 Wire Wire Line
-	6850 14450 6850 15250
+	5100 9650 5100 10450
 Wire Wire Line
-	6850 15250 7100 15250
+	5100 10450 5350 10450
 Wire Wire Line
-	6850 15550 7100 15550
+	5100 10750 5350 10750
 Wire Wire Line
-	7100 15250 7100 15200
+	5350 10450 5350 10400
 Wire Wire Line
-	7950 14450 7950 14700
+	6200 9650 6200 9900
 Wire Wire Line
-	8550 12000 8550 12550
+	6800 7200 6800 7750
 Wire Wire Line
-	8550 12650 8900 12650
+	6800 7850 7150 7850
 Wire Wire Line
-	8900 12650 8900 12300
-Connection ~ 8900 12300
+	7150 7850 7150 7500
+Connection ~ 7150 7500
 Wire Wire Line
-	8400 15550 8400 15600
-Connection ~ 8150 15250
-Connection ~ 8400 15550
+	6650 10750 6650 10800
+Connection ~ 6400 10450
+Connection ~ 6650 10750
 Wire Wire Line
-	8150 14450 8150 15250
+	6400 9650 6400 10450
 Wire Wire Line
-	8150 15250 8400 15250
+	6400 10450 6650 10450
 Wire Wire Line
-	8150 15550 8400 15550
+	6400 10750 6650 10750
 Wire Wire Line
-	8400 15250 8400 15200
+	6650 10450 6650 10400
 Wire Wire Line
-	6400 12000 6400 12050
-Connection ~ 6400 12000
+	4650 7200 4650 7250
+Connection ~ 4650 7200
 Wire Wire Line
-	6150 11700 6400 11700
+	4400 6900 4650 6900
 Wire Wire Line
-	6150 12000 6400 12000
+	4400 7200 4650 7200
 Wire Wire Line
-	6400 11700 6400 11650
+	4650 6900 4650 6850
 Wire Wire Line
-	6650 11700 6650 12150
-Connection ~ 6400 11700
+	4900 6900 4900 7350
+Connection ~ 4650 6900
 Wire Wire Line
-	7050 11750 7050 12150
+	5300 6950 5300 7350
 Wire Wire Line
-	6750 12000 6750 12150
+	5000 7200 5000 7350
 Wire Wire Line
-	7050 11100 6900 11100
+	5300 6300 5150 6300
 Wire Wire Line
-	6900 11100 6900 11150
+	5150 6300 5150 6350
 Wire Wire Line
-	7050 11100 7050 11450
+	5300 6300 5300 6650
 Wire Wire Line
-	1300 17400 1600 17400
+	6350 14650 6650 14650
 Wire Wire Line
-	1300 18000 1600 18000
+	6350 15250 6650 15250
 Wire Wire Line
-	1300 18100 1500 18100
+	6350 15350 6550 15350
 Wire Wire Line
-	1500 18100 1500 18150
+	6550 15350 6550 15400
 Wire Wire Line
-	1500 18150 1600 18150
+	6550 15400 6650 15400
 Wire Wire Line
-	1900 17400 1900 18000
-Connection ~ 1900 18000
-Connection ~ 1900 18150
+	6950 14650 6950 15250
+Connection ~ 6950 15250
+Connection ~ 6950 15400
 Wire Wire Line
-	600  18400 1900 18400
-Connection ~ 1900 18400
+	5650 15650 6950 15650
+Connection ~ 6950 15650
 Wire Wire Line
-	600  16650 600  16700
+	5650 13900 5650 13950
 Wire Wire Line
-	700  16800 700  16700
+	5750 14050 5750 13950
 Wire Wire Line
-	700  16700 600  16700
-Connection ~ 600  16700
+	5750 13950 5650 13950
+Connection ~ 5650 13950
 Wire Wire Line
-	10700 13050 10900 13050
+	8800 9800 9000 9800
 Wire Wire Line
-	10700 13150 10900 13150
+	8800 9900 9000 9900
 Wire Wire Line
-	-950 11950 -950 12150
+	1250 15450 1250 15650
 Wire Wire Line
-	-950 12150 750  12150
+	1250 15650 2950 15650
 Wire Wire Line
-	750  12150 750  11850
+	2950 15650 2950 15350
 Wire Wire Line
-	-1000 10950 -950 10950
+	1200 14450 1250 14450
 Wire Wire Line
-	-1000 11050 -950 11050
+	1200 14550 1250 14550
 Wire Wire Line
-	-1000 11150 -950 11150
+	1200 14650 1250 14650
 Wire Wire Line
-	-1000 11250 -950 11250
+	1200 14750 1250 14750
 Wire Wire Line
-	-1000 11350 -950 11350
+	1200 14850 1250 14850
 Wire Wire Line
-	-1000 11450 -950 11450
+	1200 14950 1250 14950
 Wire Wire Line
-	-1000 11550 -950 11550
+	1200 15050 1250 15050
 Wire Wire Line
-	-1000 11650 -950 11650
+	1200 15150 1250 15150
 Wire Wire Line
-	-1000 11750 -950 11750
+	1200 15250 1250 15250
 Wire Wire Line
-	-1000 11850 -950 11850
+	1200 15350 1250 15350
 Wire Wire Line
-	-1000 11950 -950 11950
+	1200 15450 1250 15450
 Wire Wire Line
-	4000 12700 4000 12950
+	2250 7900 2250 8150
 Wire Wire Line
-	7950 14700 8300 14700
-Connection ~ 7950 14700
+	6200 9900 6550 9900
+Connection ~ 6200 9900
 Wire Wire Line
-	13350 15700 13450 15700
+	15950 8400 16050 8400
 Wire Wire Line
-	13700 15700 13700 15850
+	16300 8400 16300 8550
 Wire Wire Line
-	13700 15850 13850 15850
-Connection ~ 13700 15700
+	16300 8550 16450 8550
+Connection ~ 16300 8400
 Wire Wire Line
-	13350 15800 13400 15800
+	15950 8500 16000 8500
 Wire Wire Line
-	13500 15800 13500 16500
-Connection ~ 13700 15850
+	16100 8500 16100 9200
+Connection ~ 16300 8550
 Wire Wire Line
-	13700 16300 13700 16500
-Connection ~ 13700 16500
+	16300 9000 16300 9200
+Connection ~ 16300 9200
 Wire Wire Line
-	14800 16500 14800 16100
-Connection ~ 14800 16500
+	17400 9200 17400 8800
+Connection ~ 17400 9200
 Wire Wire Line
-	15650 16000 15650 16050
+	18250 8700 18250 8750
 Wire Wire Line
-	14800 15800 14850 15800
-Connection ~ 15650 16050
+	17400 8500 17450 8500
+Connection ~ 18250 8750
 Wire Wire Line
-	14800 15650 15150 15650
+	17400 8350 17750 8350
 Wire Wire Line
-	15150 15800 15150 15650
-Connection ~ 15150 15650
+	17750 8500 17750 8350
+Connection ~ 17750 8350
 Wire Wire Line
-	14800 15950 15250 15950
+	17400 8650 17850 8650
 Wire Wire Line
-	15250 15950 15250 16050
+	17850 8650 17850 8750
 Wire Wire Line
-	15250 16050 15650 16050
+	17850 8750 18250 8750
 Wire Wire Line
-	15650 16500 15650 16400
-Connection ~ 15650 16500
+	18250 9200 18250 9100
+Connection ~ 18250 9200
 Wire Wire Line
-	15500 15650 15650 15650
+	18100 8350 18250 8350
 Wire Wire Line
-	15650 15650 15650 15700
+	18250 8350 18250 8400
 Wire Wire Line
-	16000 15650 16000 15900
-Connection ~ 15650 15650
+	18600 8350 18600 8600
+Connection ~ 18250 8350
 Wire Wire Line
-	16000 16500 16000 16200
-Connection ~ 16000 16500
-Connection ~ 16000 15650
+	18600 9200 18600 8900
+Connection ~ 18600 9200
+Connection ~ 18600 8350
 Wire Wire Line
-	13500 16500 13700 16500
+	16100 9200 16300 9200
 Wire Wire Line
-	16400 16500 16400 16050
+	19000 9200 19000 8750
 Wire Wire Line
-	13700 16800 13700 16950
+	16300 9500 16300 9650
 Wire Wire Line
-	13700 16950 13850 16950
-Connection ~ 13700 16800
+	16300 9650 16450 9650
+Connection ~ 16300 9500
 Wire Wire Line
-	13500 16900 13500 17600
-Connection ~ 13700 16950
+	16100 9600 16100 10300
+Connection ~ 16300 9650
 Wire Wire Line
-	13700 17400 13700 17600
-Connection ~ 13700 17600
+	16300 10100 16300 10300
+Connection ~ 16300 10300
 Wire Wire Line
-	14800 17600 14800 17200
-Connection ~ 14800 17600
+	17400 10300 17400 9900
+Connection ~ 17400 10300
 Wire Wire Line
-	15650 17100 15650 17150
+	18250 9800 18250 9850
 Wire Wire Line
-	14800 16900 14850 16900
-Connection ~ 15650 17150
+	17400 9600 17450 9600
+Connection ~ 18250 9850
 Wire Wire Line
-	14800 16750 15150 16750
+	17400 9450 17750 9450
 Wire Wire Line
-	15150 16900 15150 16750
-Connection ~ 15150 16750
+	17750 9600 17750 9450
+Connection ~ 17750 9450
 Wire Wire Line
-	14800 17050 15250 17050
+	17400 9750 17850 9750
 Wire Wire Line
-	15250 17050 15250 17150
+	17850 9750 17850 9850
 Wire Wire Line
-	15250 17150 15650 17150
+	17850 9850 18250 9850
 Wire Wire Line
-	15650 17600 15650 17500
-Connection ~ 15650 17600
+	18250 10300 18250 10200
+Connection ~ 18250 10300
 Wire Wire Line
-	15500 16750 15650 16750
+	18100 9450 18250 9450
 Wire Wire Line
-	15650 16750 15650 16800
+	18250 9450 18250 9500
 Wire Wire Line
-	16000 16750 16000 17000
-Connection ~ 15650 16750
+	18600 9450 18600 9700
+Connection ~ 18250 9450
 Wire Wire Line
-	16000 17600 16000 17300
-Connection ~ 16000 17600
-Connection ~ 16000 16750
+	18600 10300 18600 10000
+Connection ~ 18600 10300
+Connection ~ 18600 9450
 Wire Wire Line
-	13500 17600 13700 17600
+	16100 10300 16300 10300
 Wire Wire Line
-	16400 17600 16400 17050
+	19000 10300 19000 9750
 Wire Wire Line
-	13450 16800 13700 16800
+	16050 9500 16300 9500
 Wire Wire Line
-	13450 16800 13450 15700
-Connection ~ 13450 15700
+	16050 9500 16050 8400
+Connection ~ 16050 8400
 Wire Wire Line
-	13500 16900 13400 16900
+	16100 9600 16000 9600
 Wire Wire Line
-	13400 16900 13400 15800
-Connection ~ 13400 15800
+	16000 9600 16000 8500
+Connection ~ 16000 8500
 Wire Wire Line
-	16250 15650 16250 15700
-Connection ~ 16250 15650
+	18850 8350 18850 8400
+Connection ~ 18850 8350
 Wire Wire Line
-	16250 16000 16250 16100
+	18850 8700 18850 8800
 Wire Wire Line
-	16250 16400 16250 16500
-Connection ~ 16250 16500
+	18850 9100 18850 9200
+Connection ~ 18850 9200
 Wire Wire Line
-	16250 16750 16250 16800
-Connection ~ 16250 16750
+	18850 9450 18850 9500
+Connection ~ 18850 9450
 Wire Wire Line
-	16250 17100 16250 17200
+	18850 9800 18850 9900
 Wire Wire Line
-	16250 17500 16250 17600
-Connection ~ 16250 17600
+	18850 10200 18850 10300
+Connection ~ 18850 10300
 Wire Wire Line
-	16550 16050 16550 16150
-Connection ~ 16550 16150
-Connection ~ 16550 16250
-Connection ~ 16450 15350
-Connection ~ 16450 15250
-Connection ~ 16450 15150
-Connection ~ 16450 15050
-Connection ~ 16500 17050
-Connection ~ 16500 17150
+	19150 8750 19150 8850
+Connection ~ 19150 8850
+Connection ~ 19150 8950
+Connection ~ 19050 8050
+Connection ~ 19050 7950
+Connection ~ 19050 7850
+Connection ~ 19050 7750
+Connection ~ 19100 9750
+Connection ~ 19100 9850
 Wire Wire Line
-	16400 17050 16500 17050
-Connection ~ 16400 17050
+	19000 9750 19100 9750
+Connection ~ 19000 9750
 Wire Wire Line
-	16400 16750 16400 16600
+	19000 9450 19000 9300
 Wire Wire Line
-	16400 16600 16900 16600
+	19000 9300 19500 9300
 Wire Wire Line
-	16900 16600 16900 16800
-Connection ~ 16900 16800
-Connection ~ 16900 16900
-Connection ~ 16900 17000
-Connection ~ 16900 17100
+	19500 9300 19500 9500
+Connection ~ 19500 9500
+Connection ~ 19500 9600
+Connection ~ 19500 9700
+Connection ~ 19500 9800
 Wire Wire Line
-	16400 16050 16550 16050
-Connection ~ 16400 16050
+	19000 8750 19150 8750
+Connection ~ 19000 8750
 Wire Wire Line
-	16400 15650 16400 15350
+	19000 8350 19000 8050
 Wire Wire Line
-	16400 15350 16450 15350
+	19000 8050 19050 8050
 Wire Wire Line
-	16450 15350 16450 15250
+	19050 8050 19050 7950
 $Comp
-L habiv-board-rescue:Conn_01x08_Male-STM32-rescue J?
+L habiv-board-rescue:Conn_01x08_Male-STM32-rescue J14
 U 1 1 5BCEBE6C
-P 16650 15050
-F 0 "J?" H 16650 15450 50  0000 C CNN
-F 1 "Conn_01x08_Male" H 16650 14550 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 16650 15050 50  0001 C CNN
-F 3 "" H 16650 15050 50  0001 C CNN
-	1    16650 15050
+P 19250 7750
+F 0 "J14" H 19250 8150 50  0000 C CNN
+F 1 "Conn_01x08_Male" H 19250 7250 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 19250 7750 50  0001 C CNN
+F 3 "" H 19250 7750 50  0001 C CNN
+	1    19250 7750
 	-1   0    0    1   
 $EndComp
-Connection ~ 16450 14950
-Connection ~ 16450 14850
-Connection ~ 16450 14750
+Connection ~ 19050 7650
+Connection ~ 19050 7550
+Connection ~ 19050 7450
 $Comp
-L habiv-board-rescue:Conn_01x03_Male-STM32-rescue J?
+L habiv-board-rescue:Conn_01x03_Male-STM32-rescue J15
 U 1 1 5BCEC4E6
-P 16700 17150
-F 0 "J?" H 16700 17350 50  0000 C CNN
-F 1 "Conn_01x03_Male" H 16700 16950 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 16700 17150 50  0001 C CNN
-F 3 "" H 16700 17150 50  0001 C CNN
-	1    16700 17150
+P 19300 9850
+F 0 "J15" H 19300 10050 50  0000 C CNN
+F 1 "Conn_01x03_Male" H 19300 9650 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 19300 9850 50  0001 C CNN
+F 3 "" H 19300 9850 50  0001 C CNN
+	1    19300 9850
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	16500 17050 16500 17150
+	19100 9750 19100 9850
 Wire Wire Line
-	4600 13000 4800 13000
+	2850 8200 3050 8200
 Wire Wire Line
-	4600 12700 4800 12700
+	2850 7900 3050 7900
 Wire Wire Line
-	4000 12950 4000 13200
+	2250 8150 2250 8400
 Wire Wire Line
-	4700 13900 4700 13950
+	2950 9100 2950 9150
 Wire Wire Line
-	4250 14350 4250 14400
+	2500 9550 2500 9600
 Wire Wire Line
-	4700 13950 4700 14350
+	2950 9150 2950 9550
 Wire Wire Line
-	5550 14550 5800 14550
+	3800 9750 4050 9750
 Wire Wire Line
-	8800 12000 9050 12000
+	7050 7200 7300 7200
 Wire Wire Line
-	8900 12300 9050 12300
+	7150 7500 7300 7500
 Wire Wire Line
-	6400 12000 6750 12000
+	4650 7200 5000 7200
 Wire Wire Line
-	6400 11700 6650 11700
+	4650 6900 4900 6900
 Wire Wire Line
-	1900 18000 1900 18150
+	6950 15250 6950 15400
 Wire Wire Line
-	1900 18150 1900 18400
+	6950 15400 6950 15650
 Wire Wire Line
-	1900 18400 1900 18450
+	6950 15650 6950 15700
 Wire Wire Line
-	600  16700 600  16800
+	5650 13950 5650 14050
 Wire Wire Line
-	7950 14700 7950 14750
+	6200 9900 6200 9950
 Wire Wire Line
-	13700 15700 13850 15700
+	16300 8400 16450 8400
 Wire Wire Line
-	13700 15850 13700 16000
+	16300 8550 16300 8700
 Wire Wire Line
-	13700 16500 14800 16500
+	16300 9200 17400 9200
 Wire Wire Line
-	14800 16500 15650 16500
+	17400 9200 18250 9200
 Wire Wire Line
-	15650 16050 15650 16100
+	18250 8750 18250 8800
 Wire Wire Line
-	15150 15650 15200 15650
+	17750 8350 17800 8350
 Wire Wire Line
-	15650 16500 16000 16500
+	18250 9200 18600 9200
 Wire Wire Line
-	15650 15650 16000 15650
+	18250 8350 18600 8350
 Wire Wire Line
-	16000 16500 16250 16500
+	18600 9200 18850 9200
 Wire Wire Line
-	16000 15650 16250 15650
+	18600 8350 18850 8350
 Wire Wire Line
-	13700 16800 13850 16800
+	16300 9500 16450 9500
 Wire Wire Line
-	13700 16950 13700 17100
+	16300 9650 16300 9800
 Wire Wire Line
-	13700 17600 14800 17600
+	16300 10300 17400 10300
 Wire Wire Line
-	14800 17600 15650 17600
+	17400 10300 18250 10300
 Wire Wire Line
-	15650 17150 15650 17200
+	18250 9850 18250 9900
 Wire Wire Line
-	15150 16750 15200 16750
+	17750 9450 17800 9450
 Wire Wire Line
-	15650 17600 16000 17600
+	18250 10300 18600 10300
 Wire Wire Line
-	15650 16750 16000 16750
+	18250 9450 18600 9450
 Wire Wire Line
-	16000 17600 16250 17600
+	18600 10300 18850 10300
 Wire Wire Line
-	16000 16750 16250 16750
+	18600 9450 18850 9450
 Wire Wire Line
-	13450 15700 13700 15700
+	16050 8400 16300 8400
 Wire Wire Line
-	13400 15800 13500 15800
+	16000 8500 16100 8500
 Wire Wire Line
-	16250 15650 16400 15650
+	18850 8350 19000 8350
 Wire Wire Line
-	16250 16500 16400 16500
+	18850 9200 19000 9200
 Wire Wire Line
-	16250 16750 16400 16750
+	18850 9450 19000 9450
 Wire Wire Line
-	16250 17600 16400 17600
+	18850 10300 19000 10300
 Wire Wire Line
-	16550 16150 16550 16250
+	19150 8850 19150 8950
 Wire Wire Line
-	16550 16250 16550 16350
+	19150 8950 19150 9050
 Wire Wire Line
-	16450 15250 16450 15150
+	19050 7950 19050 7850
 Wire Wire Line
-	16450 15150 16450 15050
+	19050 7850 19050 7750
 Wire Wire Line
-	16450 15050 16450 14950
+	19050 7750 19050 7650
 Wire Wire Line
-	16500 17150 16500 17250
+	19100 9850 19100 9950
 Wire Wire Line
-	16400 17050 16400 16850
+	19000 9750 19000 9550
 Wire Wire Line
-	16900 16800 16900 16900
+	19500 9500 19500 9600
 Wire Wire Line
-	16900 16900 16900 17000
+	19500 9600 19500 9700
 Wire Wire Line
-	16900 17000 16900 17100
+	19500 9700 19500 9800
 Wire Wire Line
-	16900 17100 16900 17200
+	19500 9800 19500 9900
 Wire Wire Line
-	16400 16050 16400 15750
+	19000 8750 19000 8450
 Wire Wire Line
-	16450 14950 16450 14850
+	19050 7650 19050 7550
 Wire Wire Line
-	16450 14850 16450 14750
+	19050 7550 19050 7450
 Wire Wire Line
-	16450 14750 16450 14650
-Connection ~ 5550 13750
-Connection ~ 5550 14250
-Connection ~ 7100 15250
-Connection ~ 8400 15250
-Connection ~ 9050 12000
-Connection ~ 16400 15650
-Connection ~ 16400 16750
-Connection ~ 16550 16050
+	19050 7450 19050 7350
+Connection ~ 3800 8950
+Connection ~ 3800 9450
+Connection ~ 5350 10450
+Connection ~ 6650 10450
+Connection ~ 7300 7200
+Connection ~ 19000 8350
+Connection ~ 19000 9450
+Connection ~ 19150 8750
+Wire Notes Line
+	5350 4300 5350 500 
+Wire Notes Line
+	500  4300 21500 4300
+Wire Notes Line
+	8250 13150 8250 16550
+Wire Notes Line
+	17300 13150 17300 15200
+Wire Notes Line
+	500  13150 17300 13150
+Wire Notes Line
+	14200 500  14200 13150
 $EndSCHEMATC
