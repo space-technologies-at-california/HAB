@@ -385,7 +385,7 @@ Wire Wire Line
 Wire Wire Line
 	10300 2150 10400 2150
 Wire Wire Line
-	10500 2450 10500 1950
+	10500 2450 10500 2300
 Wire Wire Line
 	10500 1950 10300 1950
 $Comp
@@ -411,7 +411,7 @@ Wire Wire Line
 Wire Wire Line
 	12100 2800 12100 2650
 Wire Wire Line
-	10400 2150 10400 2800
+	10400 2150 10400 2250
 Wire Wire Line
 	13050 14850 12350 14850
 Text Label 12450 14850 0    70   ~ 0
@@ -2421,7 +2421,7 @@ Wire Wire Line
 Wire Wire Line
 	10300 3000 10550 3000
 Wire Wire Line
-	10300 2350 10300 3000
+	10300 2350 10300 2550
 Text GLabel 10550 3000 2    50   Input ~ 0
 PC7
 Text GLabel 10550 2450 2    50   Input ~ 0
@@ -2448,8 +2448,6 @@ Wire Wire Line
 	17350 1650 19100 1650
 Text GLabel 19100 1650 2    50   Input ~ 0
 PA8
-Wire Wire Line
-	2450 3300 2200 3300
 Wire Wire Line
 	1500 3000 1600 3000
 Wire Wire Line
@@ -2488,11 +2486,7 @@ F 3 "~" H 1750 3150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1750 3250 2250 3250
-Wire Wire Line
-	2450 3200 2250 3200
-Wire Wire Line
-	2250 3200 2250 3250
+	1750 3250 2100 3250
 Wire Wire Line
 	2450 3100 2050 3100
 Wire Wire Line
@@ -2501,20 +2495,10 @@ Wire Wire Line
 	1500 2200 2850 2200
 Wire Wire Line
 	1500 2200 1500 2450
-Wire Wire Line
-	2250 3200 2100 3200
-Connection ~ 2250 3200
-Text GLabel 2100 3200 0    50   Input ~ 0
+Text GLabel 2000 3200 0    50   Input ~ 0
 PB8
-Text GLabel 2000 3400 0    50   Input ~ 0
+Text GLabel 1950 3400 0    50   Input ~ 0
 PB9
-Wire Wire Line
-	2000 3400 2200 3400
-Wire Wire Line
-	2200 3400 2200 3300
-Connection ~ 2200 3300
-Wire Wire Line
-	2200 3300 1600 3300
 $Comp
 L power:GND #PWR?
 U 1 1 5CBCBFBC
@@ -3213,4 +3197,81 @@ F 3 "~" H 2550 14100 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	2550 14250 2550 14400
+Wire Wire Line
+	2000 3200 2100 3200
+Wire Wire Line
+	2100 3200 2100 3250
+Connection ~ 2100 3200
+Wire Wire Line
+	2100 3200 2150 3200
+Wire Wire Line
+	1950 3400 2100 3400
+Wire Wire Line
+	2100 3400 2100 3300
+Connection ~ 2100 3300
+Wire Wire Line
+	2100 3300 1600 3300
+Wire Wire Line
+	2100 3300 2150 3300
+$Comp
+L Device:R R?
+U 1 1 5D6F92C2
+P 2300 3300
+F 0 "R?" H 2370 3346 50  0000 L CNN
+F 1 "0" V 2300 3250 50  0000 L CNN
+F 2 "" V 2230 3300 50  0001 C CNN
+F 3 "~" H 2300 3300 50  0001 C CNN
+	1    2300 3300
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5D6F9447
+P 2300 3200
+F 0 "R?" H 2370 3246 50  0000 L CNN
+F 1 "0" V 2300 3150 50  0000 L CNN
+F 2 "" V 2230 3200 50  0001 C CNN
+F 3 "~" H 2300 3200 50  0001 C CNN
+	1    2300 3200
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5D6FA677
+P 10500 2150
+F 0 "R?" H 10570 2196 50  0000 L CNN
+F 1 "0" V 10500 2100 50  0000 L CNN
+F 2 "" V 10430 2150 50  0001 C CNN
+F 3 "~" H 10500 2150 50  0001 C CNN
+	1    10500 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10500 2000 10500 1950
+$Comp
+L Device:R R?
+U 1 1 5D6FA78C
+P 10400 2400
+F 0 "R?" H 10470 2446 50  0000 L CNN
+F 1 "0" V 10400 2350 50  0000 L CNN
+F 2 "" V 10330 2400 50  0001 C CNN
+F 3 "~" H 10400 2400 50  0001 C CNN
+	1    10400 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10400 2550 10400 2800
+$Comp
+L Device:R R?
+U 1 1 5D6FA891
+P 10300 2700
+F 0 "R?" H 10370 2746 50  0000 L CNN
+F 1 "0" V 10300 2650 50  0000 L CNN
+F 2 "" V 10230 2700 50  0001 C CNN
+F 3 "~" H 10300 2700 50  0001 C CNN
+	1    10300 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10300 2850 10300 3000
 $EndSCHEMATC
