@@ -23,31 +23,11 @@ Wire Wire Line
 Text Label 2850 2600 0    10   ~ 0
 GND
 Wire Wire Line
-	3900 2000 3400 2000
-Text Label 3900 2000 0    10   ~ 0
-GND
-Wire Wire Line
-	4200 2100 3400 2100
-Text Label 4200 2100 0    10   ~ 0
-VCC
-Wire Wire Line
 	2850 1500 2850 1700
 Text Label 2850 1500 0    10   ~ 0
 VCC
 Wire Wire Line
-	3400 2200 4000 2200
-Text Label 3700 2200 0    70   ~ 0
-SDA
-Wire Wire Line
-	3400 2300 4000 2300
-Text Label 3700 2300 0    70   ~ 0
-SCL
-Wire Wire Line
 	3950 3200 3650 3200
-Wire Wire Line
-	3400 2400 4000 2400
-Text Label 3700 2400 0    70   ~ 0
-SQW
 Wire Wire Line
 	2850 2200 2850 2100
 $Comp
@@ -73,17 +53,6 @@ F 3 "" H 3950 3650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:HEADER-1X576MIL-real_time_clock-eagle-import JP1
-U 1 0 BAFA783C
-P 3300 2200
-F 0 "JP1" H 3050 2525 59  0000 L BNN
-F 1 "HEADER-1X576MIL" H 2500 1800 59  0000 L BNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 3300 2200 50  0001 C CNN
-F 3 "" H 3300 2200 50  0001 C CNN
-	1    3300 2200
-	-1   0    0    1   
-$EndComp
-$Comp
 L habiv-board-rescue:CAP_CERAMIC0805-NOOUTLINE-real_time_clock-eagle-import C2
 U 1 0 E7D47EA7
 P 2850 2400
@@ -104,28 +73,6 @@ F 2 "" H 2850 2700 50  0001 C CNN
 F 3 "" H 2850 2700 50  0001 C CNN
 	1    2850 2700
 	1    0    0    -1  
-$EndComp
-$Comp
-L habiv-board-rescue:VCC-real_time_clock-eagle-import #P+03
-U 1 0 6A081B6E
-P 4300 2100
-F 0 "#P+03" H 4300 2100 50  0001 C CNN
-F 1 "VCC" V 4200 2100 59  0000 R TNN
-F 2 "" H 4300 2100 50  0001 C CNN
-F 3 "" H 4300 2100 50  0001 C CNN
-	1    4300 2100
-	0    1    -1   0   
-$EndComp
-$Comp
-L habiv-board-rescue:GND-real_time_clock-eagle-import #GND05
-U 1 0 8DA2BB24
-P 4000 2000
-F 0 "#GND05" H 4000 2000 50  0001 C CNN
-F 1 "GND" H 3900 1900 59  0000 L BNN
-F 2 "" H 4000 2000 50  0001 C CNN
-F 3 "" H 4000 2000 50  0001 C CNN
-	1    4000 2000
-	0    -1   -1   0   
 $EndComp
 $Comp
 L habiv-board-rescue:RTC_PCF8523T-real_time_clock-eagle-import IC1
@@ -326,13 +273,13 @@ Wire Wire Line
 $Comp
 L power:GND #PWR024
 U 1 1 5BB5C6BA
-P 12300 2350
-F 0 "#PWR024" H 12300 2100 50  0001 C CNN
-F 1 "GND" V 12305 2222 50  0000 R CNN
-F 2 "" H 12300 2350 50  0001 C CNN
-F 3 "" H 12300 2350 50  0001 C CNN
-	1    12300 2350
-	0    -1   -1   0   
+P 10650 3400
+F 0 "#PWR024" H 10650 3150 50  0001 C CNN
+F 1 "GND" V 10655 3272 50  0000 R CNN
+F 2 "" H 10650 3400 50  0001 C CNN
+F 3 "" H 10650 3400 50  0001 C CNN
+	1    10650 3400
+	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C C6
@@ -352,73 +299,21 @@ Wire Wire Line
 Wire Wire Line
 	9500 2450 9500 3200
 Wire Wire Line
-	9500 3200 12050 3200
-Wire Wire Line
-	12050 3200 12050 2350
-Wire Wire Line
-	12050 2350 12100 2350
-$Comp
-L power:+3V3 #PWR023
-U 1 1 5BC03C4E
-P 12150 2250
-F 0 "#PWR023" H 12150 2100 50  0001 C CNN
-F 1 "+3V3" V 12150 1900 50  0000 L CNN
-F 2 "" H 12150 2250 50  0001 C CNN
-F 3 "" H 12150 2250 50  0001 C CNN
-	1    12150 2250
-	0    -1   -1   0   
-$EndComp
+	9500 3200 10650 3200
 Wire Wire Line
 	9500 1400 9500 1150
-Wire Wire Line
-	9500 1150 11900 1150
-Wire Wire Line
-	11900 1150 11900 2250
 Connection ~ 9500 1400
-Wire Wire Line
-	11800 1400 11800 2350
-Wire Wire Line
-	11800 2350 12050 2350
-Connection ~ 12050 2350
-Wire Wire Line
-	10150 1400 11800 1400
 Wire Wire Line
 	10300 2150 10400 2150
 Wire Wire Line
 	10500 2450 10500 2300
 Wire Wire Line
 	10500 1950 10300 1950
-$Comp
-L Connector:Conn_01x05_Female J9
-U 1 1 5BD6D44D
-P 12300 2450
-F 0 "J9" H 12200 2150 50  0000 L CNN
-F 1 "Conn_01x05_Female" H 12250 2050 50  0000 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x05_P2.54mm_Vertical" H 12300 2450 50  0001 C CNN
-F 3 "~" H 12300 2450 50  0001 C CNN
-	1    12300 2450
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	11900 2250 12100 2250
-Connection ~ 12100 2250
-Wire Wire Line
-	12100 2250 12150 2250
-Wire Wire Line
-	11850 2650 11850 2550
-Wire Wire Line
-	11850 2550 12100 2550
-Wire Wire Line
-	12100 2800 12100 2650
 Wire Wire Line
 	10400 2150 10400 2250
 Wire Wire Line
-	13050 14850 12350 14850
+	13050 14850 12900 14850
 Text Label 12450 14850 0    70   ~ 0
-FIX
-Wire Wire Line
-	9250 14950 9850 14950
-Text Label 9450 14950 0    70   ~ 0
 FIX
 Wire Wire Line
 	12050 14850 11950 14850
@@ -442,12 +337,6 @@ Connection ~ 11450 14650
 Text Label 11550 14850 0    10   ~ 0
 GND
 Wire Wire Line
-	10150 15250 10150 15550
-Wire Wire Line
-	9250 15250 10150 15250
-Text Label 10150 15250 0    10   ~ 0
-GND
-Wire Wire Line
 	14250 15250 15050 15250
 Wire Wire Line
 	15050 15250 15050 15550
@@ -469,18 +358,6 @@ Connection ~ 15050 15550
 Text Label 14250 15250 0    10   ~ 0
 GND
 Wire Wire Line
-	16200 13650 16500 13650
-Wire Wire Line
-	16500 13650 16500 13750
-Text Label 16200 13650 0    10   ~ 0
-GND
-Wire Wire Line
-	10050 14650 10050 14550
-Wire Wire Line
-	9250 14650 10050 14650
-Text Label 10050 14650 0    10   ~ 0
-3.3V
-Wire Wire Line
 	11450 14250 11450 14150
 Wire Wire Line
 	11450 14150 12450 14150
@@ -489,26 +366,8 @@ Wire Wire Line
 Text Label 11450 14250 0    10   ~ 0
 3.3V
 Wire Wire Line
-	9250 14750 9850 14750
-Text Label 9450 14750 0    70   ~ 0
-ENABLE
-Wire Wire Line
-	9250 15350 10350 15350
-Wire Wire Line
-	10350 15350 10350 14550
-Text Label 9250 15350 0    10   ~ 0
-VIN
-Wire Wire Line
 	13050 14750 12450 14750
 Text Label 12450 14750 0    70   ~ 0
-VBACKUP
-Wire Wire Line
-	9250 14850 9850 14850
-Text Label 9450 14850 0    70   ~ 0
-VBACKUP
-Wire Wire Line
-	15500 13650 14800 13650
-Text Label 14900 13650 0    70   ~ 0
 VBACKUP
 Wire Wire Line
 	13050 15250 12900 15250
@@ -523,12 +382,6 @@ Wire Wire Line
 	14250 15150 14750 15150
 Text Label 14450 15150 0    70   ~ 0
 1PPS
-Wire Wire Line
-	9250 15450 9850 15450
-Text Label 9450 15450 0    70   ~ 0
-1PPS
-Wire Wire Line
-	15700 13650 16000 13650
 $Comp
 L habiv-board-rescue:GPS_FGPMMOPA6H-Adafruit_Ultimate_GPS-eagle-import U3
 U 1 0 2DF3FE209D0AA111
@@ -596,39 +449,6 @@ F 3 "" H 11450 14450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:VIN-Adafruit_Ultimate_GPS-eagle-import #U$03
-U 1 0 22C351ED3FF9C786
-P 10350 14450
-F 0 "#U$03" H 10350 14450 50  0001 C CNN
-F 1 "VIN" H 10290 14490 42  0000 L BNN
-F 2 "" H 10350 14450 50  0001 C CNN
-F 3 "" H 10350 14450 50  0001 C CNN
-	1    10350 14450
-	1    0    0    -1  
-$EndComp
-$Comp
-L habiv-board-rescue:3.3V-Adafruit_Ultimate_GPS-eagle-import #U$01
-U 1 0 2CF13A3609ED6043
-P 10050 14450
-F 0 "#U$01" H 10050 14450 50  0001 C CNN
-F 1 "3.3V" H 9990 14490 42  0000 L BNN
-F 2 "" H 10050 14450 50  0001 C CNN
-F 3 "" H 10050 14450 50  0001 C CNN
-	1    10050 14450
-	1    0    0    -1  
-$EndComp
-$Comp
-L habiv-board-rescue:GND-Adafruit_Ultimate_GPS-eagle-import #U$02
-U 1 0 728101AFEEFC5E8C
-P 10150 15650
-F 0 "#U$02" H 10150 15650 50  0001 C CNN
-F 1 "GND" H 10090 15550 42  0000 L BNN
-F 2 "" H 10150 15650 50  0001 C CNN
-F 3 "" H 10150 15650 50  0001 C CNN
-	1    10150 15650
-	1    0    0    -1  
-$EndComp
-$Comp
 L habiv-board-rescue:DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import D1
 U 1 0 C049FE434DF527AB
 P 12000 15350
@@ -662,28 +482,6 @@ F 3 "" H 11950 15650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L habiv-board-rescue:BATTERYCR1220_SMT-Adafruit_Ultimate_GPS-eagle-import B2
-U 1 0 96DDDAD98A000202
-P 16100 13650
-F 0 "B2" H 16000 13775 42  0000 L BNN
-F 1 "CR1220" H 16000 13450 42  0000 L BNN
-F 2 "Adafruit Ultimate GPS:CR1220" H 16100 13650 50  0001 C CNN
-F 3 "" H 16100 13650 50  0001 C CNN
-	1    16100 13650
-	-1   0    0    1   
-$EndComp
-$Comp
-L habiv-board-rescue:GND-Adafruit_Ultimate_GPS-eagle-import #U$07
-U 1 0 25B093F9D405EDE5
-P 16500 13850
-F 0 "#U$07" H 16500 13850 50  0001 C CNN
-F 1 "GND" H 16440 13750 42  0000 L BNN
-F 2 "" H 16500 13850 50  0001 C CNN
-F 3 "" H 16500 13850 50  0001 C CNN
-	1    16500 13850
-	1    0    0    -1  
-$EndComp
-$Comp
 L habiv-board-rescue:GND-Adafruit_Ultimate_GPS-eagle-import #U$08
 U 1 0 28B2C22724E1B701
 P 15050 15850
@@ -705,28 +503,6 @@ F 3 "" H 14650 15350 50  0001 C CNN
 	1    14650 15350
 	-1   0    0    -1  
 $EndComp
-$Comp
-L habiv-board-rescue:HEADER-1X970MIL-Adafruit_Ultimate_GPS-eagle-import JP2
-U 1 0 E5C11E09A75A2B47
-P 9150 15050
-F 0 "JP2" H 8900 15575 59  0000 L BNN
-F 1 "HEADER-1X970MIL" H 8900 14450 59  0000 L BNN
-F 2 "Adafruit Ultimate GPS:1X09_ROUND_70" H 9150 15050 50  0001 C CNN
-F 3 "" H 9150 15050 50  0001 C CNN
-	1    9150 15050
-	-1   0    0    1   
-$EndComp
-$Comp
-L habiv-board-rescue:DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import D2
-U 1 0 A3EFA98ECB5A3888
-P 15600 13650
-F 0 "D2" H 15600 13750 42  0000 C CNN
-F 1 "CUS520" H 15600 13552 42  0000 C CNN
-F 2 "Adafruit Ultimate GPS:SOD-323" H 15600 13650 50  0001 C CNN
-F 3 "" H 15600 13650 50  0001 C CNN
-	1    15600 13650
-	-1   0    0    1   
-$EndComp
 Text Notes 12450 16050 0    59   ~ 0
 D1+R3 restrict RX input to 3.3V
 $Comp
@@ -747,33 +523,10 @@ F 10 "None" H 17950 2300 50  0001 L BNN "Field10"
 	1    17950 2300
 	1    0    0    -1  
 $EndComp
-$Comp
-L Connector:Conn_01x04_Female J18
-U 1 1 5BB59CF9
-P 20150 2250
-F 0 "J18" H 20177 2226 50  0000 L CNN
-F 1 "Conn_01x04_Female" H 20177 2135 50  0000 L CNN
-F 2 "Connector:FanPinHeader_1x04_P2.54mm_Vertical" H 20150 2250 50  0001 C CNN
-F 3 "~" H 20150 2250 50  0001 C CNN
-	1    20150 2250
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	17350 2400 17150 2400
 Wire Wire Line
 	17350 2300 17050 2300
-Wire Wire Line
-	19950 2250 19800 2250
-Wire Wire Line
-	19800 2250 19800 2950
-Wire Wire Line
-	19950 2350 19850 2350
-Wire Wire Line
-	19850 2350 19850 3050
-Wire Wire Line
-	19950 2450 19900 2450
-Wire Wire Line
-	19900 2450 19900 3150
 Wire Wire Line
 	18550 2800 16600 2800
 Wire Wire Line
@@ -813,12 +566,6 @@ F 3 "" H 16200 2050 50  0001 C CNN
 	1    16200 2050
 	1    0    0    -1  
 $EndComp
-Text Label 19800 2250 0    50   ~ 0
-SDO
-Text Label 19850 2350 0    50   ~ 0
-SDI
-Text Label 19900 2600 0    50   ~ 0
-SCLK
 Wire Wire Line
 	18550 1500 16200 1500
 Wire Wire Line
@@ -832,10 +579,6 @@ Wire Wire Line
 	16200 2000 16200 2050
 Wire Wire Line
 	17350 1650 17350 1750
-Wire Wire Line
-	19950 1650 19950 2150
-Text Label 19950 1900 0    50   ~ 0
-CSB
 Wire Wire Line
 	17350 2500 17250 2500
 Wire Wire Line
@@ -3074,50 +2817,6 @@ $EndComp
 Wire Wire Line
 	12600 15350 12350 15350
 $Comp
-L Device:R R18
-U 1 1 5D397067
-P 6500 14750
-F 0 "R18" H 6570 14796 50  0000 L CNN
-F 1 "0" V 6500 14700 50  0000 L CNN
-F 2 "" V 6430 14750 50  0001 C CNN
-F 3 "~" H 6500 14750 50  0001 C CNN
-	1    6500 14750
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R19
-U 1 1 5D3976D6
-P 6500 14850
-F 0 "R19" H 6570 14896 50  0000 L CNN
-F 1 "0" V 6500 14800 50  0000 L CNN
-F 2 "" V 6430 14850 50  0001 C CNN
-F 3 "~" H 6500 14850 50  0001 C CNN
-	1    6500 14850
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R20
-U 1 1 5D3977C1
-P 6500 14950
-F 0 "R20" H 6570 14996 50  0000 L CNN
-F 1 "0" V 6500 14900 50  0000 L CNN
-F 2 "" V 6430 14950 50  0001 C CNN
-F 3 "~" H 6500 14950 50  0001 C CNN
-	1    6500 14950
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R21
-U 1 1 5D3978AB
-P 6500 15050
-F 0 "R21" H 6570 15096 50  0000 L CNN
-F 1 "0" V 6500 15000 50  0000 L CNN
-F 2 "" V 6430 15050 50  0001 C CNN
-F 3 "~" H 6500 15050 50  0001 C CNN
-	1    6500 15050
-	0    1    1    0   
-$EndComp
-$Comp
 L Device:R R12
 U 1 1 5D398530
 P 2250 14600
@@ -3333,4 +3032,55 @@ Wire Wire Line
 	17150 2400 17150 2900
 Wire Wire Line
 	17250 2500 17250 2900
+Wire Wire Line
+	6350 14750 6650 14750
+Wire Wire Line
+	6350 14850 6650 14850
+Wire Wire Line
+	6350 14950 6650 14950
+Wire Wire Line
+	6350 15050 6650 15050
+NoConn ~ 2450 3100
+NoConn ~ 4500 8150
+NoConn ~ 4500 8250
+Wire Wire Line
+	10650 3400 10650 3200
+Wire Wire Line
+	11000 1400 11000 3200
+Wire Wire Line
+	11000 3200 10650 3200
+Wire Wire Line
+	10150 1400 11000 1400
+Connection ~ 10650 3200
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D5B869B
+P 9500 1150
+F 0 "#PWR?" H 9500 1000 50  0001 C CNN
+F 1 "+3V3" H 9515 1323 50  0000 C CNN
+F 2 "" H 9500 1150 50  0001 C CNN
+F 3 "" H 9500 1150 50  0001 C CNN
+	1    9500 1150
+	1    0    0    -1  
+$EndComp
+Text GLabel 12500 15000 0    60   Input ~ 0
+PB15
+$Comp
+L Device:R R?
+U 1 1 5D73E76D
+P 12750 15000
+F 0 "R?" H 12950 15050 50  0000 L CNN
+F 1 "0" V 12750 14950 50  0000 L CNN
+F 2 "" V 12680 15000 50  0001 C CNN
+F 3 "~" H 12750 15000 50  0001 C CNN
+	1    12750 15000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	12500 15000 12600 15000
+Wire Wire Line
+	12900 15000 12900 14850
+Connection ~ 12900 14850
+Wire Wire Line
+	12900 14850 12350 14850
 $EndSCHEMATC
