@@ -1,1 +1,0 @@
-extract RadioHead-master folder into your Arduino library to compile dependent code on your machine.
