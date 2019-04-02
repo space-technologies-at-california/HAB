@@ -158,10 +158,10 @@ F 8 "None" H 4600 2850 50  0001 L BNN "Field8"
 	0    1    1    0   
 $EndComp
 $Comp
-L habiv-board-rescue:BATTERY-real_time_clock-eagle-import B1
+L habiv-board-rescue:BATTERY-real_time_clock-eagle-import B2
 U 1 1 5BBEE532
 P 3950 3450
-F 0 "B1" V 3996 3317 50  0000 R CNN
+F 0 "B2" V 3996 3317 50  0000 R CNN
 F 1 "CR1220" V 3905 3317 50  0000 R CNN
 F 2 "S8411-45R:S8411-45R" H 3950 3450 50  0001 L BNN
 F 3 "https://www.mouser.com/datasheet/2/181/S8411R-1136243.pdf" H 3950 3450 50  0001 L BNN
@@ -750,28 +750,6 @@ F 2 "" H 3800 8950 50  0001 C CNN
 F 3 "" H 3800 8950 50  0001 C CNN
 	1    3800 8950
 	1    0    0    -1  
-$EndComp
-$Comp
-L habiv-board-rescue:R-STM32-rescue 0k1
-U 1 1 5BC449A1
-P 3200 7900
-F 0 "0k1" V 3280 7900 50  0000 C CNN
-F 1 "R1" V 3200 7900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 3130 7900 50  0001 C CNN
-F 3 "" H 3200 7900 50  0001 C CNN
-	1    3200 7900
-	0    1    1    0   
-$EndComp
-$Comp
-L habiv-board-rescue:R-STM32-rescue 0k2
-U 1 1 5BC44ABA
-P 3200 8200
-F 0 "0k2" V 3280 8200 50  0000 C CNN
-F 1 "R2" V 3200 8200 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 3130 8200 50  0001 C CNN
-F 3 "" H 3200 8200 50  0001 C CNN
-	1    3200 8200
-	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR012
@@ -1627,13 +1605,9 @@ Wire Wire Line
 Wire Wire Line
 	3550 9450 3800 9450
 Wire Wire Line
-	3450 7900 3350 7900
-Wire Wire Line
 	2550 7900 2850 7900
 Wire Wire Line
 	2650 8200 2850 8200
-Wire Wire Line
-	3450 8200 3350 8200
 Wire Wire Line
 	3350 8750 3350 8850
 Wire Wire Line
@@ -1867,10 +1841,6 @@ Wire Wire Line
 	18500 7650 18500 7750
 Connection ~ 18500 7750
 Wire Wire Line
-	2850 8200 3050 8200
-Wire Wire Line
-	2850 7900 3050 7900
-Wire Wire Line
 	2250 8150 2250 8400
 Wire Wire Line
 	2950 9100 2950 9150
@@ -2029,7 +1999,7 @@ L Device:R_Small R3
 U 1 1 5C849D22
 P 1750 3150
 F 0 "R3" H 1800 3200 50  0000 L CNN
-F 1 "8.2k" H 1900 3200 50  0000 L CNN
+F 1 "8.2k" H 1800 3050 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric" H 1750 3150 50  0001 C CNN
 F 3 "~" H 1750 3150 50  0001 C CNN
 	1    1750 3150
@@ -2545,23 +2515,8 @@ F 3 "~" H 1500 2600 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1500 2750 1500 3000
-$Comp
-L Device:R R17
-U 1 1 5D1625D8
-P 4900 7050
-F 0 "R17" H 4970 7096 50  0000 L CNN
-F 1 "0" V 4900 7000 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 4830 7050 50  0001 C CNN
-F 3 "~" H 4900 7050 50  0001 C CNN
-	1    4900 7050
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	5000 6800 5000 7350
-Wire Wire Line
-	4900 6500 4900 6900
-Wire Wire Line
-	4900 7200 4900 7350
 Wire Wire Line
 	1600 14600 2100 14600
 $Comp
@@ -2962,4 +2917,36 @@ F 3 "" H 19150 6650 50  0001 C CNN
 	1    19150 6650
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	2850 7900 3150 7900
+Wire Wire Line
+	2850 8200 3150 8200
+Wire Wire Line
+	4900 6500 4900 7350
+$Comp
+L Device:R_Small R100
+U 1 1 5CB107A7
+P 3250 7900
+F 0 "R100" V 3150 7900 50  0000 C CNN
+F 1 "0k1" V 3350 7900 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 3250 7900 50  0001 C CNN
+F 3 "~" H 3250 7900 50  0001 C CNN
+	1    3250 7900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3350 7900 3450 7900
+$Comp
+L Device:R_Small R101
+U 1 1 5CB10998
+P 3250 8200
+F 0 "R101" V 3150 8200 50  0000 C CNN
+F 1 "0k2" V 3350 8200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 3250 8200 50  0001 C CNN
+F 3 "~" H 3250 8200 50  0001 C CNN
+	1    3250 8200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3350 8200 3450 8200
 $EndSCHEMATC
