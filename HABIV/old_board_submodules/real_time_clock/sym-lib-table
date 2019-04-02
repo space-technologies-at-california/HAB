@@ -1,0 +1,6 @@
+(sym_lib_table
+  (lib (name real_time_clock-eagle-import)(type Legacy)(uri ${KIPRJMOD}/real_time_clock-eagle-import.lib)(options "")(descr ""))
+  (lib (name 1775485-2)(type Legacy)(uri C:/Users/liget_4sn/OneDrive/STAC/real_time_clock/1775485-2/1775485-2.lib)(options "")(descr ""))
+  (lib (name ABS07W-32.768KHZ-D-2-T)(type Legacy)(uri C:/Users/liget_4sn/OneDrive/STAC/real_time_clock/ABS07W-32.768KHZ-D-2-T/ABS07W-32.768KHZ-D-2-T.lib)(options "")(descr ""))
+  (lib (name real_time_clock-rescue)(type Legacy)(uri ${KIPRJMOD}/real_time_clock-rescue.lib)(options "")(descr ""))
+)

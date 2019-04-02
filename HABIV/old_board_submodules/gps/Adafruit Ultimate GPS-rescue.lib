@@ -1,0 +1,172 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# 3.3V-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF 3.3V-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue ~ 0 40 Y Y 1 L P
+F0 "" 0 0 50 H I C CNN
+F1 "3.3V-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" -60 40 42 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -50 -50 0 0 N
+P 2 1 0 0 0 0 50 -50 N
+X 3.3V 1 0 -100 100 U 0 0 1 0 W
+ENDDRAW
+ENDDEF
+#
+# CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue C 0 40 Y Y 1 L N
+F0 "C" -90 49 50 V V C CNN
+F1 "CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" 90 49 50 V V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+S -50 20 50 40 1 0 0 F
+S -50 60 50 80 1 0 0 F
+P 2 1 0 0 0 30 0 0 N
+P 2 1 0 0 0 100 0 70 N
+X 1 1 0 200 100 D 0 0 1 0 P
+X 2 2 0 -100 100 U 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue D 0 40 Y Y 1 L N
+F0 "D" 0 100 42 H V C CNN
+F1 "DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" 0 -98 42 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -50 -50 50 0 N
+P 2 1 0 0 -50 50 -50 -50 N
+P 2 1 0 0 50 0 -50 50 N
+P 2 1 0 0 50 0 50 -50 N
+P 2 1 0 0 50 50 50 0 N
+X A A -100 0 100 R 0 0 1 0 P
+X C C 100 0 100 L 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# GND-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF GND-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue ~ 0 40 Y Y 1 L P
+F0 "" 0 0 50 H I C CNN
+F1 "GND-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" -60 -100 42 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -50 0 50 0 N
+X GND 1 0 100 100 D 0 0 1 0 W
+ENDDRAW
+ENDDEF
+#
+# GPS_FGPMMOPA6H-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF GPS_FGPMMOPA6H-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue U 0 40 Y Y 1 L N
+F0 "U" -500 900 42 H V L BNN
+F1 "GPS_FGPMMOPA6H-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" -500 -1000 42 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+T 0 100 -800 42 0 1 0 2.0-4.3V Normal 0 L B
+T 0 100 -700 42 0 1 0 3.0-4.3V Normal 0 L B
+T 0 -300 700 42 0 1 0 "FGPMMOPA6H GPS" Normal 0 L B
+T 0 -400 600 42 0 1 0 "MTK MT3339 Chipset" Normal 0 L B
+T 0 -390 -800 42 0 1 0 VBACKUP: Normal 0 L B
+T 0 -400 -700 42 0 1 0 VCC: Normal 0 L B
+P 2 1 0 0 -500 -900 -500 -600 N
+P 2 1 0 0 -500 -600 -500 500 N
+P 2 1 0 0 -500 -600 500 -600 N
+P 2 1 0 0 -500 500 -500 800 N
+P 2 1 0 0 -500 500 500 500 N
+P 2 1 0 0 -500 800 500 800 N
+P 2 1 0 0 500 -900 -500 -900 N
+P 2 1 0 0 500 500 500 -900 N
+P 2 1 0 0 500 800 500 500 N
+X VCC P$1 -600 400 100 R 50 50 1 0 U
+X RX P$10 -600 -500 100 R 50 50 1 0 U
+X EX_ANT P$11 600 -500 100 L 50 50 1 0 U
+X GND@3 P$12 600 -400 100 L 50 50 1 0 U
+X 1PPS P$13 600 -300 100 L 50 50 1 0 U
+X RTCM P$14 600 -200 100 L 50 50 1 0 U
+X NC@3 P$15 600 -100 100 L 50 50 1 0 U
+X NC@4 P$16 600 0 100 L 50 50 1 0 U
+X NC@5 P$17 600 100 100 L 50 50 1 0 U
+X NC@6 P$18 600 200 100 L 50 50 1 0 U
+X GND@4 P$19 600 300 100 L 50 50 1 0 U
+X NRESET P$2 -600 300 100 R 50 50 1 0 U
+X NC@7 P$20 600 400 100 L 50 50 1 0 U
+X GND@1 P$3 -600 200 100 R 50 50 1 0 U
+X VBACKUP P$4 -600 100 100 R 50 50 1 0 U
+X 3D-FIX P$5 -600 0 100 R 50 50 1 0 U
+X NC@1 P$6 -600 -100 100 R 50 50 1 0 U
+X NC@2 P$7 -600 -200 100 R 50 50 1 0 U
+X GND@2 P$8 -600 -300 100 R 50 50 1 0 U
+X TX P$9 -600 -400 100 R 50 50 1 0 U
+ENDDRAW
+ENDDEF
+#
+# LED0805-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF LED0805-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue D 0 40 Y Y 1 L N
+F0 "D" -50 175 42 H V C CNN
+F1 "LED0805-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" -50 -110 42 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -100 -50 0 0 N
+P 2 1 0 0 -100 50 -100 -50 N
+P 2 1 0 0 -75 50 -25 100 N
+P 2 1 0 0 -37 112 -12 87 N
+P 2 1 0 0 -25 50 25 100 N
+P 2 1 0 0 -12 87 0 125 N
+P 2 1 0 0 0 0 -100 50 N
+P 2 1 0 0 0 0 0 -50 N
+P 2 1 0 0 0 50 0 0 N
+P 2 1 0 0 0 125 -37 112 N
+P 2 1 0 0 12 112 37 87 N
+P 2 1 0 0 37 87 50 125 N
+P 2 1 0 0 50 125 12 112 N
+X A A -200 0 100 R 0 0 1 0 P
+X C C 100 0 100 L 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue R 0 40 Y Y 1 L N
+F0 "R" 0 100 50 H V C CNN
+F1 "RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" 0 0 40 H V C CNB
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -100 -50 -100 50 N
+P 2 1 0 0 -100 50 100 50 N
+P 2 1 0 0 100 -50 -100 -50 N
+P 2 1 0 0 100 50 100 -50 N
+X 1 1 -200 0 100 R 0 0 1 0 P
+X 2 2 200 0 100 L 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# U.FL-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF ~U.FL-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue ~ 0 40 Y Y 1 L N
+F0 "" 0 0 50 H I C CNN
+F1 "U.FL-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" 0 0 50 H I C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+C 0 0 44 1 0 10 N
+C 0 0 100 1 0 10 N
+P 2 1 0 0 0 -100 0 -300 N
+X GND@0 P$1 -100 -200 100 R 0 0 1 0 U
+X GND@1 P$2 -100 -300 100 R 0 0 1 0 U
+X SIGNAL P$3 200 0 200 L 0 0 1 0 U
+ENDDRAW
+ENDDEF
+#
+#End Library

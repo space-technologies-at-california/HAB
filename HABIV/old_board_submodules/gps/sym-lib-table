@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name Adafruit_Ultimate_GPS-eagle-import)(type Legacy)(uri ${KIPRJMOD}/Adafruit_Ultimate_GPS-eagle-import.lib)(options "")(descr ""))
+  (lib (name Adafruit-Ultimate-GPS-rescue)(type Legacy)(uri "${KIPRJMOD}/Adafruit Ultimate GPS-rescue.lib")(options "")(descr ""))
+)

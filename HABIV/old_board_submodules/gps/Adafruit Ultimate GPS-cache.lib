@@ -1,0 +1,246 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# Adafruit-Ultimate-GPS-rescue_3.3V-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF Adafruit-Ultimate-GPS-rescue_3.3V-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue ~ 0 40 Y Y 1 L P
+F0 "" 0 0 50 H I C CNN
+F1 "Adafruit-Ultimate-GPS-rescue_3.3V-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" -60 40 42 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -50 -50 0 0 N
+P 2 1 0 0 0 0 50 -50 N
+X 3.3V 1 0 -100 100 U 0 0 1 0 W
+ENDDRAW
+ENDDEF
+#
+# Adafruit-Ultimate-GPS-rescue_CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF Adafruit-Ultimate-GPS-rescue_CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue C 0 40 Y Y 1 L N
+F0 "C" -90 49 50 V V C CNN
+F1 "Adafruit-Ultimate-GPS-rescue_CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" 90 49 50 V V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+S -50 20 50 40 1 0 0 F
+S -50 60 50 80 1 0 0 F
+P 2 1 0 0 0 30 0 0 N
+P 2 1 0 0 0 100 0 70 N
+X 1 1 0 200 100 D 0 0 1 0 P
+X 2 2 0 -100 100 U 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# Adafruit-Ultimate-GPS-rescue_DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF Adafruit-Ultimate-GPS-rescue_DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue D 0 40 Y Y 1 L N
+F0 "D" 0 100 42 H V C CNN
+F1 "Adafruit-Ultimate-GPS-rescue_DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" 0 -98 42 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -50 -50 50 0 N
+P 2 1 0 0 -50 50 -50 -50 N
+P 2 1 0 0 50 0 -50 50 N
+P 2 1 0 0 50 0 50 -50 N
+P 2 1 0 0 50 50 50 0 N
+X A A -100 0 100 R 0 0 1 0 P
+X C C 100 0 100 L 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# Adafruit-Ultimate-GPS-rescue_GND-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF Adafruit-Ultimate-GPS-rescue_GND-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue ~ 0 40 Y Y 1 L P
+F0 "" 0 0 50 H I C CNN
+F1 "Adafruit-Ultimate-GPS-rescue_GND-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" -60 -100 42 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -50 0 50 0 N
+X GND 1 0 100 100 D 0 0 1 0 W
+ENDDRAW
+ENDDEF
+#
+# Adafruit-Ultimate-GPS-rescue_GPS_FGPMMOPA6H-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF Adafruit-Ultimate-GPS-rescue_GPS_FGPMMOPA6H-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue U 0 40 Y Y 1 L N
+F0 "U" -500 900 42 H V L BNN
+F1 "Adafruit-Ultimate-GPS-rescue_GPS_FGPMMOPA6H-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" -500 -1000 42 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+T 0 100 -800 42 0 1 0 2.0-4.3V Normal 0 L B
+T 0 100 -700 42 0 1 0 3.0-4.3V Normal 0 L B
+T 0 -300 700 42 0 1 0 "FGPMMOPA6H GPS" Normal 0 L B
+T 0 -400 600 42 0 1 0 "MTK MT3339 Chipset" Normal 0 L B
+T 0 -390 -800 42 0 1 0 VBACKUP: Normal 0 L B
+T 0 -400 -700 42 0 1 0 VCC: Normal 0 L B
+P 2 1 0 0 -500 -900 -500 -600 N
+P 2 1 0 0 -500 -600 -500 500 N
+P 2 1 0 0 -500 -600 500 -600 N
+P 2 1 0 0 -500 500 -500 800 N
+P 2 1 0 0 -500 500 500 500 N
+P 2 1 0 0 -500 800 500 800 N
+P 2 1 0 0 500 -900 -500 -900 N
+P 2 1 0 0 500 500 500 -900 N
+P 2 1 0 0 500 800 500 500 N
+X VCC P$1 -600 400 100 R 50 50 1 0 U
+X RX P$10 -600 -500 100 R 50 50 1 0 U
+X EX_ANT P$11 600 -500 100 L 50 50 1 0 U
+X GND@3 P$12 600 -400 100 L 50 50 1 0 U
+X 1PPS P$13 600 -300 100 L 50 50 1 0 U
+X RTCM P$14 600 -200 100 L 50 50 1 0 U
+X NC@3 P$15 600 -100 100 L 50 50 1 0 U
+X NC@4 P$16 600 0 100 L 50 50 1 0 U
+X NC@5 P$17 600 100 100 L 50 50 1 0 U
+X NC@6 P$18 600 200 100 L 50 50 1 0 U
+X GND@4 P$19 600 300 100 L 50 50 1 0 U
+X NRESET P$2 -600 300 100 R 50 50 1 0 U
+X NC@7 P$20 600 400 100 L 50 50 1 0 U
+X GND@1 P$3 -600 200 100 R 50 50 1 0 U
+X VBACKUP P$4 -600 100 100 R 50 50 1 0 U
+X 3D-FIX P$5 -600 0 100 R 50 50 1 0 U
+X NC@1 P$6 -600 -100 100 R 50 50 1 0 U
+X NC@2 P$7 -600 -200 100 R 50 50 1 0 U
+X GND@2 P$8 -600 -300 100 R 50 50 1 0 U
+X TX P$9 -600 -400 100 R 50 50 1 0 U
+ENDDRAW
+ENDDEF
+#
+# Adafruit-Ultimate-GPS-rescue_LED0805-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF Adafruit-Ultimate-GPS-rescue_LED0805-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue D 0 40 Y Y 1 L N
+F0 "D" -50 175 42 H V C CNN
+F1 "Adafruit-Ultimate-GPS-rescue_LED0805-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" -50 -110 42 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -100 -50 0 0 N
+P 2 1 0 0 -100 50 -100 -50 N
+P 2 1 0 0 -75 50 -25 100 N
+P 2 1 0 0 -37 112 -12 87 N
+P 2 1 0 0 -25 50 25 100 N
+P 2 1 0 0 -12 87 0 125 N
+P 2 1 0 0 0 0 -100 50 N
+P 2 1 0 0 0 0 0 -50 N
+P 2 1 0 0 0 50 0 0 N
+P 2 1 0 0 0 125 -37 112 N
+P 2 1 0 0 12 112 37 87 N
+P 2 1 0 0 37 87 50 125 N
+P 2 1 0 0 50 125 12 112 N
+X A A -200 0 100 R 0 0 1 0 P
+X C C 100 0 100 L 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# Adafruit-Ultimate-GPS-rescue_RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF Adafruit-Ultimate-GPS-rescue_RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue R 0 40 Y Y 1 L N
+F0 "R" 0 100 50 H V C CNN
+F1 "Adafruit-Ultimate-GPS-rescue_RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" 0 0 40 H V C CNB
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -100 -50 -100 50 N
+P 2 1 0 0 -100 50 100 50 N
+P 2 1 0 0 100 -50 -100 -50 N
+P 2 1 0 0 100 50 100 -50 N
+X 1 1 -200 0 100 R 0 0 1 0 P
+X 2 2 200 0 100 L 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# Adafruit-Ultimate-GPS-rescue_U.FL-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue
+#
+DEF ~Adafruit-Ultimate-GPS-rescue_U.FL-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue ~ 0 40 Y Y 1 L N
+F0 "" 0 0 50 H I C CNN
+F1 "Adafruit-Ultimate-GPS-rescue_U.FL-Adafruit_Ultimate_GPS-eagle-import-habiv-board-rescue" 0 0 50 H I C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+C 0 0 44 1 0 10 N
+C 0 0 100 1 0 10 N
+P 2 1 0 0 0 -100 0 -300 N
+X GND@0 P$1 -100 -200 100 R 0 0 1 0 U
+X GND@1 P$2 -100 -300 100 R 0 0 1 0 U
+X SIGNAL P$3 200 0 200 L 0 0 1 0 U
+ENDDRAW
+ENDDEF
+#
+# Adafruit_Ultimate_GPS-eagle-import_BATTERYCR1220_SMT
+#
+DEF Adafruit_Ultimate_GPS-eagle-import_BATTERYCR1220_SMT B 0 40 Y Y 1 L N
+F0 "B" -100 125 42 H V L BNN
+F1 "Adafruit_Ultimate_GPS-eagle-import_BATTERYCR1220_SMT" -100 -200 42 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+T 900 50 -45 42 0 1 0 + Normal 0 R T
+T 900 -70 -45 42 0 1 0 - Normal 0 R T
+P 2 1 0 0 -100 0 -25 0 N
+P 2 1 0 0 -20 -50 -20 50 N
+P 2 1 0 0 -20 50 -10 50 N
+P 2 1 0 0 -10 -50 -20 -50 N
+P 2 1 0 0 -10 50 -10 -50 N
+P 2 1 0 0 -10 50 0 50 N
+P 2 1 0 0 0 -50 -10 -50 N
+P 2 1 0 0 0 50 0 -50 N
+P 2 1 0 0 30 90 30 -90 N
+P 2 1 0 0 35 0 100 0 N
+X + +$1 100 0 0 L 0 0 1 0 P
+X + +$2 100 0 0 L 0 0 1 0 P
+X - - -100 0 0 R 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# Adafruit_Ultimate_GPS-eagle-import_DIODESOD-323
+#
+DEF Adafruit_Ultimate_GPS-eagle-import_DIODESOD-323 D 0 40 Y Y 1 L N
+F0 "D" 0 100 42 H V C CNN
+F1 "Adafruit_Ultimate_GPS-eagle-import_DIODESOD-323" 0 -98 42 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -50 -50 50 0 N
+P 2 1 0 0 -50 50 -50 -50 N
+P 2 1 0 0 50 0 -50 50 N
+P 2 1 0 0 50 0 50 -50 N
+P 2 1 0 0 50 50 50 0 N
+X A A -100 0 100 R 0 0 1 0 P
+X C C 100 0 100 L 0 0 1 0 P
+ENDDRAW
+ENDDEF
+#
+# Adafruit_Ultimate_GPS-eagle-import_GND
+#
+DEF Adafruit_Ultimate_GPS-eagle-import_GND ~ 0 40 Y Y 1 L P
+F0 "" 0 0 50 H I C CNN
+F1 "Adafruit_Ultimate_GPS-eagle-import_GND" -60 -100 42 H V L BNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 1 0 0 -50 0 50 0 N
+X GND 1 0 100 100 D 0 0 1 0 W
+ENDDRAW
+ENDDEF
+#
+# Device_R
+#
+DEF Device_R R 0 0 N Y 1 F N
+F0 "R" 80 0 50 V V C CNN
+F1 "Device_R" 0 0 50 V V C CNN
+F2 "" -70 0 50 V I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ R_*
+$ENDFPLIST
+DRAW
+S -40 -100 40 100 0 1 10 N
+X ~ 1 0 150 50 D 50 50 1 1 P
+X ~ 2 0 -150 50 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+#End Library

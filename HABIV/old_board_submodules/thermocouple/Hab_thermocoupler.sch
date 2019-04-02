@@ -1,0 +1,230 @@
+EESchema Schematic File Version 4
+LIBS:Hab_thermocoupler-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Hab_thermocoupler-rescue:MAX31855-MAX31855-Hab_thermocoupler-rescue-habiv-board-rescue U2
+U 1 1 5BB59E3B
+P 5500 3650
+F 0 "U2" H 5500 4217 50  0000 C CNN
+F 1 "MAX31855" H 5500 4126 50  0000 C CNN
+F 2 "MAX31855:SO-8" H 5500 3650 50  0001 L BNN
+F 3 "" H 5500 3650 50  0001 L BNN
+F 4 "Maxim Integrated" H 5500 3650 50  0001 L BNN "Field4"
+F 5 "Unavailable" H 5500 3650 50  0001 L BNN "Field5"
+F 6 "MAX31855" H 5500 3650 50  0001 L BNN "Field6"
+F 7 "SO-8 Maxim Integrated" H 5500 3650 50  0001 L BNN "Field7"
+F 8 "None" H 5500 3650 50  0001 L BNN "Field8"
+	1    5500 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C5
+U 1 1 5BB5A126
+P 4400 3650
+F 0 "C5" H 4515 3696 50  0000 L CNN
+F 1 ".01 uF" H 4515 3605 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 4438 3500 50  0001 C CNN
+F 3 "~" H 4400 3650 50  0001 C CNN
+	1    4400 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5100 3550 4650 3550
+Wire Wire Line
+	4650 3550 4650 3500
+Wire Wire Line
+	4650 3500 4400 3500
+Wire Wire Line
+	4400 3800 4650 3800
+Wire Wire Line
+	4650 3800 4650 3750
+Wire Wire Line
+	4650 3750 5100 3750
+$Comp
+L Device:Ferrite_Bead L1
+U 1 1 5BB5A7BF
+P 4000 3500
+F 0 "L1" V 3726 3500 50  0000 C CNN
+F 1 "Ferrite_Bead" V 3817 3500 50  0000 C CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" V 3930 3500 50  0001 C CNN
+F 3 "~" H 4000 3500 50  0001 C CNN
+	1    4000 3500
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Ferrite_Bead L2
+U 1 1 5BB5A820
+P 4000 3800
+F 0 "L2" V 3726 3800 50  0000 C CNN
+F 1 "Ferrite_Bead" V 3817 3800 50  0000 C CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" V 3930 3800 50  0001 C CNN
+F 3 "~" H 4000 3800 50  0001 C CNN
+	1    4000 3800
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4150 3500 4400 3500
+Connection ~ 4400 3500
+Wire Wire Line
+	4400 3800 4150 3800
+Connection ~ 4400 3800
+$Comp
+L Connector:Conn_01x02_Male J3
+U 1 1 5BB5AAEB
+P 3300 3600
+F 0 "J3" H 3406 3778 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 3406 3687 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3300 3600 50  0001 C CNN
+F 3 "~" H 3300 3600 50  0001 C CNN
+	1    3300 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 3600 3500 3500
+Wire Wire Line
+	3500 3500 3850 3500
+Wire Wire Line
+	3500 3700 3500 3800
+Wire Wire Line
+	3500 3800 3850 3800
+$Comp
+L power:GND #PWR?
+U 1 1 5BB5C6BA
+P 6250 4900
+F 0 "#PWR?" H 6250 4650 50  0001 C CNN
+F 1 "GND" V 6255 4772 50  0000 R CNN
+F 2 "" H 6250 4900 50  0001 C CNN
+F 3 "" H 6250 4900 50  0001 C CNN
+	1    6250 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C6
+U 1 1 5BB5DB50
+P 5600 2900
+F 0 "C6" H 5700 2900 50  0000 L CNN
+F 1 "0.1 uF" H 5500 2800 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 5638 2750 50  0001 C CNN
+F 3 "~" H 5600 2900 50  0001 C CNN
+	1    5600 2900
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5100 2900 5450 2900
+Wire Wire Line
+	5100 2900 5100 2950
+Wire Wire Line
+	5100 3950 5100 4700
+Wire Wire Line
+	5100 4700 6250 4700
+Wire Wire Line
+	5100 2900 5100 2650
+Connection ~ 5100 2900
+Wire Wire Line
+	5900 3650 6000 3650
+Wire Wire Line
+	6100 3950 6100 3800
+Wire Wire Line
+	6100 3450 5900 3450
+Wire Wire Line
+	6000 3650 6000 3750
+Text GLabel 6150 4300 2    50   Input ~ 0
+PA5
+Wire Wire Line
+	6000 4300 6150 4300
+Wire Wire Line
+	5900 4500 6150 4500
+Wire Wire Line
+	5900 3850 5900 4050
+Text GLabel 6150 4500 2    50   Input ~ 0
+PC7
+Text GLabel 6150 3950 2    50   Input ~ 0
+PA6
+Wire Wire Line
+	6100 3950 6150 3950
+$Comp
+L Device:R R19
+U 1 1 5D15D3CF
+P 5100 3100
+F 0 "R19" H 5170 3146 50  0000 L CNN
+F 1 "0" V 5100 3050 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 5030 3100 50  0001 C CNN
+F 3 "~" H 5100 3100 50  0001 C CNN
+	1    5100 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5100 3250 5100 3350
+$Comp
+L Device:R R22
+U 1 1 5D6FA677
+P 6100 3650
+F 0 "R22" H 6170 3696 50  0000 L CNN
+F 1 "0" V 6100 3600 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 6030 3650 50  0001 C CNN
+F 3 "~" H 6100 3650 50  0001 C CNN
+	1    6100 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6100 3500 6100 3450
+$Comp
+L Device:R R21
+U 1 1 5D6FA78C
+P 6000 3900
+F 0 "R21" H 6070 3946 50  0000 L CNN
+F 1 "0" V 6000 3850 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 5930 3900 50  0001 C CNN
+F 3 "~" H 6000 3900 50  0001 C CNN
+	1    6000 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6000 4050 6000 4300
+$Comp
+L Device:R R20
+U 1 1 5D6FA891
+P 5900 4200
+F 0 "R20" H 5970 4246 50  0000 L CNN
+F 1 "0" V 5900 4150 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 5830 4200 50  0001 C CNN
+F 3 "~" H 5900 4200 50  0001 C CNN
+	1    5900 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5900 4350 5900 4500
+Wire Wire Line
+	6250 4900 6250 4700
+Wire Wire Line
+	6600 2900 6600 4700
+Wire Wire Line
+	6600 4700 6250 4700
+Wire Wire Line
+	5750 2900 6600 2900
+Connection ~ 6250 4700
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D5B869B
+P 5100 2650
+F 0 "#PWR?" H 5100 2500 50  0001 C CNN
+F 1 "+3V3" H 5115 2823 50  0000 C CNN
+F 2 "" H 5100 2650 50  0001 C CNN
+F 3 "" H 5100 2650 50  0001 C CNN
+	1    5100 2650
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
