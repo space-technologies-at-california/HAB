@@ -2877,7 +2877,7 @@ F 3 "" H 18850 6900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	18500 6900 18850 6900
+	18500 6900 18750 6900
 $Comp
 L power:GND #PWR0102
 U 1 1 5CCEED02
@@ -2890,7 +2890,7 @@ F 3 "" H 18850 7750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	18500 7750 18850 7750
+	18500 7750 18750 7750
 $Comp
 L power:+3V3 #PWR0103
 U 1 1 5CD16C1A
@@ -2903,9 +2903,9 @@ F 3 "" H 18850 5800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	18500 5800 18850 5800
+	18500 5800 18750 5800
 Wire Wire Line
-	18500 6650 19150 6650
+	18500 6650 19000 6650
 $Comp
 L power:GND #PWR0104
 U 1 1 5CD6271D
@@ -2949,4 +2949,119 @@ F 3 "~" H 3250 8200 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	3350 8200 3450 8200
+$Comp
+L Connector:Conn_01x08_Male J8
+U 1 1 5CAC32FD
+P 19450 6200
+F 0 "J8" H 19423 6080 50  0000 R CNN
+F 1 "Conn_01x08_Male" H 19423 6171 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 19450 6200 50  0001 C CNN
+F 3 "~" H 19450 6200 50  0001 C CNN
+	1    19450 6200
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connector:Conn_01x08_Male J10
+U 1 1 5CB7DDCF
+P 19450 7400
+F 0 "J10" H 19423 7280 50  0000 R CNN
+F 1 "Conn_01x08_Male" H 19423 7371 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 19450 7400 50  0001 C CNN
+F 3 "~" H 19450 7400 50  0001 C CNN
+	1    19450 7400
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	18750 5800 18750 5900
+Wire Wire Line
+	18750 5900 19050 5900
+Connection ~ 18750 5800
+Wire Wire Line
+	18750 5800 18850 5800
+Wire Wire Line
+	19050 5900 19050 5800
+Wire Wire Line
+	19050 5800 19250 5800
+Connection ~ 19050 5900
+Wire Wire Line
+	19050 5900 19250 5900
+Wire Wire Line
+	19050 5900 19050 6000
+Wire Wire Line
+	19050 6000 19250 6000
+Wire Wire Line
+	19050 6000 19050 6100
+Wire Wire Line
+	19050 6100 19250 6100
+Connection ~ 19050 6000
+Wire Wire Line
+	19000 6650 19000 6500
+Wire Wire Line
+	19000 6200 19250 6200
+Connection ~ 19000 6650
+Wire Wire Line
+	19000 6650 19150 6650
+Wire Wire Line
+	19000 6300 19250 6300
+Connection ~ 19000 6300
+Wire Wire Line
+	19000 6300 19000 6200
+Wire Wire Line
+	19000 6400 19250 6400
+Connection ~ 19000 6400
+Wire Wire Line
+	19000 6400 19000 6300
+Wire Wire Line
+	19000 6500 19250 6500
+Connection ~ 19000 6500
+Wire Wire Line
+	19000 6500 19000 6400
+Wire Wire Line
+	18750 6900 18750 7000
+Wire Wire Line
+	18750 7000 19050 7000
+Connection ~ 18750 6900
+Wire Wire Line
+	18750 6900 18850 6900
+Wire Wire Line
+	19050 7000 19050 7100
+Wire Wire Line
+	19050 7300 19250 7300
+Connection ~ 19050 7000
+Wire Wire Line
+	19050 7000 19250 7000
+Wire Wire Line
+	19050 7100 19250 7100
+Connection ~ 19050 7100
+Wire Wire Line
+	19050 7100 19050 7200
+Wire Wire Line
+	19050 7200 19250 7200
+Connection ~ 19050 7200
+Wire Wire Line
+	19050 7200 19050 7300
+Wire Wire Line
+	18750 7750 18750 7400
+Wire Wire Line
+	18750 7400 19050 7400
+Connection ~ 18750 7750
+Wire Wire Line
+	18750 7750 18850 7750
+Wire Wire Line
+	19050 7400 19050 7500
+Wire Wire Line
+	19050 7700 19250 7700
+Connection ~ 19050 7400
+Wire Wire Line
+	19050 7400 19250 7400
+Wire Wire Line
+	19050 7600 19250 7600
+Connection ~ 19050 7600
+Wire Wire Line
+	19050 7600 19050 7700
+Wire Wire Line
+	19050 7500 19250 7500
+Connection ~ 19050 7500
+Wire Wire Line
+	19050 7500 19050 7600
 $EndSCHEMATC
