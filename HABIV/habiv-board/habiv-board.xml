@@ -1,0 +1,2267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>/home/riley/github/HAB/HABIV/habiv-board/habiv-board.sch</source>
+    <date>Tue 16 Apr 2019 09:16:38 PM PDT</date>
+    <tool>Eeschema 5.0.2-bee76a0~70~ubuntu18.04.1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>habiv-board.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C4">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="CAP_CERAMIC0805-NOOUTLINE-real_time_clock-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>E7D47EA7</tstamp>
+    </comp>
+    <comp ref="IC1">
+      <value>RTC_PCF8523T</value>
+      <footprint>SOIC127P600X175-8N:SOIC127P600X175-8N</footprint>
+      <libsource lib="habiv-board-rescue" part="RTC_PCF8523T-real_time_clock-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>22F7723E</tstamp>
+    </comp>
+    <comp ref="R16">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="RESISTOR0805_NOOUTLINE-real_time_clock-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>DF39756A</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="CAP_CERAMIC0805-NOOUTLINE-real_time_clock-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>8350CC17</tstamp>
+    </comp>
+    <comp ref="Q1">
+      <value>32.768KHz</value>
+      <footprint>ABS07W-32.768KHZ-D-2-T:XTAL320X150X90</footprint>
+      <datasheet>Abracon</datasheet>
+      <fields>
+        <field name="Field4">SMD-2 Abracon</field>
+        <field name="Field5">Unavailable</field>
+        <field name="Field6">ABS07W-32.768KHZ-D-2-T</field>
+        <field name="Field7">ABS07W Series 32.768 KHz 20 ppm 3 pF -40°C to 85°C 3.20 mm x 1.50 mm Crystal</field>
+        <field name="Field8">None</field>
+      </fields>
+      <libsource lib="habiv-board-rescue" part="32.768KHz-ABS07W-32.768KHZ-D-2-T-real_time_clock-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BBEE255</tstamp>
+    </comp>
+    <comp ref="B2">
+      <value>CR1220</value>
+      <footprint>S8411-45R:S8411-45R</footprint>
+      <datasheet>https://www.mouser.com/datasheet/2/181/S8411R-1136243.pdf</datasheet>
+      <libsource lib="habiv-board-rescue" part="BATTERY-real_time_clock-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BBEE532</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>MAX31855</value>
+      <footprint>MAX31855:SO-8</footprint>
+      <fields>
+        <field name="Field4">Maxim Integrated</field>
+        <field name="Field5">Unavailable</field>
+        <field name="Field6">MAX31855</field>
+        <field name="Field7">SO-8 Maxim Integrated</field>
+        <field name="Field8">None</field>
+      </fields>
+      <libsource lib="habiv-board-rescue" part="MAX31855-MAX31855-Hab_thermocoupler-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB59E3B</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>.01 uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB5A126</tstamp>
+    </comp>
+    <comp ref="L1">
+      <value>Ferrite_Bead</value>
+      <footprint>Inductor_SMD:L_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="Ferrite_Bead" description="Ferrite bead"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB5A7BF</tstamp>
+    </comp>
+    <comp ref="L2">
+      <value>Ferrite_Bead</value>
+      <footprint>Inductor_SMD:L_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="Ferrite_Bead" description="Ferrite bead"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB5A820</tstamp>
+    </comp>
+    <comp ref="J3">
+      <value>Conn_01x02_Male</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="Conn_01x02_Male" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB5AAEB</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>0.1 uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB5DB50</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>FGPMMOPA6H</value>
+      <footprint>Adafruit Ultimate GPS:FGPMMOPA6H</footprint>
+      <libsource lib="habiv-board-rescue" part="GPS_FGPMMOPA6H-Adafruit_Ultimate_GPS-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>2DF3FE209D0AA111</tstamp>
+    </comp>
+    <comp ref="LED1">
+      <value>RED</value>
+      <footprint>Adafruit Ultimate GPS:CHIPLED_0805</footprint>
+      <libsource lib="habiv-board-rescue" part="LED0805-Adafruit_Ultimate_GPS-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>B4BDD66162FEDCFC</tstamp>
+    </comp>
+    <comp ref="R23">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>B82084C643F53746</tstamp>
+    </comp>
+    <comp ref="C7">
+      <value>0.1uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>24498BA92B08E60C</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>1N4148</value>
+      <footprint>Adafruit Ultimate GPS:SOD-323</footprint>
+      <libsource lib="habiv-board-rescue" part="DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>C049FE434DF527AB</tstamp>
+    </comp>
+    <comp ref="R24">
+      <value>10K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>4F14531CD85E66C8</tstamp>
+    </comp>
+    <comp ref="U$1">
+      <value>U.FL</value>
+      <footprint>Adafruit Ultimate GPS:U.FL</footprint>
+      <libsource lib="habiv-board-rescue" part="U.FL-Adafruit_Ultimate_GPS-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>14A4E007DC93C178</tstamp>
+    </comp>
+    <comp ref="U7">
+      <value>MS560702BA03-00</value>
+      <footprint>MS560702BA03-00:SON125P500X300X100-8N</footprint>
+      <datasheet>MS5607-02BA03 Series 3 V 1 to 120 kPa Absolute Barometric Pressure Sensor</datasheet>
+      <fields>
+        <field name="Field10">None</field>
+        <field name="Field4">TE Connectivity</field>
+        <field name="Field5">Unavailable</field>
+        <field name="Field6">http://www.te.com/usa-en/product-MS560702BA03-00.html</field>
+        <field name="Field7">MS560702BA03-00</field>
+        <field name="Field8">SMD-8 TE Connectivity</field>
+        <field name="Field9">Compliant</field>
+      </fields>
+      <libsource lib="habiv-board-rescue" part="MS560702BA03-00-MS560702BA03-00" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB59AA0</tstamp>
+    </comp>
+    <comp ref="C10">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="pspice" part="CAP" description="Capacitor symbol for simulation only"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB5E0FC</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>STM32F401RET6</value>
+      <footprint>STM32F401RET6:QFP50P1200X1200X160-64N</footprint>
+      <datasheet>None</datasheet>
+      <fields>
+        <field name="Field4">STMicroelectronics</field>
+        <field name="Field5">LQFP-64 STMicroelectronics</field>
+        <field name="Field6">Unavailable</field>
+        <field name="Field7">MCU 32-Bit STM32 ARM Cortex M4 RISC 512KB Flash 1.8V/2.5V/3.3V 64-Pin LQFP Tray</field>
+        <field name="Field8">STM32F401RET6</field>
+      </fields>
+      <libsource lib="habiv-board-rescue" part="STM32F401RET6-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB18215</tstamp>
+    </comp>
+    <comp ref="100nF1">
+      <value>C5</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB5A0DB</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>4.3pF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB5A748</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>4.3pF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB5A7DC</tstamp>
+    </comp>
+    <comp ref="J2">
+      <value>Conn_ARM_JTAG_SWD_20</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_2x10_P2.54mm_Vertical</footprint>
+      <libsource lib="habiv-board-rescue" part="Conn_ARM_JTAG_SWD_20-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC4298C</tstamp>
+    </comp>
+    <comp ref="22uH1">
+      <value>L1</value>
+      <footprint>Inductor_SMD:L_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="L-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC43B12</tstamp>
+    </comp>
+    <comp ref="1uF1">
+      <value>C6</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC43DE9</tstamp>
+    </comp>
+    <comp ref="10nF1">
+      <value>C7</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC43E5D</tstamp>
+    </comp>
+    <comp ref="1uF5">
+      <value>C10</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC46049</tstamp>
+    </comp>
+    <comp ref="100nF5">
+      <value>C11</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC4604F</tstamp>
+    </comp>
+    <comp ref="1uF3">
+      <value>C8</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC464D1</tstamp>
+    </comp>
+    <comp ref="100nF3">
+      <value>C9</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC464D7</tstamp>
+    </comp>
+    <comp ref="4.7uF1">
+      <value>C21</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC46836</tstamp>
+    </comp>
+    <comp ref="1uF4">
+      <value>C12</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC46E30</tstamp>
+    </comp>
+    <comp ref="100nF4">
+      <value>C13</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC46E36</tstamp>
+    </comp>
+    <comp ref="1uF2">
+      <value>C14</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC4730D</tstamp>
+    </comp>
+    <comp ref="100nF2">
+      <value>C15</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC47313</tstamp>
+    </comp>
+    <comp ref="10k1">
+      <value>R5</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="R-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC475E1</tstamp>
+    </comp>
+    <comp ref="J1">
+      <value>Micro_SD_Card_Det</value>
+      <footprint>Connector_Card:microSD_HC_Hirose_DM3BT-DSF-PEJS</footprint>
+      <libsource lib="habiv-board-rescue" part="Micro_SD_Card_Det-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC49DC0</tstamp>
+    </comp>
+    <comp ref="10k2">
+      <value>R6</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="R-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC4A25B</tstamp>
+    </comp>
+    <comp ref="10k3">
+      <value>R7</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="R-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC4A5C9</tstamp>
+    </comp>
+    <comp ref="10k4">
+      <value>R8</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="R-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC4A665</tstamp>
+    </comp>
+    <comp ref="J4">
+      <value>Conn_01x16_Male</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical</footprint>
+      <libsource lib="habiv-board-rescue" part="Conn_01x16_Male-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC4EB19</tstamp>
+    </comp>
+    <comp ref="J6">
+      <value>Conn_01x16_Male</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical</footprint>
+      <libsource lib="habiv-board-rescue" part="Conn_01x16_Male-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC4EE03</tstamp>
+    </comp>
+    <comp ref="J7">
+      <value>Conn_01x16_Male</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical</footprint>
+      <libsource lib="habiv-board-rescue" part="Conn_01x16_Male-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC4EEC1</tstamp>
+    </comp>
+    <comp ref="J5">
+      <value>Conn_01x02_Male</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical</footprint>
+      <libsource lib="habiv-board-rescue" part="Conn_01x02_Male-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC51264</tstamp>
+    </comp>
+    <comp ref="SW1">
+      <value>SW_DPST_x2</value>
+      <footprint>Button_Switch_SMD:SW_SPST_B3U-1000P</footprint>
+      <libsource lib="habiv-board-rescue" part="SW_DPST_x2-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC53F65</tstamp>
+    </comp>
+    <comp ref="Y1">
+      <value>32.768MHz</value>
+      <footprint>Crystal:Crystal_SMD_0603-4Pin_6.0x3.5mm_HandSoldering</footprint>
+      <libsource lib="habiv-board-rescue" part="Crystal_GND23-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC559FA</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>TPS564208</value>
+      <footprint>TPS564208:TPS564208</footprint>
+      <libsource lib="habiv-board-rescue" part="TPS564208-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCD475A</tstamp>
+    </comp>
+    <comp ref="J9">
+      <value>Conn_01x02_Male</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical</footprint>
+      <libsource lib="habiv-board-rescue" part="Conn_01x02_Male-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCD4B6E</tstamp>
+    </comp>
+    <comp ref="C8">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCD6316</tstamp>
+    </comp>
+    <comp ref="R39">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="R-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCD6F1F</tstamp>
+    </comp>
+    <comp ref="R38">
+      <value>33.2k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="R-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCD718B</tstamp>
+    </comp>
+    <comp ref="C13">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCD7B55</tstamp>
+    </comp>
+    <comp ref="L3">
+      <value>2.2uH</value>
+      <footprint>TPS564208:INDC7070X450</footprint>
+      <libsource lib="habiv-board-rescue" part="L-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCD823C</tstamp>
+    </comp>
+    <comp ref="C16">
+      <value>47uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCD929B</tstamp>
+    </comp>
+    <comp ref="C9">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCDEC97</tstamp>
+    </comp>
+    <comp ref="R41">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="R-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCDECA8</tstamp>
+    </comp>
+    <comp ref="R40">
+      <value>56.2k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="R-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCDECAE</tstamp>
+    </comp>
+    <comp ref="C14">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCDECB5</tstamp>
+    </comp>
+    <comp ref="L4">
+      <value>3.3uH</value>
+      <footprint>TPS564208:INDC7070X450</footprint>
+      <libsource lib="habiv-board-rescue" part="L-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCDECBD</tstamp>
+    </comp>
+    <comp ref="C17">
+      <value>47uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="C-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCDECCD</tstamp>
+    </comp>
+    <comp ref="U5">
+      <value>TPS564208</value>
+      <footprint>TPS564208:TPS564208</footprint>
+      <libsource lib="habiv-board-rescue" part="TPS564208-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCDEC8B</tstamp>
+    </comp>
+    <comp ref="D3">
+      <value>LED</value>
+      <footprint>LED_SMD:LED_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="LED-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCE56BB</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>LED</value>
+      <footprint>LED_SMD:LED_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="LED-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCE5851</tstamp>
+    </comp>
+    <comp ref="R42">
+      <value>4.7k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="R-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCE59FC</tstamp>
+    </comp>
+    <comp ref="R43">
+      <value>4.7k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="R-STM32-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCE5FC3</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>8.2k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C80B31B</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>8.2k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C849D22</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>56k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CBEDA09</tstamp>
+    </comp>
+    <comp ref="R6">
+      <value>56k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CCA87E6</tstamp>
+    </comp>
+    <comp ref="R9">
+      <value>56k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CCE56CA</tstamp>
+    </comp>
+    <comp ref="R10">
+      <value>56k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CD03D14</tstamp>
+    </comp>
+    <comp ref="R7">
+      <value>56k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CD2271E</tstamp>
+    </comp>
+    <comp ref="U6">
+      <value>LSM9DS1TR</value>
+      <footprint>digikey-footprints:LGA-24_3x3.5mm_LSM9DS1</footprint>
+      <datasheet>http://www.st.com/content/ccc/resource/technical/document/datasheet/1e/3f/2a/d6/25/eb/48/46/DM00103319.pdf/files/DM00103319.pdf/jcr:content/translations/en.DM00103319.pdf</datasheet>
+      <fields>
+        <field name="Category">Sensors, Transducers</field>
+        <field name="DK_Datasheet_Link">http://www.st.com/content/ccc/resource/technical/document/datasheet/1e/3f/2a/d6/25/eb/48/46/DM00103319.pdf/files/DM00103319.pdf/jcr:content/translations/en.DM00103319.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/stmicroelectronics/LSM9DS1TR/497-14946-1-ND/4988079</field>
+        <field name="Description">IMU ACCEL/GYRO/MAG I2C/SPI 24LGA</field>
+        <field name="Digi-Key_PN">497-14946-1-ND</field>
+        <field name="Family">Motion Sensors - IMUs (Inertial Measurement Units)</field>
+        <field name="MPN">LSM9DS1TR</field>
+        <field name="Manufacturer">STMicroelectronics</field>
+        <field name="Status">Active</field>
+      </fields>
+      <libsource lib="dk_Motion-Sensors-IMUs-Inertial-Measurement-Units" part="LSM9DS1TR" description="IMU ACCEL/GYRO/MAG I2C/SPI 24LGA"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CD6240C</tstamp>
+    </comp>
+    <comp ref="C15">
+      <value>10u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CE00EC9</tstamp>
+    </comp>
+    <comp ref="C12">
+      <value>100n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CEDE690</tstamp>
+    </comp>
+    <comp ref="C18">
+      <value>10n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C7D1725</tstamp>
+    </comp>
+    <comp ref="C11">
+      <value>100n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C7D1829</tstamp>
+    </comp>
+    <comp ref="C19">
+      <value>100n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C7D291A</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CF097F4</tstamp>
+    </comp>
+    <comp ref="R18">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CF0ADFB</tstamp>
+    </comp>
+    <comp ref="R25">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D048A73</tstamp>
+    </comp>
+    <comp ref="R37">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D15BB0A</tstamp>
+    </comp>
+    <comp ref="R44">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D15BF88</tstamp>
+    </comp>
+    <comp ref="R19">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D15D3CF</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D15FA0F</tstamp>
+    </comp>
+    <comp ref="R31">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D3929B6</tstamp>
+    </comp>
+    <comp ref="R34">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D392AC4</tstamp>
+    </comp>
+    <comp ref="R35">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D392BA6</tstamp>
+    </comp>
+    <comp ref="R36">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D392C98</tstamp>
+    </comp>
+    <comp ref="R27">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D392E5B</tstamp>
+    </comp>
+    <comp ref="R28">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D394D2A</tstamp>
+    </comp>
+    <comp ref="R8">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D398530</tstamp>
+    </comp>
+    <comp ref="R14">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D3986A3</tstamp>
+    </comp>
+    <comp ref="R13">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D574AA1</tstamp>
+    </comp>
+    <comp ref="R15">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D574BA0</tstamp>
+    </comp>
+    <comp ref="R12">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D6F92C2</tstamp>
+    </comp>
+    <comp ref="R11">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D6F9447</tstamp>
+    </comp>
+    <comp ref="R22">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D6FA677</tstamp>
+    </comp>
+    <comp ref="R21">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D6FA78C</tstamp>
+    </comp>
+    <comp ref="R20">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D6FA891</tstamp>
+    </comp>
+    <comp ref="R32">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D897265</tstamp>
+    </comp>
+    <comp ref="R33">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D8973FE</tstamp>
+    </comp>
+    <comp ref="R30">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="RESISTOR0805_NOOUTLINE-real_time_clock-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D898CF1</tstamp>
+    </comp>
+    <comp ref="R29">
+      <value>1K</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <libsource lib="habiv-board-rescue" part="RESISTOR0805_NOOUTLINE-real_time_clock-eagle-import" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D89AC27</tstamp>
+    </comp>
+    <comp ref="R26">
+      <value>0</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D73E76D</tstamp>
+    </comp>
+    <comp ref="R100">
+      <value>0k1</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CB107A7</tstamp>
+    </comp>
+    <comp ref="R101">
+      <value>0k2</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CB10998</tstamp>
+    </comp>
+    <comp ref="J8">
+      <value>Conn_01x08_Male</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="Conn_01x08_Male" description="Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CAC32FD</tstamp>
+    </comp>
+    <comp ref="J10">
+      <value>Conn_01x08_Male</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="Conn_01x08_Male" description="Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CB7DDCF</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Connector" part="Conn_01x02_Male">
+      <description>Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x02_Male</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Conn_01x08_Male">
+      <description>Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x08_Male</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="8" name="Pin_8" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C">
+      <description>Unpolarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C_Small">
+      <description>Unpolarized capacitor, small symbol</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C_Small</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Ferrite_Bead">
+      <description>Ferrite bead</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Inductor_*</fp>
+        <fp>L_*</fp>
+        <fp>*Ferrite*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">FB</field>
+        <field name="Value">Ferrite_Bead</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R_Small">
+      <description>Resistor, small symbol</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R_Small</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="dk_Motion-Sensors-IMUs-Inertial-Measurement-Units" part="LSM9DS1TR">
+      <description>IMU ACCEL/GYRO/MAG I2C/SPI 24LGA</description>
+      <docs>http://www.st.com/content/ccc/resource/technical/document/datasheet/1e/3f/2a/d6/25/eb/48/46/DM00103319.pdf/files/DM00103319.pdf/jcr:content/translations/en.DM00103319.pdf</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LSM9DS1TR</field>
+        <field name="Footprint">digikey-footprints:LGA-24_3x3.5mm_LSM9DS1</field>
+        <field name="Datasheet">http://www.st.com/content/ccc/resource/technical/document/datasheet/1e/3f/2a/d6/25/eb/48/46/DM00103319.pdf/files/DM00103319.pdf/jcr:content/translations/en.DM00103319.pdf</field>
+        <field name="Digi-Key_PN">497-14946-1-ND</field>
+        <field name="MPN">LSM9DS1TR</field>
+        <field name="Category">Sensors, Transducers</field>
+        <field name="Family">Motion Sensors - IMUs (Inertial Measurement Units)</field>
+        <field name="DK_Datasheet_Link">http://www.st.com/content/ccc/resource/technical/document/datasheet/1e/3f/2a/d6/25/eb/48/46/DM00103319.pdf/files/DM00103319.pdf/jcr:content/translations/en.DM00103319.pdf</field>
+        <field name="DK_Detail_Page">/product-detail/en/stmicroelectronics/LSM9DS1TR/497-14946-1-ND/4988079</field>
+        <field name="Description">IMU ACCEL/GYRO/MAG I2C/SPI 24LGA</field>
+        <field name="Manufacturer">STMicroelectronics</field>
+        <field name="Status">Active</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VDDIO" type="power_in"/>
+        <pin num="2" name="SCL/SPC" type="input"/>
+        <pin num="3" name="VDDIO" type="power_in"/>
+        <pin num="4" name="SDA/SDI/SDO" type="BiDi"/>
+        <pin num="5" name="SDO_A/G" type="output"/>
+        <pin num="6" name="SDO_A/G" type="output"/>
+        <pin num="7" name="CS_A/G" type="input"/>
+        <pin num="8" name="CS_M" type="input"/>
+        <pin num="9" name="DRDY_M" type="output"/>
+        <pin num="10" name="INT_M" type="output"/>
+        <pin num="11" name="INT1_A/G" type="output"/>
+        <pin num="12" name="INT2_A/G" type="output"/>
+        <pin num="13" name="DEN_A/G" type="input"/>
+        <pin num="14" name="RES" type="power_in"/>
+        <pin num="15" name="RES" type="power_in"/>
+        <pin num="16" name="RES" type="power_in"/>
+        <pin num="17" name="RES" type="power_in"/>
+        <pin num="18" name="RES" type="power_in"/>
+        <pin num="19" name="GND" type="power_in"/>
+        <pin num="20" name="GND" type="power_in"/>
+        <pin num="21" name="CAP" type="unspc"/>
+        <pin num="22" name="VDD" type="power_in"/>
+        <pin num="23" name="VDD" type="power_in"/>
+        <pin num="24" name="C1" type="unspc"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="32.768KHz-ABS07W-32.768KHZ-D-2-T-real_time_clock-rescue">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">32.768KHz-ABS07W-32.768KHZ-D-2-T-real_time_clock-rescue</field>
+        <field name="Footprint">XTAL320X150X90</field>
+        <field name="Datasheet">Abracon</field>
+        <field name="Field4">SMD-2 Abracon</field>
+        <field name="Field5">Unavailable</field>
+        <field name="Field6">ABS07W-32.768KHZ-D-2-T</field>
+        <field name="Field7">ABS07W Series 32.768 KHz 20 ppm 3 pF -40°C to 85°C 3.20 mm x 1.50 mm Crystal</field>
+        <field name="Field8">None</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="BATTERY-real_time_clock-eagle-import">
+      <fields>
+        <field name="Reference">B</field>
+        <field name="Value">BATTERY-real_time_clock-eagle-import</field>
+      </fields>
+      <pins>
+        <pin num="1" name="-" type="passive"/>
+        <pin num="2" name="+" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="C-STM32-rescue">
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C-STM32-rescue</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="CAP_CERAMIC0805-NOOUTLINE-real_time_clock-eagle-import">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CAP_CERAMIC0805-NOOUTLINE-real_time_clock-eagle-import</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="Conn_01x02_Male-STM32-rescue">
+      <footprints>
+        <fp>Connector*:*_??x*mm*</fp>
+        <fp>Connector*:*1x??x*mm*</fp>
+        <fp>Pin?Header?Straight?1X*</fp>
+        <fp>Pin?Header?Angled?1X*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x02_Male-STM32-rescue</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="Conn_01x16_Male-STM32-rescue">
+      <footprints>
+        <fp>Connector*:*_??x*mm*</fp>
+        <fp>Connector*:*1x??x*mm*</fp>
+        <fp>Pin?Header?Straight?1X*</fp>
+        <fp>Pin?Header?Angled?1X*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x16_Male-STM32-rescue</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="8" name="Pin_8" type="passive"/>
+        <pin num="9" name="Pin_9" type="passive"/>
+        <pin num="10" name="Pin_10" type="passive"/>
+        <pin num="11" name="Pin_11" type="passive"/>
+        <pin num="12" name="Pin_12" type="passive"/>
+        <pin num="13" name="Pin_13" type="passive"/>
+        <pin num="14" name="Pin_14" type="passive"/>
+        <pin num="15" name="Pin_15" type="passive"/>
+        <pin num="16" name="Pin_16" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="Conn_ARM_JTAG_SWD_20-STM32-rescue">
+      <footprints>
+        <fp>IDC*Header*Straight*</fp>
+        <fp>Pin_Header*2x10*Pitch2.54mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_ARM_JTAG_SWD_20-STM32-rescue</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VTREF" type="power_in"/>
+        <pin num="2" name="VCC/NC" type="power_in"/>
+        <pin num="3" name="~TRST~" type="output"/>
+        <pin num="4" name="GND" type="power_in"/>
+        <pin num="5" name="TDI" type="output"/>
+        <pin num="6" name="GND" type="power_in"/>
+        <pin num="7" name="TMS/SWDIO" type="output"/>
+        <pin num="8" name="GND" type="power_in"/>
+        <pin num="9" name="TCK/SWDCLK" type="output"/>
+        <pin num="10" name="GND" type="power_in"/>
+        <pin num="11" name="RTCK" type="input"/>
+        <pin num="12" name="GND" type="power_in"/>
+        <pin num="13" name="TDO/SWO" type="input"/>
+        <pin num="14" name="GND" type="power_in"/>
+        <pin num="15" name="~SRST~" type="BiDi"/>
+        <pin num="16" name="GND" type="power_in"/>
+        <pin num="17" name="DBGRQ/NC" type="output"/>
+        <pin num="18" name="GND" type="power_in"/>
+        <pin num="19" name="DBGACK/NC" type="input"/>
+        <pin num="20" name="GND" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="Crystal_GND23-STM32-rescue">
+      <footprints>
+        <fp>Crystal*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Y</field>
+        <field name="Value">Crystal_GND23-STM32-rescue</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+        <pin num="3" name="3" type="passive"/>
+        <pin num="4" name="4" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import">
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import</field>
+      </fields>
+      <pins>
+        <pin num="A" name="A" type="passive"/>
+        <pin num="C" name="C" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="GPS_FGPMMOPA6H-Adafruit_Ultimate_GPS-eagle-import">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">GPS_FGPMMOPA6H-Adafruit_Ultimate_GPS-eagle-import</field>
+      </fields>
+      <pins>
+        <pin num="P$1" name="VCC" type="unspc"/>
+        <pin num="P$2" name="NRESET" type="unspc"/>
+        <pin num="P$3" name="GND@1" type="unspc"/>
+        <pin num="P$4" name="VBACKUP" type="unspc"/>
+        <pin num="P$5" name="3D-FIX" type="unspc"/>
+        <pin num="P$6" name="NC@1" type="unspc"/>
+        <pin num="P$7" name="NC@2" type="unspc"/>
+        <pin num="P$8" name="GND@2" type="unspc"/>
+        <pin num="P$9" name="TX" type="unspc"/>
+        <pin num="P$10" name="RX" type="unspc"/>
+        <pin num="P$11" name="EX_ANT" type="unspc"/>
+        <pin num="P$12" name="GND@3" type="unspc"/>
+        <pin num="P$13" name="1PPS" type="unspc"/>
+        <pin num="P$14" name="RTCM" type="unspc"/>
+        <pin num="P$15" name="NC@3" type="unspc"/>
+        <pin num="P$16" name="NC@4" type="unspc"/>
+        <pin num="P$17" name="NC@5" type="unspc"/>
+        <pin num="P$18" name="NC@6" type="unspc"/>
+        <pin num="P$19" name="GND@4" type="unspc"/>
+        <pin num="P$20" name="NC@7" type="unspc"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="L-STM32-rescue">
+      <footprints>
+        <fp>Choke_*</fp>
+        <fp>*Coil*</fp>
+        <fp>Inductor_*</fp>
+        <fp>L_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">L</field>
+        <field name="Value">L-STM32-rescue</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="LED-STM32-rescue">
+      <footprints>
+        <fp>LED*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED-STM32-rescue</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="LED0805-Adafruit_Ultimate_GPS-eagle-import">
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED0805-Adafruit_Ultimate_GPS-eagle-import</field>
+      </fields>
+      <pins>
+        <pin num="A" name="A" type="passive"/>
+        <pin num="C" name="C" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="MAX31855-MAX31855-Hab_thermocoupler-rescue">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MAX31855-MAX31855-Hab_thermocoupler-rescue</field>
+        <field name="Footprint">SO-8</field>
+        <field name="Field4">Maxim Integrated</field>
+        <field name="Field5">Unavailable</field>
+        <field name="Field6">MAX31855</field>
+        <field name="Field7">SO-8 Maxim Integrated</field>
+        <field name="Field8">None</field>
+      </fields>
+      <pins>
+        <pin num="1" name="GND" type="BiDi"/>
+        <pin num="2" name="T-" type="BiDi"/>
+        <pin num="3" name="T+" type="BiDi"/>
+        <pin num="4" name="VCC" type="BiDi"/>
+        <pin num="5" name="SCK" type="BiDi"/>
+        <pin num="6" name="~CS~" type="BiDi"/>
+        <pin num="7" name="SO" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="MS560702BA03-00-MS560702BA03-00">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MS560702BA03-00-MS560702BA03-00</field>
+        <field name="Footprint">SON125P500X300X100-8N</field>
+        <field name="Datasheet">MS5607-02BA03 Series 3 V 1 to 120 kPa Absolute Barometric Pressure Sensor</field>
+        <field name="Field4">TE Connectivity</field>
+        <field name="Field5">Unavailable</field>
+        <field name="Field6">http://www.te.com/usa-en/product-MS560702BA03-00.html</field>
+        <field name="Field7">MS560702BA03-00</field>
+        <field name="Field8">SMD-8 TE Connectivity</field>
+        <field name="Field9">Compliant</field>
+        <field name="Field10">None</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VDD" type="power_in"/>
+        <pin num="2" name="PS" type="input"/>
+        <pin num="3" name="GND" type="power_in"/>
+        <pin num="4" name="~CSB~" type="input"/>
+        <pin num="5" name="~CSB~" type="input"/>
+        <pin num="6" name="SDO" type="output"/>
+        <pin num="7" name="SDI/SDA" type="BiDi"/>
+        <pin num="8" name="SCLK" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="Micro_SD_Card_Det-STM32-rescue">
+      <footprints>
+        <fp>microSD*Card*Receptable*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Micro_SD_Card_Det-STM32-rescue</field>
+      </fields>
+      <pins>
+        <pin num="1" name="DAT2" type="BiDi"/>
+        <pin num="2" name="DAT3/CD" type="BiDi"/>
+        <pin num="3" name="CMD" type="input"/>
+        <pin num="4" name="VDD" type="power_in"/>
+        <pin num="5" name="CLK" type="input"/>
+        <pin num="6" name="VSS" type="power_in"/>
+        <pin num="7" name="DAT0" type="input"/>
+        <pin num="8" name="DAT1" type="input"/>
+        <pin num="9" name="DET_B" type="passive"/>
+        <pin num="10" name="DET_A" type="passive"/>
+        <pin num="11" name="SHIELD" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="R-STM32-rescue">
+      <footprints>
+        <fp>R_*</fp>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R-STM32-rescue</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">RESISTOR0805_NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="RESISTOR0805_NOOUTLINE-real_time_clock-eagle-import">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">RESISTOR0805_NOOUTLINE-real_time_clock-eagle-import</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="RTC_PCF8523T-real_time_clock-eagle-import">
+      <fields>
+        <field name="Reference">IC</field>
+        <field name="Value">RTC_PCF8523T-real_time_clock-eagle-import</field>
+      </fields>
+      <pins>
+        <pin num="1" name="XI" type="input"/>
+        <pin num="2" name="XO" type="output"/>
+        <pin num="3" name="VBAT" type="power_in"/>
+        <pin num="4" name="VSS" type="power_in"/>
+        <pin num="5" name="SDA" type="unspc"/>
+        <pin num="6" name="SCL" type="unspc"/>
+        <pin num="7" name="~INT1/CLK" type="output"/>
+        <pin num="8" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="STM32F401RET6-STM32-rescue">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">STM32F401RET6-STM32-rescue</field>
+        <field name="Footprint">QFP50P1200X1200X160-64N</field>
+        <field name="Datasheet">None</field>
+        <field name="Field4">STMicroelectronics</field>
+        <field name="Field5">LQFP-64 STMicroelectronics</field>
+        <field name="Field6">Unavailable</field>
+        <field name="Field7">MCU 32-Bit STM32 ARM Cortex M4</field>
+        <field name="Field8">STM32F401RET6</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VBAT" type="power_in"/>
+        <pin num="2" name="PC13" type="BiDi"/>
+        <pin num="3" name="PC14" type="BiDi"/>
+        <pin num="4" name="PC15" type="BiDi"/>
+        <pin num="5" name="PH0" type="BiDi"/>
+        <pin num="6" name="PH1" type="BiDi"/>
+        <pin num="7" name="NRST" type="BiDi"/>
+        <pin num="8" name="PC0" type="BiDi"/>
+        <pin num="9" name="PC1" type="BiDi"/>
+        <pin num="10" name="PC2" type="BiDi"/>
+        <pin num="11" name="PC3" type="BiDi"/>
+        <pin num="12" name="VSSA/VREF-" type="power_in"/>
+        <pin num="13" name="VDDA/VREF+" type="power_in"/>
+        <pin num="14" name="PA0" type="BiDi"/>
+        <pin num="15" name="PA1" type="BiDi"/>
+        <pin num="16" name="PA2" type="BiDi"/>
+        <pin num="17" name="PA3" type="BiDi"/>
+        <pin num="18" name="VSS" type="power_in"/>
+        <pin num="19" name="VDD" type="power_in"/>
+        <pin num="20" name="PA4" type="BiDi"/>
+        <pin num="21" name="PA5" type="BiDi"/>
+        <pin num="22" name="PA6" type="BiDi"/>
+        <pin num="23" name="PA7" type="BiDi"/>
+        <pin num="24" name="PC4" type="BiDi"/>
+        <pin num="25" name="PC5" type="BiDi"/>
+        <pin num="26" name="PB0" type="BiDi"/>
+        <pin num="27" name="PB1" type="BiDi"/>
+        <pin num="28" name="PB2" type="BiDi"/>
+        <pin num="29" name="PB10" type="BiDi"/>
+        <pin num="30" name="VCAP1" type="power_in"/>
+        <pin num="31" name="VSS" type="power_in"/>
+        <pin num="32" name="VDD" type="power_in"/>
+        <pin num="33" name="PB12" type="BiDi"/>
+        <pin num="34" name="PB13" type="BiDi"/>
+        <pin num="35" name="PB14" type="BiDi"/>
+        <pin num="36" name="PB15" type="BiDi"/>
+        <pin num="37" name="PC6" type="BiDi"/>
+        <pin num="38" name="PC7" type="BiDi"/>
+        <pin num="39" name="PC8" type="BiDi"/>
+        <pin num="40" name="PC9" type="BiDi"/>
+        <pin num="41" name="PA8" type="BiDi"/>
+        <pin num="42" name="PA9" type="BiDi"/>
+        <pin num="43" name="PA10" type="BiDi"/>
+        <pin num="44" name="PA11" type="BiDi"/>
+        <pin num="45" name="PA12" type="BiDi"/>
+        <pin num="46" name="PA13" type="BiDi"/>
+        <pin num="47" name="VSS" type="power_in"/>
+        <pin num="48" name="VDD" type="power_in"/>
+        <pin num="49" name="PA14" type="BiDi"/>
+        <pin num="50" name="PA15" type="BiDi"/>
+        <pin num="51" name="PC10" type="BiDi"/>
+        <pin num="52" name="PC11" type="BiDi"/>
+        <pin num="53" name="PC12" type="BiDi"/>
+        <pin num="54" name="PD2" type="BiDi"/>
+        <pin num="55" name="PB3" type="BiDi"/>
+        <pin num="56" name="PB4" type="BiDi"/>
+        <pin num="57" name="PB5" type="BiDi"/>
+        <pin num="58" name="PB6" type="BiDi"/>
+        <pin num="59" name="PB7" type="BiDi"/>
+        <pin num="60" name="BOOT0" type="input"/>
+        <pin num="61" name="PB8" type="BiDi"/>
+        <pin num="62" name="PB9" type="BiDi"/>
+        <pin num="63" name="VSS" type="power_in"/>
+        <pin num="64" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="SW_DPST_x2-STM32-rescue">
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SW_DPST_x2-STM32-rescue</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+        <pin num="3" name="A" type="input"/>
+        <pin num="4" name="B" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="TPS564208-STM32-rescue">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">TPS564208-STM32-rescue</field>
+      </fields>
+      <pins>
+        <pin num="1" name="GND" type="input"/>
+        <pin num="2" name="SW" type="input"/>
+        <pin num="3" name="VIN" type="input"/>
+        <pin num="4" name="VFB" type="input"/>
+        <pin num="5" name="EN" type="input"/>
+        <pin num="6" name="VBST" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="habiv-board-rescue" part="U.FL-Adafruit_Ultimate_GPS-eagle-import">
+      <fields>
+        <field name="Value">U.FL-Adafruit_Ultimate_GPS-eagle-import</field>
+      </fields>
+      <pins>
+        <pin num="P$1" name="GND@0" type="unspc"/>
+        <pin num="P$2" name="GND@1" type="unspc"/>
+        <pin num="P$3" name="SIGNAL" type="unspc"/>
+      </pins>
+    </libpart>
+    <libpart lib="pspice" part="CAP">
+      <aliases>
+        <alias>C</alias>
+      </aliases>
+      <description>Capacitor symbol for simulation only</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CAP</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Connector">
+      <uri>/usr/share/kicad/library/Connector.lib</uri>
+    </library>
+    <library logical="Device">
+      <uri>/usr/share/kicad/library/Device.lib</uri>
+    </library>
+    <library logical="dk_Motion-Sensors-IMUs-Inertial-Measurement-Units">
+      <uri>/home/riley/digikey-kicad-library-master/digikey-symbols/dk_Motion-Sensors-IMUs-Inertial-Measurement-Units.lib</uri>
+    </library>
+    <library logical="habiv-board-rescue">
+      <uri>/home/riley/github/HAB/HABIV/habiv-board/habiv-board-rescue.lib</uri>
+    </library>
+    <library logical="pspice">
+      <uri>/usr/share/kicad/library/pspice.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="PB6">
+      <node ref="J6" pin="7"/>
+      <node ref="U1" pin="58"/>
+      <node ref="D1" pin="C"/>
+    </net>
+    <net code="2" name="PC7">
+      <node ref="R20" pin="2"/>
+      <node ref="U1" pin="38"/>
+      <node ref="J7" pin="8"/>
+    </net>
+    <net code="3" name="Net-(R20-Pad1)">
+      <node ref="U2" pin="6"/>
+      <node ref="R20" pin="1"/>
+    </net>
+    <net code="4" name="PA5">
+      <node ref="R31" pin="2"/>
+      <node ref="U1" pin="21"/>
+      <node ref="R8" pin="2"/>
+      <node ref="R21" pin="2"/>
+      <node ref="J4" pin="6"/>
+    </net>
+    <net code="5" name="PA10">
+      <node ref="J4" pin="11"/>
+      <node ref="U1" pin="43"/>
+      <node ref="R27" pin="2"/>
+    </net>
+    <net code="6" name="+3.3VA">
+      <node ref="U1" pin="13"/>
+      <node ref="10nF1" pin="2"/>
+      <node ref="1uF1" pin="2"/>
+      <node ref="22uH1" pin="1"/>
+    </net>
+    <net code="7" name="Net-(IC1-Pad8)">
+      <node ref="R3" pin="1"/>
+      <node ref="R2" pin="1"/>
+      <node ref="R1" pin="2"/>
+      <node ref="IC1" pin="8"/>
+    </net>
+    <net code="8" name="PA7">
+      <node ref="R34" pin="2"/>
+      <node ref="J4" pin="8"/>
+      <node ref="U1" pin="23"/>
+      <node ref="R15" pin="1"/>
+    </net>
+    <net code="9" name="Net-(C8-Pad1)">
+      <node ref="J9" pin="1"/>
+      <node ref="U5" pin="3"/>
+      <node ref="U5" pin="5"/>
+      <node ref="U4" pin="5"/>
+      <node ref="C8" pin="1"/>
+      <node ref="U4" pin="3"/>
+      <node ref="C9" pin="1"/>
+    </net>
+    <net code="10" name="Net-(J2-Pad1)">
+      <node ref="J2" pin="1"/>
+      <node ref="J2" pin="2"/>
+      <node ref="R18" pin="2"/>
+    </net>
+    <net code="11" name="Net-(C14-Pad1)">
+      <node ref="U5" pin="2"/>
+      <node ref="L4" pin="2"/>
+      <node ref="C14" pin="1"/>
+    </net>
+    <net code="12" name="Net-(R40-Pad1)">
+      <node ref="U5" pin="4"/>
+      <node ref="R41" pin="2"/>
+      <node ref="R40" pin="1"/>
+    </net>
+    <net code="13" name="Net-(C13-Pad1)">
+      <node ref="U4" pin="2"/>
+      <node ref="L3" pin="2"/>
+      <node ref="C13" pin="1"/>
+    </net>
+    <net code="14" name="Net-(R38-Pad1)">
+      <node ref="U4" pin="4"/>
+      <node ref="R38" pin="1"/>
+      <node ref="R39" pin="2"/>
+    </net>
+    <net code="15" name="Net-(C12-Pad1)">
+      <node ref="C12" pin="1"/>
+      <node ref="U6" pin="23"/>
+      <node ref="C15" pin="1"/>
+      <node ref="R37" pin="2"/>
+      <node ref="U6" pin="22"/>
+    </net>
+    <net code="16" name="GND">
+      <node ref="10nF1" pin="1"/>
+      <node ref="1uF1" pin="1"/>
+      <node ref="10k1" pin="2"/>
+      <node ref="J8" pin="4"/>
+      <node ref="J8" pin="3"/>
+      <node ref="J8" pin="2"/>
+      <node ref="J8" pin="1"/>
+      <node ref="1uF4" pin="1"/>
+      <node ref="100nF4" pin="1"/>
+      <node ref="1uF2" pin="1"/>
+      <node ref="100nF2" pin="1"/>
+      <node ref="4.7uF1" pin="1"/>
+      <node ref="J10" pin="4"/>
+      <node ref="J10" pin="3"/>
+      <node ref="J10" pin="2"/>
+      <node ref="J10" pin="1"/>
+      <node ref="J2" pin="18"/>
+      <node ref="C6" pin="2"/>
+      <node ref="J2" pin="14"/>
+      <node ref="J2" pin="16"/>
+      <node ref="U1" pin="18"/>
+      <node ref="J2" pin="20"/>
+      <node ref="J2" pin="4"/>
+      <node ref="J2" pin="6"/>
+      <node ref="U1" pin="47"/>
+      <node ref="U1" pin="63"/>
+      <node ref="100nF1" pin="2"/>
+      <node ref="J2" pin="12"/>
+      <node ref="C2" pin="2"/>
+      <node ref="C3" pin="2"/>
+      <node ref="J2" pin="10"/>
+      <node ref="U7" pin="2"/>
+      <node ref="U7" pin="3"/>
+      <node ref="B2" pin="1"/>
+      <node ref="C4" pin="2"/>
+      <node ref="IC1" pin="4"/>
+      <node ref="U2" pin="1"/>
+      <node ref="C1" pin="2"/>
+      <node ref="U3" pin="P$8"/>
+      <node ref="U3" pin="P$3"/>
+      <node ref="U3" pin="P$19"/>
+      <node ref="U3" pin="P$12"/>
+      <node ref="SW1" pin="1"/>
+      <node ref="U5" pin="1"/>
+      <node ref="C17" pin="2"/>
+      <node ref="U1" pin="12"/>
+      <node ref="R41" pin="1"/>
+      <node ref="C9" pin="2"/>
+      <node ref="C16" pin="2"/>
+      <node ref="R43" pin="1"/>
+      <node ref="R42" pin="1"/>
+      <node ref="U4" pin="1"/>
+      <node ref="J5" pin="1"/>
+      <node ref="R39" pin="1"/>
+      <node ref="C8" pin="2"/>
+      <node ref="J9" pin="2"/>
+      <node ref="C10" pin="2"/>
+      <node ref="R23" pin="1"/>
+      <node ref="C7" pin="2"/>
+      <node ref="U$1" pin="P$1"/>
+      <node ref="U$1" pin="P$2"/>
+      <node ref="U1" pin="31"/>
+      <node ref="10k4" pin="1"/>
+      <node ref="C19" pin="1"/>
+      <node ref="C11" pin="2"/>
+      <node ref="C18" pin="2"/>
+      <node ref="C12" pin="2"/>
+      <node ref="J1" pin="6"/>
+      <node ref="U6" pin="14"/>
+      <node ref="U6" pin="20"/>
+      <node ref="10k3" pin="1"/>
+      <node ref="10k2" pin="1"/>
+      <node ref="100nF3" pin="1"/>
+      <node ref="1uF3" pin="1"/>
+      <node ref="J1" pin="11"/>
+      <node ref="J2" pin="8"/>
+      <node ref="U6" pin="16"/>
+      <node ref="C15" pin="2"/>
+      <node ref="U6" pin="19"/>
+      <node ref="U6" pin="18"/>
+      <node ref="U6" pin="17"/>
+      <node ref="U6" pin="15"/>
+      <node ref="1uF5" pin="1"/>
+      <node ref="100nF5" pin="1"/>
+    </net>
+    <net code="17" name="Net-(C18-Pad1)">
+      <node ref="C18" pin="1"/>
+      <node ref="U6" pin="21"/>
+    </net>
+    <net code="18" name="Net-(C19-Pad2)">
+      <node ref="C19" pin="2"/>
+      <node ref="U6" pin="24"/>
+    </net>
+    <net code="19" name="+3V3">
+      <node ref="D2" pin="2"/>
+      <node ref="U1" pin="64"/>
+      <node ref="R37" pin="1"/>
+      <node ref="R19" pin="1"/>
+      <node ref="C11" pin="1"/>
+      <node ref="R18" pin="1"/>
+      <node ref="R4" pin="1"/>
+      <node ref="U1" pin="19"/>
+      <node ref="C6" pin="1"/>
+      <node ref="U1" pin="48"/>
+      <node ref="U6" pin="3"/>
+      <node ref="U1" pin="1"/>
+      <node ref="C10" pin="1"/>
+      <node ref="R44" pin="1"/>
+      <node ref="U6" pin="1"/>
+      <node ref="U1" pin="32"/>
+      <node ref="100nF4" pin="2"/>
+      <node ref="1uF2" pin="2"/>
+      <node ref="100nF2" pin="2"/>
+      <node ref="1uF3" pin="2"/>
+      <node ref="R29" pin="1"/>
+      <node ref="C16" pin="1"/>
+      <node ref="J5" pin="2"/>
+      <node ref="J8" pin="5"/>
+      <node ref="R30" pin="1"/>
+      <node ref="22uH1" pin="2"/>
+      <node ref="100nF5" pin="2"/>
+      <node ref="100nF3" pin="2"/>
+      <node ref="L3" pin="1"/>
+      <node ref="1uF4" pin="2"/>
+      <node ref="1uF5" pin="2"/>
+      <node ref="J8" pin="6"/>
+      <node ref="R38" pin="2"/>
+      <node ref="J8" pin="7"/>
+      <node ref="J8" pin="8"/>
+    </net>
+    <net code="20" name="Net-(J1-Pad3)">
+      <node ref="R15" pin="2"/>
+      <node ref="J1" pin="3"/>
+      <node ref="R7" pin="1"/>
+    </net>
+    <net code="21" name="Net-(J1-Pad8)">
+      <node ref="J1" pin="8"/>
+      <node ref="R10" pin="2"/>
+    </net>
+    <net code="22" name="Net-(J1-Pad7)">
+      <node ref="J1" pin="7"/>
+      <node ref="R14" pin="1"/>
+      <node ref="R9" pin="2"/>
+    </net>
+    <net code="23" name="Net-(J1-Pad1)">
+      <node ref="R5" pin="2"/>
+      <node ref="J1" pin="1"/>
+    </net>
+    <net code="24" name="Net-(C4-Pad1)">
+      <node ref="C4" pin="1"/>
+      <node ref="R1" pin="1"/>
+      <node ref="R16" pin="2"/>
+    </net>
+    <net code="25" name="Net-(U6-Pad10)">
+      <node ref="U6" pin="10"/>
+    </net>
+    <net code="26" name="Net-(U6-Pad13)">
+      <node ref="U6" pin="13"/>
+    </net>
+    <net code="27" name="Net-(U6-Pad12)">
+      <node ref="U6" pin="12"/>
+    </net>
+    <net code="28" name="Net-(U6-Pad11)">
+      <node ref="U6" pin="11"/>
+    </net>
+    <net code="29" name="Net-(D3-Pad1)">
+      <node ref="D3" pin="1"/>
+      <node ref="R43" pin="2"/>
+    </net>
+    <net code="30" name="Net-(U6-Pad9)">
+      <node ref="U6" pin="9"/>
+    </net>
+    <net code="31" name="Net-(U6-Pad8)">
+      <node ref="U6" pin="8"/>
+    </net>
+    <net code="32" name="Net-(U6-Pad7)">
+      <node ref="U6" pin="7"/>
+    </net>
+    <net code="33" name="Net-(U6-Pad6)">
+      <node ref="U6" pin="6"/>
+    </net>
+    <net code="34" name="Net-(U6-Pad5)">
+      <node ref="U6" pin="5"/>
+    </net>
+    <net code="35" name="Net-(R32-Pad1)">
+      <node ref="U6" pin="4"/>
+      <node ref="R32" pin="1"/>
+    </net>
+    <net code="36" name="Net-(R33-Pad1)">
+      <node ref="U6" pin="2"/>
+      <node ref="R33" pin="1"/>
+    </net>
+    <net code="37" name="Net-(10k4-Pad2)">
+      <node ref="J2" pin="17"/>
+      <node ref="10k4" pin="2"/>
+    </net>
+    <net code="38" name="Net-(10k3-Pad2)">
+      <node ref="J2" pin="19"/>
+      <node ref="10k3" pin="2"/>
+    </net>
+    <net code="39" name="Net-(10k2-Pad2)">
+      <node ref="10k2" pin="2"/>
+      <node ref="J2" pin="11"/>
+    </net>
+    <net code="40" name="Net-(10k1-Pad1)">
+      <node ref="10k1" pin="1"/>
+      <node ref="U1" pin="60"/>
+    </net>
+    <net code="41" name="RST">
+      <node ref="SW1" pin="2"/>
+      <node ref="U1" pin="7"/>
+      <node ref="J2" pin="15"/>
+      <node ref="100nF1" pin="1"/>
+    </net>
+    <net code="42" name="Net-(C3-Pad1)">
+      <node ref="Y1" pin="4"/>
+      <node ref="C3" pin="1"/>
+      <node ref="R101" pin="2"/>
+    </net>
+    <net code="43" name="Net-(C2-Pad1)">
+      <node ref="C2" pin="1"/>
+      <node ref="R100" pin="2"/>
+      <node ref="Y1" pin="1"/>
+    </net>
+    <net code="44" name="Net-(C14-Pad2)">
+      <node ref="U5" pin="6"/>
+      <node ref="C14" pin="2"/>
+    </net>
+    <net code="45" name="Net-(D2-Pad1)">
+      <node ref="D2" pin="1"/>
+      <node ref="R42" pin="2"/>
+    </net>
+    <net code="46" name="Net-(C13-Pad2)">
+      <node ref="C13" pin="2"/>
+      <node ref="U4" pin="6"/>
+    </net>
+    <net code="47" name="PB15">
+      <node ref="R26" pin="2"/>
+      <node ref="U1" pin="36"/>
+      <node ref="J6" pin="16"/>
+    </net>
+    <net code="48" name="Net-(U1-Pad6)">
+      <node ref="U1" pin="6"/>
+    </net>
+    <net code="49" name="Net-(U1-Pad5)">
+      <node ref="U1" pin="5"/>
+    </net>
+    <net code="50" name="Net-(IC1-Pad7)">
+      <node ref="IC1" pin="7"/>
+    </net>
+    <net code="51" name="Net-(R21-Pad1)">
+      <node ref="U2" pin="5"/>
+      <node ref="R21" pin="1"/>
+    </net>
+    <net code="52" name="PA6">
+      <node ref="R14" pin="2"/>
+      <node ref="R35" pin="2"/>
+      <node ref="R22" pin="2"/>
+      <node ref="U1" pin="22"/>
+      <node ref="J4" pin="7"/>
+    </net>
+    <net code="53" name="PA14">
+      <node ref="J4" pin="15"/>
+      <node ref="J2" pin="9"/>
+      <node ref="U1" pin="49"/>
+    </net>
+    <net code="54" name="Net-(R35-Pad1)">
+      <node ref="R35" pin="1"/>
+      <node ref="U7" pin="6"/>
+    </net>
+    <net code="55" name="Net-(R34-Pad1)">
+      <node ref="U7" pin="7"/>
+      <node ref="R34" pin="1"/>
+    </net>
+    <net code="56" name="Net-(R31-Pad1)">
+      <node ref="R31" pin="1"/>
+      <node ref="U7" pin="8"/>
+    </net>
+    <net code="57" name="+5V">
+      <node ref="D3" pin="2"/>
+      <node ref="R40" pin="2"/>
+      <node ref="C17" pin="1"/>
+      <node ref="L4" pin="1"/>
+      <node ref="J10" pin="8"/>
+      <node ref="J10" pin="7"/>
+      <node ref="J10" pin="5"/>
+      <node ref="J10" pin="6"/>
+    </net>
+    <net code="58" name="Net-(J1-Pad4)">
+      <node ref="R5" pin="1"/>
+      <node ref="R7" pin="2"/>
+      <node ref="J1" pin="4"/>
+      <node ref="R4" pin="2"/>
+      <node ref="R10" pin="1"/>
+      <node ref="R9" pin="1"/>
+      <node ref="R6" pin="1"/>
+    </net>
+    <net code="59" name="PA9">
+      <node ref="R13" pin="1"/>
+      <node ref="U1" pin="42"/>
+      <node ref="J4" pin="10"/>
+    </net>
+    <net code="60" name="Net-(J1-Pad5)">
+      <node ref="R8" pin="1"/>
+      <node ref="J1" pin="5"/>
+    </net>
+    <net code="61" name="Net-(J1-Pad2)">
+      <node ref="J1" pin="2"/>
+      <node ref="R13" pin="2"/>
+      <node ref="R6" pin="2"/>
+    </net>
+    <net code="62" name="Net-(R27-Pad1)">
+      <node ref="U3" pin="P$9"/>
+      <node ref="R27" pin="1"/>
+    </net>
+    <net code="63" name="Net-(R36-Pad2)">
+      <node ref="R36" pin="2"/>
+      <node ref="U7" pin="5"/>
+      <node ref="U7" pin="4"/>
+    </net>
+    <net code="64" name="PB8">
+      <node ref="J6" pin="9"/>
+      <node ref="R29" pin="2"/>
+      <node ref="U1" pin="61"/>
+      <node ref="R3" pin="2"/>
+      <node ref="R11" pin="2"/>
+      <node ref="R33" pin="2"/>
+    </net>
+    <net code="65" name="Net-(IC1-Pad6)">
+      <node ref="R11" pin="1"/>
+      <node ref="IC1" pin="6"/>
+    </net>
+    <net code="66" name="PB9">
+      <node ref="R12" pin="2"/>
+      <node ref="J6" pin="10"/>
+      <node ref="U1" pin="62"/>
+      <node ref="R30" pin="2"/>
+      <node ref="R2" pin="2"/>
+      <node ref="R32" pin="2"/>
+    </net>
+    <net code="67" name="Net-(IC1-Pad5)">
+      <node ref="IC1" pin="5"/>
+      <node ref="R12" pin="1"/>
+    </net>
+    <net code="68" name="PA8">
+      <node ref="J4" pin="9"/>
+      <node ref="U1" pin="41"/>
+      <node ref="R36" pin="1"/>
+    </net>
+    <net code="69" name="Net-(R44-Pad2)">
+      <node ref="U7" pin="1"/>
+      <node ref="R44" pin="2"/>
+    </net>
+    <net code="70" name="Net-(R19-Pad2)">
+      <node ref="U2" pin="4"/>
+      <node ref="R19" pin="2"/>
+    </net>
+    <net code="71" name="Net-(R100-Pad1)">
+      <node ref="U1" pin="3"/>
+      <node ref="R100" pin="1"/>
+    </net>
+    <net code="72" name="3.3V">
+      <node ref="R25" pin="1"/>
+      <node ref="R25" pin="2"/>
+      <node ref="U3" pin="P$1"/>
+      <node ref="R24" pin="1"/>
+      <node ref="C7" pin="1"/>
+    </net>
+    <net code="73" name="Net-(D1-PadA)">
+      <node ref="D1" pin="A"/>
+      <node ref="R24" pin="2"/>
+      <node ref="R28" pin="2"/>
+    </net>
+    <net code="74" name="Net-(U$1-PadP$3)">
+      <node ref="U3" pin="P$11"/>
+      <node ref="U$1" pin="P$3"/>
+    </net>
+    <net code="75" name="PA13">
+      <node ref="J2" pin="7"/>
+      <node ref="J4" pin="14"/>
+      <node ref="U1" pin="46"/>
+    </net>
+    <net code="76" name="PA12">
+      <node ref="J4" pin="13"/>
+      <node ref="U1" pin="45"/>
+    </net>
+    <net code="77" name="PA11">
+      <node ref="J4" pin="12"/>
+      <node ref="U1" pin="44"/>
+    </net>
+    <net code="78" name="Net-(R101-Pad1)">
+      <node ref="U1" pin="4"/>
+      <node ref="R101" pin="1"/>
+    </net>
+    <net code="79" name="Net-(LED1-PadC)">
+      <node ref="R23" pin="2"/>
+      <node ref="LED1" pin="C"/>
+    </net>
+    <net code="80" name="Net-(C5-Pad1)">
+      <node ref="L1" pin="1"/>
+      <node ref="C5" pin="1"/>
+      <node ref="U2" pin="3"/>
+    </net>
+    <net code="81" name="Net-(R22-Pad1)">
+      <node ref="U2" pin="7"/>
+      <node ref="R22" pin="1"/>
+    </net>
+    <net code="82" name="Net-(C5-Pad2)">
+      <node ref="U2" pin="2"/>
+      <node ref="L2" pin="1"/>
+      <node ref="C5" pin="2"/>
+    </net>
+    <net code="83" name="Net-(IC1-Pad2)">
+      <node ref="Q1" pin="2"/>
+      <node ref="IC1" pin="2"/>
+    </net>
+    <net code="84" name="Net-(IC1-Pad1)">
+      <node ref="IC1" pin="1"/>
+      <node ref="Q1" pin="1"/>
+    </net>
+    <net code="85" name="Net-(J3-Pad2)">
+      <node ref="L2" pin="2"/>
+      <node ref="J3" pin="2"/>
+    </net>
+    <net code="86" name="Net-(J3-Pad1)">
+      <node ref="J3" pin="1"/>
+      <node ref="L1" pin="2"/>
+    </net>
+    <net code="87" name="Net-(B2-Pad2)">
+      <node ref="IC1" pin="3"/>
+      <node ref="B2" pin="2"/>
+    </net>
+    <net code="88" name="VCC">
+      <node ref="C1" pin="1"/>
+      <node ref="R16" pin="1"/>
+    </net>
+    <net code="89" name="/VBACKUP">
+      <node ref="U3" pin="P$4"/>
+    </net>
+    <net code="90" name="Net-(R28-Pad1)">
+      <node ref="R28" pin="1"/>
+      <node ref="U3" pin="P$10"/>
+    </net>
+    <net code="91" name="/1PPS">
+      <node ref="U3" pin="P$13"/>
+    </net>
+    <net code="92" name="Net-(U3-PadP$2)">
+      <node ref="U3" pin="P$2"/>
+    </net>
+    <net code="93" name="Net-(U3-PadP$7)">
+      <node ref="U3" pin="P$7"/>
+    </net>
+    <net code="94" name="Net-(U3-PadP$6)">
+      <node ref="U3" pin="P$6"/>
+    </net>
+    <net code="95" name="Net-(U3-PadP$20)">
+      <node ref="U3" pin="P$20"/>
+    </net>
+    <net code="96" name="Net-(U3-PadP$18)">
+      <node ref="U3" pin="P$18"/>
+    </net>
+    <net code="97" name="Net-(U3-PadP$17)">
+      <node ref="U3" pin="P$17"/>
+    </net>
+    <net code="98" name="Net-(U3-PadP$16)">
+      <node ref="U3" pin="P$16"/>
+    </net>
+    <net code="99" name="Net-(U3-PadP$15)">
+      <node ref="U3" pin="P$15"/>
+    </net>
+    <net code="100" name="Net-(U3-PadP$14)">
+      <node ref="U3" pin="P$14"/>
+    </net>
+    <net code="101" name="/FIX">
+      <node ref="R26" pin="1"/>
+      <node ref="U3" pin="P$5"/>
+      <node ref="LED1" pin="A"/>
+    </net>
+    <net code="102" name="PC8">
+      <node ref="U1" pin="39"/>
+      <node ref="J7" pin="9"/>
+    </net>
+    <net code="103" name="PC6">
+      <node ref="J7" pin="7"/>
+      <node ref="U1" pin="37"/>
+    </net>
+    <net code="104" name="PC5">
+      <node ref="U1" pin="25"/>
+      <node ref="J7" pin="6"/>
+    </net>
+    <net code="105" name="PC4">
+      <node ref="U1" pin="24"/>
+      <node ref="J7" pin="5"/>
+    </net>
+    <net code="106" name="PC3">
+      <node ref="J7" pin="4"/>
+      <node ref="U1" pin="11"/>
+    </net>
+    <net code="107" name="PC2">
+      <node ref="J7" pin="3"/>
+      <node ref="U1" pin="10"/>
+    </net>
+    <net code="108" name="PC1">
+      <node ref="U1" pin="9"/>
+      <node ref="J7" pin="2"/>
+    </net>
+    <net code="109" name="PD2">
+      <node ref="U1" pin="54"/>
+      <node ref="J7" pin="16"/>
+    </net>
+    <net code="110" name="Net-(J7-Pad15)">
+      <node ref="J7" pin="15"/>
+    </net>
+    <net code="111" name="PC13">
+      <node ref="U1" pin="2"/>
+      <node ref="J7" pin="14"/>
+    </net>
+    <net code="112" name="PA2">
+      <node ref="U1" pin="16"/>
+      <node ref="J4" pin="3"/>
+    </net>
+    <net code="113" name="PB10">
+      <node ref="J6" pin="11"/>
+      <node ref="U1" pin="29"/>
+    </net>
+    <net code="114" name="PB0">
+      <node ref="U1" pin="26"/>
+      <node ref="J6" pin="1"/>
+    </net>
+    <net code="115" name="PA4">
+      <node ref="J4" pin="5"/>
+      <node ref="U1" pin="20"/>
+    </net>
+    <net code="116" name="PA3">
+      <node ref="U1" pin="17"/>
+      <node ref="J4" pin="4"/>
+    </net>
+    <net code="117" name="PB11">
+      <node ref="U1" pin="30"/>
+      <node ref="J6" pin="12"/>
+      <node ref="4.7uF1" pin="2"/>
+    </net>
+    <net code="118" name="PA1">
+      <node ref="U1" pin="15"/>
+      <node ref="J4" pin="2"/>
+    </net>
+    <net code="119" name="PA15">
+      <node ref="J4" pin="16"/>
+      <node ref="J2" pin="5"/>
+      <node ref="U1" pin="50"/>
+    </net>
+    <net code="120" name="PB5">
+      <node ref="J6" pin="6"/>
+      <node ref="U1" pin="57"/>
+    </net>
+    <net code="121" name="PC12">
+      <node ref="U1" pin="53"/>
+      <node ref="J7" pin="13"/>
+    </net>
+    <net code="122" name="PC11">
+      <node ref="J7" pin="12"/>
+      <node ref="U1" pin="52"/>
+    </net>
+    <net code="123" name="PC10">
+      <node ref="U1" pin="51"/>
+      <node ref="J7" pin="11"/>
+    </net>
+    <net code="124" name="PC9">
+      <node ref="U1" pin="40"/>
+      <node ref="J7" pin="10"/>
+    </net>
+    <net code="125" name="PC0">
+      <node ref="J7" pin="1"/>
+      <node ref="U1" pin="8"/>
+    </net>
+    <net code="126" name="PB7">
+      <node ref="U1" pin="59"/>
+      <node ref="J6" pin="8"/>
+    </net>
+    <net code="127" name="PB4">
+      <node ref="U1" pin="56"/>
+      <node ref="J6" pin="5"/>
+      <node ref="J2" pin="3"/>
+    </net>
+    <net code="128" name="PB3">
+      <node ref="J6" pin="4"/>
+      <node ref="U1" pin="55"/>
+      <node ref="J2" pin="13"/>
+    </net>
+    <net code="129" name="PB2">
+      <node ref="U1" pin="28"/>
+      <node ref="J6" pin="3"/>
+    </net>
+    <net code="130" name="PB1">
+      <node ref="U1" pin="27"/>
+      <node ref="J6" pin="2"/>
+    </net>
+    <net code="131" name="PB14">
+      <node ref="J6" pin="15"/>
+      <node ref="U1" pin="35"/>
+    </net>
+    <net code="132" name="PB13">
+      <node ref="J6" pin="14"/>
+      <node ref="U1" pin="34"/>
+    </net>
+    <net code="133" name="PB12">
+      <node ref="J6" pin="13"/>
+      <node ref="U1" pin="33"/>
+    </net>
+    <net code="134" name="Net-(Y1-Pad3)">
+      <node ref="Y1" pin="3"/>
+    </net>
+    <net code="135" name="Net-(Y1-Pad2)">
+      <node ref="Y1" pin="2"/>
+    </net>
+    <net code="136" name="PA0">
+      <node ref="U1" pin="14"/>
+      <node ref="J4" pin="1"/>
+    </net>
+    <net code="137" name="Net-(J1-Pad9)">
+      <node ref="J1" pin="9"/>
+    </net>
+    <net code="138" name="Net-(J1-Pad10)">
+      <node ref="J1" pin="10"/>
+    </net>
+  </nets>
+</export>
