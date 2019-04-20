@@ -195,20 +195,6 @@ X DRDY_M 9 600 200 100 L 50 50 1 0 O
 ENDDRAW
 ENDDEF
 #
-# habiv-board-rescue_3.3V-Adafruit_Ultimate_GPS-eagle-import
-#
-DEF habiv-board-rescue_3.3V-Adafruit_Ultimate_GPS-eagle-import ~ 0 40 Y Y 1 L P
-F0 "" 0 0 50 H I C CNN
-F1 "habiv-board-rescue_3.3V-Adafruit_Ultimate_GPS-eagle-import" -60 40 42 H V L BNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 1 0 0 -50 -50 0 0 N
-P 2 1 0 0 0 0 50 -50 N
-X 3.3V 1 0 -100 100 U 0 0 1 0 W
-ENDDRAW
-ENDDEF
-#
 # habiv-board-rescue_32.768KHz-ABS07W-32.768KHZ-D-2-T-real_time_clock-rescue
 #
 DEF habiv-board-rescue_32.768KHz-ABS07W-32.768KHZ-D-2-T-real_time_clock-rescue Q 0 40 Y Y 1 L N
@@ -273,40 +259,6 @@ P 2 0 1 20 -80 -30 80 -30 N
 P 2 0 1 20 -80 30 80 30 N
 X ~ 1 0 150 110 D 50 50 1 1 P
 X ~ 2 0 -150 110 U 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# habiv-board-rescue_CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import
-#
-DEF habiv-board-rescue_CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import C 0 40 Y Y 1 L N
-F0 "C" -90 49 50 V V C CNN
-F1 "habiv-board-rescue_CAP_CERAMIC0805-NOOUTLINE-Adafruit_Ultimate_GPS-eagle-import" 90 49 50 V V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-S -50 20 50 40 1 0 0 F
-S -50 60 50 80 1 0 0 F
-P 2 1 0 0 0 30 0 0 N
-P 2 1 0 0 0 100 0 70 N
-X 1 1 0 200 100 D 0 0 1 0 P
-X 2 2 0 -100 100 U 0 0 1 0 P
-ENDDRAW
-ENDDEF
-#
-# habiv-board-rescue_CAP_CERAMIC0805-NOOUTLINE-real_time_clock-eagle-import
-#
-DEF habiv-board-rescue_CAP_CERAMIC0805-NOOUTLINE-real_time_clock-eagle-import C 0 40 Y Y 1 L N
-F0 "C" -90 49 50 V V C CNN
-F1 "habiv-board-rescue_CAP_CERAMIC0805-NOOUTLINE-real_time_clock-eagle-import" 90 49 50 V V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-S -50 20 50 40 1 0 0 F
-S -50 60 50 80 1 0 0 F
-P 2 1 0 0 0 30 0 0 N
-P 2 1 0 0 0 100 0 70 N
-X 1 1 0 200 100 D 0 0 1 0 P
-X 2 2 0 -100 100 U 0 0 1 0 P
 ENDDRAW
 ENDDEF
 #
@@ -470,50 +422,6 @@ X 1 1 -150 0 50 R 50 50 1 1 P
 X 2 2 0 200 50 D 50 50 1 1 P
 X 3 3 0 -200 50 U 50 50 1 1 P
 X 4 4 150 0 50 L 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# habiv-board-rescue_DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import
-#
-DEF habiv-board-rescue_DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import D 0 40 Y Y 1 L N
-F0 "D" 0 100 42 H V C CNN
-F1 "habiv-board-rescue_DIODESOD-323-Adafruit_Ultimate_GPS-eagle-import" 0 -98 42 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 1 0 0 -50 -50 50 0 N
-P 2 1 0 0 -50 50 -50 -50 N
-P 2 1 0 0 50 0 -50 50 N
-P 2 1 0 0 50 0 50 -50 N
-P 2 1 0 0 50 50 50 0 N
-X A A -100 0 100 R 0 0 1 0 P
-X C C 100 0 100 L 0 0 1 0 P
-ENDDRAW
-ENDDEF
-#
-# habiv-board-rescue_GND-Adafruit_Ultimate_GPS-eagle-import
-#
-DEF habiv-board-rescue_GND-Adafruit_Ultimate_GPS-eagle-import ~ 0 40 Y Y 1 L P
-F0 "" 0 0 50 H I C CNN
-F1 "habiv-board-rescue_GND-Adafruit_Ultimate_GPS-eagle-import" -60 -100 42 H V L BNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 1 0 0 -50 0 50 0 N
-X GND 1 0 100 100 D 0 0 1 0 W
-ENDDRAW
-ENDDEF
-#
-# habiv-board-rescue_GND-real_time_clock-eagle-import
-#
-DEF habiv-board-rescue_GND-real_time_clock-eagle-import #GND 0 40 Y Y 1 L P
-F0 "#GND" 0 0 50 H I C CNN
-F1 "habiv-board-rescue_GND-real_time_clock-eagle-import" -100 -100 59 H V L BNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 1 0 0 -75 0 75 0 N
-X GND 1 0 100 100 D 0 0 1 0 W
 ENDDRAW
 ENDDEF
 #
@@ -948,21 +856,6 @@ DRAW
 P 2 1 0 0 0 0 -50 -75 N
 P 2 1 0 0 50 -75 0 0 N
 X VCC 1 0 -100 100 U 0 0 1 0 W
-ENDDRAW
-ENDDEF
-#
-# power_+3.3VA
-#
-DEF power_+3.3VA #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "power_+3.3VA" 0 140 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X +3.3VA 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #

@@ -1,4 +1,4 @@
-update=Wed 17 Apr 2019 04:33:23 PM PDT
+update=Sat 20 Apr 2019 02:28:59 PM PDT
 version=1
 last_client=eeschema
 [general]
@@ -34,7 +34,7 @@ LibDir=
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
-PlotDirectoryName=
+PlotDirectoryName=pdf1
 SubpartIdSeparator=0
 SubpartFirstId=65
 NetFmtName=
