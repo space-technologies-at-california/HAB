@@ -855,20 +855,6 @@ X SIGNAL P$3 200 0 200 L 0 0 1 0 U
 ENDDRAW
 ENDDEF
 #
-# habiv-board-rescue_VCC-real_time_clock-eagle-import
-#
-DEF habiv-board-rescue_VCC-real_time_clock-eagle-import #P+ 0 40 Y Y 1 L P
-F0 "#P+" 0 0 50 H I C CNN
-F1 "habiv-board-rescue_VCC-real_time_clock-eagle-import" -100 -100 59 V V L BNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 1 0 0 0 0 -50 -75 N
-P 2 1 0 0 50 -75 0 0 N
-X VCC 1 0 -100 100 U 0 0 1 0 W
-ENDDRAW
-ENDDEF
-#
 # power_+3V3
 #
 DEF power_+3V3 #PWR 0 0 Y Y 1 F P
