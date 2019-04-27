@@ -9,4 +9,5 @@
   (lib (name MAX6675)(type Legacy)(uri /home/riley/github/HAB/HAB3_pcb/makena-thermocoupler/MAX6675/MAX6675.mod)(options "")(descr ""))
   (lib (name MS560702BA03-00)(type Legacy)(uri /home/riley/github/HAB/HAB3_pcb/riley/AltimeterPCB/MS560702BA03-00.mod)(options "")(descr ""))
   (lib (name STM32F401RET6)(type Legacy)(uri ${KIPRJMOD}/STM32F401RET6.mod)(options "")(descr ""))
+  (lib (name Connector_AMASS)(type KiCad)(uri ${KIPRJMOD}/Connector_AMASS.pretty)(options "")(descr ""))
 )
