@@ -297,17 +297,6 @@ F 3 "" H 11750 14850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C7
-U 1 0 24498BA92B08E60C
-P 11450 14450
-F 0 "C7" V 11360 14499 50  0000 C CNN
-F 1 "0.1uF" V 11540 14499 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 11450 14450 50  0001 C CNN
-F 3 "" H 11450 14450 50  0001 C CNN
-	1    11450 14450
-	1    0    0    -1  
-$EndComp
-$Comp
 L habiv-board-rescue:U.FL-Adafruit_Ultimate_GPS-eagle-import U$1
 U 1 0 14A4E007DC93C178
 P 14650 15350
@@ -894,7 +883,7 @@ F 3 "" H 3500 14700 50  0001 C CNN
 	1    3500 14600
 	1    0    0    -1  
 $EndComp
-Text GLabel 6350 14350 2    60   Input ~ 0
+Text GLabel 6700 14350 2    60   Input ~ 0
 PB4
 Text GLabel 6650 15050 2    60   Input ~ 0
 PA15
@@ -904,7 +893,7 @@ Text GLabel 6650 14750 2    60   Input ~ 0
 PA14
 Text GLabel 6650 14950 2    60   Input ~ 0
 PB3
-Text GLabel 6350 14450 2    60   Input ~ 0
+Text GLabel 6700 14450 2    60   Input ~ 0
 RST
 $Comp
 L habiv-board-rescue:R-STM32-rescue 10k2
@@ -3219,6 +3208,57 @@ F 1 "10u" H 2942 2355 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric" H 2850 2400 50  0001 C CNN
 F 3 "~" H 2850 2400 50  0001 C CNN
 	1    2850 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP11
+U 1 1 5D017C96
+P 6450 14100
+F 0 "TP11" H 6508 14220 50  0000 L CNN
+F 1 "TestPoint" H 6508 14129 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 6650 14100 50  0001 C CNN
+F 3 "~" H 6650 14100 50  0001 C CNN
+	1    6450 14100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP12
+U 1 1 5D017E50
+P 7000 14100
+F 0 "TP12" H 7058 14220 50  0000 L CNN
+F 1 "TestPoint" H 7058 14129 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 7200 14100 50  0001 C CNN
+F 3 "~" H 7200 14100 50  0001 C CNN
+	1    7000 14100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6350 14350 6450 14350
+Wire Wire Line
+	6450 14350 6450 14100
+Connection ~ 6450 14350
+Wire Wire Line
+	6450 14350 6700 14350
+Wire Wire Line
+	6350 14450 6600 14450
+Wire Wire Line
+	6600 14450 6600 14200
+Wire Wire Line
+	6600 14200 7000 14200
+Connection ~ 6600 14450
+Wire Wire Line
+	6600 14450 6700 14450
+Wire Wire Line
+	7000 14200 7000 14100
+$Comp
+L Device:C_Small C7
+U 1 1 5CCBB00E
+P 11450 14450
+F 0 "C7" H 11542 14496 50  0000 L CNN
+F 1 "0.1u" H 11542 14405 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 11450 14450 50  0001 C CNN
+F 3 "~" H 11450 14450 50  0001 C CNN
+	1    11450 14450
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
