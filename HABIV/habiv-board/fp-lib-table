@@ -10,4 +10,5 @@
   (lib (name MS560702BA03-00)(type Legacy)(uri /home/riley/github/HAB/HAB3_pcb/riley/AltimeterPCB/MS560702BA03-00.mod)(options "")(descr ""))
   (lib (name STM32F401RET6)(type Legacy)(uri ${KIPRJMOD}/STM32F401RET6.mod)(options "")(descr ""))
   (lib (name Connector_AMASS)(type KiCad)(uri ${KIPRJMOD}/Connector_AMASS.pretty)(options "")(descr ""))
+  (lib (name Logos)(type KiCad)(uri ${KIPRJMOD}/Logos.pretty)(options "")(descr ""))
 )
