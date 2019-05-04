@@ -950,130 +950,130 @@ F 3 "" H 5650 13550 50  0001 C CNN
 	1    5650 13550
 	1    0    0    -1  
 $EndComp
-Text GLabel 8950 7650 2    60   Input ~ 0
+Text GLabel 8250 7750 2    60   Input ~ 0
 PA0
-Text GLabel 8950 7750 2    60   Input ~ 0
+Text GLabel 8250 7850 2    60   Input ~ 0
 PA1
-Text GLabel 8950 7850 2    60   Input ~ 0
+Text GLabel 8250 7950 2    60   Input ~ 0
 PA2
-Text GLabel 8950 7950 2    60   Input ~ 0
+Text GLabel 8250 8050 2    60   Input ~ 0
 PA3
-Text GLabel 8950 8050 2    60   Input ~ 0
+Text GLabel 8250 8150 2    60   Input ~ 0
 PA4
-Text GLabel 8950 8150 2    60   Input ~ 0
+Text GLabel 8250 8250 2    60   Input ~ 0
 PA5
-Text GLabel 8950 8250 2    60   Input ~ 0
+Text GLabel 8250 8350 2    60   Input ~ 0
 PA6
-Text GLabel 8950 8350 2    60   Input ~ 0
+Text GLabel 8250 8450 2    60   Input ~ 0
 PA7
-Text GLabel 8950 8950 2    60   Input ~ 0
+Text GLabel 8250 9050 2    60   Input ~ 0
 PA13
-Text GLabel 8950 8850 2    60   Input ~ 0
+Text GLabel 8250 8950 2    60   Input ~ 0
 PA12
-Text GLabel 8950 8750 2    60   Input ~ 0
+Text GLabel 8250 8850 2    60   Input ~ 0
 PA11
-Text GLabel 8950 8650 2    60   Input ~ 0
+Text GLabel 8250 8750 2    60   Input ~ 0
 PA10
-Text GLabel 8950 8550 2    60   Input ~ 0
+Text GLabel 8250 8650 2    60   Input ~ 0
 PA9
-Text GLabel 8950 8450 2    60   Input ~ 0
+Text GLabel 8250 8550 2    60   Input ~ 0
 PA8
-Text GLabel 8950 9050 2    60   Input ~ 0
+Text GLabel 8250 9150 2    60   Input ~ 0
 PA14
 $Comp
 L habiv-board-rescue:Conn_01x16_Male-STM32-rescue J4
 U 1 1 5BC4EB19
-P 8750 8350
-F 0 "J4" H 8750 9150 50  0000 C CNN
-F 1 "Conn_01x16_Male" H 8750 7450 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical" H 8750 8350 50  0001 C CNN
-F 3 "" H 8750 8350 50  0001 C CNN
-	1    8750 8350
+P 8050 8450
+F 0 "J4" H 8050 9250 50  0000 C CNN
+F 1 "Conn_01x16_Male" H 8050 7550 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical" H 8050 8450 50  0001 C CNN
+F 3 "" H 8050 8450 50  0001 C CNN
+	1    8050 8450
 	1    0    0    -1  
 $EndComp
 $Comp
 L habiv-board-rescue:Conn_01x16_Male-STM32-rescue J6
 U 1 1 5BC4EE03
-P 9550 8350
-F 0 "J6" H 9550 9150 50  0000 C CNN
-F 1 "Conn_01x16_Male" H 9550 7450 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical" H 9550 8350 50  0001 C CNN
-F 3 "" H 9550 8350 50  0001 C CNN
-	1    9550 8350
+P 8850 8450
+F 0 "J6" H 8850 9250 50  0000 C CNN
+F 1 "Conn_01x16_Male" H 8850 7550 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical" H 8850 8450 50  0001 C CNN
+F 3 "" H 8850 8450 50  0001 C CNN
+	1    8850 8450
 	1    0    0    -1  
 $EndComp
 $Comp
 L habiv-board-rescue:Conn_01x16_Male-STM32-rescue J7
 U 1 1 5BC4EEC1
-P 10300 8350
-F 0 "J7" H 10300 9150 50  0000 C CNN
-F 1 "Conn_01x16_Male" H 10300 7450 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical" H 10300 8350 50  0001 C CNN
-F 3 "" H 10300 8350 50  0001 C CNN
-	1    10300 8350
+P 9600 8450
+F 0 "J7" H 9600 9250 50  0000 C CNN
+F 1 "Conn_01x16_Male" H 9600 7550 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical" H 9600 8450 50  0001 C CNN
+F 3 "" H 9600 8450 50  0001 C CNN
+	1    9600 8450
 	1    0    0    -1  
 $EndComp
-Text GLabel 8950 9150 2    60   Input ~ 0
+Text GLabel 8250 9250 2    60   Input ~ 0
 PA15
-Text GLabel 9750 7650 2    60   Input ~ 0
+Text GLabel 9050 7750 2    60   Input ~ 0
 PB0
-Text GLabel 9750 7750 2    60   Input ~ 0
+Text GLabel 9050 7850 2    60   Input ~ 0
 PB1
-Text GLabel 9750 7850 2    60   Input ~ 0
+Text GLabel 9050 7950 2    60   Input ~ 0
 PB2
-Text GLabel 9750 7950 2    60   Input ~ 0
+Text GLabel 9050 8050 2    60   Input ~ 0
 PB3
-Text GLabel 9750 8050 2    60   Input ~ 0
+Text GLabel 9050 8150 2    60   Input ~ 0
 PB4
-Text GLabel 9750 8250 2    60   Input ~ 0
+Text GLabel 9050 8350 2    60   Input ~ 0
 PB6
-Text GLabel 9750 8350 2    60   Input ~ 0
+Text GLabel 9050 8450 2    60   Input ~ 0
 PB7
-Text GLabel 9750 8450 2    60   Input ~ 0
+Text GLabel 9050 8550 2    60   Input ~ 0
 PB8
-Text GLabel 9750 8550 2    60   Input ~ 0
+Text GLabel 9050 8650 2    60   Input ~ 0
 PB9
-Text GLabel 9750 9050 2    60   Input ~ 0
+Text GLabel 9050 9150 2    60   Input ~ 0
 PB14
-Text GLabel 9750 9150 2    60   Input ~ 0
+Text GLabel 9050 9250 2    60   Input ~ 0
 PB15
-Text GLabel 9750 8650 2    60   Input ~ 0
+Text GLabel 9050 8750 2    60   Input ~ 0
 PB10
-Text GLabel 9750 8850 2    60   Input ~ 0
+Text GLabel 9050 8950 2    60   Input ~ 0
 PB12
-Text GLabel 9750 8950 2    60   Input ~ 0
+Text GLabel 9050 9050 2    60   Input ~ 0
 PB13
-Text GLabel 9750 8150 2    60   Input ~ 0
+Text GLabel 9050 8250 2    60   Input ~ 0
 PB5
-Text GLabel 10500 7650 2    60   Input ~ 0
+Text GLabel 9800 7750 2    60   Input ~ 0
 PC0
-Text GLabel 10500 7750 2    60   Input ~ 0
+Text GLabel 9800 7850 2    60   Input ~ 0
 PC1
-Text GLabel 10500 7850 2    60   Input ~ 0
+Text GLabel 9800 7950 2    60   Input ~ 0
 PC2
-Text GLabel 10500 7950 2    60   Input ~ 0
+Text GLabel 9800 8050 2    60   Input ~ 0
 PC3
-Text GLabel 10500 8050 2    60   Input ~ 0
+Text GLabel 9800 8150 2    60   Input ~ 0
 PC4
-Text GLabel 10500 8150 2    60   Input ~ 0
+Text GLabel 9800 8250 2    60   Input ~ 0
 PC5
-Text GLabel 10500 8250 2    60   Input ~ 0
+Text GLabel 9800 8350 2    60   Input ~ 0
 PC6
-Text GLabel 10500 8350 2    60   Input ~ 0
+Text GLabel 9800 8450 2    60   Input ~ 0
 PC7
-Text GLabel 10500 8450 2    60   Input ~ 0
+Text GLabel 9800 8550 2    60   Input ~ 0
 PC8
-Text GLabel 10500 8550 2    60   Input ~ 0
+Text GLabel 9800 8650 2    60   Input ~ 0
 PC9
-Text GLabel 10500 8650 2    60   Input ~ 0
+Text GLabel 9800 8750 2    60   Input ~ 0
 PC10
-Text GLabel 10500 8750 2    60   Input ~ 0
+Text GLabel 9800 8850 2    60   Input ~ 0
 PC11
-Text GLabel 10500 8850 2    60   Input ~ 0
+Text GLabel 9800 8950 2    60   Input ~ 0
 PC12
-Text GLabel 10500 8950 2    60   Input ~ 0
+Text GLabel 9800 9050 2    60   Input ~ 0
 PC13
-Text GLabel 10500 9150 2    60   Input ~ 0
+Text GLabel 9800 9250 2    60   Input ~ 0
 PD2
 $Comp
 L habiv-board-rescue:SW_DPST_x2-STM32-rescue SW1
@@ -1099,7 +1099,7 @@ F 3 "" H 2850 8050 50  0001 C CNN
 $EndComp
 Text GLabel 6550 9900 2    60   Input ~ 0
 PB11
-Text GLabel 9750 8750 2    60   Input ~ 0
+Text GLabel 9050 8850 2    60   Input ~ 0
 PB11
 $Comp
 L habiv-board-rescue:TPS564208-STM32-rescue U4
@@ -3275,38 +3275,32 @@ Wire Wire Line
 	15600 5900 15600 5950
 Wire Wire Line
 	15400 5900 15600 5900
-Text GLabel 10550 6400 0    60   Input ~ 0
-PA11
-Text GLabel 10550 6150 0    60   Input ~ 0
+Text GLabel 10750 7300 0    60   Input ~ 0
+PA9
+Text GLabel 10750 6600 0    60   Input ~ 0
 PA10
-Text GLabel 10500 5650 0    60   Input ~ 0
+Text GLabel 10750 5100 0    60   Input ~ 0
 PA0
-Text GLabel 10500 5900 0    60   Input ~ 0
+Text GLabel 10700 6000 0    60   Input ~ 0
 PA1
 Wire Wire Line
-	10500 5650 10800 5650
+	10750 5100 11050 5100
 Wire Wire Line
-	10500 5900 10800 5900
+	10700 6000 11000 6000
 Wire Wire Line
-	10550 6150 10800 6150
+	10750 6600 11000 6600
 Wire Wire Line
-	10550 6400 10800 6400
-Text Label 10800 5650 0    50   ~ 0
+	10750 7300 11000 7300
+Text Label 11050 5100 0    50   ~ 0
 MOTOR0
-Text Label 10800 5900 0    50   ~ 0
+Text Label 11000 6000 0    50   ~ 0
 MOTOR1
-Text Label 10800 6150 0    50   ~ 0
+Text Label 11000 6600 0    50   ~ 0
 MOTOR2
-Text Label 10800 6400 0    50   ~ 0
+Text Label 11000 7300 0    50   ~ 0
 MOTOR3
 Text Label 12250 4850 0    50   ~ 0
 MOTOR0
-Text Label 12250 5700 0    50   ~ 0
-MOTOR1
-Text Label 12250 6500 0    50   ~ 0
-MOTOR2
-Text Label 12250 7200 0    50   ~ 0
-MOTOR3
 $Comp
 L Connector:Conn_01x03_Male J5
 U 1 1 5D268449
@@ -3318,47 +3312,8 @@ F 3 "~" H 13000 4950 50  0001 C CNN
 	1    13000 4950
 	-1   0    0    1   
 $EndComp
-$Comp
-L Connector:Conn_01x03_Male J17
-U 1 1 5D2687A6
-P 13000 5800
-F 0 "J17" H 12973 5730 50  0000 R CNN
-F 1 "Conn_01x03_Male" H 12973 5821 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 13000 5800 50  0001 C CNN
-F 3 "~" H 13000 5800 50  0001 C CNN
-	1    13000 5800
-	-1   0    0    1   
-$EndComp
-$Comp
-L Connector:Conn_01x03_Male J18
-U 1 1 5D268A46
-P 13000 6600
-F 0 "J18" H 12973 6530 50  0000 R CNN
-F 1 "Conn_01x03_Male" H 12973 6621 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 13000 6600 50  0001 C CNN
-F 3 "~" H 13000 6600 50  0001 C CNN
-	1    13000 6600
-	-1   0    0    1   
-$EndComp
-$Comp
-L Connector:Conn_01x03_Male J19
-U 1 1 5D268CE1
-P 13000 7300
-F 0 "J19" H 12973 7230 50  0000 R CNN
-F 1 "Conn_01x03_Male" H 12973 7321 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 13000 7300 50  0001 C CNN
-F 3 "~" H 13000 7300 50  0001 C CNN
-	1    13000 7300
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	12250 4850 12800 4850
-Wire Wire Line
-	12250 5700 12800 5700
-Wire Wire Line
-	12250 6500 12800 6500
-Wire Wire Line
-	12250 7200 12800 7200
 $Comp
 L power:+5V #PWR0115
 U 1 1 5DA8AB00
@@ -3371,14 +3326,212 @@ F 3 "" H 12050 4950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR0116
-U 1 1 5DA8B9DD
-P 12050 5800
-F 0 "#PWR0116" H 12050 5650 50  0001 C CNN
-F 1 "+5V" H 12065 5973 50  0000 C CNN
-F 2 "" H 12050 5800 50  0001 C CNN
-F 3 "" H 12050 5800 50  0001 C CNN
-	1    12050 5800
+L power:GND #PWR0121
+U 1 1 5DFD75A3
+P 12650 5150
+F 0 "#PWR0121" H 12650 4900 50  0001 C CNN
+F 1 "GND" H 12655 4977 50  0000 C CNN
+F 2 "" H 12650 5150 50  0001 C CNN
+F 3 "" H 12650 5150 50  0001 C CNN
+	1    12650 5150
+	1    0    0    -1  
+$EndComp
+Text GLabel 11500 8500 0    60   Input ~ 0
+PB3
+Text GLabel 11500 8700 0    60   Input ~ 0
+PB5
+Wire Wire Line
+	11500 8500 11750 8500
+Wire Wire Line
+	11500 8700 11750 8700
+Text Label 11750 8500 0    50   ~ 0
+RELAY_CTR1
+Text Label 11750 8700 0    50   ~ 0
+RELAY_CTR2
+$Comp
+L Connector:Conn_01x04_Male J21
+U 1 1 5CEFBA46
+P 13350 8600
+F 0 "J21" H 13323 8480 50  0000 R CNN
+F 1 "Conn_01x04_Male" H 13323 8571 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 13350 8600 50  0001 C CNN
+F 3 "~" H 13350 8600 50  0001 C CNN
+	1    13350 8600
+	-1   0    0    1   
+$EndComp
+Text Label 12400 8500 0    50   ~ 0
+RELAY_CTR1
+Text Label 12400 8700 0    50   ~ 0
+RELAY_CTR2
+Wire Wire Line
+	12400 8500 13150 8500
+Wire Wire Line
+	12400 8700 12400 8600
+Wire Wire Line
+	12400 8600 13150 8600
+$Comp
+L power:GND #PWR0123
+U 1 1 5D05FAF7
+P 13050 8900
+F 0 "#PWR0123" H 13050 8650 50  0001 C CNN
+F 1 "GND" H 13055 8727 50  0000 C CNN
+F 2 "" H 13050 8900 50  0001 C CNN
+F 3 "" H 13050 8900 50  0001 C CNN
+	1    13050 8900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	13050 8900 13050 8700
+Wire Wire Line
+	13050 8700 13150 8700
+Wire Wire Line
+	13050 8250 13050 8400
+Wire Wire Line
+	13050 8400 13150 8400
+$Comp
+L power:+3V3 #PWR0124
+U 1 1 5D116714
+P 13050 8250
+F 0 "#PWR0124" H 13050 8100 50  0001 C CNN
+F 1 "+3V3" H 13065 8423 50  0000 C CNN
+F 2 "" H 13050 8250 50  0001 C CNN
+F 3 "" H 13050 8250 50  0001 C CNN
+	1    13050 8250
+	1    0    0    -1  
+$EndComp
+Text GLabel 11450 10900 0    60   Input ~ 0
+PA12
+Text GLabel 11450 10600 0    60   Input ~ 0
+PA11
+Wire Wire Line
+	11450 10900 11850 10900
+Text Label 11850 10900 0    50   ~ 0
+RockRX
+Wire Wire Line
+	11450 10600 11850 10600
+Text Label 11850 10600 0    50   ~ 0
+RockTX
+Text GLabel 11450 10350 0    60   Input ~ 0
+PB10
+Wire Wire Line
+	11450 10350 11850 10350
+Text Label 11850 10350 0    50   ~ 0
+RockSleep
+$Comp
+L Connector:Conn_01x05_Male J20
+U 1 1 5D7AA3B8
+P 13050 10300
+F 0 "J20" H 13023 10230 50  0000 R CNN
+F 1 "Conn_01x05_Male" H 13023 10321 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 13050 10300 50  0001 C CNN
+F 3 "~" H 13050 10300 50  0001 C CNN
+	1    13050 10300
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR0125
+U 1 1 5D7AA6C1
+P 12350 11100
+F 0 "#PWR0125" H 12350 10850 50  0001 C CNN
+F 1 "GND" H 12355 10927 50  0000 C CNN
+F 2 "" H 12350 11100 50  0001 C CNN
+F 3 "" H 12350 11100 50  0001 C CNN
+	1    12350 11100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	12350 11100 12350 10100
+Wire Wire Line
+	12350 10100 12850 10100
+$Comp
+L power:+5V #PWR0126
+U 1 1 5D7E8DA3
+P 12650 9850
+F 0 "#PWR0126" H 12650 9700 50  0001 C CNN
+F 1 "+5V" H 12665 10023 50  0000 C CNN
+F 2 "" H 12650 9850 50  0001 C CNN
+F 3 "" H 12650 9850 50  0001 C CNN
+	1    12650 9850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	12650 9850 12650 10200
+Wire Wire Line
+	12650 10200 12850 10200
+Text Label 12450 10300 0    50   ~ 0
+RockSleep
+Wire Wire Line
+	12450 10300 12850 10300
+Text Label 12450 10400 0    50   ~ 0
+RockTX
+Wire Wire Line
+	12450 10400 12850 10400
+Text Label 12450 10500 0    50   ~ 0
+RockRX
+Wire Wire Line
+	12450 10500 12850 10500
+Wire Wire Line
+	12050 4950 12800 4950
+Wire Wire Line
+	12650 6700 12800 6700
+Wire Wire Line
+	12650 6800 12650 6700
+$Comp
+L power:GND #PWR0122
+U 1 1 5E012C13
+P 12650 6800
+F 0 "#PWR0122" H 12650 6550 50  0001 C CNN
+F 1 "GND" H 12655 6627 50  0000 C CNN
+F 2 "" H 12650 6800 50  0001 C CNN
+F 3 "" H 12650 6800 50  0001 C CNN
+	1    12650 6800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	12650 5900 12800 5900
+Wire Wire Line
+	12650 6000 12650 5900
+$Comp
+L power:GND #PWR0120
+U 1 1 5DF9A30C
+P 12650 6000
+F 0 "#PWR0120" H 12650 5750 50  0001 C CNN
+F 1 "GND" H 12655 5827 50  0000 C CNN
+F 2 "" H 12650 6000 50  0001 C CNN
+F 3 "" H 12650 6000 50  0001 C CNN
+	1    12650 6000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	12700 7400 12800 7400
+Wire Wire Line
+	12700 7550 12700 7400
+$Comp
+L power:GND #PWR0119
+U 1 1 5DF5FC36
+P 12700 7550
+F 0 "#PWR0119" H 12700 7300 50  0001 C CNN
+F 1 "GND" H 12705 7377 50  0000 C CNN
+F 2 "" H 12700 7550 50  0001 C CNN
+F 3 "" H 12700 7550 50  0001 C CNN
+	1    12700 7550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	12050 7300 12800 7300
+Wire Wire Line
+	12050 6600 12800 6600
+Wire Wire Line
+	12050 5800 12800 5800
+$Comp
+L power:+5V #PWR0118
+U 1 1 5DAFC524
+P 12050 7300
+F 0 "#PWR0118" H 12050 7150 50  0001 C CNN
+F 1 "+5V" H 12065 7473 50  0000 C CNN
+F 2 "" H 12050 7300 50  0001 C CNN
+F 3 "" H 12050 7300 50  0001 C CNN
+	1    12050 7300
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -3393,82 +3546,63 @@ F 3 "" H 12050 6600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR0118
-U 1 1 5DAFC524
-P 12050 7300
-F 0 "#PWR0118" H 12050 7150 50  0001 C CNN
-F 1 "+5V" H 12065 7473 50  0000 C CNN
-F 2 "" H 12050 7300 50  0001 C CNN
-F 3 "" H 12050 7300 50  0001 C CNN
-	1    12050 7300
+L power:+5V #PWR0116
+U 1 1 5DA8B9DD
+P 12050 5800
+F 0 "#PWR0116" H 12050 5650 50  0001 C CNN
+F 1 "+5V" H 12065 5973 50  0000 C CNN
+F 2 "" H 12050 5800 50  0001 C CNN
+F 3 "" H 12050 5800 50  0001 C CNN
+	1    12050 5800
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	12050 4950 12800 4950
+	12250 7200 12800 7200
 Wire Wire Line
-	12050 5800 12800 5800
+	12250 6500 12800 6500
 Wire Wire Line
-	12050 6600 12800 6600
-Wire Wire Line
-	12050 7300 12800 7300
+	12250 5700 12800 5700
 $Comp
-L power:GND #PWR0119
-U 1 1 5DF5FC36
-P 12700 7550
-F 0 "#PWR0119" H 12700 7300 50  0001 C CNN
-F 1 "GND" H 12705 7377 50  0000 C CNN
-F 2 "" H 12700 7550 50  0001 C CNN
-F 3 "" H 12700 7550 50  0001 C CNN
-	1    12700 7550
-	1    0    0    -1  
+L Connector:Conn_01x03_Male J19
+U 1 1 5D268CE1
+P 13000 7300
+F 0 "J19" H 12973 7230 50  0000 R CNN
+F 1 "Conn_01x03_Male" H 12973 7321 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 13000 7300 50  0001 C CNN
+F 3 "~" H 13000 7300 50  0001 C CNN
+	1    13000 7300
+	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	12700 7550 12700 7400
-Wire Wire Line
-	12700 7400 12800 7400
 $Comp
-L power:GND #PWR0120
-U 1 1 5DF9A30C
-P 12650 6000
-F 0 "#PWR0120" H 12650 5750 50  0001 C CNN
-F 1 "GND" H 12655 5827 50  0000 C CNN
-F 2 "" H 12650 6000 50  0001 C CNN
-F 3 "" H 12650 6000 50  0001 C CNN
-	1    12650 6000
-	1    0    0    -1  
+L Connector:Conn_01x03_Male J18
+U 1 1 5D268A46
+P 13000 6600
+F 0 "J18" H 12973 6530 50  0000 R CNN
+F 1 "Conn_01x03_Male" H 12973 6621 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 13000 6600 50  0001 C CNN
+F 3 "~" H 13000 6600 50  0001 C CNN
+	1    13000 6600
+	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	12650 6000 12650 5900
-Wire Wire Line
-	12650 5900 12800 5900
 $Comp
-L power:GND #PWR0121
-U 1 1 5DFD75A3
-P 12650 5150
-F 0 "#PWR0121" H 12650 4900 50  0001 C CNN
-F 1 "GND" H 12655 4977 50  0000 C CNN
-F 2 "" H 12650 5150 50  0001 C CNN
-F 3 "" H 12650 5150 50  0001 C CNN
-	1    12650 5150
-	1    0    0    -1  
+L Connector:Conn_01x03_Male J17
+U 1 1 5D2687A6
+P 13000 5800
+F 0 "J17" H 12973 5730 50  0000 R CNN
+F 1 "Conn_01x03_Male" H 12973 5821 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 13000 5800 50  0001 C CNN
+F 3 "~" H 13000 5800 50  0001 C CNN
+	1    13000 5800
+	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	12650 5150 12650 5050
+Text Label 12250 7200 0    50   ~ 0
+MOTOR3
+Text Label 12250 6500 0    50   ~ 0
+MOTOR2
+Text Label 12250 5700 0    50   ~ 0
+MOTOR1
 Wire Wire Line
 	12650 5050 12800 5050
-$Comp
-L power:GND #PWR0122
-U 1 1 5E012C13
-P 12650 6800
-F 0 "#PWR0122" H 12650 6550 50  0001 C CNN
-F 1 "GND" H 12655 6627 50  0000 C CNN
-F 2 "" H 12650 6800 50  0001 C CNN
-F 3 "" H 12650 6800 50  0001 C CNN
-	1    12650 6800
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	12650 6800 12650 6700
-Wire Wire Line
-	12650 6700 12800 6700
+	12650 5150 12650 5050
 $EndSCHEMATC
