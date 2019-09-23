@@ -1,3 +1,13 @@
+/**
+ * HAB4 flight code.
+ * 
+ * Includes functions for recieving data,
+ * writing it to the SD card,
+ * and the main control loop.
+ * 
+ * Originally based from the HAB3 flight code.
+ * 
+ */
 #include <IridiumSBD.h>
 #include <Adafruit_GPS.h>
 #include "IntersemaBaro.h"
@@ -6,6 +16,7 @@
 #include <Wire.h>
 #include "RTClib.h" 
 #include <SD.h>
+
 
 #define LOG_FILE "datalog.txt"
 #define DATA_DELAY_TIME 10000
@@ -24,6 +35,7 @@
 #define CTR1 D3
 #define CTR2 D4
 
+
 //Define SPI slave select pins
 #define altimeterChipSelect D7 // IMPORTANT!!!!! IF THIS IS CHANGED, YOU MUST CHANGE chipSelect IN IntersemaBaro.h
 #define thermocoupleChipSelect D9
@@ -40,27 +52,47 @@ Intersema::BaroPressure_MS5607B baro;
 Adafruit_MAX31855 thermocouple(thermocoupleChipSelect);
 RTC_PCF8523 rtc;
 
+/**
+ * 
+ * DATA STRUCTURES
+ * 
+ */
 
+ /**
+  * Structure for RTC data
+  */
 struct RTCData {
   byte hour, minute, second;
 };
 
+ /**
+  * Structure for ThermocoupleData data
+  */
 struct ThermocoupleData {
   double internal, external, externalFarenheit;
 };
 
-
+/**
+ * Structure for holding GPS data
+ */
 struct GPSData {
   bool fix;
   uint8_t fixQuality, satellites;
   float speed, latitude, longitude, altitude, angle;
 };
 
+/**
+ * Structure for holding Altimeter data
+ */
 struct AltimeterData {
   double heightMeters1, heightMeters2;
   int32_t pressure1, pressure2, temperature1, temperature2;
 };
 
+/**
+ * sets the CTR1, CTR2 pins depending on which
+ * reciever rf chosen.
+ */
 void setMode(int rf) {
   digitalWrite(CTR1, LOW);
   digitalWrite(CTR2, LOW);
@@ -103,13 +135,6 @@ bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, Thermo
     dataFile.print(rtcData->second, DEC); dataFile.print("\n");
 
     dataFile.print("GPS Data || ");
-    /*
-    struct GPSData {
-      bool fix;
-      uint8_t fixQuality, satellites;
-      float speed, latitude, longitude, altitude, angle;
-    }
-    */
     dataFile.print("Fix: "); dataFile.print( (int) gpsData->fix, DEC ); dataFile.print(", ");
     dataFile.print("Fix Quality: "); dataFile.print((int) gpsData->fixQuality, DEC); dataFile.print(", ");
     dataFile.print("Speed: "); dataFile.print(gpsData->speed, DEC); dataFile.print(" Knots\n ");
@@ -119,12 +144,6 @@ bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, Thermo
     dataFile.print("Angle: "); dataFile.print(gpsData->angle, DEC); dataFile.print("\n\n");
 
     dataFile.print("Altimeter Data || ");
-    /*
-    struct AltimeterData {
-      double heightMeters1, heightMeters2;
-      int32_t pressure1, pressure2, temperature1, temperature2;
-    }
-    */
     dataFile.print("Height (1st/2nd): "); dataFile.print(altimeterData->heightMeters1, DEC); 
     dataFile.print(" / "); dataFile.print(altimeterData->heightMeters2, DEC); dataFile.print(" Meters\n ");
     dataFile.print("Pressure (1st/2nd): "); dataFile.print(altimeterData->pressure1, DEC); 
@@ -164,6 +183,7 @@ bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, Thermo
       float speed, latitude, longitude, altitude, angle;
     }
     */
+    //prints all GPSData info.
     Serial.print("Fix: "); Serial.print( (int) gpsData->fix, DEC ); Serial.print(", ");
     Serial.print("Fix Quality: "); Serial.print((int) gpsData->fixQuality, DEC); Serial.print(", ");
     Serial.print("Speed: "); Serial.print(gpsData->speed, DEC); Serial.print(" Knots\n");
@@ -439,9 +459,13 @@ void rockBlockSendData(const char* data) {
 
   int bestQuality;
 
-  if (quality1 > quality2 && quality1 > quality3) { Serial.print("1st antenna is best, with signal quality "); Serial.println(quality1); setMode(1); bestQuality = quality1; }
-  else if (quality2 > quality1 && quality2 > quality3) { Serial.print("2nd antenna is best, with signal quality "); Serial.println(quality2); setMode(2); bestQuality = quality2; }
-  else { Serial.print("Third antenna is best, with signal quality "); Serial.println(quality3); setMode(3); bestQuality = quality3; }
+  if (quality1 > quality2 && quality1 > quality3) { 
+    Serial.print("1st antenna is best, with signal quality "); Serial.println(quality1); setMode(1); bestQuality = quality1; 
+  } else if (quality2 > quality1 && quality2 > quality3) {
+    Serial.print("2nd antenna is best, with signal quality "); Serial.println(quality2); setMode(2); bestQuality = quality2; 
+  } else { 
+    Serial.print("Third antenna is best, with signal quality "); Serial.println(quality3); setMode(3); bestQuality = quality3; 
+  }
 
   if (bestQuality == 0) {
     Serial.println("No antenna can transmit... skipping.");
@@ -454,8 +478,9 @@ void rockBlockSendData(const char* data) {
   {
     Serial.print("sendSBDText failed: error ");
     Serial.println(err);
-    if (err == ISBD_SENDRECEIVE_TIMEOUT)
+    if (err == ISBD_SENDRECEIVE_TIMEOUT) {
       Serial.println("Try again with a better view of the sky.");
+    }
   }
   else
   {
