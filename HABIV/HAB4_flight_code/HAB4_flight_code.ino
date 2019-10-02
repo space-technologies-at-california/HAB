@@ -20,6 +20,8 @@
 #include "RTClib.h" 
 #include <SD.h>
 
+#include <SparkFunLSM9DS1.h> //IMU library
+
 
 #define LOG_FILE "datalog.txt"
 #define DATA_DELAY_TIME 10000
@@ -38,6 +40,13 @@
 #define CTR1 D3
 #define CTR2 D4
 
+//Define IMU pins
+#define LSM9DS1_M_CS  10 // PLEASE FILL THIS IN WITH CORRECT VALUE
+#define LSM9DS1_AG_CS 9  // PLEASE FILL THIS IN WITH CORRECT VALUE
+#define DECLINATION 13.25 // https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#declination
+
+
+
 
 //Define SPI slave select pins
 #define altimeterChipSelect D7 // IMPORTANT!!!!! IF THIS IS CHANGED, YOU MUST CHANGE chipSelect IN IntersemaBaro.h
@@ -54,6 +63,10 @@ Adafruit_GPS GPS(&GPSSerial);
 Intersema::BaroPressure_MS5607B baro;
 Adafruit_MAX31855 thermocouple(thermocoupleChipSelect);
 RTC_PCF8523 rtc;
+
+//Declare IMU
+LSM9DS1 imu;
+
 
 /**
  * 
@@ -573,6 +586,11 @@ void setup()
 
   Serial.println("About to start RockBLOCK");
   startRockBlock();
+
+
+  imu.settings.device.commInterface = IMU_MODE_SPI;
+  imu.settings.device.mAddress = LSM9DS1_M_CS;
+  imu.settings.device.agAddress = LSM9DS1_AG_CS;
   
 }
 
