@@ -7,6 +7,9 @@
  * 
  * Originally based from the HAB3 flight code.
  * 
+ * 
+ * BOARD: STM32F4 SERIES
+ * 
  */
 #include <IridiumSBD.h>
 #include <Adafruit_GPS.h>
@@ -316,6 +319,7 @@ bool getAltimeterData(AltimeterData* data) {
 bool startAltimeter() {
   Serial.println("Initializing the Altimeter");
   baro.init();
+  return true;
 }
 
 uint32_t timer = millis();
