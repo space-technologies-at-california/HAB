@@ -106,6 +106,13 @@ struct AltimeterData {
 };
 
 /**
+ * Structure for holding IMU data
+ */
+struct IMUData {
+  float gx, gy, gz, ax, ay, az, mx, my, mz;
+};
+
+/**
  * sets the CTR1, CTR2 pins depending on which
  * reciever rf chosen.
  */
@@ -124,12 +131,13 @@ void setMode(int rf) {
 /**
  * Buffers all peripheral data into the given structs.
 */
-bool getAllData(GPSData* gpsData, AltimeterData* altimeterData, ThermocoupleData* thermocoupleData, RTCData* rtcData) {
+bool getAllData(GPSData* gpsData, AltimeterData* altimeterData, ThermocoupleData* thermocoupleData, RTCData* rtcData, IMUData* imuData) {
   
   getGPSData(gpsData);
   getAltimeterData(altimeterData);
   getThermocoupleData(thermocoupleData);
   getRTCData(rtcData);
+  getIMUData(imuData, true); //True for DPS values
 
   return true;
 }
@@ -258,6 +266,40 @@ bool getRTCData(RTCData* data) {
   data->minute = now.minute();
   data->second = now.second();
   return true; 
+}
+
+/**
+ *  Gets the IMU data
+ *  Takes in RTCData pointer and bool:
+ * TRUE: adc output
+ * FALSE: dps output
+ */
+bool getIMUData(IMUData* data, bool adcdps) {
+  Serial.println("Getting IMU data");
+  imu.readGyro();
+  imu.readGyro();
+  imu.readGyro();
+  #ifdef adcdps
+    data->gx = imu.gx;
+    data->gy = imu.gy;
+    data->gz = imu.gz;
+    data->ax = imu.ax;
+    data->ay = imu.ay;
+    data->az = imu.az;
+    data->mx = imu.mx;
+    data->my = imu.my;
+    data->mz = imu.mz;
+  #else
+    data->gx = imu.calcGyro(imu.gx);  //in Deg per S
+    data->gy = imu.calcGyro(imu.gy);
+    data->gz = imu.calcGyro(imu.gz);
+    data->ax = imu.calcAccel(imu.ax); //in g's
+    data->ay = imu.calcAccel(imu.ay);
+    data->az = imu.calcAccel(imu.az);
+    data->mx = imu.calcMag(imu.mx);   //in Gauss
+    data->my = imu.calcMag(imu.my);
+    data->mz = imu.calcMag(imu.mz);
+  #endif
 }
 
 /**
@@ -588,9 +630,14 @@ void setup()
   startRockBlock();
 
 
+  Serial.println("About to start IMU");
   imu.settings.device.commInterface = IMU_MODE_SPI;
   imu.settings.device.mAddress = LSM9DS1_M_CS;
   imu.settings.device.agAddress = LSM9DS1_AG_CS;
+  
+  if (!imu.begin()) {
+      Serial.println("Failed to communicate with LSM9DS1.");
+  }
   
 }
 
@@ -605,8 +652,9 @@ void loop()
   AltimeterData altimeterData;
   ThermocoupleData thermocoupleData;
   RTCData rtcData;
+  IMUData imuData;
 
-  getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData);  
+  getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData, &imuData);  
   //writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData);
 
   //Should we send data to ground?
