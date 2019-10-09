@@ -7,6 +7,10 @@
  * 
  * Originally based from the HAB3 flight code.
  * 
+ * 
+ * BOARD: GENERIC STM32F4 SERIES
+ * BLACK F407VE
+ * 
  */
 #include <IridiumSBD.h>
 #include <Adafruit_GPS.h>
@@ -16,6 +20,8 @@
 #include <Wire.h>
 #include "RTClib.h" 
 #include <SD.h>
+
+#include <SparkFunLSM9DS1.h> //IMU library
 
 
 #define LOG_FILE "datalog.txt"
@@ -35,6 +41,14 @@
 #define CTR1 D3
 #define CTR2 D4
 
+//Define IMU pins
+// SDO_XM and SDO_G are both pulled high, so our addresses are:
+#define LSM9DS1_M  0x1E // Would be 0x1C if SDO_M is LOW <---EDIT WITH CORRECT VALUES
+#define LSM9DS1_AG  0x6B // Would be 0x6A if SDO_AG is LOW <---EDIT WITH CORRECT VALUES
+#define DECLINATION 13.25 // https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#declination
+
+
+
 
 //Define SPI slave select pins
 #define altimeterChipSelect D7 // IMPORTANT!!!!! IF THIS IS CHANGED, YOU MUST CHANGE chipSelect IN IntersemaBaro.h
@@ -51,6 +65,10 @@ Adafruit_GPS GPS(&GPSSerial);
 Intersema::BaroPressure_MS5607B baro;
 Adafruit_MAX31855 thermocouple(thermocoupleChipSelect);
 RTC_PCF8523 rtc;
+
+//Declare IMU
+LSM9DS1 imu;
+
 
 /**
  * 
@@ -90,6 +108,13 @@ struct AltimeterData {
 };
 
 /**
+ * Structure for holding IMU data
+ */
+struct IMUData {
+  float gx, gy, gz, ax, ay, az, mx, my, mz;
+};
+
+/**
  * sets the CTR1, CTR2 pins depending on which
  * reciever rf chosen.
  */
@@ -108,12 +133,13 @@ void setMode(int rf) {
 /**
  * Buffers all peripheral data into the given structs.
 */
-bool getAllData(GPSData* gpsData, AltimeterData* altimeterData, ThermocoupleData* thermocoupleData, RTCData* rtcData) {
+bool getAllData(GPSData* gpsData, AltimeterData* altimeterData, ThermocoupleData* thermocoupleData, RTCData* rtcData, IMUData* imuData) {
   
   getGPSData(gpsData);
   getAltimeterData(altimeterData);
   getThermocoupleData(thermocoupleData);
   getRTCData(rtcData);
+  getIMUData(imuData, true); //True for DPS values
 
   return true;
 }
@@ -245,6 +271,41 @@ bool getRTCData(RTCData* data) {
 }
 
 /**
+ *  Gets the IMU data
+ *  Takes in RTCData pointer and bool:
+ * TRUE: adc output
+ * FALSE: dps output
+ */
+bool getIMUData(IMUData* data, bool adcdps) {
+  Serial.println("Getting IMU data");
+  imu.readGyro();
+  imu.readGyro();
+  imu.readGyro();
+  #ifdef adcdps
+    data->gx = imu.gx;
+    data->gy = imu.gy;
+    data->gz = imu.gz;
+    data->ax = imu.ax;
+    data->ay = imu.ay;
+    data->az = imu.az;
+    data->mx = imu.mx;
+    data->my = imu.my;
+    data->mz = imu.mz;
+  #else
+    data->gx = imu.calcGyro(imu.gx);  //in Deg per S
+    data->gy = imu.calcGyro(imu.gy);
+    data->gz = imu.calcGyro(imu.gz);
+    data->ax = imu.calcAccel(imu.ax); //in g's
+    data->ay = imu.calcAccel(imu.ay);
+    data->az = imu.calcAccel(imu.az);
+    data->mx = imu.calcMag(imu.mx);   //in Gauss
+    data->my = imu.calcMag(imu.my);
+    data->mz = imu.calcMag(imu.mz);
+  #endif
+  return true;
+}
+
+/**
  * Starts up the RTC. Returns false in the event of failure.
 */
 bool startRTC() {
@@ -316,6 +377,7 @@ bool getAltimeterData(AltimeterData* data) {
 bool startAltimeter() {
   Serial.println("Initializing the Altimeter");
   baro.init();
+  return true;
 }
 
 uint32_t timer = millis();
@@ -569,6 +631,16 @@ void setup()
 
   Serial.println("About to start RockBLOCK");
   startRockBlock();
+
+
+  Serial.println("About to start IMU");
+  imu.settings.device.commInterface = IMU_MODE_I2C;
+  imu.settings.device.mAddress = LSM9DS1_M;
+  imu.settings.device.agAddress = LSM9DS1_AG;
+  
+  if (!imu.begin()) {
+      Serial.println("Failed to communicate with LSM9DS1.");
+  }
   
 }
 
@@ -583,8 +655,9 @@ void loop()
   AltimeterData altimeterData;
   ThermocoupleData thermocoupleData;
   RTCData rtcData;
+  IMUData imuData;
 
-  getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData);  
+  getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData, &imuData);  
   //writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData);
 
   //Should we send data to ground?
