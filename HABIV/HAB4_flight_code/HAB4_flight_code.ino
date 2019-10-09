@@ -8,7 +8,8 @@
  * Originally based from the HAB3 flight code.
  * 
  * 
- * BOARD: STM32F4 SERIES
+ * BOARD: GENERIC STM32F4 SERIES
+ * BLACK F407VE
  * 
  */
 #include <IridiumSBD.h>
@@ -41,8 +42,9 @@
 #define CTR2 D4
 
 //Define IMU pins
-#define LSM9DS1_M_CS  10 // PLEASE FILL THIS IN WITH CORRECT VALUE
-#define LSM9DS1_AG_CS 9  // PLEASE FILL THIS IN WITH CORRECT VALUE
+// SDO_XM and SDO_G are both pulled high, so our addresses are:
+#define LSM9DS1_M  0x1E // Would be 0x1C if SDO_M is LOW <---EDIT WITH CORRECT VALUES
+#define LSM9DS1_AG  0x6B // Would be 0x6A if SDO_AG is LOW <---EDIT WITH CORRECT VALUES
 #define DECLINATION 13.25 // https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#declination
 
 
@@ -300,6 +302,7 @@ bool getIMUData(IMUData* data, bool adcdps) {
     data->my = imu.calcMag(imu.my);
     data->mz = imu.calcMag(imu.mz);
   #endif
+  return true;
 }
 
 /**
@@ -631,9 +634,9 @@ void setup()
 
 
   Serial.println("About to start IMU");
-  imu.settings.device.commInterface = IMU_MODE_SPI;
-  imu.settings.device.mAddress = LSM9DS1_M_CS;
-  imu.settings.device.agAddress = LSM9DS1_AG_CS;
+  imu.settings.device.commInterface = IMU_MODE_I2C;
+  imu.settings.device.mAddress = LSM9DS1_M;
+  imu.settings.device.agAddress = LSM9DS1_AG;
   
   if (!imu.begin()) {
       Serial.println("Failed to communicate with LSM9DS1.");
