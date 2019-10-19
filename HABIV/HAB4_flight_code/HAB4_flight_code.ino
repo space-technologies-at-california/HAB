@@ -20,6 +20,7 @@
 #include <Wire.h>
 #include "RTClib.h" 
 #include <SD.h>
+#include <Servo.h> 
 
 #include <SparkFunLSM9DS1.h> //IMU library
 
@@ -35,6 +36,7 @@
 #define IridiumTX PA11
 #define GPSRX D2
 #define GPSTX D10 
+#include "SoftwareSerial.h" //FOR XBEE
 
 #define IridiumSleep D6
 
@@ -46,6 +48,9 @@
 #define LSM9DS1_M  0x1E // Would be 0x1C if SDO_M is LOW <---EDIT WITH CORRECT VALUES
 #define LSM9DS1_AG  0x6B // Would be 0x6A if SDO_AG is LOW <---EDIT WITH CORRECT VALUES
 #define DECLINATION 13.25 // https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#declination
+
+//SERVO
+#define servoPin 8; //CHANGE!
 
 
 
@@ -68,6 +73,14 @@ RTC_PCF8523 rtc;
 
 //Declare IMU
 LSM9DS1 imu;
+
+//XBEE COMMUNICATION
+// RX: Arduino pin 2, XBee pin DOUT.  TX:  Arduino pin 3, XBee pin DIN
+SoftwareSerial XBee(2, 3); //CHANGE PINS <--- long range: ground to payload
+//SoftwareSerial XBee(4, 5); //CHANGE PINS <--- short range: payload to balloon
+
+//SERVO
+Servo servo;
 
 
 /**
@@ -304,6 +317,24 @@ bool getIMUData(IMUData* data, bool adcdps) {
   #endif
   return true;
 }
+
+/**
+ * Gets data from the balloon Flora:
+ * 
+ * 
+ */
+bool getBalloonData(IMUData* data) {
+  return true;
+}
+
+/**
+ * Gets servo angle value from XBee
+ */
+int XBeeCRead() {
+  return XBee.read();
+}
+
+
 
 /**
  * Starts up the RTC. Returns false in the event of failure.
@@ -641,6 +672,11 @@ void setup()
   if (!imu.begin()) {
       Serial.println("Failed to communicate with LSM9DS1.");
   }
+
+  servo.attach(servoPin);
+  servo.write(90); //middle
+
+  
   
 }
 
@@ -649,13 +685,15 @@ int rockBlockSendRate = 60000;
 
 void loop()
 {
-
   Serial.println("Looping");
   GPSData gpsData;
   AltimeterData altimeterData;
   ThermocoupleData thermocoupleData;
   RTCData rtcData;
   IMUData imuData;
+
+  //control angle
+  static int angle = 90;
 
   getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData, &imuData);  
   //writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData);
@@ -697,6 +735,15 @@ void loop()
     rockBlockSendTime = millis() + rockBlockSendRate; // Only send data through rock block once every minute.
   }
 
+  /*
+   * Controls section of the loop!
+   */
+  if (XBee.available() > 0) {
+    angle = XBeeCRead();
+  }
+
+  servo.write(angle);
+  
   delay(DATA_DELAY_TIME);
 
 }
