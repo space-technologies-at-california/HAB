@@ -50,7 +50,8 @@
 #define DECLINATION 13.25 // https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#declination
 
 //SERVO
-#define servoPin 8; //CHANGE!
+#define servoPinL 8 //CHANGE!
+#define servoPinR 9 //CHANGE!
 
 
 
@@ -80,7 +81,8 @@ SoftwareSerial XBee(2, 3); //CHANGE PINS <--- long range: ground to payload
 //SoftwareSerial XBee(4, 5); //CHANGE PINS <--- short range: payload to balloon
 
 //SERVO
-Servo servo;
+Servo servoL;
+Servo servoR;
 
 
 /**
@@ -327,14 +329,19 @@ bool getBalloonData(IMUData* data) {
   return true;
 }
 
+
 /**
- * Gets servo angle value from XBee
+ * Gets the data from the Xbee and converts it to something controllable
+ * 
  */
-int XBeeCRead() {
-  return XBee.read();
+int getXBeeControl() {
+  int input = XBee.read();
+  if (input > 128) {
+    return (int) 1.40625 * (input - 128);
+  } else {
+    return (int) -1.40625 * input;
+  }
 }
-
-
 
 /**
  * Starts up the RTC. Returns false in the event of failure.
@@ -673,8 +680,10 @@ void setup()
       Serial.println("Failed to communicate with LSM9DS1.");
   }
 
-  servo.attach(servoPin);
-  servo.write(90); //middle
+  servoL.attach(servoPinL);
+  servoR.attach(servoPinR);
+  servoL.write(0); //pointed straight up
+  servoR.write(0); //pointed straight up
 
   
   
@@ -693,7 +702,9 @@ void loop()
   IMUData imuData;
 
   //control angle
-  static int angle = 90;
+  static int angleR = 0;
+  static int angleL = 0;
+  int input;
 
   getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData, &imuData);  
   //writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData);
@@ -737,12 +748,27 @@ void loop()
 
   /*
    * Controls section of the loop!
+   * 
+   * input should be a 
    */
   if (XBee.available() > 0) {
-    angle = XBeeCRead();
+    input = getXBeeControl();
+
+    
+    if (input > 0) {
+      angleR = input;
+      
+    } else if (input < 0) {
+      angleL = -input;
+      
+    } else {
+      angleR = 0;
+      angleL = 0;
+    }
   }
 
-  servo.write(angle);
+  servoR.write(angleR);
+  servoL.write(angleL);
   
   delay(DATA_DELAY_TIME);
 
