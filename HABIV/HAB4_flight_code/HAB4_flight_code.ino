@@ -52,6 +52,7 @@
 //SERVO
 #define servoPinL 8 //CHANGE!
 #define servoPinR 9 //CHANGE!
+#define SENSITIVITY 15 //sensitivity of the controls. ie, if you give the control to move 
 
 
 
@@ -83,6 +84,8 @@ SoftwareSerial XBee(2, 3); //CHANGE PINS <--- long range: ground to payload
 //SERVO
 Servo servoL;
 Servo servoR;
+int angleR = 0; //global variable for what the right servo's angle is
+int angleL = 0; //global variable for what the left servo's angle is
 
 
 /**
@@ -334,12 +337,27 @@ bool getBalloonData(IMUData* data) {
  * Gets the data from the Xbee and converts it to something controllable
  * 
  */
+
 int getXBeeControl() {
-  int input = XBee.read();
-  if (input > 128) {
-    return (int) 1.40625 * (input - 128);
+  byte input = XBee.read(); 
+  
+  //input should be a delta: [_ _ _ _] [_ _ _ _] <- 8 bits
+  // the first 4 bits determine the delta for the left bit, the last 
+  int dL = input >> 4; //getting last 4 bits
+  int dR = input & 15; //getting first 4 bits
+
+  // converting dL to be either positive or negative.
+
+  if (dL > 7) {
+    angleL += (dL - 8) * SENSITIVITY;
   } else {
-    return (int) -1.40625 * input;
+    angleL -= dL * SENSITIVITY;
+  }
+
+  if (dR > 7) {
+    angleR += (dR - 8) * SENSITIVITY;
+  } else {
+    angleR -= dR * SENSITIVITY;
   }
 }
 
@@ -682,8 +700,8 @@ void setup()
 
   servoL.attach(servoPinL);
   servoR.attach(servoPinR);
-  servoL.write(0); //pointed straight up
-  servoR.write(0); //pointed straight up
+  servoL.write(angleL); //pointed straight up, angleL = 0
+  servoR.write(angleR); //pointed straight up, angleR = 0
 
   
   
@@ -700,10 +718,7 @@ void loop()
   ThermocoupleData thermocoupleData;
   RTCData rtcData;
   IMUData imuData;
-
-  //control angle
-  static int angleR = 0;
-  static int angleL = 0;
+  
   int input;
 
   getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData, &imuData);  
@@ -748,27 +763,17 @@ void loop()
 
   /*
    * Controls section of the loop!
-   * 
-   * input should be a 
    */
   if (XBee.available() > 0) {
-    input = getXBeeControl();
-
-    
-    if (input > 0) {
-      angleR = input;
-      
-    } else if (input < 0) {
-      angleL = -input;
-      
-    } else {
-      angleR = 0;
-      angleL = 0;
-    }
+    getXBeeControl(); //update angleL and angleR
+    servoR.write(angleR);
+    servoL.write(angleL);
   }
-
-  servoR.write(angleR);
-  servoL.write(angleL);
+  
+  Serial.print("Right servo: ");
+  Serial.println(angleR);
+  Serial.print("Left servo: ");
+  Serial.println(angleL);
   
   delay(DATA_DELAY_TIME);
 
