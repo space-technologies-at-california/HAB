@@ -343,22 +343,12 @@ int getXBeeControl() {
   
   //input should be a delta: [_ _ _ _] [_ _ _ _] <- 8 bits
   // the first 4 bits determine the delta for the left bit, the last 
-  int dL = input >> 4; //getting last 4 bits
-  int dR = input & 15; //getting first 4 bits
+  int dL = (input >> 4) - 8; //getting last 4 bits, centering them
+  int dR = (input & 15) - 8; //getting first 4 bits, centering them
 
-  // converting dL to be either positive or negative.
-
-  if (dL > 7) {
-    angleL += (dL - 8) * SENSITIVITY;
-  } else {
-    angleL -= dL * SENSITIVITY;
-  }
-
-  if (dR > 7) {
-    angleR += (dR - 8) * SENSITIVITY;
-  } else {
-    angleR -= dR * SENSITIVITY;
-  }
+  // moving servo angle by 
+  angleL += dL * SENSITIVITY;
+  angleR += dR * SENSITIVITY;
 }
 
 /**
