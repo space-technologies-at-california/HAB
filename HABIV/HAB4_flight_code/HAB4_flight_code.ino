@@ -52,6 +52,7 @@
 //SERVO
 #define servoPinL 8 //CHANGE!
 #define servoPinR 9 //CHANGE!
+#define releasePin 10 //CHANGE!
 #define SENSITIVITY 15 //sensitivity of the controls. ie, if you give the control to move 
 
 
@@ -84,8 +85,11 @@ SoftwareSerial XBee(2, 3); //CHANGE PINS <--- long range: ground to payload
 //SERVO
 Servo servoL;
 Servo servoR;
+Servo servoRelease;
 int angleR = 0; //global variable for what the right servo's angle is
 int angleL = 0; //global variable for what the left servo's angle is
+
+bool released = false;
 
 
 /**
@@ -338,17 +342,22 @@ bool getBalloonData(IMUData* data) {
  * 
  */
 
-int getXBeeControl() {
-  byte input = XBee.read(); 
+bool getXBeeControl() { //returns if the parachute should be dropped.
+  byte input = XBee.read();
   
   //input should be a delta: [_ _ _ _] [_ _ _ _] <- 8 bits
   // the first 4 bits determine the delta for the left bit, the last 
   int dL = (input >> 4) - 8; //getting last 4 bits, centering them
   int dR = (input & 15) - 8; //getting first 4 bits, centering them
 
+  if (dL == -8 || dR == -8) {
+    return true;
+  }
+
   // moving servo angle by 
   angleL += dL * SENSITIVITY;
   angleR += dR * SENSITIVITY;
+  return false;
 }
 
 /**
@@ -690,6 +699,7 @@ void setup()
 
   servoL.attach(servoPinL);
   servoR.attach(servoPinR);
+  servoRelease.attach(releasePin)
   servoL.write(angleL); //pointed straight up, angleL = 0
   servoR.write(angleR); //pointed straight up, angleR = 0
 
@@ -755,7 +765,10 @@ void loop()
    * Controls section of the loop!
    */
   if (XBee.available() > 0) {
-    getXBeeControl(); //update angleL and angleR
+    if (getXBeeControl() && !released) { //update angleL and angleR
+      released = true;
+      //move the  release servo 
+    }
     servoR.write(angleR);
     servoL.write(angleL);
   }
@@ -767,4 +780,4 @@ void loop()
   
   delay(DATA_DELAY_TIME);
 
-}
+}c
