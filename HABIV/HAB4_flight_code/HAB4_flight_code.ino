@@ -752,8 +752,8 @@ void loop()
     dataString.concat(';'); dataString.concat(speed);
     dataString.concat(';'); dataString.concat(angle);
     dataString.concat(';'); dataString.concat(externalTemp);
-    dataString.concat(';'); dataString.concat(lon);
     dataString.concat(';'); dataString.concat(lat);
+    dataString.concat(';'); dataString.concat(lon);
 
     Serial.print("Attmepting to send ################################################################################################");
     Serial.println(dataString);
