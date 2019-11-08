@@ -743,16 +743,17 @@ void loop()
     String altitude = String((int) altimeterData.heightMeters1, DEC);
     String externalTemp = String((int) thermocoupleData.externalFarenheit, DEC);
 
-    String dataString = String("202");
-    dataString.concat(':'); dataString.concat(hour);
-    dataString.concat(':'); dataString.concat(minute);
-    dataString.concat(':'); dataString.concat(fixQuality);
-    dataString.concat(':'); dataString.concat(speed);
-    dataString.concat(':'); dataString.concat(angle);
-    dataString.concat(':'); dataString.concat(lon);
-    dataString.concat(':'); dataString.concat(lat);
-    dataString.concat(':'); dataString.concat(altitude);
-    dataString.concat(':'); dataString.concat(externalTemp);
+    String dataString = String("");
+    //dataString.concat(':'); dataString.concat(hour);
+    //dataString.concat(':'); dataString.concat(minute);
+    //dataString.concat(':'); dataString.concat(fixQuality);
+    //dataString.concat(';');
+    dataString.concat(altitude);
+    dataString.concat(';'); dataString.concat(speed);
+    dataString.concat(';'); dataString.concat(angle);
+    dataString.concat(';'); dataString.concat(externalTemp);
+    dataString.concat(';'); dataString.concat(lon);
+    dataString.concat(';'); dataString.concat(lat);
 
     Serial.print("Attmepting to send ################################################################################################");
     Serial.println(dataString);
