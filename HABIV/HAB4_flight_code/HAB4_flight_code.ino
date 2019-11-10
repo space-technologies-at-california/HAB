@@ -49,11 +49,16 @@
 #define LSM9DS1_AG  0x6B // Would be 0x6A if SDO_AG is LOW <---EDIT WITH CORRECT VALUES
 #define DECLINATION 13.25 // https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#declination
 
+//XBEE
+#define XBEE_RX 10 //CHANGE!
+#define XBEE_TX 11 //CHANGE!!
+
 //SERVO
 #define servoPinL 8 //CHANGE!
 #define servoPinR 9 //CHANGE!
 #define releasePin 10 //CHANGE!
 #define SENSITIVITY 15 //sensitivity of the controls. ie, if you give the control to move 
+
 
 
 
@@ -79,8 +84,10 @@ LSM9DS1 imu;
 
 //XBEE COMMUNICATION
 // RX: Arduino pin 2, XBee pin DOUT.  TX:  Arduino pin 3, XBee pin DIN
-SoftwareSerial XBee(2, 3); //CHANGE PINS <--- long range: ground to payload
+//SoftwareSerial XBee(2, 3); //CHANGE PINS <--- long range: ground to payload
 //SoftwareSerial XBee(4, 5); //CHANGE PINS <--- short range: payload to balloon
+
+HardwareSerial XBee(XBEE_RX, XBEE_TX);
 
 //SERVO
 Servo servoL;
@@ -354,9 +361,27 @@ bool getXBeeControl() { //returns if the parachute should be dropped.
     return true;
   }
 
-  // moving servo angle by 
-  angleL += dL * SENSITIVITY;
-  angleR += dR * SENSITIVITY;
+  // moving servo angle by
+  int newAngleL = angleL + dL * SENSITIVITY;
+  int newAngleR = angleR + dR * SENSITIVITY;
+
+  //just some fail-safe stuff so we don't overturn the servos
+  
+  if (newAngleL > 180) {
+    angleL = 180;
+  } else if (newAngleL < 0) {
+    angleL = 0;
+  } else {
+    angleL = newAngleL;  
+  }
+  
+  if (newAngleR > 180) {
+    angleR = 180;
+  } else if (newAngleR < 0) {
+    angleR = 0;
+  } else {
+    angleR = newAngleR;  
+  }
   return false;
 }
 
@@ -699,7 +724,7 @@ void setup()
 
   servoL.attach(servoPinL);
   servoR.attach(servoPinR);
-  servoRelease.attach(releasePin)
+  servoRelease.attach(releasePin);
   servoL.write(angleL); //pointed straight up, angleL = 0
   servoR.write(angleR); //pointed straight up, angleR = 0
 
@@ -743,17 +768,16 @@ void loop()
     String altitude = String((int) altimeterData.heightMeters1, DEC);
     String externalTemp = String((int) thermocoupleData.externalFarenheit, DEC);
 
-    String dataString = String("");
-    //dataString.concat(':'); dataString.concat(hour);
-    //dataString.concat(':'); dataString.concat(minute);
-    //dataString.concat(':'); dataString.concat(fixQuality);
-    //dataString.concat(';');
-    dataString.concat(altitude);
-    dataString.concat(';'); dataString.concat(speed);
-    dataString.concat(';'); dataString.concat(angle);
-    dataString.concat(';'); dataString.concat(externalTemp);
-    dataString.concat(';'); dataString.concat(lat);
-    dataString.concat(';'); dataString.concat(lon);
+    String dataString = String("202");
+    dataString.concat(':'); dataString.concat(hour);
+    dataString.concat(':'); dataString.concat(minute);
+    dataString.concat(':'); dataString.concat(fixQuality);
+    dataString.concat(':'); dataString.concat(speed);
+    dataString.concat(':'); dataString.concat(angle);
+    dataString.concat(':'); dataString.concat(lon);
+    dataString.concat(':'); dataString.concat(lat);
+    dataString.concat(':'); dataString.concat(altitude);
+    dataString.concat(':'); dataString.concat(externalTemp);
 
     Serial.print("Attmepting to send ################################################################################################");
     Serial.println(dataString);
@@ -781,4 +805,4 @@ void loop()
   
   delay(DATA_DELAY_TIME);
 
-}c
+}
