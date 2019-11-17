@@ -352,13 +352,17 @@ bool getBalloonData(IMUData* data) {
 bool getXBeeControl() { //returns if the parachute should be dropped.
   byte input = XBee.read();
   
-  //input should be a delta: [_ _ _ _] [_ _ _ _] <- 8 bits
-  // the first 4 bits determine the delta for the left bit, the last 
-  int dL = (input >> 4) - 8; //getting last 4 bits, centering them
-  int dR = (input & 15) - 8; //getting first 4 bits, centering them
+  //input should be a delta angle: [_ _ _ _] [_ _ _ _] <- 8 bits
+  // the first 4 bits determine the delta for the left servo, vice versa for right servo
+  int dL = (input >> 4) - 8; //getting last 4 bits, centering them (range for dL is [-8, 7])
+  int dR = (input & 15) - 8; //getting first 4 bits, centering them (range for dR is [-8, 7])
 
-  if (dL == -8 || dR == -8) {
-    return true;
+  if ((dL == -8 && dR != -8) || (dL != -8 && dR == -8)) { //reset to zero
+    angleR = 0;
+    angleL = 0;
+    return false;
+  } else if (dL == -8 && dR == -8) { //drop command!
+    return true 
   }
 
   // moving servo angle by
