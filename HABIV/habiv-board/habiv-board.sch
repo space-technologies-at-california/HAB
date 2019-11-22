@@ -2012,26 +2012,11 @@ F 3 "" H 1850 13600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1850 14300 1850 14200
-Wire Wire Line
-	1850 14400 1850 14300
-Connection ~ 1850 14300
-Wire Wire Line
 	2600 14500 1850 14500
-Wire Wire Line
-	1850 14500 1850 14400
-Connection ~ 1850 14400
-Wire Wire Line
-	1850 14800 1850 14500
-Connection ~ 1850 14500
-Wire Wire Line
-	1850 14900 1850 14800
-Connection ~ 1850 14800
 Wire Wire Line
 	2300 15200 2450 15200
 Wire Wire Line
 	2450 15200 2450 15150
-Connection ~ 2450 14800
 Wire Wire Line
 	2450 14800 2600 14800
 $Comp
@@ -2055,7 +2040,6 @@ Wire Wire Line
 	2400 13800 2550 13800
 Wire Wire Line
 	2550 13800 2550 13950
-Connection ~ 2550 14400
 Wire Wire Line
 	2550 14400 2600 14400
 $Comp
@@ -2069,7 +2053,6 @@ F 3 "~" H 5650 13700 50  0001 C CNN
 	1    5650 13700
 	1    0    0    -1  
 $EndComp
-Connection ~ 1850 14200
 Wire Wire Line
 	5650 13850 5650 13950
 Wire Wire Line
@@ -2227,7 +2210,6 @@ F 3 "~" H 2450 15000 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	2450 14850 2450 14800
-Connection ~ 2450 14300
 Wire Wire Line
 	2450 14300 2600 14300
 $Comp
@@ -2594,18 +2576,6 @@ Text Label 17350 3200 0    50   ~ 0
 SDO
 Text Label 2300 15200 0    50   ~ 0
 SDO
-Wire Wire Line
-	1850 13600 1850 14200
-Wire Wire Line
-	1850 14200 2600 14200
-Wire Wire Line
-	1850 14300 2450 14300
-Wire Wire Line
-	1850 14400 2550 14400
-Wire Wire Line
-	1850 14800 2450 14800
-Wire Wire Line
-	1850 14900 2600 14900
 Wire Wire Line
 	17250 10600 16500 10600
 Wire Wire Line
@@ -3653,4 +3623,44 @@ Wire Wire Line
 	12700 7700 12050 7700
 Wire Wire Line
 	12050 7700 12050 7750
+Entry Wire Line
+	17750 9250 17850 9350
+Connection ~ 1850 14500
+Wire Wire Line
+	1850 14500 1850 14900
+Wire Wire Line
+	1850 13600 1850 14200
+$Comp
+L Device:R R?
+U 1 1 5DEEF05E
+P 2100 14200
+F 0 "R?" V 2000 14200 50  0000 C CNN
+F 1 "0" V 2100 14200 50  0000 C CNN
+F 2 "" V 2030 14200 50  0001 C CNN
+F 3 "~" H 2100 14200 50  0001 C CNN
+	1    2100 14200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1850 14200 1950 14200
+Connection ~ 1850 14200
+Wire Wire Line
+	1850 14200 1850 14500
+Wire Wire Line
+	2250 14200 2600 14200
+$Comp
+L Device:R R?
+U 1 1 5DF70A08
+P 2150 14900
+F 0 "R?" V 2050 14900 50  0000 C CNN
+F 1 "0" V 2150 14900 50  0000 C CNN
+F 2 "" V 2080 14900 50  0001 C CNN
+F 3 "~" H 2150 14900 50  0001 C CNN
+	1    2150 14900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1850 14900 2000 14900
+Wire Wire Line
+	2300 14900 2600 14900
 $EndSCHEMATC
