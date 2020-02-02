@@ -14,32 +14,35 @@
  */
 #include <IridiumSBD.h>
 #include <Adafruit_GPS.h>
-#include "IntersemaBaro.h"
 #include "Adafruit_MAX31855.h"
 #include <SPI.h>
 #include <Wire.h>
 #include "RTClib.h" 
 #include <SD.h>
+#include <Servo.h> 
 
-#include <SparkFunLSM9DS1.h> //IMU library
+#include <IntersemaBaro.h>
 
+#include <Adafruit_LSM9DS1.h>
+#include <Adafruit_Sensor.h>
 
 #define LOG_FILE "datalog.txt"
 #define DATA_DELAY_TIME 10000
 
 #define DIAGNOSTICS false // Iridium Diagnostics
-#define GPSECHO false     // GPS Diagnostics
+#define GPSECHO true     // GPS Diagnostics
 
 //Define serial communication pins
 #define IridiumRX PA12
 #define IridiumTX PA11
-#define GPSRX D2
-#define GPSTX D10 
+#define GPSRX PC10
+#define GPSTX PC11
+//#include "SoftwareSerial.h" //FOR XBEE
 
-#define IridiumSleep D6
+#define IridiumSleep PB10
 
-#define CTR1 D3
-#define CTR2 D4
+#define CTR1 PC12
+#define CTR2 PC13
 
 //Define IMU pins
 // SDO_XM and SDO_G are both pulled high, so our addresses are:
@@ -47,13 +50,20 @@
 #define LSM9DS1_AG  0x6B // Would be 0x6A if SDO_AG is LOW <---EDIT WITH CORRECT VALUES
 #define DECLINATION 13.25 // https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#declination
 
+//XBEE
+#define XBEE_RX 10 //CHANGE!
+#define XBEE_TX 11 //CHANGE!!
 
-
+//SERVO
+#define servoPinL 8 //CHANGE!
+#define servoPinR 9 //CHANGE!
+#define releasePin 10 //CHANGE!
+#define SENSITIVITY 15 //sensitivity of the controls. ie, if you give the control to move 
 
 //Define SPI slave select pins
-#define altimeterChipSelect D7 // IMPORTANT!!!!! IF THIS IS CHANGED, YOU MUST CHANGE chipSelect IN IntersemaBaro.h
-#define thermocoupleChipSelect D9
-#define sdCardChipSelect D8
+#define altimeterChipSelect PA8 // IMPORTANT!!!!! IF THIS IS CHANGED, YOU MUST CHANGE chipSelect IN IntersemaBaro.h
+#define thermocoupleChipSelect PC7
+#define sdCardChipSelect PA4
 
 // Declare Serial communication
 HardwareSerial GPSSerial(GPSRX, GPSTX);
@@ -67,7 +77,23 @@ Adafruit_MAX31855 thermocouple(thermocoupleChipSelect);
 RTC_PCF8523 rtc;
 
 //Declare IMU
-LSM9DS1 imu;
+Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();
+
+//XBEE COMMUNICATION
+// RX: Arduino pin 2, XBee pin DOUT.  TX:  Arduino pin 3, XBee pin DIN
+//SoftwareSerial XBee(2, 3); //CHANGE PINS <--- long range: ground to payload
+//SoftwareSerial XBee(4, 5); //CHANGE PINS <--- short range: payload to balloon
+
+HardwareSerial XBee(XBEE_RX, XBEE_TX);
+
+//SERVO
+Servo servoL;
+Servo servoR;
+Servo servoRelease;
+int angleR = 0; // global variable for what the right servo's angle is
+int angleL = 0; // global variable for what the left servo's angle is
+
+bool released = false;
 
 
 /**
@@ -245,6 +271,26 @@ bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, Thermo
   return true;
 }
 
+void setupLSM()
+{
+  // 1.) Set the accelerometer range
+  lsm.setupAccel(lsm.LSM9DS1_ACCELRANGE_2G);
+  //lsm.setupAccel(lsm.LSM9DS1_ACCELRANGE_4G);
+  //lsm.setupAccel(lsm.LSM9DS1_ACCELRANGE_8G);
+  //lsm.setupAccel(lsm.LSM9DS1_ACCELRANGE_16G);
+  
+  // 2.) Set the magnetometer sensitivity
+  lsm.setupMag(lsm.LSM9DS1_MAGGAIN_4GAUSS);
+  //lsm.setupMag(lsm.LSM9DS1_MAGGAIN_8GAUSS);
+  //lsm.setupMag(lsm.LSM9DS1_MAGGAIN_12GAUSS);
+  //lsm.setupMag(lsm.LSM9DS1_MAGGAIN_16GAUSS);
+
+  // 3.) Setup the gyroscope
+  lsm.setupGyro(lsm.LSM9DS1_GYROSCALE_245DPS);
+  //lsm.setupGyro(lsm.LSM9DS1_GYROSCALE_500DPS);
+  //lsm.setupGyro(lsm.LSM9DS1_GYROSCALE_2000DPS);
+}
+
 /**
  * Initializes the SD card.
 */
@@ -267,6 +313,7 @@ bool getRTCData(RTCData* data) {
   data->hour   = now.hour();
   data->minute = now.minute();
   data->second = now.second();
+  Serial.print("Got: "); Serial.print(data->hour); Serial.print(": "); Serial.print(data->minute); Serial.print(": "); Serial.print(data->second); Serial.println("");
   return true; 
 }
 
@@ -277,32 +324,90 @@ bool getRTCData(RTCData* data) {
  * FALSE: dps output
  */
 bool getIMUData(IMUData* data, bool adcdps) {
-  Serial.println("Getting IMU data");
-  imu.readGyro();
-  imu.readGyro();
-  imu.readGyro();
-  #ifdef adcdps
-    data->gx = imu.gx;
-    data->gy = imu.gy;
-    data->gz = imu.gz;
-    data->ax = imu.ax;
-    data->ay = imu.ay;
-    data->az = imu.az;
-    data->mx = imu.mx;
-    data->my = imu.my;
-    data->mz = imu.mz;
-  #else
-    data->gx = imu.calcGyro(imu.gx);  //in Deg per S
-    data->gy = imu.calcGyro(imu.gy);
-    data->gz = imu.calcGyro(imu.gz);
-    data->ax = imu.calcAccel(imu.ax); //in g's
-    data->ay = imu.calcAccel(imu.ay);
-    data->az = imu.calcAccel(imu.az);
-    data->mx = imu.calcMag(imu.mx);   //in Gauss
-    data->my = imu.calcMag(imu.my);
-    data->mz = imu.calcMag(imu.mz);
-  #endif
+
+  lsm.read();  /* ask it to read in the data */ 
+
+  /* Get a new sensor event */ 
+  sensors_event_t a, m, g, temp;
+
+  lsm.getEvent(&a, &m, &g, &temp); 
+
+  Serial.print("Accel X: "); Serial.print(a.acceleration.x); Serial.print(" m/s^2");
+  Serial.print("\tY: "); Serial.print(a.acceleration.y);     Serial.print(" m/s^2 ");
+  Serial.print("\tZ: "); Serial.print(a.acceleration.z);     Serial.println(" m/s^2 ");
+
+  Serial.print("Mag X: "); Serial.print(m.magnetic.x);   Serial.print(" gauss");
+  Serial.print("\tY: "); Serial.print(m.magnetic.y);     Serial.print(" gauss");
+  Serial.print("\tZ: "); Serial.print(m.magnetic.z);     Serial.println(" gauss");
+
+  Serial.print("Gyro X: "); Serial.print(g.gyro.x);   Serial.print(" dps");
+  Serial.print("\tY: "); Serial.print(g.gyro.y);      Serial.print(" dps");
+  Serial.print("\tZ: "); Serial.print(g.gyro.z);      Serial.println(" dps");
+
+  Serial.println();
+  
+    data->gx = g.gyro.x;
+    data->gy = g.gyro.y;
+    data->gz = g.gyro.z;
+    data->ax = a.acceleration.x;
+    data->ay = a.acceleration.y;
+    data->az = a.acceleration.z;
+    data->mx = m.magnetic.x;
+    data->my = m.magnetic.y;
+    data->mz = m.magnetic.z;
+    
   return true;
+}
+
+/**
+ * Gets data from the balloon Flora:
+ * 
+ * 
+ */
+bool getBalloonData(IMUData* data) {
+  return true;
+}
+
+
+/**
+ * Gets the data from the Xbee and converts it to something controllable
+ * 
+ */
+
+bool getXBeeControl() { //returns if the parachute should be dropped.
+  byte input = XBee.read();
+  
+  //input should be a delta: [_ _ _ _] [_ _ _ _] <- 8 bits
+  // the first 4 bits determine the delta for the left bit, the last 
+  int dL = (input >> 4) - 8; //getting last 4 bits, centering them
+  int dR = (input & 15) - 8; //getting first 4 bits, centering them
+
+  if (dL == -8 || dR == -8) {
+    return true;
+  }
+
+  // moving servo angle by
+  int newAngleL = angleL + dL * SENSITIVITY;
+  int newAngleR = angleR + dR * SENSITIVITY;
+
+  //just some fail-safe stuff so we don't overturn the servos
+  
+  if (newAngleL > 180) {
+    angleL = 180;
+  } else if (newAngleL < 0) {
+    angleL = 0;
+  } else {
+    angleL = newAngleL;  
+  }
+  
+  if (newAngleR > 180) {
+    angleR = 180;
+  } else if (newAngleR < 0) {
+    angleR = 0;
+  } else {
+    angleR = newAngleR;  
+  }
+  return false;
 }
 
 /**
@@ -493,6 +598,8 @@ bool startRockBlock() {
   return true;
 }
 
+
+
 /**
  * Sends data through the RockBLOCK to the location we specified.
  * Usually, only 50 bytes of data should be send in `data` so that
@@ -615,7 +722,7 @@ void setup()
   initializeSPI();
 
   Serial.println("About to start GPS");
-  startGPS();
+  //startGPS();
 
   Serial.println("About to start Altimeter");
   startAltimeter();
@@ -630,17 +737,24 @@ void setup()
   startSD();
 
   Serial.println("About to start RockBLOCK");
-  startRockBlock();
-
+  //startRockBlock();
 
   Serial.println("About to start IMU");
-  imu.settings.device.commInterface = IMU_MODE_I2C;
-  imu.settings.device.mAddress = LSM9DS1_M;
-  imu.settings.device.agAddress = LSM9DS1_AG;
-  
-  if (!imu.begin()) {
+    if (!lsm.begin()) {
       Serial.println("Failed to communicate with LSM9DS1.");
+    while(1);
   }
+  setupLSM();
+  
+
+
+  servoL.attach(servoPinL);
+  servoR.attach(servoPinR);
+  servoRelease.attach(releasePin);
+  servoL.write(angleL); //pointed straight up, angleL = 0
+  servoR.write(angleR); //pointed straight up, angleR = 0
+
+  
   
 }
 
@@ -649,19 +763,20 @@ int rockBlockSendRate = 60000;
 
 void loop()
 {
-
   Serial.println("Looping");
   GPSData gpsData;
   AltimeterData altimeterData;
   ThermocoupleData thermocoupleData;
   RTCData rtcData;
   IMUData imuData;
+  
+  int input;
 
   getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData, &imuData);  
-  //writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData);
+  writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData);
 
   //Should we send data to ground?
-  if (millis() > rockBlockSendTime) {
+  if (false) {//if (millis() > rockBlockSendTime) {
     
     /* The data will be written to a dataString in this format:
     <TripNumber>:<Hour>:<Minute>:<FixQuality>:<Speed>:<Angle>:<Lon>:<Lat>:<Altitude>:<ExternalTemp>
@@ -697,6 +812,23 @@ void loop()
     rockBlockSendTime = millis() + rockBlockSendRate; // Only send data through rock block once every minute.
   }
 
+  /*
+   * Controls section of the loop!
+   */
+  if (XBee.available() > 0) {
+    if (getXBeeControl() && !released) { //update angleL and angleR
+      released = true;
+      //move the  release servo 
+    }
+    servoR.write(angleR);
+    servoL.write(angleL);
+  }
+  
+  Serial.print("Right servo: ");
+  Serial.println(angleR);
+  Serial.print("Left servo: ");
+  Serial.println(angleL);
+  
   delay(DATA_DELAY_TIME);
 
 }
