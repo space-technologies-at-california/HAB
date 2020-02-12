@@ -1643,6 +1643,8 @@ Wire Notes Line
 	8250 13150 8250 16550
 Wire Notes Line
 	17300 13150 17300 15200
+Wire Notes Line
+	14200 500  14200 13150
 Text GLabel 7350 6250 0    50   Input ~ 0
 PB7
 Text GLabel 7350 6550 0    50   Input ~ 0
@@ -2873,6 +2875,43 @@ Text Label 11000 6600 0    50   ~ 0
 MOTOR2
 Text Label 11000 7300 0    50   ~ 0
 MOTOR3
+Text Label 12250 4850 0    50   ~ 0
+MOTOR0
+$Comp
+L Connector:Conn_01x03_Male J5
+U 1 1 5D268449
+P 13000 4950
+F 0 "J5" H 12973 4880 50  0000 R CNN
+F 1 "Conn_01x03_Male" H 12973 4971 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 13000 4950 50  0001 C CNN
+F 3 "~" H 13000 4950 50  0001 C CNN
+	1    13000 4950
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	12250 4850 12800 4850
+$Comp
+L power:+5V #PWR0115
+U 1 1 5DA8AB00
+P 12050 4950
+F 0 "#PWR0115" H 12050 4800 50  0001 C CNN
+F 1 "+5V" H 12065 5123 50  0000 C CNN
+F 2 "" H 12050 4950 50  0001 C CNN
+F 3 "" H 12050 4950 50  0001 C CNN
+	1    12050 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0121
+U 1 1 5DFD75A3
+P 12050 5300
+F 0 "#PWR0121" H 12050 5050 50  0001 C CNN
+F 1 "GND" H 12055 5127 50  0000 C CNN
+F 2 "" H 12050 5300 50  0001 C CNN
+F 3 "" H 12050 5300 50  0001 C CNN
+	1    12050 5300
+	1    0    0    -1  
+$EndComp
 Text GLabel 11500 8500 0    60   Input ~ 0
 PB3
 Text GLabel 11500 8700 0    60   Input ~ 0
@@ -3008,6 +3047,8 @@ RockRX
 Wire Wire Line
 	12450 10500 12850 10500
 Wire Wire Line
+	12050 4950 12800 4950
+Wire Wire Line
 	12650 6700 12800 6700
 $Comp
 L power:GND #PWR0122
@@ -3130,6 +3171,12 @@ Text Label 12250 6500 0    50   ~ 0
 MOTOR2
 Text Label 12250 5700 0    50   ~ 0
 MOTOR1
+Wire Wire Line
+	12050 5300 12050 5250
+Wire Wire Line
+	12800 5250 12800 5050
+Wire Wire Line
+	12050 5250 12800 5250
 $Comp
 L Device:C_Small C21
 U 1 1 5D90BE7F
@@ -3330,6 +3377,4 @@ F 3 "" H 17050 9100 50  0001 C CNN
 	1    17050 9100
 	1    0    0    -1  
 $EndComp
-Wire Notes Line
-	14200 500  14200 13150
 $EndSCHEMATC
