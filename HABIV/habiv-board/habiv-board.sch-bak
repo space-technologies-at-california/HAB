@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:habiv-board-cache
 EELAYER 30 0
 EELAYER END
 $Descr C 22000 17000
@@ -15,8 +16,6 @@ Comment4 ""
 $EndDescr
 Wire Wire Line
 	3950 3200 3650 3200
-Wire Wire Line
-	2850 2200 2850 2100
 $Comp
 L habiv-board-rescue:RTC_PCF8523T-real_time_clock-eagle-import IC1
 U 1 1 22F7723E
@@ -28,18 +27,6 @@ F 3 "" H 3050 3100 50  0001 C CNN
 	1    3050 3100
 	-1   0    0    -1  
 $EndComp
-$Comp
-L habiv-board-rescue:RESISTOR0805_NOOUTLINE-real_time_clock-eagle-import R16
-U 1 1 DF39756A
-P 2850 1900
-F 0 "R16" H 2850 2000 50  0000 C CNN
-F 1 "1K" H 2850 1900 40  0000 C CNB
-F 2 "Resistor_SMD:R_0805_2012Metric" H 2850 1900 50  0001 C CNN
-F 3 "" H 2850 1900 50  0001 C CNN
-	1    2850 1900
-	0    1    1    0   
-$EndComp
-Connection ~ 2850 2200
 $Comp
 L habiv-board-rescue:32.768KHz-ABS07W-32.768KHZ-D-2-T-real_time_clock-rescue Q1
 U 1 1 5BBEE255
@@ -59,12 +46,12 @@ $EndComp
 $Comp
 L habiv-board-rescue:BATTERY-real_time_clock-eagle-import B2
 U 1 1 5BBEE532
-P 3950 3450
-F 0 "B2" V 3996 3317 50  0000 R CNN
-F 1 "CR1220" V 3905 3317 50  0000 R CNN
-F 2 "S8411-45R:S8411-45R" H 3950 3450 50  0001 L BNN
-F 3 "https://www.mouser.com/datasheet/2/181/S8411R-1136243.pdf" H 3950 3450 50  0001 L BNN
-	1    3950 3450
+P 4300 3450
+F 0 "B2" V 4346 3317 50  0000 R CNN
+F 1 "CR1220" V 4255 3317 50  0000 R CNN
+F 2 "S8411-45R:S8411-45R" H 4300 3450 50  0001 L BNN
+F 3 "https://www.mouser.com/datasheet/2/181/S8411R-1136243.pdf" H 4300 3450 50  0001 L BNN
+	1    4300 3450
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
@@ -371,8 +358,6 @@ F 3 "" H 16200 2650 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	18550 1500 16200 1500
-Wire Wire Line
-	18550 1500 18550 1550
 Wire Wire Line
 	16600 2200 16600 2000
 Wire Wire Line
@@ -1667,15 +1652,10 @@ Wire Wire Line
 Text GLabel 7350 5950 0    50   Input ~ 0
 PA8
 Wire Wire Line
-	1500 3000 1600 3000
-Wire Wire Line
 	1600 3000 1600 3050
 Connection ~ 1600 3000
 Wire Wire Line
 	1600 3000 1750 3000
-Connection ~ 1750 3000
-Wire Wire Line
-	1750 3000 2450 3000
 $Comp
 L Device:R_Small R2
 U 1 1 5C80B31B
@@ -1704,10 +1684,6 @@ F 3 "~" H 1750 3150 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1750 3250 2100 3250
-Wire Wire Line
-	1500 2200 2850 2200
-Wire Wire Line
-	1500 2200 1500 2450
 $Comp
 L power:GND #PWR08
 U 1 1 5CBCBFBC
@@ -1785,19 +1761,6 @@ $EndComp
 Wire Wire Line
 	5650 13850 5650 13950
 $Comp
-L Device:R R44
-U 1 1 5D15BF88
-P 18550 1700
-F 0 "R44" H 18650 1600 50  0000 L CNN
-F 1 "0" V 18550 1650 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 18480 1700 50  0001 C CNN
-F 3 "~" H 18550 1700 50  0001 C CNN
-	1    18550 1700
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	18550 1850 18550 2000
-$Comp
 L Device:R R19
 U 1 1 5D15D3CF
 P 9500 1600
@@ -1810,19 +1773,6 @@ F 3 "~" H 9500 1600 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	9500 1750 9500 1850
-$Comp
-L Device:R R1
-U 1 1 5D15FA0F
-P 1500 2600
-F 0 "R1" H 1570 2646 50  0000 L CNN
-F 1 "0" V 1500 2550 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 1430 2600 50  0001 C CNN
-F 3 "~" H 1500 2600 50  0001 C CNN
-	1    1500 2600
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1500 2750 1500 3000
 Wire Wire Line
 	5000 6800 5000 7350
 Wire Wire Line
@@ -2184,12 +2134,12 @@ Wire Wire Line
 $Comp
 L power:GND #PWR0107
 U 1 1 5CC0F374
-P 3950 3550
-F 0 "#PWR0107" H 3950 3300 50  0001 C CNN
-F 1 "GND" H 3955 3377 50  0000 C CNN
-F 2 "" H 3950 3550 50  0001 C CNN
-F 3 "" H 3950 3550 50  0001 C CNN
-	1    3950 3550
+P 4550 3750
+F 0 "#PWR0107" H 4550 3500 50  0001 C CNN
+F 1 "GND" H 4555 3577 50  0000 C CNN
+F 2 "" H 4550 3750 50  0001 C CNN
+F 3 "" H 4550 3750 50  0001 C CNN
+	1    4550 3750
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -2298,8 +2248,6 @@ Text Label 10550 3000 0    50   ~ 0
 THERMO_CS
 Wire Wire Line
 	1800 1250 1800 1150
-Wire Wire Line
-	2850 2300 2850 2200
 Text Label 7550 5350 0    50   ~ 0
 SD_CD
 Wire Wire Line
@@ -2332,19 +2280,6 @@ F 3 "" H 1800 1450 50  0001 C CNN
 	1    1800 1450
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:GND #PWR0112
-U 1 1 5CDBE388
-P 3650 3600
-F 0 "#PWR0112" H 3650 3350 50  0001 C CNN
-F 1 "GND" H 3655 3427 50  0000 C CNN
-F 2 "" H 3650 3600 50  0001 C CNN
-F 3 "" H 3650 3600 50  0001 C CNN
-	1    3650 3600
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3650 3300 3650 3600
 $Comp
 L power:GND #PWR0113
 U 1 1 5CECC6EA
@@ -2568,8 +2503,6 @@ Wire Wire Line
 	7450 6550 7550 6550
 Wire Wire Line
 	11750 15350 12600 15350
-Wire Wire Line
-	2850 1600 2850 1700
 $Comp
 L power:+3V3 #PWR0106
 U 1 1 5CE9524D
@@ -2584,12 +2517,12 @@ $EndComp
 $Comp
 L power:+3V3 #PWR0114
 U 1 1 5CECA70E
-P 2850 1600
-F 0 "#PWR0114" H 2850 1450 50  0001 C CNN
-F 1 "+3V3" H 2865 1773 50  0000 C CNN
-F 2 "" H 2850 1600 50  0001 C CNN
-F 3 "" H 2850 1600 50  0001 C CNN
-	1    2850 1600
+P 3450 1600
+F 0 "#PWR0114" H 3450 1450 50  0001 C CNN
+F 1 "+3V3" H 3465 1773 50  0000 C CNN
+F 2 "" H 3450 1600 50  0001 C CNN
+F 3 "" H 3450 1600 50  0001 C CNN
+	1    3450 1600
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -3020,19 +2953,6 @@ F 3 "" H 12050 6950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	12650 5900 12800 5900
-$Comp
-L power:GND #PWR0120
-U 1 1 5DF9A30C
-P 12050 6150
-F 0 "#PWR0120" H 12050 5900 50  0001 C CNN
-F 1 "GND" H 12055 5977 50  0000 C CNN
-F 2 "" H 12050 6150 50  0001 C CNN
-F 3 "" H 12050 6150 50  0001 C CNN
-	1    12050 6150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
 	12700 7500 12800 7500
 $Comp
 L power:GND #PWR0119
@@ -3049,8 +2969,6 @@ Wire Wire Line
 	12050 7400 12800 7400
 Wire Wire Line
 	12050 6600 12800 6600
-Wire Wire Line
-	12050 5800 12800 5800
 $Comp
 L power:+5V #PWR0118
 U 1 1 5DAFC524
@@ -3073,23 +2991,10 @@ F 3 "" H 12050 6600 50  0001 C CNN
 	1    12050 6600
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+5V #PWR0116
-U 1 1 5DA8B9DD
-P 12050 5800
-F 0 "#PWR0116" H 12050 5650 50  0001 C CNN
-F 1 "+5V" H 12065 5973 50  0000 C CNN
-F 2 "" H 12050 5800 50  0001 C CNN
-F 3 "" H 12050 5800 50  0001 C CNN
-	1    12050 5800
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	12250 7300 12800 7300
 Wire Wire Line
 	12250 6500 12800 6500
-Wire Wire Line
-	12250 5700 12800 5700
 $Comp
 L Connector:Conn_01x03_Male J19
 U 1 1 5D268CE1
@@ -3112,34 +3017,10 @@ F 3 "~" H 13000 6600 50  0001 C CNN
 	1    13000 6600
 	-1   0    0    1   
 $EndComp
-$Comp
-L Connector:Conn_01x03_Male J17
-U 1 1 5D2687A6
-P 13000 5800
-F 0 "J17" H 12973 5730 50  0000 R CNN
-F 1 "Conn_01x03_Male" H 12973 5821 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 13000 5800 50  0001 C CNN
-F 3 "~" H 13000 5800 50  0001 C CNN
-	1    13000 5800
-	-1   0    0    1   
-$EndComp
 Text Label 12250 7300 0    50   ~ 0
 MOTOR3
 Text Label 12250 6500 0    50   ~ 0
 MOTOR2
-Text Label 12250 5700 0    50   ~ 0
-MOTOR1
-$Comp
-L Device:C_Small C21
-U 1 1 5D90BE7F
-P 12050 5950
-F 0 "C21" H 12142 5996 50  0000 L CNN
-F 1 "10u" H 12142 5905 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 12050 5950 50  0001 C CNN
-F 3 "~" H 12050 5950 50  0001 C CNN
-	1    12050 5950
-	1    0    0    -1  
-$EndComp
 $Comp
 L Device:C_Small C22
 U 1 1 5D90C077
@@ -3152,20 +3033,8 @@ F 3 "~" H 12050 6750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	12050 5800 12050 5850
-Connection ~ 12050 5800
-Wire Wire Line
 	12050 6600 12050 6650
 Connection ~ 12050 6600
-Wire Wire Line
-	12050 6050 12050 6100
-Wire Wire Line
-	12050 6100 12650 6100
-Wire Wire Line
-	12650 5900 12650 6100
-Connection ~ 12050 6100
-Wire Wire Line
-	12050 6100 12050 6150
 Wire Wire Line
 	12050 6850 12050 6900
 Wire Wire Line
@@ -3375,4 +3244,52 @@ F 3 "~" H 9800 1150 50  0001 C CNN
 	1    9800 1150
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	3650 3300 3650 3750
+Wire Wire Line
+	4300 3550 4300 3750
+$Comp
+L STAC:Jumper JP6
+U 1 1 5EC3B7B3
+P 3150 1600
+F 0 "JP6" H 3150 1864 50  0000 C CNN
+F 1 "Jumper" H 3150 1773 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3150 1600 50  0001 C CNN
+F 3 "~" H 3150 1600 50  0001 C CNN
+	1    3150 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	18550 1500 18550 2000
+Wire Wire Line
+	4300 3750 4550 3750
+Wire Wire Line
+	3950 3350 4300 3350
+Connection ~ 4300 3750
+Wire Wire Line
+	3650 3750 4300 3750
+Wire Wire Line
+	1150 3000 1150 2800
+Wire Wire Line
+	1150 3000 1600 3000
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E8985FA
+P 1150 2800
+F 0 "#PWR?" H 1150 2650 50  0001 C CNN
+F 1 "+3.3V" H 1165 2973 50  0000 C CNN
+F 2 "" H 1150 2800 50  0001 C CNN
+F 3 "" H 1150 2800 50  0001 C CNN
+	1    1150 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2850 1600 2850 2150
+Wire Wire Line
+	2850 2150 2450 2150
+Wire Wire Line
+	2450 2150 2450 3000
+Connection ~ 2850 2150
+Wire Wire Line
+	2850 2150 2850 2300
 $EndSCHEMATC
