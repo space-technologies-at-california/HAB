@@ -1,27 +1,27 @@
 /**
- * HAB4 flight code.
- * 
- * Includes functions for recieving data,
- * writing it to the SD card,
- * and the main control loop.
- * 
- * Originally based from the HAB3 flight code.
- * 
- * 
- * BOARD: GENERIC STM32F4 SERIES
- * BLACK F407VE
- * 
- */
+   HAB4 flight code.
+
+   Includes functions for recieving data,
+   writing it to the SD card,
+   and the main control loop.
+
+   Originally based from the HAB3 flight code.
+
+
+   BOARD: GENERIC STM32F4 SERIES
+   BLACK F407VE
+
+*/
 #include <IridiumSBD.h>
 #include <Adafruit_GPS.h>
 #include "Adafruit_MAX31855.h"
 #include <SPI.h>
 #include <Wire.h>
-#include "RTClib.h" 
+#include "RTClib.h"
 #include <SD.h>
-#include <Servo.h> 
+#include "Servo.h"
 
-#include <IntersemaBaro.h>
+#include "IntersemaBaro.h"
 
 #include <Adafruit_LSM9DS1.h>
 #include <Adafruit_Sensor.h>
@@ -36,7 +36,7 @@
 #define IridiumRX PA12
 #define IridiumTX PA11
 #define GPSRX PB0
-#define GPSTX PB1 
+#define GPSTX PB1
 //#include "SoftwareSerial.h" //FOR XBEE
 
 #define IridiumSleep D6
@@ -51,13 +51,13 @@
 #define DECLINATION 13.25 // https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#declination
 
 //XBEE
-#define XBEE_RX 10 //CHANGE!
-#define XBEE_TX 11 //CHANGE!!
+#define XBEE_RX PB1 //CHANGE! can be any 
+#define XBEE_TX PB2 //CHANGE!!
 
 //SERVO
-#define servoPinL 8 //CHANGE!
-#define servoPinR 9 //CHANGE!
-#define releasePin 10 //CHANGE!
+#define servoPinL PA10 //CHANGE! can be PA10, PA9, PA0, PA1 top to bottom LR
+#define servoPinR PA9 //CHANGE!
+#define releasePin PA0 //CHANGE!
 #define SENSITIVITY 15 //sensitivity of the controls. ie, if you give the control to move 
 
 //Define SPI slave select pins
@@ -97,28 +97,28 @@ bool released = false;
 
 
 /**
- * 
- * DATA STRUCTURES
- * 
- */
 
- /**
-  * Structure for RTC data
-  */
+   DATA STRUCTURES
+
+*/
+
+/**
+   Structure for RTC data
+*/
 struct RTCData {
   byte hour, minute, second;
 };
 
- /**
-  * Structure for ThermocoupleData data
-  */
+/**
+   Structure for ThermocoupleData data
+*/
 struct ThermocoupleData {
   double internal, external, externalFarenheit;
 };
 
 /**
- * Structure for holding GPS data
- */
+   Structure for holding GPS data
+*/
 struct GPSData {
   bool fix;
   uint8_t fixQuality, satellites;
@@ -126,30 +126,34 @@ struct GPSData {
 };
 
 /**
- * Structure for holding Altimeter data
- */
+   Structure for holding Altimeter data
+*/
 struct AltimeterData {
   double heightMeters1, heightMeters2;
   int32_t pressure1, pressure2, temperature1, temperature2;
 };
 
 /**
- * Structure for holding IMU data
- */
+   Structure for holding IMU data
+*/
 struct IMUData {
   float gx, gy, gz, ax, ay, az, mx, my, mz;
 };
 
 /**
- * sets the CTR1, CTR2 pins depending on which
- * reciever rf chosen.
- */
+   sets the CTR1, CTR2 pins depending on which
+   reciever rf chosen.
+*/
 void setMode(int rf) {
   digitalWrite(CTR1, LOW);
   digitalWrite(CTR2, LOW);
 
-  if (rf == 1) { digitalWrite(CTR1, HIGH); }
-  else if (rf == 2) { digitalWrite(CTR2, HIGH); }
+  if (rf == 1) {
+    digitalWrite(CTR1, HIGH);
+  }
+  else if (rf == 2) {
+    digitalWrite(CTR2, HIGH);
+  }
   else if (rf == 3) {
     digitalWrite(CTR1, HIGH);
     digitalWrite(CTR2, HIGH);
@@ -157,10 +161,10 @@ void setMode(int rf) {
 }
 
 /**
- * Buffers all peripheral data into the given structs.
+   Buffers all peripheral data into the given structs.
 */
 bool getAllData(GPSData* gpsData, AltimeterData* altimeterData, ThermocoupleData* thermocoupleData, RTCData* rtcData, IMUData* imuData) {
-  
+
   getGPSData(gpsData);
   getAltimeterData(altimeterData);
   getThermocoupleData(thermocoupleData);
@@ -171,11 +175,11 @@ bool getAllData(GPSData* gpsData, AltimeterData* altimeterData, ThermocoupleData
 }
 
 /**
- * Write all data to the log file on the SD card. Returns false if it could not open the
- * log file.
+   Write all data to the log file on the SD card. Returns false if it could not open the
+   log file.
 */
 bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, ThermocoupleData* thermocoupleData, RTCData* rtcData) {
- 
+
   File dataFile = SD.open(LOG_FILE, FILE_WRITE);
 
   Serial.println("Opening datalog file for writing");
@@ -196,18 +200,18 @@ bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, Thermo
     dataFile.print("Angle: "); dataFile.print(gpsData->angle, DEC); dataFile.print("\n\n");
 
     dataFile.print("Altimeter Data || ");
-    dataFile.print("Height (1st/2nd): "); dataFile.print(altimeterData->heightMeters1, DEC); 
+    dataFile.print("Height (1st/2nd): "); dataFile.print(altimeterData->heightMeters1, DEC);
     dataFile.print(" / "); dataFile.print(altimeterData->heightMeters2, DEC); dataFile.print(" Meters\n ");
-    dataFile.print("Pressure (1st/2nd): "); dataFile.print(altimeterData->pressure1, DEC); 
+    dataFile.print("Pressure (1st/2nd): "); dataFile.print(altimeterData->pressure1, DEC);
     dataFile.print(" / "); dataFile.print(altimeterData->pressure2, DEC); dataFile.print(" Pa, ");
-    dataFile.print("Temperature (1st/2nd): "); dataFile.print(altimeterData->temperature1, DEC); 
+    dataFile.print("Temperature (1st/2nd): "); dataFile.print(altimeterData->temperature1, DEC);
     dataFile.print(" / "); dataFile.print(altimeterData->temperature2, DEC); dataFile.print(" C \n\n");
 
     dataFile.print("Thermocouple Data || ");
     /*
-    struct ThermocoupleData {
-     double internal, external, externalFarenheit;
-    }
+      struct ThermocoupleData {
+      double internal, external, externalFarenheit;
+      }
     */
     dataFile.print("Internal Temp: "); dataFile.print(thermocoupleData->internal, DEC); dataFile.print(" C, ");
     dataFile.print("External Temp: "); dataFile.print(thermocoupleData->external, DEC); dataFile.print(" C / ");
@@ -223,50 +227,50 @@ bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, Thermo
   }
 
   Serial.print("=======================================================================\n\n");
-    Serial.print("Timestamp: "); Serial.print(rtcData->hour, DEC); Serial.print(":");
-    Serial.print(rtcData->minute, DEC); Serial.print(":");
-    Serial.print(rtcData->second, DEC); Serial.print("\n\n");
+  Serial.print("Timestamp: "); Serial.print(rtcData->hour, DEC); Serial.print(":");
+  Serial.print(rtcData->minute, DEC); Serial.print(":");
+  Serial.print(rtcData->second, DEC); Serial.print("\n\n");
 
-    Serial.print("GPS Data || ");
-    /*
+  Serial.print("GPS Data || ");
+  /*
     struct GPSData {
-      bool fix;
-      uint8_t fixQuality, satellites;
-      float speed, latitude, longitude, altitude, angle;
+    bool fix;
+    uint8_t fixQuality, satellites;
+    float speed, latitude, longitude, altitude, angle;
     }
-    */
-    //prints all GPSData info.
-    Serial.print("Fix: "); Serial.print( (int) gpsData->fix, DEC ); Serial.print(", ");
-    Serial.print("Fix Quality: "); Serial.print((int) gpsData->fixQuality, DEC); Serial.print(", ");
-    Serial.print("Speed: "); Serial.print(gpsData->speed, DEC); Serial.print(" Knots\n");
-    Serial.print("Longitude: "); Serial.print(gpsData->longitude, DEC); Serial.print(", ");
-    Serial.print("Latitude: "); Serial.print(gpsData->latitude, DEC); Serial.print(", ");
-    Serial.print("Altitude: "); Serial.print(gpsData->altitude, DEC); Serial.print(", ");
-    Serial.print("Angle: "); Serial.print(gpsData->angle, DEC); Serial.print("\n\n");
+  */
+  //prints all GPSData info.
+  Serial.print("Fix: "); Serial.print( (int) gpsData->fix, DEC ); Serial.print(", ");
+  Serial.print("Fix Quality: "); Serial.print((int) gpsData->fixQuality, DEC); Serial.print(", ");
+  Serial.print("Speed: "); Serial.print(gpsData->speed, DEC); Serial.print(" Knots\n");
+  Serial.print("Longitude: "); Serial.print(gpsData->longitude, DEC); Serial.print(", ");
+  Serial.print("Latitude: "); Serial.print(gpsData->latitude, DEC); Serial.print(", ");
+  Serial.print("Altitude: "); Serial.print(gpsData->altitude, DEC); Serial.print(", ");
+  Serial.print("Angle: "); Serial.print(gpsData->angle, DEC); Serial.print("\n\n");
 
-    Serial.print("Altimeter Data || ");
-    /*
+  Serial.print("Altimeter Data || ");
+  /*
     struct AltimeterData {
-      double heightMeters1, heightMeters2;
-      int32_t pressure1, pressure2, temperature1, temperature2;
+    double heightMeters1, heightMeters2;
+    int32_t pressure1, pressure2, temperature1, temperature2;
     }
-    */
-    Serial.print("Height (1st/2nd): "); Serial.print(altimeterData->heightMeters1, DEC); 
-    Serial.print(" / "); Serial.print(altimeterData->heightMeters2, DEC); Serial.print(" Meters\n");
-    Serial.print("Pressure (1st/2nd): "); Serial.print(altimeterData->pressure1, DEC); 
-    Serial.print(" / "); Serial.print(altimeterData->pressure2, DEC); Serial.print(" Pa, ");
-    Serial.print("Temperature (1st/2nd): "); Serial.print(altimeterData->temperature1, DEC); 
-    Serial.print(" / "); Serial.print(altimeterData->temperature2, DEC); Serial.print(" C \n\n");
+  */
+  Serial.print("Height (1st/2nd): "); Serial.print(altimeterData->heightMeters1, DEC);
+  Serial.print(" / "); Serial.print(altimeterData->heightMeters2, DEC); Serial.print(" Meters\n");
+  Serial.print("Pressure (1st/2nd): "); Serial.print(altimeterData->pressure1, DEC);
+  Serial.print(" / "); Serial.print(altimeterData->pressure2, DEC); Serial.print(" Pa, ");
+  Serial.print("Temperature (1st/2nd): "); Serial.print(altimeterData->temperature1, DEC);
+  Serial.print(" / "); Serial.print(altimeterData->temperature2, DEC); Serial.print(" C \n\n");
 
-    Serial.print("Thermocouple Data || ");
-    /*
+  Serial.print("Thermocouple Data || ");
+  /*
     struct ThermocoupleData {
-     double internal, external, externalFarenheit;
+    double internal, external, externalFarenheit;
     }
-    */
-    Serial.print("Internal Temp: "); Serial.print(thermocoupleData->internal, DEC); Serial.print(" C, ");
-    Serial.print("External Temp: "); Serial.print(thermocoupleData->external, DEC); Serial.print(" C / ");
-    Serial.print(thermocoupleData->externalFarenheit, DEC); Serial.print(" F \n\n");
+  */
+  Serial.print("Internal Temp: "); Serial.print(thermocoupleData->internal, DEC); Serial.print(" C, ");
+  Serial.print("External Temp: "); Serial.print(thermocoupleData->external, DEC); Serial.print(" C / ");
+  Serial.print(thermocoupleData->externalFarenheit, DEC); Serial.print(" F \n\n");
 
   return true;
 }
@@ -278,7 +282,7 @@ void setupLSM()
   //lsm.setupAccel(lsm.LSM9DS1_ACCELRANGE_4G);
   //lsm.setupAccel(lsm.LSM9DS1_ACCELRANGE_8G);
   //lsm.setupAccel(lsm.LSM9DS1_ACCELRANGE_16G);
-  
+
   // 2.) Set the magnetometer sensitivity
   lsm.setupMag(lsm.LSM9DS1_MAGGAIN_4GAUSS);
   //lsm.setupMag(lsm.LSM9DS1_MAGGAIN_8GAUSS);
@@ -292,7 +296,7 @@ void setupLSM()
 }
 
 /**
- * Initializes the SD card.
+   Initializes the SD card.
 */
 bool startSD() {
   Serial.println("Initializing the SD card");
@@ -305,7 +309,7 @@ bool startSD() {
 }
 
 /**
- * Gets the hour, minute, and second from the RTC, and places it in the RTCData struct you provide. 
+   Gets the hour, minute, and second from the RTC, and places it in the RTCData struct you provide.
 */
 bool getRTCData(RTCData* data) {
   Serial.println("Getting RTC data");
@@ -314,23 +318,23 @@ bool getRTCData(RTCData* data) {
   data->minute = now.minute();
   data->second = now.second();
   Serial.print("Got: "); Serial.print(data->hour); Serial.print(": "); Serial.print(data->minute); Serial.print(": "); Serial.print(data->second); Serial.println("");
-  return true; 
+  return true;
 }
 
 /**
- *  Gets the IMU data
- *  Takes in RTCData pointer and bool:
- * TRUE: adc output
- * FALSE: dps output
- */
+    Gets the IMU data
+    Takes in RTCData pointer and bool:
+   TRUE: adc output
+   FALSE: dps output
+*/
 bool getIMUData(IMUData* data, bool adcdps) {
 
-  lsm.read();  /* ask it to read in the data */ 
+  lsm.read();  /* ask it to read in the data */
 
-  /* Get a new sensor event */ 
+  /* Get a new sensor event */
   sensors_event_t a, m, g, temp;
 
-  lsm.getEvent(&a, &m, &g, &temp); 
+  lsm.getEvent(&a, &m, &g, &temp);
 
   Serial.print("Accel X: "); Serial.print(a.acceleration.x); Serial.print(" m/s^2");
   Serial.print("\tY: "); Serial.print(a.acceleration.y);     Serial.print(" m/s^2 ");
@@ -345,38 +349,38 @@ bool getIMUData(IMUData* data, bool adcdps) {
   Serial.print("\tZ: "); Serial.print(g.gyro.z);      Serial.println(" dps");
 
   Serial.println();
-  
-    data->gx = g.gyro.x;
-    data->gy = g.gyro.y;
-    data->gz = g.gyro.z;
-    data->ax = a.acceleration.x;
-    data->ay = a.acceleration.y;
-    data->az = a.acceleration.z;
-    data->mx = m.magnetic.x;
-    data->my = m.magnetic.y;
-    data->mz = m.magnetic.z;
-    
+
+  data->gx = g.gyro.x;
+  data->gy = g.gyro.y;
+  data->gz = g.gyro.z;
+  data->ax = a.acceleration.x;
+  data->ay = a.acceleration.y;
+  data->az = a.acceleration.z;
+  data->mx = m.magnetic.x;
+  data->my = m.magnetic.y;
+  data->mz = m.magnetic.z;
+
   return true;
 }
 
 /**
- * Gets data from the balloon Flora:
- * 
- * 
- */
+   Gets data from the balloon Flora:
+
+
+*/
 bool getBalloonData(IMUData* data) {
   return true;
 }
 
 
 /**
- * Gets the data from the Xbee and converts it to something controllable
- * 
- */
+   Gets the data from the Xbee and converts it to something controllable
+
+*/
 
 bool getXBeeControl() { //returns if the parachute should be dropped.
   byte input = XBee.read();
-  
+
   //input should be a delta angle: [_ _ _ _] [_ _ _ _] <- 8 bits
   // the first 4 bits determine the delta for the left servo, vice versa for right servo
   int dL = (input >> 4) - 8; //getting last 4 bits, centering them (range for dL is [-8, 7])
@@ -387,7 +391,7 @@ bool getXBeeControl() { //returns if the parachute should be dropped.
     angleL = 0;
     return false;
   } else if (dL == -8 && dR == -8) { //drop command!
-    return true 
+    return true;
   }
 
   // moving servo angle by
@@ -395,27 +399,27 @@ bool getXBeeControl() { //returns if the parachute should be dropped.
   int newAngleR = angleR + dR * SENSITIVITY;
 
   //just some fail-safe stuff so we don't overturn the servos
-  
+
   if (newAngleL > 180) {
     angleL = 180;
   } else if (newAngleL < 0) {
     angleL = 0;
   } else {
-    angleL = newAngleL;  
+    angleL = newAngleL;
   }
-  
+
   if (newAngleR > 180) {
     angleR = 180;
   } else if (newAngleR < 0) {
     angleR = 0;
   } else {
-    angleR = newAngleR;  
+    angleR = newAngleR;
   }
   return false;
 }
 
 /**
- * Starts up the RTC. Returns false in the event of failure.
+   Starts up the RTC. Returns false in the event of failure.
 */
 bool startRTC() {
   Serial.println("Starting up the RTC");
@@ -433,12 +437,12 @@ bool startRTC() {
 }
 
 /**
- * Get the internal temperature of the thermocouple, along with the external
- * temperature in both celsius and farenheit.
+   Get the internal temperature of the thermocouple, along with the external
+   temperature in both celsius and farenheit.
 */
 bool getThermocoupleData(ThermocoupleData* data) {
   Serial.println("Getting Thermocouple data");
-  
+
   data->internal = thermocouple.readInternal();
   data->external = thermocouple.readCelsius();
   data->externalFarenheit = thermocouple.readFarenheit();
@@ -452,7 +456,7 @@ bool getThermocoupleData(ThermocoupleData* data) {
 }
 
 /**
- * The thermocouple chip just needs some time to start up. Come on, give it a break!
+   The thermocouple chip just needs some time to start up. Come on, give it a break!
 */
 bool startThermocouple() {
   delay(500); // Give the MAX chip time to start up
@@ -460,15 +464,15 @@ bool startThermocouple() {
 }
 
 /**
- * Gets first and second order height, temperature, and pressure
- * measurements from our altimeter and buffers them into the 
- * AltimeterData struct argument.
- * 
- * TODO: figure out how to return false for error values.
+   Gets first and second order height, temperature, and pressure
+   measurements from our altimeter and buffers them into the
+   AltimeterData struct argument.
+
+   TODO: figure out how to return false for error values.
 */
 bool getAltimeterData(AltimeterData* data) {
   Serial.println("Getting data from the altimeter");
-  
+
   data->heightMeters1 = baro.getHeightMeters(1);
   data->heightMeters2 = baro.getHeightMeters(2);
   data->temperature1 = baro.getT(1);
@@ -480,8 +484,8 @@ bool getAltimeterData(AltimeterData* data) {
 }
 
 /**
- * Initializes the BaroPressure_MS5607B library that interfaces
- * with our altimeter.
+   Initializes the BaroPressure_MS5607B library that interfaces
+   with our altimeter.
 */
 bool startAltimeter() {
   Serial.println("Initializing the Altimeter");
@@ -492,48 +496,51 @@ bool startAltimeter() {
 uint32_t timer = millis();
 
 /**
- * Will fill a GPSData struct with the current GPS data,
- * or will return false if a fix is not found on the GPS
- * or if it could not parse the GPS message.
+   Will fill a GPSData struct with the current GPS data,
+   or will return false if a fix is not found on the GPS
+   or if it could not parse the GPS message.
 */
 bool getGPSData(GPSData* data) {
   char c = GPS.read();
   Serial.print("Checking if GPS has data...");
   if (GPS.newNMEAreceived()) {
-    if (!GPS.parse(GPS.lastNMEA())) { Serial.println(" no data as of yet"); return false; }
+    if (!GPS.parse(GPS.lastNMEA())) {
+      Serial.println(" no data as of yet");
+      return false;
+    }
   }
   if (timer > millis()) timer = millis();
-     
+
   // approximately every 2 seconds or so, print out the current stats
   if (millis() - timer > 2000) {
-  if (GPS.fix) {  
+    if (GPS.fix) {
 
-    //Serial.println(" it does, reading it now");
-    data->fix         =   (int)GPS.fix;
-    data->fixQuality  =   GPS.fixquality;
-    data->satellites  =   GPS.satellites;
-    data->latitude    =   GPS.latitude;
-    data->longitude   =   GPS.longitude;
-    data->speed       =   GPS.speed;
-    data->angle       =   GPS.angle;
-    data->altitude    =   GPS.altitude; 
-  }
-  else {
-    Serial.println(" there is no fix"); return false;
-  }
+      //Serial.println(" it does, reading it now");
+      data->fix         =   (int)GPS.fix;
+      data->fixQuality  =   GPS.fixquality;
+      data->satellites  =   GPS.satellites;
+      data->latitude    =   GPS.latitude;
+      data->longitude   =   GPS.longitude;
+      data->speed       =   GPS.speed;
+      data->angle       =   GPS.angle;
+      data->altitude    =   GPS.altitude;
+    }
+    else {
+      Serial.println(" there is no fix"); return false;
+    }
   }
   return true;
 }
 
 /**
- * Initializes the GPS chip. Will return false
- * if there was an error, and true otherwise.
- * 
- * TODO: Figure out how to detect an error.
+   Initializes the GPS chip. Will return false
+   if there was an error, and true otherwise.
+
+   TODO: Figure out how to detect an error.
 */
 bool startGPS() {
   Serial.println("Starting up the GPS chip");
-  
+
   // 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
   GPS.begin(9600);
   // uncomment this line to turn on RMC (recommended minimum) and GGA (fix data) including altitude
@@ -546,12 +553,12 @@ bool startGPS() {
   GPS.sendCommand(PMTK_SET_NMEA_UPDATE_1HZ); // 1 Hz update rate
   // For the parsing code to work nicely and have time to sort thru the data, and
   // print it out we don't suggest using anything higher than 1 Hz
-     
+
   // Request updates on antenna status, comment out to keep quiet
   GPS.sendCommand(PGCMD_ANTENNA);
 
   delay(1000);
-  
+
   // Ask for firmware version
   GPSSerial.println(PMTK_Q_RELEASE);
 
@@ -560,15 +567,15 @@ bool startGPS() {
 
 
 /**
- * This function initializes the RockBLOCK and tests its signal
- * quality. It assumes that `Serial` has been initialized already.
- * 
- * Will return false if initialization of the RockBLOCK was not successful.
+   This function initializes the RockBLOCK and tests its signal
+   quality. It assumes that `Serial` has been initialized already.
+
+   Will return false if initialization of the RockBLOCK was not successful.
 */
 bool startRockBlock() {
   int signalQuality = -1;
   int err;
-  
+
   IridiumSerial.begin(19200);
 
   setMode(3);
@@ -597,7 +604,7 @@ bool startRockBlock() {
   }
   Serial.print("On a scale of 0 to 5, signal quality is currently ");
   Serial.print(signalQuality);
-  Serial.println(".");  
+  Serial.println(".");
 
   return true;
 }
@@ -605,14 +612,14 @@ bool startRockBlock() {
 
 
 /**
- * Sends data through the RockBLOCK to the location we specified.
- * Usually, only 50 bytes of data should be send in `data` so that
- * only one credit is used during transmission.
- * 
- * When the function is called, the main loop will stall until
- * the RockBLOCK is able to send all the data. During this time,
- * the function `ISBDCallBack` will be called instead of loop.
- */
+   Sends data through the RockBLOCK to the location we specified.
+   Usually, only 50 bytes of data should be send in `data` so that
+   only one credit is used during transmission.
+
+   When the function is called, the main loop will stall until
+   the RockBLOCK is able to send all the data. During this time,
+   the function `ISBDCallBack` will be called instead of loop.
+*/
 void rockBlockSendData(const char* data) {
 
   int quality1 = -1;
@@ -632,19 +639,19 @@ void rockBlockSendData(const char* data) {
 
   int bestQuality;
 
-  if (quality1 > quality2 && quality1 > quality3) { 
-    Serial.print("1st antenna is best, with signal quality "); Serial.println(quality1); setMode(1); bestQuality = quality1; 
+  if (quality1 > quality2 && quality1 > quality3) {
+    Serial.print("1st antenna is best, with signal quality "); Serial.println(quality1); setMode(1); bestQuality = quality1;
   } else if (quality2 > quality1 && quality2 > quality3) {
-    Serial.print("2nd antenna is best, with signal quality "); Serial.println(quality2); setMode(2); bestQuality = quality2; 
-  } else { 
-    Serial.print("Third antenna is best, with signal quality "); Serial.println(quality3); setMode(3); bestQuality = quality3; 
+    Serial.print("2nd antenna is best, with signal quality "); Serial.println(quality2); setMode(2); bestQuality = quality2;
+  } else {
+    Serial.print("Third antenna is best, with signal quality "); Serial.println(quality3); setMode(3); bestQuality = quality3;
   }
 
   if (bestQuality == 0) {
     Serial.println("No antenna can transmit... skipping.");
     return;
   }
-  
+
   Serial.println("Attmepting to send message");
   int err = modem.sendSBDText(data);
   if (err != ISBD_SUCCESS)
@@ -665,7 +672,7 @@ void rockBlockSendData(const char* data) {
 
 void initializeSPI() {
   Serial.println("Starting up SPI...");
-  
+
   SPI.begin();
 
   //Set all chip select pins to high
@@ -682,8 +689,8 @@ void initializeSPI() {
 }
 
 /**
- * This function will run on a loop when the RockBLOCK is attempting 
- * to send data. We just collect data and then write it to the data log.
+   This function will run on a loop when the RockBLOCK is attempting
+   to send data. We just collect data and then write it to the data log.
 */
 bool ISBDCallback()
 {
@@ -697,10 +704,10 @@ bool ISBDCallback()
     if (!GPS.parse(GPS.lastNMEA())) // this also sets the newNMEAreceived() flag to false
       return true; // we can fail to parse a sentence in which case we should just wait for another
   }
-  
+
 
   //delay(DATA_DELAY_TIME);
-  
+
   return true;
 }
 
@@ -720,9 +727,9 @@ void setup()
 {
   pinMode(CTR1, OUTPUT);
   pinMode(CTR2, OUTPUT);
-  
+
   Serial.begin(115200);
-  
+
   initializeSPI();
 
   Serial.println("About to start GPS");
@@ -744,12 +751,12 @@ void setup()
   //startRockBlock();
 
   Serial.println("About to start IMU");
-    if (!lsm.begin()) {
-      Serial.println("Failed to communicate with LSM9DS1.");
-    while(1);
+  if (!lsm.begin()) {
+    Serial.println("Failed to communicate with LSM9DS1.");
+    while (1);
   }
   setupLSM();
-  
+
 
 
   servoL.attach(servoPinL);
@@ -758,8 +765,8 @@ void setup()
   servoL.write(angleL); //pointed straight up, angleL = 0
   servoR.write(angleR); //pointed straight up, angleR = 0
 
-  
-  
+
+
 }
 
 int rockBlockSendTime = 0;
@@ -773,21 +780,21 @@ void loop()
   ThermocoupleData thermocoupleData;
   RTCData rtcData;
   IMUData imuData;
-  
+
   int input;
 
-  getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData, &imuData);  
+  getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData, &imuData);
   writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData);
 
   //Should we send data to ground?
   if (false) {//if (millis() > rockBlockSendTime) {
-    
+
     /* The data will be written to a dataString in this format:
-    <TripNumber>:<Hour>:<Minute>:<FixQuality>:<Speed>:<Angle>:<Lon>:<Lat>:<Altitude>:<ExternalTemp>
+      <TripNumber>:<Hour>:<Minute>:<FixQuality>:<Speed>:<Angle>:<Lon>:<Lat>:<Altitude>:<ExternalTemp>
     */
 
     Serial.println("It's time to send a message from the rockblock");
-    
+
     String hour = String((int) rtcData.hour, DEC);
     String minute = String((int) rtcData.minute, DEC);
     String fixQuality = String((int) gpsData.fixQuality, DEC);
@@ -817,22 +824,22 @@ void loop()
   }
 
   /*
-   * Controls section of the loop!
-   */
+     Controls section of the loop!
+  */
   if (XBee.available() > 0) {
     if (getXBeeControl() && !released) { //update angleL and angleR
       released = true;
-      //move the  release servo 
+      //move the  release servo
     }
     servoR.write(angleR);
     servoL.write(angleL);
   }
-  
+
   Serial.print("Right servo: ");
   Serial.println(angleR);
   Serial.print("Left servo: ");
   Serial.println(angleL);
-  
+
   delay(DATA_DELAY_TIME);
 
 }
