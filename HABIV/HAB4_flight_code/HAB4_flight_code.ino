@@ -20,6 +20,8 @@
 #include "RTClib.h"
 #include <SD.h>
 #include "Servo.h"
+#include "PID_v1.h"
+#include "Math.h"
 
 #include "IntersemaBaro.h"
 
@@ -94,6 +96,15 @@ int angleR = 0; // global variable for what the right servo's angle is
 int angleL = 0; // global variable for what the left servo's angle is
 
 bool released = false;
+
+
+
+//PID STUFF
+float Kp=0; //Initial Proportional Gain
+float Ki=10; //Initial Integral Gain
+float Kd=0; // Initial Differential Gain
+
+
 
 
 /**
@@ -364,21 +375,14 @@ bool getIMUData(IMUData* data, bool adcdps) {
 }
 
 /**
-   Gets data from the balloon Flora:
-
-
-*/
-bool getBalloonData(IMUData* data) {
-  return true;
-}
-
-
-/**
    Gets the data from the Xbee and converts it to something controllable
 
 */
 
 bool getXBeeControl() { //returns if the parachute should be dropped.
+
+  //TODO: THIS SUCKS MAKE IT BETTER, ALEX.
+  
   byte input = XBee.read();
 
   //input should be a delta angle: [_ _ _ _] [_ _ _ _] <- 8 bits
@@ -421,6 +425,8 @@ bool getXBeeControl() { //returns if the parachute should be dropped.
 /**
    Starts up the RTC. Returns false in the event of failure.
 */
+
+
 bool startRTC() {
   Serial.println("Starting up the RTC");
   if (! rtc.begin()) {
@@ -435,6 +441,7 @@ bool startRTC() {
 
   return true;
 }
+
 
 /**
    Get the internal temperature of the thermocouple, along with the external
@@ -563,6 +570,16 @@ bool startGPS() {
   GPSSerial.println(PMTK_Q_RELEASE);
 
   return true;
+}
+
+float LatLongDistanceMeters(float lat1, float lon1, float lat2, float lon2) {
+  float R = 6378.137; // Radius of earth in KM
+  float dLat = lat2 * (PI / 180.0) - lat1 * (PI / 180.0);
+  float dLon = lon2 * (PI / 180.0) - lon1 * (PI / 180.0);
+  float a = sin(dLat / 2.0) * sin(dLat / 2.0) + cos(lat1 * (PI / 180.0)) * cos(lat2 * (PI / 180.0)) * sin(dLon / 2.0) * sin(dLon / 2.0);
+  float c = 2 * atan2(sqrt(a), sqrt(1-a));
+  float d = R * c;
+  return d * 1000; // meters
 }
 
 
