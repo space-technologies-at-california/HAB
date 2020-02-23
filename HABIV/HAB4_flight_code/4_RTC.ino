@@ -28,7 +28,7 @@ bool startRTC() {
 /**
    Gets the hour, minute, and second from the RTC, and places it in the RTCData struct you provide.
 */
-bool getRTCData(RTCData* data) {
+bool getRTCData(struct RTCData* data) {
   Serial.println("Getting RTC data");
   DateTime now = rtc.now();
   data->hour   = now.hour();

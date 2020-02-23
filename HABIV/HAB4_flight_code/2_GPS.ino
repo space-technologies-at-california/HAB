@@ -47,7 +47,7 @@ bool startGPS() {
    or will return false if a fix is not found on the GPS
    or if it could not parse the GPS message.
 */
-bool getGPSData(GPSData* data) {
+bool getGPSData(struct GPSData* data) {
   char c = GPS.read();
   Serial.print("Checking if GPS has data...");
   if (GPS.newNMEAreceived()) {

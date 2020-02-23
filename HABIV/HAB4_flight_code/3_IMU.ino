@@ -31,7 +31,7 @@ void setupLSM()
    TRUE: adc output
    FALSE: dps output
 */
-bool getIMUData(IMUData* data, bool adcdps) {
+bool getIMUData(struct IMUData* data, bool adcdps) {
 
   lsm.read();  /* ask it to read in the data */
 

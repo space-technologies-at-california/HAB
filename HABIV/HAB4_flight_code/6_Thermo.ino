@@ -18,7 +18,7 @@ bool startThermocouple() {
    Get the internal temperature of the thermocouple, along with the external
    temperature in both celsius and farenheit.
 */
-bool getThermocoupleData(ThermocoupleData* data) {
+bool getThermocoupleData(struct ThermocoupleData* data) {
   Serial.println("Getting Thermocouple data");
 
   data->internal = thermocouple.readInternal();

@@ -23,7 +23,7 @@ bool startAltimeter() {
 
    TODO: figure out how to return false for error values.
 */
-bool getAltimeterData(AltimeterData* data) {
+bool getAltimeterData(struct AltimeterData* data) {
   Serial.println("Getting data from the altimeter");
 
   data->heightMeters1 = baro.getHeightMeters(1);

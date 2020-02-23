@@ -16,7 +16,7 @@ bool startSD() {
    Write all data to the log file on the SD card. Returns false if it could not open the
    log file.
 */
-bool writeAllDataToSDCard(GPSData* gpsData, AltimeterData* altimeterData, ThermocoupleData* thermocoupleData, RTCData* rtcData) {
+bool writeAllDataToSDCard(GPSData* gpsData,AltimeterData* altimeterData, ThermocoupleData* thermocoupleData, RTCData* rtcData) {
 
   File dataFile = SD.open(LOG_FILE, FILE_WRITE);
 
