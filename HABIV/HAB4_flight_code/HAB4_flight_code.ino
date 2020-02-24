@@ -11,6 +11,9 @@
    BOARD: GENERIC STM32F4 SERIES
    BLACK F407VE
 
+
+   THIS FILE WILL INCLUDE ALL OF THE GLOBAL VARIABLES AND DEFINITIONS.
+
 */
 #include <IridiumSBD.h>
 #include <Adafruit_GPS.h>
@@ -93,9 +96,14 @@ Servo servoRelease;
 bool released = false;
 
 //motor
-#define motorPinIn1 3 //CHANGE!
-#define motorPinIn2 4 //CHANGE!
+#define motorPinLIn1 3 //CHANGE!
+#define motorPinLIn2 4 //CHANGE!
 
+#define motorPinRIn1 5 //CHANGE!
+#define motorPinRIn2 6 //CHANGE!
+
+//motor constants
+#define gearRatio 488.28125
 
 
 

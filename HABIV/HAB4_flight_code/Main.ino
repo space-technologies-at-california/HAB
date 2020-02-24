@@ -127,8 +127,13 @@ void setup()
 
 
 
+  Serial.println("attaching servo and motor.");
   servoRelease.attach(releasePin);
+  pinMode(motorPinLIn1, OUTPUT);
+  pinMode(motorPinLIn2, OUTPUT);
 
+  pinMode(motorPinRIn1, OUTPUT);
+  pinMode(motorPinRIn2, OUTPUT);
 }
 
 void loop()

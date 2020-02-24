@@ -1,4 +1,15 @@
 /**
+
+  fILE WITH ALL ALTIMETER STRUCTURE AND FUNCTION INFORMATION
+
+   
+ */
+
+
+
+
+
+/**
    Structure for holding Altimeter data
 */
 struct AltimeterData {

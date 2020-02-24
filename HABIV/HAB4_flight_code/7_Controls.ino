@@ -2,6 +2,7 @@
 /*
  * The place for all of the controls functions. 
  * 
+ * May add the motor stuff here too.
  * 
  */
 
