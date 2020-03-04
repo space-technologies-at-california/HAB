@@ -105,8 +105,6 @@ bool released = false;
 //motor constants
 #define gearRatio 488.28125
 
-
-
 //PID STUFF
 #define OUTPUT_MIN 0 //CHANGE!
 #define OUTPUT_MAX 255 //CHANGE!
