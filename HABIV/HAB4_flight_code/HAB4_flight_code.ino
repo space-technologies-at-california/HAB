@@ -28,6 +28,8 @@
 
 #include "IntersemaBaro.h"
 
+#include "I2C_Anything.h"
+
 #include <Adafruit_LSM9DS1.h>
 #include <Adafruit_Sensor.h>
 
@@ -70,6 +72,7 @@
 #define thermocoupleChipSelect D9
 #define sdCardChipSelect D8
 
+
 // Declare Serial communication
 HardwareSerial GPSSerial(GPSRX, GPSTX);
 HardwareSerial IridiumSerial(IridiumRX, IridiumTX);
@@ -84,12 +87,14 @@ RTC_PCF8523 rtc;
 //Declare IMU
 Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();
 
-//XBEE COMMUNICATION
+//COMMUNICATIONS
 // RX: Arduino pin 2, XBee pin DOUT.  TX:  Arduino pin 3, XBee pin DIN
 //SoftwareSerial XBee(2, 3); //CHANGE PINS <--- long range: ground to payload
 //SoftwareSerial XBee(4, 5); //CHANGE PINS <--- short range: payload to balloon
 
 HardwareSerial XBee(XBEE_RX, XBEE_TX);
+
+#define WIRE_INPUT D7 //CHANGE!
 
 //MOVEMENT
 Servo servoRelease;

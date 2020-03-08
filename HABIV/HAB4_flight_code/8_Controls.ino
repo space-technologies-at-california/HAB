@@ -5,9 +5,6 @@
  * May add the motor stuff here too.
  * 
  */
-
-
-
 float LatLongDistanceMeters(float lat1, float lon1, float lat2, float lon2) {
   float R = 6378.137; // Radius of earth in KM
   float dLat = lat2 * (PI / 180.0) - lat1 * (PI / 180.0);

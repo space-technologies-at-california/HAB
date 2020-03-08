@@ -23,13 +23,14 @@ void setMode(int rf) {
 /**
    Buffers all peripheral data into the given structs.
 */
-bool getAllData(struct GPSData* gpsData, struct AltimeterData* altimeterData, struct ThermocoupleData* thermocoupleData, struct RTCData* rtcData, struct IMUData* imuData) {
+bool getAllData(struct GPSData* gpsData, struct AltimeterData* altimeterData, struct ThermocoupleData* thermocoupleData, struct RTCData* rtcData, struct IMUData* imuData, struct UVBData* uvbData) {
 
   getGPSData(gpsData);
   getAltimeterData(altimeterData);
   getThermocoupleData(thermocoupleData);
   getRTCData(rtcData);
   getIMUData(imuData, true); //True for DPS values
+  getUVBData(uvbData);
 
   return true;
 }
@@ -125,7 +126,7 @@ void setup()
   }
   setupLSM();
 
-
+  Wire.begin(WIRE_INPUT);
 
   Serial.println("attaching servo and motor.");
   servoRelease.attach(releasePin);
@@ -144,11 +145,12 @@ void loop()
   ThermocoupleData thermocoupleData;
   RTCData rtcData;
   IMUData imuData;
+  UVBData uvbData;
 
   int input;
 
-  getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData, &imuData);
-  writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData);
+  getAllData(&gpsData, &altimeterData, &thermocoupleData, &rtcData, &imuData, &uvbData);
+  writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData, &uvbData);
 
   //Should we send data to ground?
   if (false) {//if (millis() > rockBlockSendTime) {

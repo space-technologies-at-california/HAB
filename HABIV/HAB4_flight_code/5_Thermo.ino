@@ -2,7 +2,7 @@
    Structure for ThermocoupleData data
 */
 struct ThermocoupleData {
-  double internal, external, externalFahrenheit;
+  double internal, external, externalFarenheit;
 };
 
 /**
