@@ -16,7 +16,7 @@ bool startSD() {
    Write all data to the log file on the SD card. Returns false if it could not open the
    log file.
 */
-bool writeAllDataToSDCard(GPSData* gpsData,AltimeterData* altimeterData, ThermocoupleData* thermocoupleData, RTCData* rtcData) {
+bool writeAllDataToSDCard(GPSData* gpsData,AltimeterData* altimeterData, ThermocoupleData* thermocoupleData, RTCData* rtcData, struct UVBData* uvbData) {
 
   File dataFile = SD.open(LOG_FILE, FILE_WRITE);
 
@@ -54,6 +54,7 @@ bool writeAllDataToSDCard(GPSData* gpsData,AltimeterData* altimeterData, Thermoc
     dataFile.print("Internal Temp: "); dataFile.print(thermocoupleData->internal, DEC); dataFile.print(" C, ");
     dataFile.print("External Temp: "); dataFile.print(thermocoupleData->external, DEC); dataFile.print(" C / ");
     dataFile.print(thermocoupleData->externalFarenheit, DEC); dataFile.print(" F \n\n");
+    dataFile.print("UVB Reading: "); dataFile.print(uvbData->reading, DEC); dataFile.print("\n\n");
 
 
     dataFile.close();

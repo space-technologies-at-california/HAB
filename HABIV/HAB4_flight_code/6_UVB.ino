@@ -25,14 +25,4 @@ bool getUVBData(struct UVBData* data) {
   }
   Serial.println("Sensor is not ready yet.");
   return false;
-
-  
-  // should check to see if the I2C is ready, then add this to the struct.
-
-  
-  // This will sample from the other arduino UNO where the UVB sensor is connected to.
-  return true;
-
-
-  
 }
