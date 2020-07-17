@@ -37,16 +37,18 @@
 #define DATA_DELAY_TIME 10000
 
 #define DIAGNOSTICS false // Iridium Diagnostics
-#define GPSECHO false     // GPS Diagnostics
+#define GPSECHO true     // GPS Diagnostics
 
 //Define serial communication pins
 #define IridiumRX PA12
 #define IridiumTX PA11
+
 #define GPSRX PB0
 #define GPSTX PB1
+
 //#include "SoftwareSerial.h" //FOR XBEE
 
-#define IridiumSleep D6
+#define IridiumSleep PB10
 
 #define CTR1 PC12
 #define CTR2 PC13
@@ -68,9 +70,9 @@
 #define SENSITIVITY 15 //sensitivity of the controls. ie, if you give the control to move 
 
 //Define SPI slave select pins
-#define altimeterChipSelect D7 // IMPORTANT!!!!! IF THIS IS CHANGED, YOU MUST CHANGE chipSelect IN IntersemaBaro.h
-#define thermocoupleChipSelect D9
-#define sdCardChipSelect D8
+#define altimeterChipSelect PA8 // IMPORTANT!!!!! IF THIS IS CHANGED, YOU MUST CHANGE chipSelect IN IntersemaBaro.h
+#define thermocoupleChipSelect PC7
+#define sdCardChipSelect PA4
 
 
 // Declare Serial communication

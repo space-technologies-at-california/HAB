@@ -193,6 +193,25 @@ X ~ 2 0 -150 100 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# Device_Jumper
+#
+DEF Device_Jumper JP 0 30 Y N 1 F N
+F0 "JP" 0 150 50 H V C CNN
+F1 "Device_Jumper" 0 -80 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ SolderJumper*
+$ENDFPLIST
+DRAW
+A 0 -26 125 1426 373 0 1 0 N -98 50 99 50
+C -100 0 35 0 1 0 N
+C 100 0 35 0 1 0 N
+X 1 1 -300 0 165 R 50 50 0 1 P
+X 2 2 300 0 165 L 50 50 0 1 P
+ENDDRAW
+ENDDEF
+#
 # Device_R
 #
 DEF Device_R R 0 0 N Y 1 F N
@@ -227,48 +246,22 @@ X ~ 2 0 -100 30 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# dk_Motion-Sensors-IMUs-Inertial-Measurement-Units_LSM9DS1TR
+# STAC_Jumper
 #
-DEF dk_Motion-Sensors-IMUs-Inertial-Measurement-Units_LSM9DS1TR U 0 40 Y Y 1 F N
-F0 "U" -501 739 60 H V L CNN
-F1 "dk_Motion-Sensors-IMUs-Inertial-Measurement-Units_LSM9DS1TR" 227 -453 60 H V L CNN
-F2 "digikey-footprints:LGA-24_3x3.5mm_LSM9DS1" 200 200 60 H I L CNN
-F3 "http://www.st.com/content/ccc/resource/technical/document/datasheet/1e/3f/2a/d6/25/eb/48/46/DM00103319.pdf/files/DM00103319.pdf/jcr:content/translations/en.DM00103319.pdf" 200 300 60 H I L CNN
-F4 "497-14946-1-ND" 200 400 60 H I L CNN "Digi-Key_PN"
-F5 "LSM9DS1TR" 200 500 60 H I L CNN "MPN"
-F6 "Sensors, Transducers" 200 600 60 H I L CNN "Category"
-F7 "Motion Sensors - IMUs (Inertial Measurement Units)" 200 700 60 H I L CNN "Family"
-F8 "http://www.st.com/content/ccc/resource/technical/document/datasheet/1e/3f/2a/d6/25/eb/48/46/DM00103319.pdf/files/DM00103319.pdf/jcr:content/translations/en.DM00103319.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
-F9 "/product-detail/en/stmicroelectronics/LSM9DS1TR/497-14946-1-ND/4988079" 200 900 60 H I L CNN "DK_Detail_Page"
-F10 "IMU ACCEL/GYRO/MAG I2C/SPI 24LGA" 200 1000 60 H I L CNN "Description"
-F11 "STMicroelectronics" 200 1100 60 H I L CNN "Manufacturer"
-F12 "Active" 200 1200 60 H I L CNN "Status"
+DEF STAC_Jumper JP 0 30 Y N 1 F N
+F0 "JP" 0 150 50 H V C CNN
+F1 "STAC_Jumper" 0 -80 50 H V C CNN
+F2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ SolderJumper*
+$ENDFPLIST
 DRAW
-S -500 700 500 -400 0 1 0 f
-X VDDIO 1 -200 800 100 D 50 50 1 0 W
-X INT_M 10 600 100 100 L 50 50 1 0 O
-X INT1_A/G 11 600 0 100 L 50 50 1 0 O
-X INT2_A/G 12 600 -100 100 L 50 50 1 0 O
-X DEN_A/G 13 -600 0 100 R 50 50 1 0 I
-X RES 14 -400 -500 100 U 50 50 1 0 W
-X RES 15 -300 -500 100 U 50 50 1 0 W
-X RES 16 -200 -500 100 U 50 50 1 0 W
-X RES 17 -100 -500 100 U 50 50 1 0 W
-X RES 18 0 -500 100 U 50 50 1 0 W
-X GND 19 100 -500 100 U 50 50 1 0 W
-X SCL/SPC 2 -600 300 100 R 50 50 1 0 I
-X GND 20 200 -500 100 U 50 50 1 0 W
-X CAP 21 600 -300 100 L 50 50 1 0 U
-X VDD 22 100 800 100 D 50 50 1 0 W
-X VDD 23 200 800 100 D 50 50 1 0 W
-X C1 24 600 -200 100 L 50 50 1 0 U
-X VDDIO 3 -100 800 100 D 50 50 1 0 W
-X SDA/SDI/SDO 4 -600 400 100 R 50 50 1 0 B
-X SDO_A/G 5 600 400 100 L 50 50 1 0 O
-X SDO_A/G 6 600 300 100 L 50 50 1 0 O
-X CS_A/G 7 -600 200 100 R 50 50 1 0 I
-X CS_M 8 -600 100 100 R 50 50 1 0 I
-X DRDY_M 9 600 200 100 L 50 50 1 0 O
+A 0 -26 125 1426 373 0 1 0 N -98 50 99 50
+C -100 0 35 0 1 0 N
+C 100 0 35 0 1 0 N
+X 1 1 -300 0 165 R 50 50 0 1 P
+X 2 2 300 0 165 L 50 50 0 1 P
 ENDDRAW
 ENDDEF
 #
@@ -745,26 +738,9 @@ X 2 2 200 0 100 L 0 0 1 0 P
 ENDDRAW
 ENDDEF
 #
-# habiv-board-rescue_RESISTOR0805_NOOUTLINE-real_time_clock-eagle-import
-#
-DEF habiv-board-rescue_RESISTOR0805_NOOUTLINE-real_time_clock-eagle-import R 0 40 Y Y 1 L N
-F0 "R" 0 100 50 H V C CNN
-F1 "habiv-board-rescue_RESISTOR0805_NOOUTLINE-real_time_clock-eagle-import" 0 0 40 H V C CNB
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 1 0 0 -100 -50 -100 50 N
-P 2 1 0 0 -100 50 100 50 N
-P 2 1 0 0 100 -50 -100 -50 N
-P 2 1 0 0 100 50 100 -50 N
-X 1 1 -200 0 100 R 0 0 1 0 P
-X 2 2 200 0 100 L 0 0 1 0 P
-ENDDRAW
-ENDDEF
-#
 # habiv-board-rescue_RTC_PCF8523T-real_time_clock-eagle-import
 #
-DEF ~habiv-board-rescue_RTC_PCF8523T-real_time_clock-eagle-import IC 0 40 Y Y 1 L N
+DEF habiv-board-rescue_RTC_PCF8523T-real_time_clock-eagle-import IC 0 40 Y Y 1 L N
 F0 "IC" 400 300 59 H V R TNN
 F1 "habiv-board-rescue_RTC_PCF8523T-real_time_clock-eagle-import" 0 0 50 H I C CNN
 F2 "" 0 0 50 H I C CNN
@@ -907,7 +883,7 @@ ENDDEF
 #
 # habiv-board-rescue_U.FL-Adafruit_Ultimate_GPS-eagle-import
 #
-DEF ~habiv-board-rescue_U.FL-Adafruit_Ultimate_GPS-eagle-import ~ 0 40 Y Y 1 L N
+DEF habiv-board-rescue_U.FL-Adafruit_Ultimate_GPS-eagle-import ~ 0 40 Y Y 1 L N
 F0 "" 0 0 50 H I C CNN
 F1 "habiv-board-rescue_U.FL-Adafruit_Ultimate_GPS-eagle-import" 0 0 50 H I C CNN
 F2 "" 0 0 50 H I C CNN
@@ -922,6 +898,22 @@ X SIGNAL P$3 200 0 200 L 0 0 1 0 U
 ENDDRAW
 ENDDEF
 #
+# power_+3.3V
+#
+DEF power_+3.3V #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "power_+3.3V" 0 140 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+ALIAS +3.3V
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X +3V3 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
 # power_+3V3
 #
 DEF power_+3V3 #PWR 0 0 Y Y 1 F P
@@ -929,7 +921,6 @@ F0 "#PWR" 0 -150 50 H I C CNN
 F1 "power_+3V3" 0 140 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
-ALIAS +3.3V
 DRAW
 P 2 0 1 0 -30 50 0 100 N
 P 2 0 1 0 0 0 0 100 N
