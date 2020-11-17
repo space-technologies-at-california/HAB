@@ -92,6 +92,11 @@ void ISBDDiagsCallback(IridiumSBD *device, char c)
 int rockBlockSendTime = 0;
 int rockBlockSendRate = 60000;
 
+int controlTime = 0;
+int controlTimeRate = 120000; // update
+
+bool startingControl = false;
+
 void setup()
 {
   pinMode(CTR1, OUTPUT);
@@ -153,6 +158,11 @@ void loop()
   writeAllDataToSDCard(&gpsData, &altimeterData, &thermocoupleData, &rtcData, &uvbData);
 
   //Should we send data to ground?
+  if (millis() > controlTime && startingControl) {
+    sendControlData(&gpsData, &altimeterData, &rtcData, &imuData);
+    controlTime = millis() + controlTimeRate
+  }
+  
   if (false) {//if (millis() > rockBlockSendTime) {
 
     /* The data will be written to a dataString in this format:
