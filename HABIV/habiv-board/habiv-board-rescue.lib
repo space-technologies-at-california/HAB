@@ -687,6 +687,51 @@ X C C 100 0 100 L 0 0 1 0 P
 ENDDRAW
 ENDDEF
 #
+# LSM9DS1TR-dk_Motion-Sensors-IMUs-Inertial-Measurement-Units
+#
+DEF LSM9DS1TR-dk_Motion-Sensors-IMUs-Inertial-Measurement-Units U 0 40 Y Y 1 F N
+F0 "U" -501 739 60 H V L CNN
+F1 "LSM9DS1TR-dk_Motion-Sensors-IMUs-Inertial-Measurement-Units" 227 -453 60 H V L CNN
+F2 "digikey-footprints:LGA-24_3x3.5mm_LSM9DS1" 200 200 60 H I L CNN
+F3 "http://www.st.com/content/ccc/resource/technical/document/datasheet/1e/3f/2a/d6/25/eb/48/46/DM00103319.pdf/files/DM00103319.pdf/jcr:content/translations/en.DM00103319.pdf" 200 300 60 H I L CNN
+F4 "497-14946-1-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "LSM9DS1TR" 200 500 60 H I L CNN "MPN"
+F6 "Sensors, Transducers" 200 600 60 H I L CNN "Category"
+F7 "Motion Sensors - IMUs (Inertial Measurement Units)" 200 700 60 H I L CNN "Family"
+F8 "http://www.st.com/content/ccc/resource/technical/document/datasheet/1e/3f/2a/d6/25/eb/48/46/DM00103319.pdf/files/DM00103319.pdf/jcr:content/translations/en.DM00103319.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/stmicroelectronics/LSM9DS1TR/497-14946-1-ND/4988079" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "IMU ACCEL/GYRO/MAG I2C/SPI 24LGA" 200 1000 60 H I L CNN "Description"
+F11 "STMicroelectronics" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+S -500 700 500 -400 0 1 0 f
+X VDDIO 1 -200 800 100 D 50 50 1 0 W
+X INT_M 10 600 100 100 L 50 50 1 0 O
+X INT1_A/G 11 600 0 100 L 50 50 1 0 O
+X INT2_A/G 12 600 -100 100 L 50 50 1 0 O
+X DEN_A/G 13 -600 0 100 R 50 50 1 0 I
+X RES 14 -400 -500 100 U 50 50 1 0 W
+X RES 15 -300 -500 100 U 50 50 1 0 W
+X RES 16 -200 -500 100 U 50 50 1 0 W
+X RES 17 -100 -500 100 U 50 50 1 0 W
+X RES 18 0 -500 100 U 50 50 1 0 W
+X GND 19 100 -500 100 U 50 50 1 0 W
+X SCL/SPC 2 -600 300 100 R 50 50 1 0 I
+X GND 20 200 -500 100 U 50 50 1 0 W
+X CAP 21 600 -300 100 L 50 50 1 0 U
+X VDD 22 100 800 100 D 50 50 1 0 W
+X VDD 23 200 800 100 D 50 50 1 0 W
+X C1 24 600 -200 100 L 50 50 1 0 U
+X VDDIO 3 -100 800 100 D 50 50 1 0 W
+X SDA/SDI/SDO 4 -600 400 100 R 50 50 1 0 B
+X SDO_A/G 5 600 400 100 L 50 50 1 0 O
+X SDO_A/G 6 600 300 100 L 50 50 1 0 O
+X CS_A/G 7 -600 200 100 R 50 50 1 0 I
+X CS_M 8 -600 100 100 R 50 50 1 0 I
+X DRDY_M 9 600 200 100 L 50 50 1 0 O
+ENDDRAW
+ENDDEF
+#
 # MAX31855-MAX31855-Hab_thermocoupler-rescue
 #
 DEF MAX31855-MAX31855-Hab_thermocoupler-rescue U 0 40 N Y 1 L N
@@ -833,7 +878,7 @@ ENDDEF
 #
 # RTC_PCF8523T-real_time_clock-eagle-import
 #
-DEF ~RTC_PCF8523T-real_time_clock-eagle-import IC 0 40 Y Y 1 L N
+DEF RTC_PCF8523T-real_time_clock-eagle-import IC 0 40 Y Y 1 L N
 F0 "IC" 400 300 59 H V R TNN
 F1 "RTC_PCF8523T-real_time_clock-eagle-import" 0 0 50 H I C CNN
 F2 "" 0 0 50 H I C CNN
@@ -976,7 +1021,7 @@ ENDDEF
 #
 # U.FL-Adafruit_Ultimate_GPS-eagle-import
 #
-DEF ~U.FL-Adafruit_Ultimate_GPS-eagle-import ~ 0 40 Y Y 1 L N
+DEF U.FL-Adafruit_Ultimate_GPS-eagle-import ~ 0 40 Y Y 1 L N
 F0 "" 0 0 50 H I C CNN
 F1 "U.FL-Adafruit_Ultimate_GPS-eagle-import" 0 0 50 H I C CNN
 F2 "" 0 0 50 H I C CNN
