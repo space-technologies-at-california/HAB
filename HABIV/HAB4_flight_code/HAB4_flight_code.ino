@@ -102,22 +102,22 @@ HardwareSerial XBee(XBEE_RX, XBEE_TX);
 Servo servoRelease;
 bool released = false;
 
-//motor
-#define motorPinLIn1 3 //CHANGE!
-#define motorPinLIn2 4 //CHANGE!
-
-#define motorPinRIn1 5 //CHANGE!
-#define motorPinRIn2 6 //CHANGE!
+//motor, should be defined elsewhere.
+//#define motorPinLIn1 3 //CHANGE!
+//#define motorPinLIn2 4 //CHANGE!
+//
+//#define motorPinRIn1 5 //CHANGE!
+//#define motorPinRIn2 6 //CHANGE!
 
 //motor constants
-#define gearRatio 488.28125
+//#define gearRatio 488.28125
 
-//PID STUFF
-#define OUTPUT_MIN 0 //CHANGE!
-#define OUTPUT_MAX 255 //CHANGE!
-#define KP .12 //CHANGE!
-#define KI .0003 //CHANGE!
-#define KD 0 //CHANGE!
+////PID STUFF
+//#define OUTPUT_MIN 0 //CHANGE!
+//#define OUTPUT_MAX 255 //CHANGE!
+//#define KP .12 //CHANGE!
+//#define KI .0003 //CHANGE!
+//#define KD 0 //CHANGE!
 
 
 uint32_t timer = millis();

@@ -7,8 +7,6 @@
 
 
 
-
-
 /**
    Structure for holding Altimeter data
 */
