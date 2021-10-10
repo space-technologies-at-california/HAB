@@ -1,0 +1,28 @@
+<html>
+<head>
+ <meta charset=utf-8 />
+ <title>Planet Webmap Login</title>
+ <link rel="icon" href="favicon.ico" />
+ <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+ <link href="index.css" rel="stylesheet" >
+</head>
+<body>
+ <noscript>
+   You need to enable JavaScript to run this app.
+ </noscript>
+ <div id="login-container">
+   <div class="login-modal">
+     <div class="login-dialog">
+       <div class="pl-header"><img src="planet_white.png" class="pl-logo" alt="logo" /></div>
+       <div class="login-body">
+         <div><input id="email" type="text" placeholder="Email address" name="email" required></div>
+         <div><input id="password" type="password" placeholder="Password" name="password" required></div>
+         <div><button id="login" onclick="login()">Sign In</button></div>
+         <div id="error">Error: Invalid email or password</div>
+       </div>
+     </div>
+   </div>
+ </div>
+ <script src="./login.js"></script>
+</body>
+</html>

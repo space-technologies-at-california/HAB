@@ -1,0 +1,84 @@
+body {
+ margin: 0px;
+}
+
+#map {
+ position: absolute;
+ top: 70;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ width:100%;
+}
+button {
+ border-radius: 5px;
+ border-width: 1px;
+ padding: 5px 10px;
+}
+.pl-logo {
+ height: 50px;
+ margin: 10px;
+}
+.flex-space {
+ flex-grow: 1;
+}
+.pl-header {
+ background-color: #282c34;
+ align-items: flex-start;
+ color: white;
+ display: flex;
+ align-items: center;
+}
+.pl-header > button {
+ color: white;
+ background-color: transparent;
+ border-width: 2px;
+ margin: 10px;
+}
+#login-container {
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ width: 100%;
+ height: 100%;
+}
+#error {
+ visibility: hidden;
+ color: red;
+}
+.login-modal {
+ background-color: rgba(0, 0, 0, 1);
+ width: 100%;
+ height: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+.login-body {
+ margin: 10px
+}
+.login-body > * {
+ margin: 5px;
+}
+.login-dialog {
+ display: inline-block;
+ background-color: white;
+ border-radius: 5px;
+ overflow: hidden;
+ text-align: center;
+}
+.login-body > div > input {
+ width: 100%
+}
+.login-body > div > button {
+ border-color: black;
+ color: white;
+}
+.login-body > div > button {
+ color:black;
+ border-color: black;
+ background-color: white;
+}
+
