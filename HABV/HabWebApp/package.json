@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@planet/client": "^3.1.0",
+    "geotiff": "^1.0.8",
     "ol": "^6.4.3"
   },
   "devDependencies": {
