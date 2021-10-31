@@ -14,9 +14,11 @@ import 'ol/ol.css';
 
 //import {getPlanetApiKey} from './login.js'
 
-const place = [-122.2730, 37.8715];
+function plotPoint(lon, lat) {
+  return fromLonLat([lon, lat]);
+}
 
-const point = new Point(place);
+const point = new Point(plotPoint(-122.2730, 37.8715));
 
 const map = new Map({
  target: 'map',
@@ -32,7 +34,7 @@ const map = new Map({
     }),
     style: new Style({
       image: new Circle({
-        radius: 20,
+        radius: 8,
         fill: new Fill({color: 'red'}),
       }),
     }),
