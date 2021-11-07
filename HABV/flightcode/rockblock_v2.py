@@ -1,56 +1,52 @@
 import time
 import struct
-import board
-import adafruit_rockblock
+#import board
+from adafruit_rockblock import RockBlock
+import serial
 
 
-class RockBlock:
-    def __init__(self):
-        self.uart = board.UART()
-        self.uart.baudrate = 19200
-        self.rb = adafruit_rockblock.RockBlock(self.uart)
-        self.signal_quality = -1
+class RockTest:
+    def __init__(self, port):
+        self.uart = serial.Serial(port)  #VIA USB
+        self.rb = RockBlock(self.uart)
 
-    def package_data(self, data):
-        # data is a list of all different sensor data
-        # build data
-        # can decode on other end with struct.unpack("<6fB5f", data)
+    def read_port(self):
+        print(self.uart.read())
+
+    def send_data(self, some_int, some_float):
+        # create binary data
+        # decode on other end with struct.unpack("<6fB5f", data)
         # formating is dependent on the datatype and number of datapoints
         # https://docs.python.org/3/library/struct.html#format-characters
-        data = struct.pack("3f", *accelo.acceleration)
-        data += struct.pack("3f", *magno.magnetic)
-        data += struct.pack("2f", sht.relative_humidity, sht.temperature)
-        data += struct.pack("3f", bmp.pressure, bmp.altitude, bmp.temperature)
-        return data
+        print("Creating Binary Data...")
+        data = struct.pack("i", some_int)
+        data += struct.pack("f", some_float)
 
-    def send_data(self, data):
-        # data here is the packaged binary data
-        best_quality = []
+        print(f"DATA: {some_int}, {some_float}")
+        print(f"BINARY: {data}, SIZE: {len(data)}")
 
-        def get_qual():
-            return best_quality[0][1]
-
-        def get_ant():
-            return best_quality[0][0]
-
-        ''' TO GET BEST ANTENNA
-        for i in range(1, 4):
-            time.sleep(1000)  # in seconds
-            quality = modem.getSignalQuality(-1)
-            if not len(best_quality):
-                best_quality.append(quality)
-            else:
-                if quality > get_qual():
-                    best_quality = [(i, quality)]
-        '''
+        # put data in outbound buffer
         self.rb.data_out = data
+
+        # try a satellite Short Burst Data transfer
         print("Talking to satellite...")
-        retry = 0
         status = self.rb.satellite_transfer()
+        # loop as needed
+        retry = 0
         while status[0] > 8:
+            if retry > 50:
+                print(f"Cannot Connect to Network! Tried {retry} times!")
+                break
             time.sleep(10)
             status = self.rb.satellite_transfer()
             print(retry, status)
             retry += 1
+
         print("\nDONE.")
+
+
+testing = RockTest('COM3')
+i = 2112
+ft = 42.123456789
+testing.send_data(i,ft)
 
