@@ -13,14 +13,13 @@ app.get('/', (req, res) => {
 
 // Handing the Rockblock POST req
 app.post('/rockblock-data', (req, res) => {
-    res.sendStatus(200)        // Notifying Iridium that we've successfully received their request.           
+    res.sendStatus(200)        // Notifying Iridium that we've successfully received their request           
     processData(req.body.data)
 })
 
 // We can write code to store and process the data within this function.
 function processData(data) {
-    rockblockData = 
-    console.log('Got body:', req.body);
+    console.log('Got data:', data);
 }
 
 app.listen(port, () => {
