@@ -1,23 +1,15 @@
 #!/usr/bin/env python3
-# import python libraries
 import time, math
-import getopt, sys
-
-# import rcpy library
-# This automatically initizalizes the robotics cape
 import rcpy
 import rcpy.servo as servo
 import rcpy.clock as clock
 
 '''
-def usage():
-    print("""usage: python rcpy_test_servos [options] ...
-Options are:
--d duty     define a duty cycle from -1.5 to 1.5
--c servo    specify a single servo from 1-8, 0 for all servos
--s          sweep servos back and forward at duty cycle
--t period   period
--h          print this help message""")
+Args are:
+duty      define a duty cycle from -1.5 to 1.5
+servo     specify a single servo from 1-8, 0 for all servos
+sweep     sweep servos back and forward at duty cycle
+period    period
 '''
 
 
@@ -38,12 +30,12 @@ class HabServo:
         self.clck = clock.Clock(self.internal, self.period)
         self.delta = self.duty/100
 
-    def servo_sweep(self, direction, delta, d=0):
+    def servo_sweep(self, direction, d=0):
         # keep running
         while rcpy.get_state() != rcpy.EXITING:
 
             # increment duty
-            d = d + direction * delta
+            d = d + direction * self.delta
 
             # end of range?
             if d > self.duty:
@@ -54,8 +46,6 @@ class HabServo:
                 direction = direction * -1
 
             self.internal.set(d)
-
-            # sleep some
             time.sleep(.02)
 
     def run(self, direction):
@@ -77,17 +67,18 @@ class HabServo:
 
             # sweep
             if self.sweep:
-                self.servo_sweep(direction, self.delta)
-            # or do nothing
+                self.servo_sweep(direction)
             else:
                 # keep running
                 while rcpy.get_state() != rcpy.EXITING:
-                    # sleep some
                     time.sleep(1)
 
         except KeyboardInterrupt:
-            # handle what to do when Ctrl-C was pressed
-            pass
+            # stop clock
+            self.clck.stop()
+
+            # disable servos
+            servo.disable()
 
         finally:
 
@@ -101,54 +92,6 @@ class HabServo:
             print("\nBye Beaglebone!")
 
 
-test_servo = HabServo(1.5, 50, 0)
-test_servo.run(1)
-'''
-def main():
-    # exit if no options
-    if len(sys.argv) < 2:
-        usage()
-        sys.exit(2)
-
-    # Parse command line
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], "hst:d:c:", ["help"])
-
-    except getopt.GetoptError as err:
-        # print help information and exit:
-        print('rcpy_test_servos: illegal option {}'.format(sys.argv[1:]))
-        usage()
-        sys.exit(2)
-
-    # defaults
-    duty = 1.5
-    period = 0.02
-    channel = 0
-    sweep = False
-    brk = False
-    free = False
-
-    for o, a in opts:
-        if o in ("-h", "--help"):
-            usage()
-            sys.exit()
-        elif o in "-d":
-            duty = float(a)
-        elif o in "-t":
-            period = float(a)
-        elif o in "-c":
-            channel = int(a)
-        elif o == "-s":
-            sweep = True
-        else:
-            assert False, "Unhandled option"
-
-
-
-'''
-'''
-# exiting program will automatically clean up cape
-
-if __name__ == "__main__":
-    main()
-'''
+# TEST CODE BELOW
+test_servo = HabServo(1.5, 50, 0)  # duty, frequency, channel
+test_servo.run(1)  # direction
