@@ -14,8 +14,9 @@ period    period
 
 
 class HabServo:
-    def __init__(self, duty, frequency, channel, sweep=False, brk=False, free=False):
-        self.duty = math.fabs(duty)  # calculate frequency to duty
+    def __init__(self, rotations, frequency, channel, sweep=False, brk=False, free=False):
+
+        self.duty = rotations*3/8 - 1.5
         self.period = 1/frequency
         self.channel = channel
         self.sweep = sweep
@@ -38,6 +39,7 @@ class HabServo:
             d = d + direction * self.delta
 
             # end of range?
+            self.duty = math.fabs(self.duty)
             if d > self.duty:
                 d = self.duty
                 direction = direction * -1
@@ -93,5 +95,5 @@ class HabServo:
 
 
 # TEST CODE BELOW
-test_servo = HabServo(1.5, 50, 0)  # duty, frequency, channel
+test_servo = HabServo(1.5, 50, 0)  # position (0 to 8 rev), frequency, channel
 test_servo.run(1)  # direction
