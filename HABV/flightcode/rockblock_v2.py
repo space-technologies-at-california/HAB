@@ -13,6 +13,9 @@ class RockTest:
     def read_port(self):
         print(self.uart.read())
 
+    def send_all_data(self, data):
+        
+
     def send_data(self, some_int, some_float):
         # create binary data
         # decode on other end with struct.unpack("<6fB5f", data)

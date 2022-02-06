@@ -3,12 +3,12 @@ import time
 # A 2D PID controller
 
 class PID:
-    def __init__(self, P, I, D, current_time=None):
+    def __init__(self, P, I, D, sample_time=15.0, current_time=None):
         self.Kp = P
         self.Ki = I
         self.Kd = D
 
-        self.sample_time = 0.00
+        self.sample_time = sample_time
         self.current_time = current_time if current_time is not None else time.time()
         self.last_time = self.current_time
 
@@ -50,3 +50,6 @@ class PID:
             self.last_error = error
 
             self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm)
+    
+    def get_output(self):
+        return self.output
