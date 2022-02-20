@@ -1,45 +1,23 @@
 import struct
 from servo_control import HabServo
-import pid
+from pid import PID
 import rockblock_v2
 import servo_control
 import time, threading
+from state import HABVehicle
+import internal_sensors
+import gps
 
 # Global Variables / datastructures
-class VehicleState:
-    def __init__(self, pid, gps, servo):
-        self.postion = {}
-        self.time = time.time()
-        self.servo_pos = 0.0
-
-    def update(self):
-        pass
-
-    def get(self):
-        pass
-
-
 
 # PID Coefficients
 kP = 0  # update
 kI = 0  # update
 kD = 0  # update
-PID_controller = None
-PID_FREQ = 0.0
-PID_timer = None
-
-# Servos
-Servo_1 = None
-Servo_2 = None
-
-# RockBLOCK
-Rock_BLOCK = None
+PID_FREQ = 0.0  # update
 
 # Controls
 USE_XBEE = False
-timer = None
-
-servo_output = 0
 
 # XBEE
 XBEE_FREQ = 0.0
@@ -47,16 +25,16 @@ XBEE_timer = None
 
 
 def init():
+    current_time = time.time()
+    SERVO = HabServo()
+    GPS = GPS()
+
     if USE_XBEE:
         XBEE_timer = threading.Timer(XBEE_FREQ, xbee.update)
+        BALLOON = VehicleState(XBEE_timer, GPS, SERVO)
     else:
-        PID_controller = pid.PID(kP, kI, kD)
-        PID_timer = threading.Timer(PID_FREQ, pid.update)
-
-    Servo_1 = HabServo()
-    Servo_2 = HabServo()
-
-    Servo_timer = threading.Timer(Serv, pid.update)
+        PID_controller = PID(kP, kI, kD, interval=1/PID_FREQ)
+        BALLOON = VehicleState(PID_controller, GPS, SERVO)
 
     Rock_BLOCK = rockblock_v2.RockTest()
 

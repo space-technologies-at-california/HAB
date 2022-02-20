@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import threading
 import time, math
 import rcpy
 import rcpy.servo as servo
@@ -14,7 +15,7 @@ period    period
 
 
 class HabServo:
-    def __init__(self, rotations, frequency, channel, sweep=False, brk=False, free=False):
+    def __init__(self, rotations, frequency, channel, sweep=False, brk=False, free=False, update_interval=100):
 
         self.duty = rotations*3/8 - 1.5
         self.period = 1/frequency
@@ -30,6 +31,7 @@ class HabServo:
         self.internal = servo.Servo(self.channel)
         self.clck = clock.Clock(self.internal, self.period)
         self.delta = self.duty/100
+        self.timer = threading.Timer(update_interval)
 
     def servo_sweep(self, direction, d=0):
         # keep running
@@ -92,8 +94,3 @@ class HabServo:
 
             # say bye
             print("\nBye Beaglebone!")
-
-
-# TEST CODE BELOW
-test_servo = HabServo(1.5, 50, 0)  # position (0 to 8 rev), frequency, channel
-test_servo.run(1)  # direction

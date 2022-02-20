@@ -13,21 +13,22 @@ class RockTest:
     def read_port(self):
         print(self.uart.read())
 
-    def send_data(self, some_int, some_float):
+    def package_data(self, GPS=None, Acc=None, Temp=None, Baro=None, Gyro=None, Battery=None):  # creates a packet of data to be sent
         # create binary data
         # decode on other end with struct.unpack("<6fB5f", data)
         # formating is dependent on the datatype and number of datapoints
         # https://docs.python.org/3/library/struct.html#format-characters
         print("Creating Binary Data...")
-        data = struct.pack("i", some_int)
-        data += struct.pack("f", some_float)
+        data = struct.pack("f", GPS[0])  # Latitude
+        data += struct.pack("f", GPS[1])  # Longitude
 
-        print(f"DATA: {some_int}, {some_float}")
+        print(f"DATA: {GPS[0]}, {GPS[1]}")
         print(f"BINARY: {data}, SIZE: {len(data)}")
 
         # put data in outbound buffer
         self.rb.data_out = data
 
+    def send_data(self):
         # try a satellite Short Burst Data transfer
         print("Talking to satellite...")
         status = self.rb.satellite_transfer()
@@ -45,8 +46,10 @@ class RockTest:
         print("\nDONE.")
 
 
+# FOR TESTING PURPOSE
 testing = RockTest('COM3')
-i = 2112
+i = (2112.0, 4134314.3)
 ft = 42.123456789
-testing.send_data(i,ft)
+testing.package_data(i,ft)
+testing.send_data()
 
