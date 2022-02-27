@@ -5,10 +5,11 @@ from adafruit_rockblock import RockBlock
 import serial
 
 
-class RockTest:
+class HAB_rock:
     def __init__(self, port):
         self.uart = serial.Serial(port)  #VIA USB
         self.rb = RockBlock(self.uart)
+        print("Rockblock init")
 
     def read_port(self):
         print(self.uart.read())
@@ -22,8 +23,8 @@ class RockTest:
         data = struct.pack("f", GPS[0])  # Latitude
         data += struct.pack("f", GPS[1])  # Longitude
 
-        print(f"DATA: {GPS[0]}, {GPS[1]}")
-        print(f"BINARY: {data}, SIZE: {len(data)}")
+        #print(f"DATA: {GPS[0]}, {GPS[1]}")
+        #print(f"BINARY: {data}, SIZE: {len(data)}")
 
         # put data in outbound buffer
         self.rb.data_out = data
@@ -36,7 +37,7 @@ class RockTest:
         retry = 0
         while status[0] > 8:
             if retry > 50:
-                print(f"Cannot Connect to Network! Tried {retry} times!")
+                print("Cannot Connect to Network! Tried", retry, "times!")
                 break
             time.sleep(10)
             status = self.rb.satellite_transfer()
@@ -47,9 +48,11 @@ class RockTest:
 
 
 # FOR TESTING PURPOSE
-testing = RockTest('COM3')
-i = (2112.0, 4134314.3)
-ft = 42.123456789
-testing.package_data(i,ft)
-testing.send_data()
+#testing = HAB_rock('/dev/ttyUSB0')
+#i = (2112.0, 4134314.3)
+#ft = 42.123456789
+#testing.package_data(i,ft)
+#testing.send_data()
+
+
 

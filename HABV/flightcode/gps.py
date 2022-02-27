@@ -1,12 +1,11 @@
 from ublox_gps import UbloxGps
 import serial
 
-port = serial.Serial('/dev/serial0', baudrate=19200, timeout=1)
-gps = UbloxGps(port)
+#port = serial.Serial('/dev/serial0', baudrate=19200, timeout=1)
 
 class HAB_gps:
-    def __init__(self, port_name):
-        port = serial.Serial(f'/dev/{port_name}', baudrate=19200, timeout=1)
+    def __init__(self, port_name='/dev/ttyACM0'):
+        port = serial.Serial(port_name, baudrate=19200, timeout=1)
         gps = UbloxGps(port)
 
     def read(self):
@@ -15,13 +14,14 @@ class HAB_gps:
         return coords
 
 
+'''
 def run():
     try:
         print("Listenting for UBX Messages.")
         while True:
             try:
                 coords = gps.geo_coords()
-                print(coords.lon, coords.lat)
+                print("Coords", coords.lon, coords.lat, coords.headMot, coords)
             except (ValueError, IOError) as err:
                 print(err)
 
@@ -31,3 +31,5 @@ def run():
 
 if __name__ == '__main__':
     run()
+
+'''

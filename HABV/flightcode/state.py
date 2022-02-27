@@ -22,7 +22,7 @@ class WatchDog(Exception):  # Handles exceptions if certain parts of the code ta
 
 
 class HABVehicle:
-    def __init__(self, pid, gps, servo: [], rockblock, imu, time_interval=100):
+    def __init__(self, pid=None, gps=None, servo: []=None, rockblock=None, imu_internal=None, time_interval=10):
         self.postion = {}  # time: (lat, long)
         self.current_heading = 0.0
         self.servo_pos = 0.0
@@ -30,10 +30,11 @@ class HABVehicle:
         self.gps = gps
         self.rockblock = rockblock
         self.sevo1 = servo[0]
-        self.servo2 = servo[1]
-        self.timer = WatchDog(time_interval, self.update_heading)
+        #self.servo2 = servo[1]
+        #self.timer = WatchDog(time_interval, self.get_imu)
+        self.timer = Timer(time_interval, self.get_imu)
         self.data_history = {}
-        self.imu = imu
+        self.imu = imu_internal
 
     def update_heading(self, heading):
         self.current_heading = heading
@@ -42,24 +43,18 @@ class HABVehicle:
         pass
 
     def get_heading(self):
+        print("Reading Heading...")
         return gps.read()
-    '''def get_heading(self, time_now, time_prev):
-        current_lat = self.postion[time_now][0]
-        current_long = self.postion[time_now][1]
-
-        prev_lat = self.postion[time_prev][0]
-        prev_long = self.postion[time_prev][1]
-
-        x = math.cos(current_lat) * math.sin(current_long - prev_long)
-        y = math.cos(prev_lat) * math.sin(current_lat) - math.sin(prev_lat)*math.cos(current_lat)*math.cos(current_long - prev_long)
-
-        return math.atan2(x, y)
-        '''
+    
 
     def get_current_time(self):
+        print("TIME:", time.time())
         return time.time()
 
     def get_imu(self):
+        print("Reading IMU...")
+        self.imu.read()
+        self.timer.cancel()
         return
 
     def get_current_position(self):
@@ -83,4 +78,24 @@ class HABVehicle:
                 self.rockblock.package_data()
                 package_success = True
             except:
-                print(f"Unable to Package data! Tried {x} times!")
+                print("Unable to Package data! Tried {x} times!")
+                
+                
+    
+    
+    
+    
+    
+
+    '''def get_heading(self, time_now, time_prev):
+        current_lat = self.postion[time_now][0]
+        current_long = self.postion[time_now][1]
+
+        prev_lat = self.postion[time_prev][0]
+        prev_long = self.postion[time_prev][1]
+
+        x = math.cos(current_lat) * math.sin(current_long - prev_long)
+        y = math.cos(prev_lat) * math.sin(current_lat) - math.sin(prev_lat)*math.cos(current_lat)*math.cos(current_long - prev_long)
+
+        return math.atan2(x, y)
+        '''

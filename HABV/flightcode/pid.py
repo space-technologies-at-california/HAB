@@ -1,10 +1,9 @@
-import threading
 import time
 
 # A 2D PID controller
 
 class PID:
-    def __init__(self, P, I, D, current_time=None, interval=100):
+    def __init__(self, P, I, D, current_time=None):
         self.Kp = P
         self.Ki = I
         self.Kd = D
@@ -12,7 +11,6 @@ class PID:
         self.sample_time = 0.00
         self.current_time = current_time if current_time is not None else time.time()
         self.last_time = self.current_time
-        self.timer = threading.Timer(interval)
 
     def clear(self):
         """Clears PID computations and coefficients"""

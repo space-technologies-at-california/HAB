@@ -1,12 +1,13 @@
 import struct
 from servo_control import HabServo
-from pid import PID
-import rockblock_v2
+#from pid import PID
+from rockblock_v2 import HAB_rock
 import servo_control
 import time, threading
 from state import HABVehicle
 import internal_sensors
-import gps
+from gps import HAB_gps
+from internal_sensors import HAB_IMU_Temp
 
 # Global Variables / datastructures
 
@@ -17,77 +18,50 @@ kD = 0  # update
 PID_FREQ = 0.0  # update
 
 # Controls
-USE_XBEE = False
+USE_XBEE = True
 
 # XBEE
 XBEE_FREQ = 0.0
 XBEE_timer = None
 
 
-def init():
-    current_time = time.time()
-    SERVO = HabServo()
-    GPS = GPS()
+print("HERE!")
 
-    if USE_XBEE:
-        XBEE_timer = threading.Timer(XBEE_FREQ, xbee.update)
-        BALLOON = VehicleState(XBEE_timer, GPS, SERVO)
-    else:
-        PID_controller = PID(kP, kI, kD, interval=1/PID_FREQ)
-        BALLOON = VehicleState(PID_controller, GPS, SERVO)
+print("Initializing Vehicle...")
+current_time = time.time()
+#SERVO1 = HabServo(1.5, 50, 0)
+#SERVO2 = HabServo(1.5, 50, 0)
+GPS = HAB_gps()
+print("GPS Initialized")
+IMU = HAB_IMU_Temp()
+print("IMU Initialized")
+Rock_BLOCK = HAB_rock('/dev/ttyUSB0')
+print("Rockblock Initialized")
 
-    Rock_BLOCK = rockblock_v2.RockTest()
+if USE_XBEE:
+    #XBEE_timer = threading.Timer(XBEE_FREQ, xbee.update)
+    BALLOON = HABVehicle(imu_internal=IMU, gps=GPS, rockblock=HAB_rock)
+#else:
+    #PID_controller = PID(kP, kI, kD, interval=1/PID_FREQ)
+    #BALLOON = VehicleState(PID_controller, GPS, SERVO)
+
+print("Vehicle Initialized successfully!")
 
 
-def main():
+def main(veh):
+    """
     if USE_XBEE:
         XBEE_timer.start()
 
     else:
         PID_timer.start()
+    """
+    heading = veh.get_imu()
+    veh.get_current_time()
+    
 
-    Rock_BLOCK.send_data(0)  # update
-
-
-init()
 
 # while True:
 #     loop()
 
-main()
-
-"""
-def setmode(rf):  # writitng to pins depends on which lib we are using rcpy?
-    digitalWrite(CTR1, LOW)
-    digitalWrite(CTR2, LOW)
-
-    if rf == 1:
-        digitalWrite(CTR1, HIGH)
-
-    elif rf == 2
-        digitalWrite(CTR2, HIGH)
-
-    elif rf == 3
-        digitalWrite(CTR1, HIGH)
-        digitalWrite(CTR2, HIGH)
-
-def get_all_data():
-    gpsData = getGPSData()
-    altimeterData = getAltimeterData()
-    thermocoupleData = getThermocoupleData()
-    rtcData = getRTCData()
-    imuData = getIMUData() # True for DPS values
-    uvbData = getUVBData()
-    return gpsData, altimeterData, thermocoupleData, rtcData, imuData, uvbData
-
-def main():
-    all_data = get_all_data()
-    write_all_to_SD(all_data)
-
-    # The data will be written to a dataString in this format:
-    # <TripNumber>:<Hour>:<Minute>:<FixQuality>:<Speed>:<Angle>:<Lon>:<Lat>:<Altitude>:<ExternalTemp>
-    datastring = str("202")
-    for i in range(len(all_data)):
-        datastring += ':' + str(all_data[i])
-
-"""
+main(BALLOON)

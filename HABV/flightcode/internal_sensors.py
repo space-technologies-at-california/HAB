@@ -1,27 +1,22 @@
 import time
-
-# import rcpy library
-# This automatically initizalizes the robotics cape
 import rcpy
 import rcpy.mpu9250 as mpu9250
 
 
-rcpy.set_state(rcpy.RUNNING)
-
-
 class HAB_IMU_Temp:
     def __init__(self):
+        rcpy.set_state(rcpy.RUNNING)
         mpu9250.initialize(enable_magnetometer = True)
-        print("Press Ctrl-C to exit")
-
-        # header
-        print("   Accel XYZ (m/s^2) |"
-              "    Gyro XYZ (deg/s) |", end='')
-        print("  Mag Field XYZ (uT) |", end='')
-        print(' Temp (C)')
 
     def read(self):
         try:    # keep running
+            print("Press Ctrl-C to exit")
+    
+            # header
+            print("   Accel XYZ (m/s^2) |"
+                  "    Gyro XYZ (deg/s) |", end='')
+            print("  Mag Field XYZ (uT) |", end='')
+            print(' Temp (C)')
             while True:
                 if rcpy.get_state() == rcpy.RUNNING:
                     temp = mpu9250.read_imu_temp()
@@ -33,8 +28,10 @@ class HAB_IMU_Temp:
                                                  data['gyro'],
                                                  data['mag'],
                                                  temp), end='')
+                    
+                    time.sleep(.5)  # sleep some
 
-                return data
+                
         except KeyboardInterrupt:
             # Catch Ctrl-C
             pass
