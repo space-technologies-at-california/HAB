@@ -1,5 +1,0 @@
-(fp_lib_table
-  (lib (name 1775485-2)(type Legacy)(uri ${KIPRJMOD}/1775485-2/1775485-2.mod)(options "")(descr ""))
-  (lib (name SOIC127P600X175-8N)(type Legacy)(uri ${KIPRJMOD}/SOIC127P600X175-8N.mod)(options "")(descr ""))
-  (lib (name ABS07W-32.768KHZ-D-2-T)(type Legacy)(uri ${KIPRJMOD}/ABS07W-32.768KHZ-D-2-T/ABS07W-32.768KHZ-D-2-T.mod)(options "")(descr ""))
-)

@@ -1,3 +1,0 @@
-INCLUDE $HPEESOF_DIR/oalibs/analog_rf.defs
-DEFINE jpole_ads_lib jpole_ads_lib
-ASSIGN jpole_ads_lib libMode shared
