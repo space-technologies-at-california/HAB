@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name habiv-board-rescue)(type Legacy)(uri ${KIPRJMOD}/habiv-board-rescue.lib)(options "")(descr ""))
-)

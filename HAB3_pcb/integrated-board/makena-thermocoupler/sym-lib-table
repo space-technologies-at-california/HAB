@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name Hab_thermocoupler-rescue)(type Legacy)(uri ${KIPRJMOD}/Hab_thermocoupler-rescue.lib)(options "")(descr ""))
-)
