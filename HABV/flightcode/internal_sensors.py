@@ -30,7 +30,6 @@ class HAB_IMU_Temp:
                                                  temp), end='')
                     
                     time.sleep(.5)  # sleep some
-
                 
         except KeyboardInterrupt:
             # Catch Ctrl-C
@@ -38,6 +37,9 @@ class HAB_IMU_Temp:
 
         finally:
             print("\nBye BeagleBone!")
+            
+    def read_mag_data(self):
+        return mpu9250.read_mag_data()
 
 
 class HAB_Baro:

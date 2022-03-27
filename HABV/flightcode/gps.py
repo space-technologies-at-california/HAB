@@ -12,6 +12,9 @@ class HAB_gps:
         coords = gps.geo_coords()
         print(coords.lon, coords.lat)
         return coords
+    
+    def __init__(self, long, lat):
+        coords = 
 
 
 '''

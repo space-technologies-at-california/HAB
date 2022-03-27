@@ -57,6 +57,38 @@ class HABVehicle:
         self.timer.cancel()
         return
 
+    def checkStability(self):
+        if gps.altitude < 50feet:
+            return False
+        elif imu.read_accel_data()[0] < 0:
+            return False
+        for elem in imu.read_accel_data():
+            if elem > :
+                return False
+        for elem in imu.read_gyro_data():
+            if elem > :
+                return False
+        for elem in imu.read().get('tb'):
+            if elem > :
+                return False
+    
+    def adjustStability(self):
+        if gps.altitude < 50feet:
+            servo1.setServo(1.5)
+            servo2.setServo(-1.5)
+        elif imu.read_accel_data()[0] < 0:
+            servo1.setServo(servo1.duty - 0.000868)
+            servo2.setServo(servo2.duty + 0.000868)
+        for elem in imu.read_accel_data():
+            if elem > :
+                return False
+        for elem in imu.read_gyro_data():
+            if elem > :
+                return False
+        for elem in imu.read().get('tb'):
+            if elem > :
+                return False
+
     def get_current_position(self):
         pass
 
