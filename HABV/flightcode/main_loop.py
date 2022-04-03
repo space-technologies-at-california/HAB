@@ -93,7 +93,7 @@ def main(veh):
         else:
             if veh.checkStability(state):
                 servo_adjustment = controller.PID_adjust(controller.P_update(brng, heading, heading - 10, time.time()))
-                assigned_angle += min(servo_adjustment, MAX_TURN)
+                assigned_angle -= min(servo_adjustment, MAX_TURN)
                 SERVO1.setServo(0-assigned_angle)
         while not veh.checkStability(state):
             veh.adjustStability()
