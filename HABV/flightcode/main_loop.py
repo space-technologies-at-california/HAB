@@ -83,18 +83,19 @@ def main(veh):
     brng = desiredHeading(pos)
     state = veh.get_imu()
     veh.get_current_time()
-    assigned_angle = 1.35
+    assigned_angle2 = 1.35
+    assigned_angle1 = 1.35
     while abs(brng - heading) > tolerance:
         if brng - heading > 0:
             if veh.checkStability(state):
                 servo_adjustment = controller.PID_adjust(controller.P_update(brng, heading, heading - 10, time.time()))
-                assigned_angle -= min(servo_adjustment, MAX_TURN)
-                SERVO2.setServo(assigned_angle)
+                assigned_angle2 -= min(servo_adjustment, MAX_TURN)
+                SERVO2.setServo(assigned_angle2)
         else:
             if veh.checkStability(state):
                 servo_adjustment = controller.PID_adjust(controller.P_update(brng, heading, heading - 10, time.time()))
-                assigned_angle -= min(servo_adjustment, MAX_TURN)
-                SERVO1.setServo(0-assigned_angle)
+                assigned_angle1 -= min(servo_adjustment, MAX_TURN)
+                SERVO1.setServo(0-assigned_angle1)
         while not veh.checkStability(state):
             veh.adjustStability()
         time.sleep(300)

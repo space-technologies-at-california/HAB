@@ -2,6 +2,7 @@ import math
 import threading
 from threading import Timer
 import time
+from pid import PID
 
 
 class WatchDog(Exception):  # Handles exceptions if certain parts of the code take too long to run
@@ -41,7 +42,7 @@ class HABVehicle:
         self.pid = pid
         self.gps = gps
         self.rockblock = rockblock
-        self.sevo1 = servo[0]
+        self.servo1 = servo[0]
         self.servo2 = servo[1]
         #self.timer = WatchDog(time_interval, self.get_imu)
         self.timer = Timer(time_interval, self.get_imu)
@@ -94,6 +95,8 @@ class HABVehicle:
             return False
     
     def adjustStability(self):
+        assigned_angle2 = self.servo2.duty
+        assigned_angle1 = self.servo1.duty
         if self.gps.altitude < self.MIN_ALT:
             self.servo1.setServo(1.5)
             self.servo2.setServo(-1.5)
@@ -101,12 +104,11 @@ class HABVehicle:
             self.servo1.setServo(self.servo1.duty - 0.000868)
             self.servo2.setServo(self.servo2.duty + 0.000868)
         if self.imu.read_accel_data()[0] > self.MAXFWD_ACCEL:
-            error = (self.imu.read_accel_data()[0] - self.MAXFWD_ACCEL) / abs(self.imu.read_accel_data()[0] - self.MAXFWD_ACCEL) * max(self.imu.read_accel_data()[0] - self.MAXFWD_ACCEL, 0)
-            servo_adjustment = error * self.pid.kP # KP is the proportional
-            assigned_angle = self.servo2.duty
-            assigned_angle += min(servo_adjustment, self.MAX_TURN)
-            self.servo2.setServo(assigned_angle)
-            self.servo1.setServo(assigned_angle)
+            servo_adjustment = self.pid.PID_adjust(self.imu.read_accel_data()[0], self.MAXFWD_ACCEL, self.MAXFWD_ACCEL, time.time())
+            assigned_angle1 += min(servo_adjustment, self.MAX_TURN)
+            assigned_angle2 -= min(servo_adjustment, self.MAX_TURN)
+            self.servo2.setServo(assigned_angle2)
+            self.servo1.setServo(assigned_angle1)
         if self.imu.read_accel_data()[1] > self.MAXLR_ACCEL:
             return False
         if self.imu.read_accel_data()[2] > self.MAXDWN_ACCEL:
