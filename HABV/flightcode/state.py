@@ -22,7 +22,19 @@ class WatchDog(Exception):  # Handles exceptions if certain parts of the code ta
 
 
 class HABVehicle:
-    def __init__(self, pid=None, gps=None, servo: []=None, rockblock=None, imu_internal=None, time_interval=10):
+    MIN_ALT = 50 #feet
+    MAXFWD_ACCEL = 0
+    MAXDWN_ACCEL = 0
+    MAXLR_ACCEL = 0
+    MAXFWD_ANGVEL = 0
+    MAXDWN_ANGVEL = 0
+    MAXLR_ANGVEL = 0
+    MAX_PITCH = 0
+    MAX_ROLL = 0
+    MAX_YAW = 0
+    MAX_TURN = 0.0052
+
+    def __init__(self, pid=None, gps=None, servo = [], rockblock=None, imu_internal=None, time_interval=10):
         self.postion = {}  # time: (lat, long)
         self.current_heading = 0.0
         self.servo_pos = 0.0
@@ -30,7 +42,7 @@ class HABVehicle:
         self.gps = gps
         self.rockblock = rockblock
         self.sevo1 = servo[0]
-        #self.servo2 = servo[1]
+        self.servo2 = servo[1]
         #self.timer = WatchDog(time_interval, self.get_imu)
         self.timer = Timer(time_interval, self.get_imu)
         self.data_history = {}
@@ -44,7 +56,7 @@ class HABVehicle:
 
     def get_heading(self):
         print("Reading Heading...")
-        return gps.read()
+        return self.gps.read()
     
 
     def get_current_time(self):
@@ -55,39 +67,62 @@ class HABVehicle:
         print("Reading IMU...")
         self.imu.read()
         self.timer.cancel()
-        return
+        return self.imu.read_data()
 
     def checkStability(self):
-        if gps.altitude < 50feet:
+        if self.gps.altitude < self.MIN_ALT:
             return False
-        elif imu.read_accel_data()[0] < 0:
+        elif self.imu.read_accel_data()[0] < 0:
             return False
-        for elem in imu.read_accel_data():
-            if elem > :
-                return False
-        for elem in imu.read_gyro_data():
-            if elem > :
-                return False
-        for elem in imu.read().get('tb'):
-            if elem > :
-                return False
+        if self.imu.read_accel_data()[0] > self.MAXFWD_ACCEL:
+            return False
+        if self.imu.read_accel_data()[1] > self.MAXLR_ACCEL:
+            return False
+        if self.imu.read_accel_data()[2] > self.MAXDWN_ACCEL:
+            return False
+        if self.imu.read_gyro_data()[0] > self.MAXFWD_ANGVEL:
+            return False
+        if self.imu.read_gyro_data()[1] > self.MAXLR_ANGVEL:
+            return False
+        if self.imu.read_gyro_data()[2] > self.MAXDWN_ANGVEL:
+            return False
+        if self.imu.read().get('tb')[0] > self.MAX_PITCH:
+            return False
+        if self.imu.read().get('tb')[1] > self.MAX_ROLL:
+            return False
+        if self.imu.read().get('tb')[2] > self.MAX_YAW:
+            return False
     
     def adjustStability(self):
-        if gps.altitude < 50feet:
-            servo1.setServo(1.5)
-            servo2.setServo(-1.5)
-        elif imu.read_accel_data()[0] < 0:
-            servo1.setServo(servo1.duty - 0.000868)
-            servo2.setServo(servo2.duty + 0.000868)
-        for elem in imu.read_accel_data():
-            if elem > :
-                return False
-        for elem in imu.read_gyro_data():
-            if elem > :
-                return False
-        for elem in imu.read().get('tb'):
-            if elem > :
-                return False
+        if self.gps.altitude < self.MIN_ALT:
+            self.servo1.setServo(1.5)
+            self.servo2.setServo(-1.5)
+        elif self.imu.read_accel_data()[0] < 0:
+            self.servo1.setServo(self.servo1.duty - 0.000868)
+            self.servo2.setServo(self.servo2.duty + 0.000868)
+        if self.imu.read_accel_data()[0] > self.MAXFWD_ACCEL:
+            error = (self.imu.read_accel_data()[0] - self.MAXFWD_ACCEL) / abs(self.imu.read_accel_data()[0] - self.MAXFWD_ACCEL) * max(self.imu.read_accel_data()[0] - self.MAXFWD_ACCEL, 0)
+            servo_adjustment = error * self.pid.kP # KP is the proportional
+            assigned_angle = self.servo2.duty
+            assigned_angle += min(servo_adjustment, self.MAX_TURN)
+            self.servo2.setServo(assigned_angle)
+            self.servo1.setServo(assigned_angle)
+        if self.imu.read_accel_data()[1] > self.MAXLR_ACCEL:
+            return False
+        if self.imu.read_accel_data()[2] > self.MAXDWN_ACCEL:
+            return False
+        if self.imu.read_gyro_data()[0] > self.MAXFWD_ANGVEL:
+            return False
+        if self.imu.read_gyro_data()[1] > self.MAXLR_ANGVEL:
+            return False
+        if self.imu.read_gyro_data()[2] > self.MAXDWN_ANGVEL:
+            return False
+        if self.imu.read().get('tb')[0] > self.MAX_PITCH:
+            return False
+        if self.imu.read().get('tb')[1] > self.MAX_ROLL:
+            return False
+        if self.imu.read().get('tb')[2] > self.MAX_YAW:
+            return False
 
     def get_current_position(self):
         pass

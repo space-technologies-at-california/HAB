@@ -37,9 +37,15 @@ class HAB_IMU_Temp:
 
         finally:
             print("\nBye BeagleBone!")
-            
+
+    def read_data(self):
+        return mpu9250.read()
     def read_mag_data(self):
-        return mpu9250.read_mag_data()
+        return mpu9250.read().get('mag')
+    def read_accel_data(self):
+        return mpu9250.read().get('accel')
+    def read_gyro_data(self):
+        return mpu9250.read().get('gyro')
 
 
 class HAB_Baro:

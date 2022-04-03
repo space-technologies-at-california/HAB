@@ -1,12 +1,13 @@
 import struct
 from servo_control import HabServo
-#from pid import PID
+from pid import PID
 from rockblock_v2 import HAB_rock
 import servo_control
 import time, threading
 from state import HABVehicle
 import internal_sensors
 from gps import HAB_gps
+from gps import location
 from internal_sensors import HAB_IMU_Temp
 import math
 
@@ -38,13 +39,14 @@ IMU = HAB_IMU_Temp()
 print("IMU Initialized")
 Rock_BLOCK = HAB_rock('/dev/ttyUSB0')
 print("Rockblock Initialized")
+controller = PID(kP, kI, kD, time.time())
 
-destination =  0 # GPS coordinates for destination
+destination =  location(0, 0) # GPS coordinates for destination
 MAX_TURN = 0.0052
 
 if USE_XBEE:
     #XBEE_timer = threading.Timer(XBEE_FREQ, xbee.update)
-    BALLOON = HABVehicle(imu_internal=IMU, gps=GPS, rockblock=HAB_rock)
+    BALLOON = HABVehicle(imu_internal=IMU, gps=GPS, rockblock=HAB_rock, servo=[SERVO1, SERVO2], pid = controller)
 #else:
     #PID_controller = PID(kP, kI, kD, interval=1/PID_FREQ)
     #BALLOON = VehicleState(PID_controller, GPS, SERVO)
@@ -58,7 +60,13 @@ def _toRad(meas):
 def _toDeg(meas):
     return meas * 180 / math.pi
 
-def adjustStability(self):
+def desiredHeading(self, curr_pos):
+    dLon = _toRad(destination.getLong()-curr_pos.lon)
+    y = math.sin(dLon) * math.cos(_toRad(destination.getLat()))
+    x = math.cos(_toRad(curr_pos.lat))*math.sin(_toRad(destination.getLat())) - math.sin(_toRad(curr_pos.lat))*math.cos(_toRad(destination.getLat()))*math.cos(dLon)
+    brng = _toDeg(math.atan2(y, x))
+    brng = ((brng + 360) % 360)
+    return brng
 
 
 def main(veh):
@@ -70,33 +78,28 @@ def main(veh):
         PID_timer.start()
     """
     pos = GPS.read()
-    heading = IMU.read().get('head')
+    heading = IMU.read_data().get('head')
     tolerance = math.pi / 18
-
-    dLon = _toRad(destination.lon-pos.lon)
-    y = math.sin(dLon) * math.cos(_toRad(destination.lat))
-    x = math.cos(_toRad(pos.lat))*math.sin(_toRad(destination.lat)) - math.sin(_toRad(pos.lat))*math.cos(_toRad(destination.lat))*math.cos(dLon)
-    brng = _toDeg(math.atan2(y, x))
-    brng = ((brng + 360) % 360)
+    brng = desiredHeading(pos)
     state = veh.get_imu()
     veh.get_current_time()
+    assigned_angle = 1.35
     while abs(brng - heading) > tolerance:
         if brng - heading > 0:
-            if veh.checkStability():
-                error = (brng - heading) / abs(brng - heading) * max(brng - heading - 10, 0)
-                servo_adjustment = error * veh.pid.kP # KP is the proportional
-                assigned_angle += min(servo_adjustment, MAX_TURN)
+            if veh.checkStability(state):
+                servo_adjustment = controller.PID_adjust(controller.P_update(brng, heading, heading - 10, time.time()))
+                assigned_angle -= min(servo_adjustment, MAX_TURN)
                 SERVO2.setServo(assigned_angle)
         else:
-            if veh.checkStability():
-                error = (brng - heading) / abs(brng - heading) * max(brng - heading - 10, 0)
-                servo_adjustment = error * veh.pid.kP # KP is the proportional
+            if veh.checkStability(state):
+                servo_adjustment = controller.PID_adjust(controller.P_update(brng, heading, heading - 10, time.time()))
                 assigned_angle += min(servo_adjustment, MAX_TURN)
                 SERVO1.setServo(0-assigned_angle)
-        if not veh.checkStability():
-            adjustStability()
+        while not veh.checkStability(state):
+            veh.adjustStability()
         time.sleep(300)
-        heading = IMU.read().get('head')
+        heading = IMU.read_data().get('head')
+        brng = desiredHeading(GPS.read())
 
     
 

@@ -24,6 +24,24 @@ class PID:
         self.windup_guard = 20.0
 
         self.output = 0.0
+    
+    def PID_adjust(self, angle):
+        return self.last_error * angle
+
+    def P_update(self, setPoint, feedback_value, feedback_adjustment, current_time=None):
+        error = setPoint - feedback_value / abs(setPoint - feedback_value) * max(setPoint - feedback_adjustment, 0)
+
+        self.current_time = current_time if current_time is not None else time.time()
+        delta_time = self.current_time - self.last_time
+        delta_error = error - self.last_error
+
+        if (delta_time >= self.sample_time):
+            self.PTerm = self.Kp * error
+
+            self.last_time = self.current_time
+            self.last_error = error
+
+            self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm)
 
     def update(self, feedback_value, current_time=None):
         error = self.SetPoint - feedback_value
