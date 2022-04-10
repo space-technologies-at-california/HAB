@@ -1,7 +1,7 @@
 from ublox_gps import UbloxGps
 import serial
 
-port = serial.Serial('/dev/serial0', baudrate=19200, timeout=1)
+port = serial.Serial('/dev/ttyACM0', baudrate=19200, timeout=1)
 gps = UbloxGps(port)
 
 class HAB_gps:

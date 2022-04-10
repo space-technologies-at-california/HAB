@@ -6,9 +6,11 @@ import serial
 
 
 class HAB_rock:
-    def __init__(self, port):
+    def __init__(self, port='/dev/ttyUSB0'):
         self.uart = serial.Serial(port)  #VIA USB
         self.rb = RockBlock(self.uart)
+        self.geo = self.rb.geolocation
+        #print(self.geo)
         print("Rockblock init")
 
     def read_port(self):
@@ -45,6 +47,9 @@ class HAB_rock:
             retry += 1
 
         print("\nDONE.")
+    
+    def get_geo(self):
+        return self.geo
 
 
 # FOR TESTING PURPOSE

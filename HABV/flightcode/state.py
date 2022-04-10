@@ -24,15 +24,15 @@ class WatchDog(Exception):  # Handles exceptions if certain parts of the code ta
 
 class HABVehicle:
     MIN_ALT = 2 #km
-    MAXFWD_ACCEL = 0
-    MAXDWN_ACCEL = 0
-    MAXLR_ACCEL = 0
-    MAXFWD_ANGVEL = 0
-    MAXDWN_ANGVEL = 0
-    MAXLR_ANGVEL = 0
-    MAX_PITCH = 0
-    MAX_ROLL = 0
-    MAX_YAW = 0
+    MAXFWD_ACCEL = 100
+    MAXDWN_ACCEL = 100
+    MAXLR_ACCEL = 100
+    MAXFWD_ANGVEL = 100
+    MAXDWN_ANGVEL = 100
+    MAXLR_ANGVEL = 100
+    MAX_PITCH = 100
+    MAX_ROLL = 100
+    MAX_YAW = 100
     MAX_TURN = 0.0052
 
     def __init__(self, pid=None, gps=None, servo = [], rockblock=None, imu_internal=None, time_interval=10):
@@ -71,7 +71,7 @@ class HABVehicle:
         return self.imu.read_data()
 
     def checkStability(self):
-        if (self.rockblock.geolocation()[0] - 6376) < self.MIN_ALT:
+        if (self.rockblock.geo[0] - 6376) < self.MIN_ALT:
             return False
         elif self.imu.read_accel_data()[0] < 0:
             return False
@@ -87,25 +87,26 @@ class HABVehicle:
             return False
         if self.imu.read_gyro_data()[2] > self.MAXDWN_ANGVEL:
             return False
-        if self.imu.read().get('tb')[0] > self.MAX_PITCH:
+        if self.imu.read_data().get('tb')[0] > self.MAX_PITCH:
             return False
-        if self.imu.read().get('tb')[1] > self.MAX_ROLL:
+        if self.imu.read_data().get('tb')[1] > self.MAX_ROLL:
             return False
-        if self.imu.read().get('tb')[2] > self.MAX_YAW:
+        if self.imu.read_data().get('tb')[2] > self.MAX_YAW:
             return False
     
     def adjustStability(self):
         assigned_angle2 = self.servo2.duty
         assigned_angle1 = self.servo1.duty
+        print("Servo Angles", assigned_angle1, assigned_angle2)
         while not self.checkStability():
-            if (self.rockblock.geolocation()[0] - 6376) < self.MIN_ALT:
+            if (self.rockblock.geo[0] - 6376) < self.MIN_ALT:
                 self.servo1.setServo(1.5)
                 self.servo2.setServo(-1.5)
             elif self.imu.read_accel_data()[0] < 0:
                 self.servo1.setServo(self.servo1.duty - 0.000868)
                 self.servo2.setServo(self.servo2.duty + 0.000868)
             if self.imu.read_accel_data()[0] > self.MAXFWD_ACCEL:
-                self.pid.reset(kP, 0, 0, time.time())
+                self.pid.reset(self.pid.kP, 0, 0, time.time())
                 self.pid.P_update(self.imu.read_accel_data()[0], self.MAXFWD_ACCEL, self.MAXFWD_ACCEL, time.time())
                 servo_adjustment = self.pid.PID_adjust(self.MAX_TURN)
                 assigned_angle1 += min(servo_adjustment, self.MAX_TURN)
@@ -114,7 +115,7 @@ class HABVehicle:
                 self.servo1.setServo(assigned_angle1)
                 time.sleep(10)
             if self.imu.read_accel_data()[1] > self.MAXLR_ACCEL:
-                self.pid.reset(kP, 0, 0, time.time())
+                self.pid.reset(self.pid.kP, 0, 0, time.time())
                 self.pid.P_update(self.imu.read_accel_data()[1], self.MAXLR_ACCEL, self.MAXLR_ACCEL, time.time())
                 servo_adjustment = self.pid.PID_adjust(self.MAX_TURN)
                 assigned_angle1 += min(servo_adjustment, self.MAX_TURN)
@@ -123,7 +124,7 @@ class HABVehicle:
                 self.servo1.setServo(assigned_angle1)
                 time.sleep(10)
             if self.imu.read_accel_data()[2] > self.MAXDWN_ACCEL:
-                self.pid.reset(kP, 0, 0, time.time())
+                self.pid.reset(self.pid.kP, 0, 0, time.time())
                 self.pid.P_update(self.imu.read_accel_data()[2], self.MAXDWN_ACCEL, self.MAXDWN_ACCEL, time.time())
                 servo_adjustment = self.pid.PID_adjust(self.MAX_TURN)
                 assigned_angle1 += min(servo_adjustment, self.MAX_TURN)
@@ -132,7 +133,7 @@ class HABVehicle:
                 self.servo1.setServo(assigned_angle1)
                 time.sleep(10)
             if self.imu.read_gyro_data()[0] > self.MAXFWD_ANGVEL:
-                self.pid.reset(kP, 0, 0, time.time())
+                self.pid.reset(self.pid.kP, 0, 0, time.time())
                 self.pid.P_update(self.imu.read_gyro_data()[0], self.MAXFWD_ANGVEL, self.MAXFWD_ANGVEL, time.time())
                 servo_adjustment = self.pid.PID_adjust(self.MAX_TURN)
                 assigned_angle1 += min(servo_adjustment, self.MAX_TURN)
@@ -141,19 +142,25 @@ class HABVehicle:
                 self.servo1.setServo(assigned_angle1)
                 time.sleep(10)
             if self.imu.read_gyro_data()[1] > self.MAXLR_ANGVEL:
-                servo_adjustment = self.pid.PID_adjust(self.imu.read_accel_data()[0], self.MAXFWD_ACCEL, self.MAXFWD_ACCEL, time.time())
+                self.pid.reset(self.pid.kP, 0, 0, time.time())
+                self.pid.P_update(self.imu.read_gyro_data()[1], self.MAXLR_ANGVEL, self.MAXLR_ANGVEL, time.time())
+                servo_adjustment = self.pid.PID_adjust(self.MAX_TURN)
                 assigned_angle1 += min(servo_adjustment, self.MAX_TURN)
                 assigned_angle2 -= min(servo_adjustment, self.MAX_TURN)
                 self.servo2.setServo(assigned_angle2)
                 self.servo1.setServo(assigned_angle1)
+                time.sleep(10)
             if self.imu.read_gyro_data()[2] > self.MAXDWN_ANGVEL:
-                servo_adjustment = self.pid.PID_adjust(self.imu.read_accel_data()[0], self.MAXFWD_ACCEL, self.MAXFWD_ACCEL, time.time())
+                self.pid.reset(self.pid.kP, 0, 0, time.time())
+                self.pid.P_update(self.imu.read_gyro_data()[2], self.MAXDWN_ANGVEL, self.MAXDWN_ANGVEL, time.time())
+                servo_adjustment = self.pid.PID_adjust(self.MAX_TURN)
                 assigned_angle1 += min(servo_adjustment, self.MAX_TURN)
                 assigned_angle2 -= min(servo_adjustment, self.MAX_TURN)
                 self.servo2.setServo(assigned_angle2)
                 self.servo1.setServo(assigned_angle1)
-            if self.imu.read().get('tb')[0] > self.MAX_PITCH:
-                self.pid.reset(kP, 0, 0, time.time())
+                time.sleep(10)
+            if self.imu.read_data().get('tb')[0] > self.MAX_PITCH:
+                self.pid.reset(self.pid.kP, 0, 0, time.time())
                 self.pid.P_update(self.imu.read().get('tb')[0], self.MAX_PITCH, self.MAX_PITCH, time.time())
                 servo_adjustment = self.pid.PID_adjust(self.MAX_TURN)
                 assigned_angle1 += min(servo_adjustment, self.MAX_TURN)
@@ -161,8 +168,8 @@ class HABVehicle:
                 self.servo2.setServo(assigned_angle2)
                 self.servo1.setServo(assigned_angle1)
                 time.sleep(10)
-            if self.imu.read().get('tb')[1] > self.MAX_ROLL:
-                self.pid.reset(kP, 0, 0, time.time())
+            if self.imu.read_data().get('tb')[1] > self.MAX_ROLL:
+                self.pid.reset(self.pid.kP, 0, 0, time.time())
                 self.pid.P_update(self.imu.read().get('tb')[1], self.MAX_ROLL, self.MAX_ROLL, time.time())
                 servo_adjustment = self.pid.PID_adjust(self.MAX_TURN)
                 assigned_angle1 += min(servo_adjustment, self.MAX_TURN)
@@ -170,8 +177,8 @@ class HABVehicle:
                 self.servo2.setServo(assigned_angle2)
                 self.servo1.setServo(assigned_angle1)
                 time.sleep(10)
-            if self.imu.read().get('tb')[2] > self.MAX_YAW:
-                self.pid.reset(kP, 0, 0, time.time())
+            if self.imu.read_data().get('tb')[2] > self.MAX_YAW:
+                self.pid.reset(self.pid.kP, 0, 0, time.time())
                 self.pid.P_update(self.imu.read().get('tb')[2], self.MAX_YAW, self.MAX_YAW, time.time())
                 servo_adjustment = self.pid.PID_adjust(self.MAX_TURN)
                 assigned_angle1 += min(servo_adjustment, self.MAX_TURN)

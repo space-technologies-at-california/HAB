@@ -4,7 +4,7 @@ import time
 
 class PID:
     def __init__(self, P, I, D, current_time = None):
-        self.Kp = P
+        self.kP = P
         self.Ki = I
         self.Kd = D
 
@@ -26,7 +26,7 @@ class PID:
         self.output = 0.0
 
     def reset(self, P, I, D, current_time = None):
-        self.Kp = P
+        self.kP = P
         self.Ki = I
         self.Kd = D
         self.sample_time = 0.00
@@ -38,8 +38,8 @@ class PID:
         self.DTerm = 0.0
         self.last_error = 0.0
     
-    def PID_adjust(self):
-        return self.output
+    def PID_adjust(self, turn_value):
+        return min(turn_value, self.output)
 
     def P_update(self, setPoint, feedback_value, feedback_adjustment, current_time=None):
         error = setPoint - feedback_value / abs(setPoint - feedback_value) * max(setPoint - feedback_adjustment, 0)
@@ -49,7 +49,7 @@ class PID:
         delta_error = error - self.last_error
 
         if (delta_time >= self.sample_time):
-            self.PTerm = self.Kp * error
+            self.PTerm = self.kP * error
 
             self.last_time = self.current_time
             self.last_error = error
@@ -64,7 +64,7 @@ class PID:
         delta_error = error - self.last_error
 
         if (delta_time >= self.sample_time):
-            self.PTerm = self.Kp * error
+            self.PTerm = self.kP * error
             self.ITerm += error * delta_time
 
             if (self.ITerm < -self.windup_guard):

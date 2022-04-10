@@ -37,16 +37,16 @@ GPS = HAB_gps()
 print("GPS Initialized")
 IMU = HAB_IMU_Temp()
 print("IMU Initialized")
-Rock_BLOCK = HAB_rock('/dev/ttyUSB0')
+Rock_BLOCK = HAB_rock()
 print("Rockblock Initialized")
 controller = PID(kP, kI, kD, time.time())
 
-destination =  location(0, 0) # GPS coordinates for destination
+destination =  location(-122.2561344, 37.8754444) # GPS coordinates for destination
 MAX_TURN = 0.0052
 
 if USE_XBEE:
     #XBEE_timer = threading.Timer(XBEE_FREQ, xbee.update)
-    BALLOON = HABVehicle(imu_internal=IMU, gps=GPS, rockblock=HAB_rock, servo=[SERVO1, SERVO2], pid = controller)
+    BALLOON = HABVehicle(imu_internal=IMU, gps=GPS, rockblock=Rock_BLOCK, servo=[SERVO1, SERVO2], pid = controller)
 #else:
     #PID_controller = PID(kP, kI, kD, interval=1/PID_FREQ)
     #BALLOON = VehicleState(PID_controller, GPS, SERVO)
@@ -60,10 +60,10 @@ def _toRad(meas):
 def _toDeg(meas):
     return meas * 180 / math.pi
 
-def desiredHeading(self, curr_pos):
-    dLon = _toRad(destination.getLong()-curr_pos.lon)
+def desiredHeading(lat, lon):
+    dLon = _toRad(destination.getLong()-lon)
     y = math.sin(dLon) * math.cos(_toRad(destination.getLat()))
-    x = math.cos(_toRad(curr_pos.lat))*math.sin(_toRad(destination.getLat())) - math.sin(_toRad(curr_pos.lat))*math.cos(_toRad(destination.getLat()))*math.cos(dLon)
+    x = math.cos(_toRad(lat))*math.sin(_toRad(destination.getLat())) - math.sin(_toRad(lat))*math.cos(_toRad(destination.getLat()))*math.cos(dLon)
     brng = _toDeg(math.atan2(y, x))
     brng = ((brng + 360) % 360)
     return brng
@@ -78,27 +78,32 @@ def main(veh):
         PID_timer.start()
     """
     pos = GPS.read()
+    lat = pos.lat
+    lon = pos.lon
     heading = IMU.read_data().get('head')
     tolerance = math.pi / 18
-    brng = desiredHeading(pos)
+    brng = desiredHeading(lat, lon)
     state = veh.get_imu()
     veh.get_current_time()
     assigned_angle2 = 1.35
     assigned_angle1 = 1.35
     while abs(brng - heading) > tolerance:
+        print(brng-heading)
         if brng - heading > 0:
-            if veh.checkStability(state):
+            if veh.checkStability():
                 controller.P_update(brng, heading, heading - 10, time.time())
                 servo_adjustment = controller.PID_adjust()
                 assigned_angle2 -= min(servo_adjustment, MAX_TURN)
                 SERVO2.setServo(assigned_angle2)
+                print("Servo_angle2", assigned_angle2)
         else:
-            if veh.checkStability(state):
+            if veh.checkStability():
                 controller.P_update(brng, heading, heading - 10, time.time())
                 servo_adjustment = controller.PID_adjust()
                 assigned_angle1 -= min(servo_adjustment, MAX_TURN)
                 SERVO1.setServo(0-assigned_angle1)
-        while not veh.checkStability(state):
+                print("Servo_angle1", assigned_angle1)
+        while not veh.checkStability():
             veh.adjustStability()
             time.sleep(15)
         time.sleep(300)

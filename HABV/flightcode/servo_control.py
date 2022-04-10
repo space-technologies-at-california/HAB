@@ -100,7 +100,7 @@ class HabServo:
             # say bye
             print("\nBye Beaglebone!")
     def setServo(self, pos):
-        servo.set(pos)
+        self.internal.set(pos)
 
 
 #test_servo = HabServo(1.5, 50, 0)

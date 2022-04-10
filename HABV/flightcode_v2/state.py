@@ -2,6 +2,7 @@ import math
 import threading
 from threading import Timer
 import time
+import datetime
 
 
 class WatchDog(Exception):  # Handles exceptions if certain parts of the code take too long to run
@@ -29,7 +30,6 @@ class HABVehicle:
         self.pid = pid
         self.gps = gps
         self.rockblock = rockblock
-        #self.servo1 = servo[0]
         #self.servo2 = servo[1]
         #self.timer = WatchDog(time_interval, self.get_imu)
         self.timer = Timer(time_interval, self.get_imu)

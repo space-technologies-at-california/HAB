@@ -32,6 +32,7 @@ class HAB_rock:
         string =  str(GPS[0]) + "|" + str(GPS[1])
         #string = 'Hello'
         print("AFTER", string)
+        sys.exit()
         self.rb.text_out = string
 
     def send_data(self):
@@ -45,7 +46,7 @@ class HAB_rock:
             if retry > 50:
                 print("Cannot Connect to Network! Tried", retry, "times!")
                 break
-            time.sleep(1)
+            time.sleep(10)
             status = self.rb.satellite_transfer()
             print(retry, status)
             retry += 1
