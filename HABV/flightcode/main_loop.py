@@ -88,16 +88,19 @@ def main(veh):
     while abs(brng - heading) > tolerance:
         if brng - heading > 0:
             if veh.checkStability(state):
-                servo_adjustment = controller.PID_adjust(controller.P_update(brng, heading, heading - 10, time.time()))
+                controller.P_update(brng, heading, heading - 10, time.time())
+                servo_adjustment = controller.PID_adjust()
                 assigned_angle2 -= min(servo_adjustment, MAX_TURN)
                 SERVO2.setServo(assigned_angle2)
         else:
             if veh.checkStability(state):
-                servo_adjustment = controller.PID_adjust(controller.P_update(brng, heading, heading - 10, time.time()))
+                controller.P_update(brng, heading, heading - 10, time.time())
+                servo_adjustment = controller.PID_adjust()
                 assigned_angle1 -= min(servo_adjustment, MAX_TURN)
                 SERVO1.setServo(0-assigned_angle1)
         while not veh.checkStability(state):
             veh.adjustStability()
+            time.sleep(15)
         time.sleep(300)
         heading = IMU.read_data().get('head')
         brng = desiredHeading(GPS.read())

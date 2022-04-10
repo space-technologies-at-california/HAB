@@ -3,7 +3,7 @@ import time
 # A 2D PID controller
 
 class PID:
-    def __init__(self, P, I, D, current_time=None):
+    def __init__(self, P, I, D, current_time = None):
         self.Kp = P
         self.Ki = I
         self.Kd = D
@@ -24,9 +24,22 @@ class PID:
         self.windup_guard = 20.0
 
         self.output = 0.0
+
+    def reset(self, P, I, D, current_time = None):
+        self.Kp = P
+        self.Ki = I
+        self.Kd = D
+        self.sample_time = 0.00
+        self.current_time = current_time if current_time is not None else time.time()
+        self.last_time = self.current_time
+        self.SetPoint = 0.0
+        self.PTerm = 0.0
+        self.ITerm = 0.0
+        self.DTerm = 0.0
+        self.last_error = 0.0
     
-    def PID_adjust(self, angle):
-        return self.last_error * angle
+    def PID_adjust(self):
+        return self.output
 
     def P_update(self, setPoint, feedback_value, feedback_adjustment, current_time=None):
         error = setPoint - feedback_value / abs(setPoint - feedback_value) * max(setPoint - feedback_adjustment, 0)
