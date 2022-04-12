@@ -58,11 +58,15 @@ class HabServo:
             # sleep some
             time.sleep(.02)
 
-    def run(self, direction):
+    def run(self, direction, duty=None):
         if self.duty != 0:
             if not self.sweep:
-                print('Setting servo {} to {} duty'.format(self.channel, self.duty))
-                self.internal.set(self.duty)
+                if (duty != None):
+                    print('Setting servo {} to {} duty'.format(self.channel, duty))
+                    self.internal.set(duty)
+                else:
+                    print('Setting servo {} to {} duty'.format(self.channel, self.duty))
+                    self.internal.set(self.duty)
             else:
                 print('Sweeping servo {} to {} duty'.format(self.channel, self.duty))
         else:
@@ -99,9 +103,10 @@ class HabServo:
 
             # say bye
             print("\nBye Beaglebone!")
+    
     def setServo(self, pos):
         self.internal.set(pos)
 
 
-#test_servo = HabServo(1.5, 50, 0)
+#test_servo = HabServo(1.5, 50, 8)
 #test_servo.run(1)

@@ -51,7 +51,11 @@ class HABVehicle:
 
     def update_heading(self, heading):
         self.current_heading = heading
-
+    
+    def run(self, direction, duty):
+        self.servo1.run(1, duty)
+        self.servo2.run(1, duty)
+        
     def get_internal_status(self):  # Method to constantly check that the components are in working order
         pass
 

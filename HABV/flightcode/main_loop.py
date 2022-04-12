@@ -31,8 +31,8 @@ print("HERE!")
 
 print("Initializing Vehicle...")
 current_time = time.time()
-SERVO1 = HabServo(1.35, 50, 0)
-SERVO2 = HabServo(-1.35, 50, 0)
+SERVO1 = HabServo(1.5, 50, 8)
+SERVO2 = HabServo(1.5, 50, 7)
 GPS = HAB_gps()
 print("GPS Initialized")
 IMU = HAB_IMU_Temp()
@@ -86,22 +86,25 @@ def main(veh):
     state = veh.get_imu()
     veh.get_current_time()
     assigned_angle2 = 1.35
-    assigned_angle1 = 1.35
+    veh.run(1, assigned_angle2)
+    print("Servo2 Set!")
+    #assigned_angle1 = 1.35
+    #veh.servo1.run(-1, assigned_angle1)
+    print("Servo1 Set!")
     while abs(brng - heading) > tolerance:
-        print(brng-heading)
         if brng - heading > 0:
             if veh.checkStability():
                 controller.P_update(brng, heading, heading - 10, time.time())
                 servo_adjustment = controller.PID_adjust()
                 assigned_angle2 -= min(servo_adjustment, MAX_TURN)
-                SERVO2.setServo(assigned_angle2)
+                veh.servo2.run(1, assigned_angle2)
                 print("Servo_angle2", assigned_angle2)
         else:
             if veh.checkStability():
                 controller.P_update(brng, heading, heading - 10, time.time())
                 servo_adjustment = controller.PID_adjust()
                 assigned_angle1 -= min(servo_adjustment, MAX_TURN)
-                SERVO1.setServo(0-assigned_angle1)
+                veh.servo1.run(-1, assigned_angle1)
                 print("Servo_angle1", assigned_angle1)
         while not veh.checkStability():
             veh.adjustStability()

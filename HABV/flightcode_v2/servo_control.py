@@ -101,5 +101,5 @@ class HabServo:
             print("\nBye Beaglebone!")
 
 
-#test_servo = HabServo(1.5, 50, 0)
-#test_servo.run(1)
+test_servo = HabServo(1.5, 50, 8)
+test_servo.run(1)
