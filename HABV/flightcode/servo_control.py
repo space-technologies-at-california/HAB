@@ -35,7 +35,6 @@ class HabServo:
 
         # set servo duty (only one option at a time)
         self.internal = servo.Servo(self.channel)
-        self.clck = clock.Clock(self.internal, self.period)
         self.delta = self.duty/100
 
     def servo_sweep(self, direction, delta, d=0):
@@ -72,12 +71,13 @@ class HabServo:
         else:
             self.sweep = False
 
+        clck = clock.Clock(self.internal, self.period)
         try:
             # enable servos
             servo.enable()
 
             # start clock
-            self.clck.start()
+            clck.start()
 
             # sweep
             if self.sweep:
@@ -88,6 +88,7 @@ class HabServo:
                 while rcpy.get_state() != rcpy.EXITING:
                     # sleep some
                     time.sleep(1)
+                    rcpy.set_state(rcpy.EXITING)
 
         except KeyboardInterrupt:
             # handle what to do when Ctrl-C was pressed
@@ -96,7 +97,7 @@ class HabServo:
         finally:
 
             # stop clock
-            self.clck.stop()
+            clck.stop()
 
             # disable servos
             servo.disable()
@@ -108,5 +109,7 @@ class HabServo:
         self.internal.set(pos)
 
 
-#test_servo = HabServo(1.5, 50, 8)
-#test_servo.run(1)
+test_servo = HabServo(1.5, 50, 8)
+import numpy
+for i in numpy.arange(-1.5, 1.5, 0.1):
+    test_servo.run(1, i)
