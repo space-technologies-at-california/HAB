@@ -5,24 +5,19 @@ from matplotlib import pyplot as plt
 from pid import PID
 
 
-class simulator:
-    def __init__(self, slat, slong, endlat, endlong, dir_vec, launch_alt):
-        self.start = np.asarray([slat, slong])
-        self.end = np.asarray([endlat, endlong])
-        self.servo_pos = np.asarray([0.0, 0.0])  # negative means pull, positive means extend
-        self.current = self.start
-        self.pitch = 0.0
-        self.yaw = 0.0
-        self.roll = 0.0
-        self.altitude = launch_alt
+class Simulator:
+    def __init__(self, slat, slong, endlat, endlong, launch_alt, end_alt, pid, traj, env=None):
+        self.state = {"timestep": [0], "position": [[slat, slong, launch_alt]], "servo": np.asarray([0.0, 0.0])} # for servo negative means pull, positive means extend
+        self.end = np.asarray([endlat, endlong, end_alt])
+        self.env = env
         self.world_timer = None
-        self.dir_vec = np.asarray(dir_vec)
-        self.history = [self.start.tolist()]
+        self.controller = pid  # 2D PID Controller
+        self.planner = traj
 
-    def start(self):
+    def start(self, csv=None):
         if self.world_timer is None:
             self.world_timer = 0
-        self.run()
+        self.run(csv)
 
     def announce(self):
         print(f"============ Time: {self.world_timer} =================")
@@ -84,25 +79,45 @@ class simulator:
 
         return angle
 
-    def wind(self, wind_vec=None):
-        pass
-
-    def apply_physics(self):
-        self.current = np.asarray(self.current) + np.asarray(self.dir_vec)
-
     def update(self):
         pass
 
     def plot_movement(self):
         pass
 
-    def run(self):
-        self.apply_physics()
-        self.announce()
+    def read_gps(self):
+        return self.state.get("position")[-1]  # reads the last entry
+
+    def update_state(self, timestep, gps_coor):
+        self.state.get("position").append(gps_coor)
+        self.state.get("timestep").append(timestep)
+
+    def run(self, csv):
+        if csv is None:  # add some csv functionality later
+            pass
+
+        gps_vec = self.read_gps()
+
+        target, current = self.planner.update(gps_vec)
+
+        self.controller.clear()
+        self.controller.set(target)
+        self.controller.update(current)
+
+        servo_input = self.controller.out()
+
+        delta_movement = self.sigmoid(servo_input)
+
+        if self.env is not None:
+            delta_movement = delta_movement + self.env.get()  # assumes that env has a way to get disturbance
+
+        self.update_state(self.world_timer+1, gps_vec+delta_movement)
 
 
-sim = simulator(0,0,100,100,10, [1.0,1.0])
+"""
+sim = Simulator(0,0,100,100,10, [1.0,1.0])
 exit()
 print(sim.course_deviation([0,0]))
 print(sim.dist_to_target())
 sim.plot_transfer()
+"""
