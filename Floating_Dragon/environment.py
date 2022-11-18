@@ -1,7 +1,7 @@
 import math
 import random
 
-class WindEnv: #still ahve to do unit conversions
+class WindEnv: #have to convert airdensity units and then fix mixup between y and z for some functions
 
     refwind = [9906, 20.1] # m, m/s
     velhistory = []
