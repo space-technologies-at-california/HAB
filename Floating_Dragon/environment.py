@@ -1,25 +1,21 @@
 import math
 import random
 
-class WindEnv: #still ahve to do unit conversions
 
-    refwind = [9906, 20.1] # m, m/s
-    velhistory = []
-    windhistory = []
-    winddirhistory = []
-    timehistory = []
-    gpshistory = []
-    printmode = False
+class WindEnv: #still have to do unit conversions
 
-    airdenslist = {0:0.765, 5000:0.659,10000:0.565,15000:0.0481,20000:0.0408} #lbs/ft^3 <-have to convert this to proper units
-    def __init__(self, xacc, yacc, zacc, x, y, z, time): #environment is created right when node hits 20k feet and parafoil deploys
-        self.nodearea = placeholder1
-        self.nodemass = placeholder2
-        self.timehistory.append(time)     #all histories get intialized
-        self.windhistory.append([0, 0, 0])
-        self.winddirhistory.append(self.winddir())
-        self.velhistory.append([0, terminalvelocity, 0]) #m/s
-        self.gpshistory.append([x , y, z]) # have to convert back to lat long m
+    def __init__(self, x, y, z, time, nodearea, nodemass): #environment is created right when node hits 20k feet and parafoil deploys
+        self.refwind = [9906, 20.1]  # m, m/s
+        self.printmode = False
+        self.airdenslist = {0: 0.765, 5000: 0.659, 10000: 0.565, 15000: 0.0481, 20000: 0.0408}  # lbs/ft^3 <-have to convert this to proper units
+        self.terminalvelocity = 249
+        self.nodearea = nodearea
+        self.nodemass = nodemass
+        self.timehistory = [time]    #all histories get intialized
+        self.windhistory = [[0, 0, 0]]
+        self.winddirhistory = [self.winddir()]
+        self.velhistory = [[0, self.terminalvelocity, 0]] #m/s
+        self.gpshistory = [[x , y, z]] # have to convert back to lat long m
 
     def update(self, xacc, yacc, zacc, x, y, z, time):  #returns the delta x y z
         self.winddirupd()
@@ -58,8 +54,6 @@ class WindEnv: #still ahve to do unit conversions
         for i in range(3):
             listdf.append((1/2) * airdens * self.velhistory[-1][i] ** 2 * 1.05 * self.nodearea)
         return listdf
-
-
 
     def nodevelupd(self, xacc, yacc, zacc, x, y, z, time):  #gets new node velocity
         deltatime = time - self.timehistory[-1]
@@ -105,7 +99,7 @@ class WindEnv: #still ahve to do unit conversions
         listxyz[0] = listxyz[0] + random.randint([-10, 10])
         listxyz[1] = listxyz[1] + random.randint([-10, 10])
         testz = listxyz[2] +  random.randint([-3, 3])
-        if testz > -25 and testz < 25:
+        if -25 < testz < 25:
             listxyz[2] = testz
 
         self.winddirhistory.append(listxyz)
