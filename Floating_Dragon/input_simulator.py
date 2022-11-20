@@ -6,12 +6,12 @@ from pid import PID
 
 
 class Simulator:
-    def __init__(self, slat, slong, endlat, endlong, launch_alt, end_alt, pid, traj, env=None):
-        self.state = {"timestep": [0], "position": [[slat, slong, launch_alt]], "servo": np.asarray([0.0, 0.0])} # for servo negative means pull, positive means extend
+    def __init__(self, slat, slong, endlat, endlong, launch_alt, end_alt, pid_lst, traj, env=None):  # pid_lst is [P,I,D]
+        self.state = {"timestep": [0], "position": [[slat, slong, launch_alt]], "servo": [[0.0, 0.0]]} # for servo negative means pull, positive means extend
         self.end = np.asarray([endlat, endlong, end_alt])
         self.env = env
         self.world_timer = None
-        self.controller = pid  # 2D PID Controller
+        self.controller = PID(pid_lst[0], pid_lst[1], pid_lst[2])  # 2D PID Controller
         self.planner = traj
 
     def start(self, csv=None):
@@ -88,9 +88,10 @@ class Simulator:
     def read_gps(self):
         return self.state.get("position")[-1]  # reads the last entry
 
-    def update_state(self, timestep, gps_coor):
+    def update_state(self, timestep, gps_coor, servo_pos):
         self.state.get("position").append(gps_coor)
         self.state.get("timestep").append(timestep)
+        self.state.get("servo").append(servo_pos)
 
     def run(self, csv):
         if csv is None:  # add some csv functionality later
@@ -105,6 +106,14 @@ class Simulator:
         self.controller.update(current)
 
         servo_input = self.controller.out()
+
+        turn_left = 1
+
+        if turn_left:
+            servo_pos = [-servo_input, servo_input]
+        else:
+            servo_pos = [servo_input, -servo_input]
+
 
         delta_movement = self.sigmoid(servo_input)
 
