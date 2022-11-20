@@ -73,7 +73,7 @@ class WindEnv: #still ahve to do unit conversions
 
         xvelf = 0.8 * xvel + 0.2 * xvel2
         yvelf = 0.8 * yvel + 0.2 * yvel2
-        zvelf = 0.8 * zvel + 0.2 * zvel2
+        zvelf = 0.8 * z888vel + 0.2 * zvel2
 
         self.velhistory.append([xvelf, yvelf, zvelf])
         return [xvelf, yvelf, zvelf]
