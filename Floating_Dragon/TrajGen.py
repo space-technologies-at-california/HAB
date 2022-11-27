@@ -181,19 +181,17 @@ class TrajectoryGenerator:
   def setup_phase_2(self):
     """
     Sets up the working environment for phase 2 controls. This involves finding 
-    a center to spiral around. 
+    a center to circle around. 
     
     Returns:
-      setpoint (int): PID setpoint for next iteration. Defined as difference in 
-                      wanted and actual radius--want this to be 0.
-      error (int): PID error for next iteration. Will be an difference in radius 
-                   measurement. Look at update_phase_2 for more details. 
+      setpoint (int): PID setpoint. Defined as a radius from the center
+      error (int): PID error. Will be an difference in radius measurement.
     """
     self.phase = 2
     dir_to_tar, _ = self.vec_2(self.t)
     center = self.curr_point + (self.phase_2["radius"] * dir_to_tar)
     self.phase_2["center"] = center
-    return 0, 0
+    return self.phase_2["radius"], 0
     
   def update_phase_2(self):
     """
@@ -205,21 +203,22 @@ class TrajectoryGenerator:
     circling behavior. 
     
     Returns:
-      setpoint (int): PID setpoint for next iteration. PID setpoint for next 
-                      iteration. Defined as difference in wanted and actual 
-                      radius--want this to be 0.
-      error (int): PID error for next iteration. This is an radius measurement. 
+      setpoint (int): PID setpoint. Defined as a radius from the center
+      error (int): PID error. This a difference in radius measurement.
     """
     if self.curr_point[2] <= self.alt_thresh_b:
       return self.setup_phase_3()
+    
     _, dist_to_tar = self.vec_2(self.tar_point)
     if dist_to_tar >= self.dist_thresh:
       return self.setup_phase_1()
+   
     _, dist_to_center = self.vec_2(self.phase_2["center"])
-    if dist_to_center > self.phase_2["error"]:
+    if dist_to_center > self.phase_2["error_thresh"]:
       return self.setup_phase_2()
-    diff = dist_to_center - self.phase_2["error_thresh"]
-    return 0, diff #negative implies a right turn
+   
+    diff = dist_to_center - self.phase_2["radius"]
+    return self.phase_2["radius"], diff #negative diff implies a right turn
 
   def setup_phase_3(self):
     """
