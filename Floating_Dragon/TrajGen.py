@@ -6,27 +6,36 @@ class TrajectoryGenerator:
                alt_thresh_c, dist_thresh, p1_error_thresh, p2_error_thresh, 
                p2_radius, p3_v_error_thresh, p3_h_error_thresh):
     """
-    Initializes a new TrajectoryGenerator with altidude, distance, 
-    predetermined state variables, and error thresholds set appropriately. 
-    TrajectoryGeneration operates on points (position vectors) that are 
+    Initializes a new TrajectoryGenerator with predetermined state variables and 
+    altitude, distance, & error thresholds set appropriately. 
+    TrajectoryGenerator operates on points (position vectors) that are 
     implemented using numpy arrays taking on the form 
-    [latitude, longitude, altitude].
+    [latitude, longitude, altitude]. *We may want to turn this into a class 
+    later*.
            
     Attributes:
       phase (int): Current phase
-      tar_point (np.array): Vector [latitude, longitude, altitude]      
+      tar_point (np.array): Vector representing [latitude, longitude, altitude]      
       alt_thresh_a (int): Altitude threshold to start phase 1
       alt_thresh_b (int): Altitude threshold to start phase 3
       alt_thresh_c (int): Altitude threshold to deploy parachute two in 
                           uncontrollable cases. 
       dist_thresh (int): Distance from target threshold to start phase 2
       phase_1 (dict): Phase 1 working data. Added to/modified as needed. 
-      phase_2 (dict): Phase 2 working data. Added to/modified as needed. 
+                      {
+                        "error_thresh" (int): Error threshold for regenenation 
+                        "dir_vec" (np.array): Direction vector to phase endpoint
+                        "ep" (np.array): Phase endpoint 
+                        "hplane" (dict): {"a": int, "b": int, "c": int} Defines 
+                                         hyperlane ax + by - c  = 0
+                      }
+      phase_2 (dict): Phase 2 working data. Added to/modified as needed.
+
       phase_3 (dict): Phase 3 working data. Added to/modified as needed. 
     """
     self.phase = 0                            
     self.tar_point = np.array([tar_lat, tar_long, tar_alt])
-    self.curr_point = None # Continually set in update. 
+    self.curr_point = None # This is continually set in update. 
     self.alt_thresh_a = alt_thresh_a                              
     self.alt_thresh_b = alt_thresh_b
     self.alt_thresh_c = alt_thresh_c
@@ -54,7 +63,7 @@ class TrajectoryGenerator:
     """
     p1 = self.current_point
     if dim == 2:
-      p1 = p1[:2]
+      p1 = p1[:2] # only want lat ang long in [lat, long, alt]
       p2 = p2[:2]      
     dir_vec = p2 - p1
     dist = np.linalg.norm(dir_vec)
@@ -64,8 +73,8 @@ class TrajectoryGenerator:
   def update(self, curr_lat, curr_long, curr_alt):
     """
     Takes in the arguments representing the current state and 
-    returns the appropriate setpoint and error for the PID controller along 
-    with the phase to select the required PID feedback controller.
+    returns the appropriate setpoint and error for the PID controller as well 
+    as the current phase in order to select the required controller.
     
     Args:
       curr_lat (int): Current latitutude 
@@ -78,6 +87,7 @@ class TrajectoryGenerator:
       error (int): PID error for next iteration 
     """
     self.curr_point = np.array([curr_lat, curr_long, curr_alt])
+    
     if self.phase == 0:
       setpoint, error = self.update_phase_0()
     elif self.phase == 1:
@@ -86,6 +96,7 @@ class TrajectoryGenerator:
       setpoint, error = self.update_phase_2()
     elif self.phase == 3:
       setpoint, error = self.update_phase_3()
+    
     return self.phase, setpoint, error
     
   def update_phase_0(self):
@@ -95,12 +106,12 @@ class TrajectoryGenerator:
     phase 1.
     
     Returns: 
-      setpoint (int): PID setpoint for next iteration 
-      error (int): PID error for next iteration 
+      setpoint (int): PID setpoint. None as we freefall--not controlling yet 
+      error (int): PID error. None as we freefall--not controlling yet 
     """
     if self.curr_point[2] <= self.alt_thresh_a:
       return self.setup_phase1() 
-    return None, None # We're not controlling yet, so these values don't mattter
+    return None, None
     
   def setup_phase_1(self):
     """ 
@@ -110,49 +121,49 @@ class TrajectoryGenerator:
     which is used to determine which direction to turn.  
       
     Returns:
-      setpoint (int): PID setpoint for next iteration. Defined as angle 
-                      difference between actual path and wanted path-want 
-                      this to be 0. 
-      error (int): PID error for next iteration. Will be an angle measurement. 
-                   Look at update_phase_1 for more details. 
+      setpoint (int): PID setpoint. Defined as the angle between planned path 
+                      and actual path to the phase endpoint. This is 0
+      error (int): PID error. The actual angle measurment.
     """
     self.phase = 1
     dir_2_tar, _ = self.vec_2(self.target_point)            
-    # The endpoint is 1/2(dist_thresh) away from the target in the direction of 
-    # the current point. This is to ensure we hit the threshold for phase 2.    
-    phase_1_ep = (-self.dist_thresh/2 * dir_2_tar) + self.target_point 
+    # The endpoint is 1/2(dist_thresh) away from the target in the direction 
+    # towards the current point. Ensure we hit the threshold to start phase 2.    
+    ep = (-self.dist_thresh/2 * dir_2_tar) + self.target_point 
     #Eq of line A(lat) + B(long) - C = 0 to figure turning orientation
-    #a=y1−y2 , b=x2−x1 and c=x1y2−x2y1.  
-    a = self.curr_point[1] - phase_1_ep[1]
-    b = phase_1_ep[0] - self.curr_point[0]
-    c = (self.curr_point[0] * phase_1_ep[1]) - (self.curr_point[1] * phase_1_ep[0])
+    #a=y1−y2 , b=x2−x1, and c=x1y2−x2y1.  
+    a = self.curr_point[1] - ep[1]
+    b = ep[0] - self.curr_point[0]
+    c = (self.curr_point[0] * ep[1]) - (self.curr_point[1] * ep[0])
     self.phase_1["dir_vec"] = dir_2_tar
-    self.phase_1["ep"] = phase_1_ep
+    self.phase_1["ep"] = ep
     self.phase_1["hplane"] = {"a": a, "b": b, "c": c}
     return 0, 0
   
-  def update_phase_1(self):                
+  def update_phase_1(self):
     """
     Facilitates a phase 1 update. This includes determining whether to reset or 
-    move on to another phase as well as measuring the angle between the the path 
-    that we want to travel on and the path from the current point to the target
-    endpoint, which is the error we want to correct using the controller. 
+    move on to another phase as well as measuring the angle between the planned 
+    path and actual path to the phase endpoint, which is our error. 
     
     Returns:
-      setpoint (int): PID setpoint for next iteration. PID setpoint for next 
-                      iteration. Defined as angle difference between actual path 
-                      and wanted path--want this to be 0. 
-      error (int): PID error for next iteration. This is an angle measurement. 
+      setpoint (int): PID setpoint. Defined as the angle between the planned
+                      path and actual path to the phase endpoint. This is 0
+      error (int): PID error. This is the angle measurement 
     """
     if self.curr_point[2] <= self.alt_thresh_b:
       return self.setup_phase_3()
+    
     _, dist_to_tar = self.vec_2(self.target)            
     if dist_to_tar <= self.dist_thresh:  
       return self.setup_phase_2()
+    
     dir_to_ep, _ = self.vec_2(self.phase_1["endpoint"])
+    
     angle = np.arccos(np.clip(np.dot(dir_to_ep, self.phase_1["ep"]), -1.0, 1.0))
     if angle > self.phase_1["error_thresh"]:
-      return self.setup_phase_1()
+      return self.setup_phase_1() # Regenerate phase 1
+    
     a = self.phase_1["hplane"]["a"]
     b = self.phase_1["hplane"]["b"]
     c = self.phase_1["hplane"]["c"]
