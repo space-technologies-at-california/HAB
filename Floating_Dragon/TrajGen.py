@@ -19,19 +19,23 @@ class TrajectoryGenerator:
       alt_thresh_a (int): Altitude threshold to start phase 1
       alt_thresh_b (int): Altitude threshold to start phase 3
       alt_thresh_c (int): Altitude threshold to deploy parachute two in 
-                          uncontrollable cases. 
+                          uncontrollable cases
       dist_thresh (int): Distance from target threshold to start phase 2
-      phase_1 (dict): Phase 1 working data. Added to/modified as needed. 
+      phase_1 (dict): Phase 1 working data. Added to/modified as needed.
                       {
-                        "error_thresh" (int): Error threshold for regenenation 
+                        "error_thresh" (int): Error threshold for regeneration 
                         "dir_vec" (np.array): Direction vector to phase endpoint
                         "ep" (np.array): Phase endpoint 
                         "hplane" (dict): {"a": int, "b": int, "c": int} Defines 
                                          hyperlane ax + by - c  = 0
                       }
-      phase_2 (dict): Phase 2 working data. Added to/modified as needed.
-
-      phase_3 (dict): Phase 3 working data. Added to/modified as needed. 
+      phase_2 (dict): Phase 2 working data. Added to/modified as needed
+                      {
+                        "error_thresh" (int): Error threshold for regeneration 
+                        "center" (np.array): Center of rotation 
+                        "radius" (int): Circling radius
+                      }
+      phase_3 (dict): Phase 3 working data. Added to/modified as needed
     """
     self.phase = 0                            
     self.tar_point = np.array([tar_lat, tar_long, tar_alt])
@@ -55,11 +59,11 @@ class TrajectoryGenerator:
     
     Args:
       p2 (np.array): A target point
-      dim (int, optional): Dimensions wanting to be considered. Defaults to 2.
+      dim (int, optional): Dimensions wanting to be considered. Defaults to 2
 
     Returns:
-      dir_vec_uv (np.array): Direction vector between the current point and p2. 
-      dist (int): Distance between current point and p2.
+      dir_vec_uv (np.array): Direction vector between the current point and p2
+      dist (int): Distance between current point and p2
     """
     p1 = self.current_point
     if dim == 2:
@@ -123,7 +127,7 @@ class TrajectoryGenerator:
     Returns:
       setpoint (int): PID setpoint. Defined as the angle between planned path 
                       and actual path to the phase endpoint. This is 0
-      error (int): PID error. The actual angle measurment.
+      error (int): PID error. The actual angle measurment
     """
     self.phase = 1
     dir_2_tar, _ = self.vec_2(self.target_point)            
@@ -159,7 +163,6 @@ class TrajectoryGenerator:
       return self.setup_phase_2()
     
     dir_to_ep, _ = self.vec_2(self.phase_1["endpoint"])
-    
     angle = np.arccos(np.clip(np.dot(dir_to_ep, self.phase_1["ep"]), -1.0, 1.0))
     if angle > self.phase_1["error_thresh"]:
       return self.setup_phase_1() # Regenerate phase 1
@@ -185,7 +188,7 @@ class TrajectoryGenerator:
     
     Returns:
       setpoint (int): PID setpoint. Defined as a radius from the center
-      error (int): PID error. Will be an difference in radius measurement.
+      error (int): PID error. Will be an difference in radius measurement
     """
     self.phase = 2
     dir_to_tar, _ = self.vec_2(self.t)
@@ -204,13 +207,13 @@ class TrajectoryGenerator:
     
     Returns:
       setpoint (int): PID setpoint. Defined as a radius from the center
-      error (int): PID error. This a difference in radius measurement.
+      error (int): PID error. This a difference in radius measurement
     """
     if self.curr_point[2] <= self.alt_thresh_b:
       return self.setup_phase_3()
     
     _, dist_to_tar = self.vec_2(self.tar_point)
-    if dist_to_tar >= self.dist_thresh:
+    if dist_to_tar > self.dist_thresh:
       return self.setup_phase_1()
    
     _, dist_to_center = self.vec_2(self.phase_2["center"])
@@ -246,7 +249,7 @@ class TrajectoryGenerator:
     #a=y1−y2 , b=x2−x1 and c=x1y2−x2y1.  
     a = self.curr_point[1] - self.tar_point[1]
     b = self.tar_point[0] - self.curr_point[0]
-    c = (self.curr_point[0] * self.targ[1]) - (self.curr_point[1] * self.tar_point[0])  
+    c = (self.curr_point[0] * self.tar_point[1]) - (self.curr_point[1] * self.tar_point[0])  
     self.phase_3["dir_vec"] = glide_slope_dir
     self.phase_3["hplane"] = {"a": a, "b": b, "c": c}
     self.phase_3["sp"] = self.curr_point
